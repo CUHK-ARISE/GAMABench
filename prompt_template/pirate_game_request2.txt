@@ -1,0 +1,10 @@
+pirate_game_request2.txt
+
+Variables:
+!<INPUT 0>! -- player id
+!<INPUT 1>! -- number of players
+!<INPUT 2>! -- gold
+
+<commentblockmarker>###</commentblockmarker>
+
+Now you, the !<INPUT 0>! most senior pirate, needs to propose a plan. Your answer:\nPlease output a json of the following format: {"!<INPUT 0>!": g_!<INPUT 0>!, "!<INPUT 0>! + 1": g_{!<INPUT 0>! + 1}, ..., "!<INPUT 1>!": g_!<INPUT 1>!}, where \sum_{i=!<INPUT 0>!}^{!<INPUT 1>!}{g_{i}} = !<INPUT 2>! and g_{i} >= 0, indicating the golds distributed to each pirate from !<INPUT 0>! to !<INPUT 1>!.
