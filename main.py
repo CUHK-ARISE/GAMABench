@@ -4,6 +4,7 @@ import random
 from server import *
 from games.guessing_game import *
 from games.bar_game import *
+from games.pirate_game import *
 
 def ratio_randomization(min=1, max=10):
     numerator = random.randint(min, max)
@@ -27,3 +28,5 @@ bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utilit
 bargame.start()
 
 # Pirate Game
+pirate_game = PirateGame(player_num=10, rounds=10, gold=100)
+pirate_game.start()
