@@ -22,8 +22,8 @@ guessing_game = GuessingGame(num_players, num_rounds, min, max, ratio, ratio_str
 guessing_game.start()
 
 # Bar Game
-# min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
-# bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
-# bargame.start()
+min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
+bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
+bargame.start()
 
 # Pirate Game
