@@ -164,10 +164,7 @@ class PirateGame(GameServer):
                     player.prompt = player.prompt + request_prompt1
 
                 while True:
-                    print(f'proposing pirate: {self.current_round},voting pirate:{current_player_id + 1}')
-                    print(f'current plan: {self.current_plan}')
                     gpt_responses = player.gpt_request(player.prompt)
-                    print(f'gpt response before manipulating: {gpt_responses}')
                     try:
                         if self.current_round == current_player_id + 1:
                             json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}', gpt_responses)
@@ -177,7 +174,6 @@ class PirateGame(GameServer):
                             player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = literal_eval(json_str)
                             self.current_plan = gpt_responses
-                            print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(gpt_responses.values())
                             player.records.append('Yes')
                             self.accepted += 1
@@ -196,7 +192,6 @@ class PirateGame(GameServer):
                                 gpt_responses = 'No'
                                 self.declined += 1
                                 player.records.append('No')
-                            print(f'gpt response after manipulating: {gpt_responses}')
                             responses.append(gpt_responses)
                             break  
                     except:
