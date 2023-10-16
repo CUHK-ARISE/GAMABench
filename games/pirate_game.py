@@ -11,7 +11,7 @@ class PirateGame(GameServer):
         # Call the constructor of the base class
         description_file = 'prompt_template/pirate_game_description.txt'
         description_list = [player_num, gold]
-        goal = "1. You want to survive.\n2. Given survival, you want to maximize the number of gold coins you receive.\n3. You would prefer to throw another overboard, if all other results would otherwise be equal"
+        goal = "Prioritize the folowing:\n1.You want to survive.\n2.Given survival you want to maximize the number of gold coins you receive.\n3.You would prefer to throw another overboard, if all other results would otherwise be equal"
         super().__init__(player_num, rounds, description_file, description_list, goal)
         self.name_exp = name_exp
         self.gold = gold
@@ -71,8 +71,10 @@ class PirateGame(GameServer):
             else:
                 color = 'green' if player.records[-1] == 'Yes' else 'red'
                 label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
-                print
                 plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
+                if current_player_id + 1 == self.current_round and not self.next_round:
+                    plt.plot(current_player_id + 1, gold_distribution[count], 'o', color='orange', label='winner')
+
                 if label:
                     labels_added.add(label)
                 count += 1
@@ -89,29 +91,42 @@ class PirateGame(GameServer):
         plt.clf()
 
     def graphical_analysis(self):
-        # round_numbers = [str(i) for i in range(1, self.rounds+1)]
-        # mean_list = [r["mean_ratio"] for r in self.round_records]
-        # winning_list = [r["winner"] for r in self.round_records]
-        
-        # for player in self.players:
-        #     plt.plot(round_numbers, player.records, marker='x', color='b')
-            
-        # for index, winner in enumerate(winning_list):
-        #     if index == 0:
-        #         plt.plot(index, winner, marker='o', color='g', label='Winner')
-        #     else:
-        #         plt.plot(index, winner, marker='o', color='g')
-                
-        plt.plot(np.array([i + 1 for i in range(len(self.accepting_list))]), np.array(self.accepting_list), 'o', color='r')
+        # Data points
+        x_values = np.array([i + 1 for i in range(len(self.accepting_list))])
+        y_values = np.array(self.accepting_list)
+
+        # Plotting each point
+        plt.plot(x_values, y_values, 'o', color='black')
+
+        # Adding annotations for each point
+        for x, y in zip(x_values, y_values):
+            plt.annotate(f'({x:.0f}, {y:.1f})',  # Text to display
+                        (x, y),                  # Position to start the text
+                        textcoords="offset points",  # Offset (in points)
+                        xytext=(0,10),            # Distance from text to points (x,y)
+                        ha='center')              # Horizontal alignment can be left, right or center
+
+        # Rest of your plot settings
         plt.title(f'Pirate Game (players = {self.n})')
         plt.xlabel('Senior Pirate turns')
         plt.ylabel('Accepting Rate')
-        plt.ylim(0, 1)
-        # plt.legend()
+        plt.ylim(-.1, 1.1)
         fig = plt.gcf()
         fig.savefig(f'{self.name_exp}.png', dpi=300)
         plt.show()
         plt.clf()
+
+                
+        # plt.plot(np.array([i + 1 for i in range(len(self.accepting_list))]), np.array(self.accepting_list), 'o', color='black')
+        # plt.title(f'Pirate Game (players = {self.n})')
+        # plt.xlabel('Senior Pirate turns')
+        # plt.ylabel('Accepting Rate')
+        # plt.ylim(-.1, 1.1)
+        # # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'{self.name_exp}.png', dpi=300)
+        # plt.show()
+        # plt.clf()
     
     def player_id_manipulation(self, player_id):
         player_id = int(player_id)
@@ -152,19 +167,22 @@ class PirateGame(GameServer):
                 if self.current_round == current_player_id + 1:
                     request_file2 = 'prompt_template/pirate_game_request2.txt'
                     # request_list2 = [self.current_player, self.n, self.gold]
-                    request_list2 = [current_player_id + 1, self.n, self.gold]
+                    request_list2 = [current_player_id + 1, self.current_player, self.n, self.player_id_manipulation(self.n), self.gold]
                     request_msg2 = self.get_prompt(request_file2, request_list2)
                     request_prompt2 = [{"role": "user", "content": request_msg2}]
                     player.prompt = player.prompt + request_prompt2
                 else: 
                     request_file1 = 'prompt_template/pirate_game_request1.txt'
-                    request_list1 = [self.current_player, self.current_round, self.current_plan]
+                    request_list1 = [self.current_player, self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
                     request_msg1 = self.get_prompt(request_file1, request_list1)    
                     request_prompt1 = [{"role": "user", "content": request_msg1}]
                     player.prompt = player.prompt + request_prompt1
 
                 while True:
+                    print(f'proposing pirate: {self.current_round},voting pirate:{current_player_id + 1}')
+                    print(f'current plan: {self.current_plan}')
                     gpt_responses = player.gpt_request(player.prompt)
+                    print(f'gpt response before manipulating: {gpt_responses}')
                     try:
                         if self.current_round == current_player_id + 1:
                             json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}', gpt_responses)
@@ -174,6 +192,7 @@ class PirateGame(GameServer):
                             player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = literal_eval(json_str)
                             self.current_plan = gpt_responses
+                            print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(gpt_responses.values())
                             player.records.append('Yes')
                             self.accepted += 1
@@ -192,6 +211,7 @@ class PirateGame(GameServer):
                                 gpt_responses = 'No'
                                 self.declined += 1
                                 player.records.append('No')
+                            print(f'gpt response after manipulating: {gpt_responses}')
                             responses.append(gpt_responses)
                             break  
                     except:
