@@ -87,11 +87,15 @@ class BarGame(GameServer):
     
     
     def statistic_analysis(self):
-        print('Probability Distribution:')
-        for player_id, player in enumerate(self.players):
-            yes_ratio = player.records.count('yes') / self.rounds * 100
-            no_ratio = player.records.count('no') / self.rounds * 100
-            print(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
+        os.makedirs("text_results", exist_ok=True)
+        with open("text_results/bargame.txt", "w") as text_file:
+            print('Probability Distribution:')
+            text_file.write(f"Probability Distribution:")
+            for player_id, player in enumerate(self.players):
+                yes_ratio = player.records.count('yes') / self.rounds * 100
+                no_ratio = player.records.count('no') / self.rounds * 100
+                print(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
+                text_file.write(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
     
     
     def start(self):
@@ -141,6 +145,5 @@ class BarGame(GameServer):
             }
             save_data["player_data"].append(player_info)
         os.makedirs("save", exist_ok=True)
-        
         with open('save/bargame.json', 'w') as json_file:
             json.dump(save_data, json_file, indent=2)
