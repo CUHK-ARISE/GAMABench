@@ -25,7 +25,18 @@ num_rounds = 10
 # Bar Game
 min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
 bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
-bargame.start()
+# bargame.start()
+
+print("Select model = gpt-3.5-turbo")
+attribute = 'model'
+model_list = ['gpt-3.5-turbo']
+bargame.load('save/bar_game.json', attribute, model_list)
+
+print("Select id = 1,2,3,4")
+attribute = 'id'
+players_list = [f"player_{i}" for i in [1,2,3,4]]
+bargame.load('save/bar_game.json', attribute, players_list)
+
 
 # Pirate Game
 # pirate_game = PirateGame(player_num=10, rounds=10, gold=100)

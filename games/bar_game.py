@@ -8,7 +8,7 @@ import json
 from server import *
 
 class BarGame(GameServer):
-    def __init__(self, player_num, rounds, min, max, home, ratio, ratio_str, name_exp='bar game'):
+    def __init__(self, player_num, rounds, min, max, home, ratio, ratio_str, name_exp='bargame'):
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = 'prompt_template/bar_game_description.txt'
         description_list = [player_num, ratio_str, min, max, home, round_message]
@@ -19,14 +19,12 @@ class BarGame(GameServer):
         self.home = home
         self.ratio = ratio
         self.ratio_str = ratio_str
-        for player in self.players:
-            player.utility = []
     
     
     def compute_result(self, responses):
         go_player = responses.count('yes')
         go_ratio = go_player / self.n
-        winner = "yes" if go_ratio < self.ratio else "no"
+        winner = "yes" if go_ratio <= self.ratio else "no"
         record = {
             "responses": responses,
             "go_num": go_player,
@@ -49,16 +47,17 @@ class BarGame(GameServer):
             elif player_choice == "go" and round_record["winner"] == "no":
                     player.utility.append(self.min)
                     
-            result_msg = "Less" if round_record["winner"] == "yes" else "Equal or more"
+            result_msg = "Equal or less" if round_record["winner"] == "yes" else "More"
             report_file = 'prompt_template/bar_game_report.txt'
             report_list = [self.current_round, round_record["go_num"], self.n - round_record["go_num"], self.n, 
                         result_msg, self.ratio_str, player_choice, player.utility[-1]]
+            # print(report_list)
             report_prompt = [{"role": "user", "content": self.get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
 
 
-    def graphical_analysis(self):
+    def graphical_analysis(self, players_list):
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.rounds+1)]
@@ -74,10 +73,22 @@ class BarGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
         plt.clf()
         
+        # Utility Received
+        player_color = []
+        for player in players_list:
+            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+            plt.plot(round_numbers, player.utility, marker='x', color=player_color[-1], label=player.id)
+        plt.title(f'El Farol Bar Game (n = {self.n})')
+        plt.xlabel('Round')
+        plt.ylabel('Total Utility')
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}-utility-recieved.png', dpi=300)
+        plt.clf()
+        
         # Utility Tendency
-        for player in self.players:
+        for index, player in enumerate(players_list):
             player_utility = [sum(player.utility[:i+1]) for i in range(self.rounds)]
-            plt.plot(round_numbers, player_utility, marker='x', color='b')
+            plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
         plt.title(f'El Farol Bar Game (n = {self.n})')
         plt.xlabel('Round')
         plt.ylabel('Total Utility')
@@ -86,12 +97,12 @@ class BarGame(GameServer):
         plt.clf()
     
     
-    def statistic_analysis(self):
+    def statistic_analysis(self, players_list):
         os.makedirs("text_results", exist_ok=True)
         with open("text_results/bargame.txt", "w") as text_file:
             print('Probability Distribution:')
             text_file.write(f"Probability Distribution:")
-            for player_id, player in enumerate(self.players):
+            for player_id, player in enumerate(players_list):
                 yes_ratio = player.records.count('yes') / self.rounds * 100
                 no_ratio = player.records.count('no') / self.rounds * 100
                 print(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
@@ -125,25 +136,28 @@ class BarGame(GameServer):
             round_record = self.compute_result(responses)
             self.report_result(round_record)
 
-        self.graphical_analysis()
-        self.statistic_analysis()
-        self.save()
+        savefile = self.save('bar_game.json')
+        self.load(savefile)
     
     
-    def save(self):
-        save_data = {
-            "round_records": self.round_records,
-            "player_data": []
+    def save(self, savename):
+        game_info = {
+            "min": self.min,
+            "max": self.max,
+            "home": self.home,
+            "ratio": self.ratio,
+            "ratio_str": self.ratio_str
         }
-        for player in self.players:
-            player_info = {
-                "model": player.model,
-                "id": player.id,
-                "prompt": player.prompt,
-                "record": player.records,
-                "utility": player.utility
-            }
-            save_data["player_data"].append(player_info)
-        os.makedirs("save", exist_ok=True)
-        with open('save/bargame.json', 'w') as json_file:
-            json.dump(save_data, json_file, indent=2)
+        return super().save(savename, game_info)
+
+
+    def load(self, file, attribute=None, metric_list='ALL'):
+        super().load(file)
+        
+        if metric_list == 'ALL':
+            players_list = self.players
+        else:
+            players_list = [player for player in self.players if getattr(player, attribute, None) in metric_list]
+        
+        self.graphical_analysis(players_list)
+        self.statistic_analysis(players_list)

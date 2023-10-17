@@ -6,6 +6,7 @@ from tenacity import (
 import openai
 import time
 import os
+import json
 import random
 from utils import *
 openai.api_key = openai_api_key
@@ -63,24 +64,29 @@ def completion(
 
 
 class Player:
-    def __init__(self, model, id, default_prompt):
+    def __init__(self, model, id, default_prompt, records=None, utility=None):
         self.model = model
         self.id = id
         self.prompt = default_prompt
-        self.records = []
+        self.records = records if records else []
+        self.utility = utility if utility else []
     
     
     def gpt_request(self, inputs):
-        if self.model == 'text-davinci-003':
-            response = completion(self.model, inputs).strip()
-            self.print_prompt(inputs, response)
-            return response
-        elif self.model in ['gpt-3.5-turbo', 'gpt-4']:
-            response = chat(self.model, inputs).strip()
-            self.print_prompt(self.id, inputs, response)
-            return response
-        else:
-            raise ValueError("The model is not supported or does not exist.")
+        start_time = time.time()
+        while time.time() - start_time < 10:
+            if self.model == 'text-davinci-003':
+                response = completion(self.model, inputs).strip()
+                self.print_prompt(inputs, response)
+                return response
+            elif self.model in ['gpt-3.5-turbo', 'gpt-4']:
+                response = chat(self.model, inputs).strip()
+                # response = '{"option": "yes"}' if random.randint(0,2) < 1 else '{"option": "no"}'
+                # response = f'''{{"option": "{random.randint(0,100)}"}}'''
+                self.print_prompt(self.id, inputs, response)
+                return response
+            else:
+                raise ValueError("The model is not supported or does not exist.")
     
     
     def print_prompt(self, id, inputs, response):
@@ -110,4 +116,43 @@ class GameServer:
             key = f"!<INPUT {index}>!"
             generated_prompt = generated_prompt.replace(key, str(item))
         return generated_prompt
+    
+    
+    def save(self, savename, game_info={}):
+        savefile = f'save/{savename}'
+        save_data = {
+            "round_records": self.round_records,
+            "player_data": [],
+            "n": self.n,
+            "rounds": self.rounds
+        }
+        save_data = {**save_data, **game_info}
+        
+        for player in self.players:
+            player_info = {
+                "model": player.model,
+                "id": player.id,
+                "prompt": player.prompt,
+                "records": player.records,
+                "utility": player.utility
+            }
+            save_data["player_data"].append(player_info)
+        os.makedirs("save", exist_ok=True)
+        with open(savefile, 'w') as json_file:
+            json.dump(save_data, json_file, indent=2)
+        return savefile
+    
+    
+    def load(self, filename):
+        with open(filename, 'r') as json_file:
+            loaded = json.load(json_file)
+            
+        # Load game setting
+        self.round_records = loaded["round_records"]
+        for index, loaded_player in enumerate(loaded["player_data"]):
+            self.players[index] = Player(loaded_player["model"], loaded_player["id"],
+                            loaded_player["prompt"], loaded_player["records"], loaded_player["utility"])
+            
+        return loaded
+    
     

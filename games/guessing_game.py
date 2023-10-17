@@ -51,13 +51,15 @@ class GuessingGame(GameServer):
         return
     
     
-    def graphical_analysis(self):
+    def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.rounds+1)]
         mean_list = [r["mean_ratio"] for r in self.round_records]
         winning_list = [r["winner"] for r in self.round_records]
-        for player in self.players:
-            plt.plot(round_numbers, player.records, marker='x', color='b')
+        player_color = []
+        for player in players_list:
+            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+            plt.plot(round_numbers, player.records, marker='x', color=player_color[-1], label=player.id)
         for index, winner in enumerate(winning_list):
             if index == 0:
                 plt.plot(index, winner, marker='o', color='g', label='Winner')
@@ -72,6 +74,27 @@ class GuessingGame(GameServer):
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}.png', dpi=300)
         plt.clf()
+    
+    
+    def save(self, savename):
+        game_info = {
+            "min": self.min,
+            "max": self.max,
+            "ratio": self.ratio,
+            "ratio_str": self.ratio_str
+        }
+        return super().save(savename, game_info)
+    
+    
+    def load(self, file, attribute=None, metric_list='ALL'):
+        super().load(file)
+        
+        if metric_list == 'ALL':
+            players_list = self.players
+        else:
+            players_list = [player for player in self.players if getattr(player, attribute, None) in metric_list]
+        
+        self.graphical_analysis(players_list)
     
     
     def start(self):
@@ -102,3 +125,4 @@ class GuessingGame(GameServer):
             self.report_result(round_record)
 
         self.graphical_analysis()
+        self.save('guessing_game.json')
