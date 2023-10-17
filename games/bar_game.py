@@ -11,7 +11,7 @@ class BarGame(GameServer):
     def __init__(self, player_num, rounds, min, max, home, ratio, ratio_str, name_exp='bar game'):
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = 'prompt_template/bar_game_description.txt'
-        description_list = [player_num, ratio_str, max, min, home, round_message]
+        description_list = [player_num, ratio_str, min, max, home, round_message]
         super().__init__(player_num, rounds, description_file, description_list)
         self.name_exp = name_exp
         self.min = min
@@ -123,3 +123,24 @@ class BarGame(GameServer):
 
         self.graphical_analysis()
         self.statistic_analysis()
+        self.save()
+    
+    
+    def save(self):
+        save_data = {
+            "round_records": self.round_records,
+            "player_data": []
+        }
+        for player in self.players:
+            player_info = {
+                "model": player.model,
+                "id": player.id,
+                "prompt": player.prompt,
+                "record": player.records,
+                "utility": player.utility
+            }
+            save_data["player_data"].append(player_info)
+        os.makedirs("save", exist_ok=True)
+        
+        with open('save/bargame.json', 'w') as json_file:
+            json.dump(save_data, json_file, indent=2)
