@@ -6,6 +6,7 @@ from games.guessing_game import *
 from games.bar_game import *
 from games.pirate_game import *
 from games.diner_dilemma import *
+from games.divide_dollar import *
 
 def ratio_randomization(min=1, max=10):
     numerator = random.randint(min, max)
@@ -63,8 +64,14 @@ bargame.load('save/bar_game.json', attribute, players_list)
 # pirate_game.start()
 
 
+# Divide the Dollar Game
+golds = 100
+divide_dollar = DivideDollar(num_players, num_rounds, golds)
+divide_dollar.start()
+
+
 # Diner Dilemma
-cheap_cost, cheap_utility, exp_cost, exp_utility = 20, 40, 50, 60
+# cheap_cost, cheap_utility, exp_cost, exp_utility = 20, 40, 50, 60
 # cheap_cost, cheap_utility, exp_cost, exp_utility = 5, 15, 10, 17
-diner_dilemma = DinerDilemma(num_players, num_rounds, cheap_cost, cheap_utility, exp_cost, exp_utility)
-diner_dilemma.start()
+# diner_dilemma = DinerDilemma(num_players, num_rounds, cheap_cost, cheap_utility, exp_cost, exp_utility)
+# diner_dilemma.start()

@@ -84,6 +84,7 @@ class Player:
                 # response = '{"option": "yes"}' if random.randint(0,2) < 1 else '{"option": "no"}'
                 # response = '{"option": "expensive"}' if random.randint(0,2) < 1 else '{"option": "cheap"}'
                 # response = f'''{{"option": "{random.randint(0,100)}"}}'''
+                # response = f'''{{"propose": "{random.randint(0,100)}"}}'''
                 self.print_prompt(self.id, inputs, response)
                 return response
             else:
