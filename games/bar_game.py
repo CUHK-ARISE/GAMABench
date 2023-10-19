@@ -8,22 +8,20 @@ import json
 from server import *
 
 class BarGame(GameServer):
-    def __init__(self, player_num, rounds, min, max, home, ratio, ratio_str, name_exp='bargame'):
-        round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
-        description_file = 'prompt_template/bar_game_description.txt'
-        description_list = [player_num, ratio_str, min, max, home, round_message]
-        super().__init__(player_num, rounds, description_file, description_list)
-        self.name_exp = name_exp
+    def __init__(self, player_num, min, max, home, ratio, ratio_str, mode='explicit', name_exp='bar_game', round_id=0):
+        super().__init__(player_num, round_id)
         self.min = min
         self.max = max
         self.home = home
         self.ratio = ratio
         self.ratio_str = ratio_str
+        self.mode = mode
+        self.name_exp = name_exp
     
     
     def compute_result(self, responses):
         go_player = responses.count('yes')
-        go_ratio = go_player / self.n
+        go_ratio = go_player / self.player_num
         winner = "yes" if go_ratio <= self.ratio else "no"
         record = {
             "responses": responses,
@@ -40,45 +38,52 @@ class BarGame(GameServer):
         for player in self.players:
             player_choice = "go" if player.records[-1] == "yes" else "not go"
             
+            # Compute revieced utility
             if player_choice == "not go":
-                player.utility.append(self.home)
+                player_utility = self.home
             elif player_choice == "go" and round_record["winner"] == "yes":
-                    player.utility.append(self.max)
+                player_utility = self.max
             elif player_choice == "go" and round_record["winner"] == "no":
-                    player.utility.append(self.min)
+                player_utility = self.min
+            player.utility.append(player_utility)
                     
             result_msg = "Equal or less" if round_record["winner"] == "yes" else "More"
-            report_file = 'prompt_template/bar_game_report.txt'
-            report_list = [self.current_round, round_record["go_num"], self.n - round_record["go_num"], self.n, 
-                        result_msg, self.ratio_str, player_choice, player.utility[-1]]
-            # print(report_list)
-            report_prompt = [{"role": "user", "content": self.get_prompt(report_file, report_list)}]
+            if self.mode == 'implicit' and player_choice == "not go":
+                report_file = 'prompt_template/bar_game_report_implicit.txt'
+                report_list = [self.round_id, player_choice, player_utility]
+            else:
+                report_file = 'prompt_template/bar_game_report.txt'
+                report_list = [self.round_id, round_record["go_num"], self.player_num - round_record["go_num"],
+                               self.player_num, result_msg, self.ratio_str, player_choice, player_utility]
+
+            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
 
 
     def graphical_analysis(self, players_list):
-        # Choice Analysis
         os.makedirs("figures", exist_ok=True)
-        round_numbers = [str(i) for i in range(1, self.rounds+1)]
+        round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        
+        # Choice Analysis
         go_list = [r["go_num"] for r in self.round_records]
         plt.plot(round_numbers, go_list, marker='x', color='b')
-        plt.axhline(y=self.ratio * self.n, color='r', linestyle='--', label='Capacity')
-        plt.title(f'El Farol Bar Game (n = {self.n})')
+        plt.axhline(y=self.ratio * self.player_num, color='r', linestyle='--', label='Capacity')
+        plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Number of players went to bar')
-        plt.ylim(-0.5, self.n + 0.5)
+        plt.ylim(-0.5, self.player_num + 0.5)
         plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
         plt.clf()
-        
+
         # Utility Received
         player_color = []
         for player in players_list:
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
             plt.plot(round_numbers, player.utility, marker='x', color=player_color[-1], label=player.id)
-        plt.title(f'El Farol Bar Game (n = {self.n})')
+        plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Total Utility')
         fig = plt.gcf()
@@ -87,9 +92,9 @@ class BarGame(GameServer):
         
         # Utility Tendency
         for index, player in enumerate(players_list):
-            player_utility = [sum(player.utility[:i+1]) for i in range(self.rounds)]
+            player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'El Farol Bar Game (n = {self.n})')
+        plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Total Utility')
         fig = plt.gcf()
@@ -98,46 +103,13 @@ class BarGame(GameServer):
     
     
     def statistic_analysis(self, players_list):
-        os.makedirs("text_results", exist_ok=True)
-        with open("text_results/bargame.txt", "w") as text_file:
-            print('Probability Distribution:')
-            text_file.write(f"Probability Distribution:")
+        os.makedirs("results", exist_ok=True)
+        with open(f"results/{self.name_exp}.txt", "w") as text_file:
+            text_file.write(f"Probability Distribution:\n")
             for player_id, player in enumerate(players_list):
-                yes_ratio = player.records.count('yes') / self.rounds * 100
-                no_ratio = player.records.count('no') / self.rounds * 100
-                print(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
-                text_file.write(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%")
-    
-    
-    def start(self):
-        for round in range(1, self.rounds+1):
-            print(f"Round {round}: ")
-            self.current_round = round
-            
-            request_file = 'prompt_template/bar_game_request.txt'
-            request_list = [self.current_round]
-            request_msg = self.get_prompt(request_file, request_list)
-            request_prompt = [{"role": "user", "content": request_msg}]
-            responses = []
-            
-            for player in tqdm(self.players):
-                player.prompt = player.prompt + request_prompt
-                while True:
-                    gpt_responses = player.gpt_request(player.prompt)
-                    try:
-                        parsered_responses = json.loads(gpt_responses)
-                        parsered_responses = parsered_responses["option"].lower()
-                        player.records.append(parsered_responses)
-                        responses.append(parsered_responses)
-                        player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                        break
-                    except:
-                        pass
-            round_record = self.compute_result(responses)
-            self.report_result(round_record)
-
-        savefile = self.save('bar_game.json')
-        self.load(savefile)
+                yes_ratio = player.records.count('yes') / self.round_id * 100
+                no_ratio = player.records.count('no') / self.round_id * 100
+                text_file.write(f"Player {player_id} 'yes': {yes_ratio:.1f}%, 'no': {no_ratio:.1f}%\n")
     
     
     def save(self, savename):
@@ -146,18 +118,49 @@ class BarGame(GameServer):
             "max": self.max,
             "home": self.home,
             "ratio": self.ratio,
-            "ratio_str": self.ratio_str
+            "ratio_str": self.ratio_str,
+            "mode": self.mode,
         }
         return super().save(savename, game_info)
 
 
-    def load(self, file, attribute=None, metric_list='ALL'):
-        super().load(file)
+    def show(self, attr_name=None, metric_list='ALL'):
+        eligible_players = select_players(self.players, attr_name, metric_list)
+        self.graphical_analysis(eligible_players)
+        self.statistic_analysis(eligible_players)
+    
+    
+    def start(self, round):
+        print(f"Round {round}: ")
+        self.round_id = round
         
-        if metric_list == 'ALL':
-            players_list = self.players
-        else:
-            players_list = [player for player in self.players if getattr(player, attribute, None) in metric_list]
+        request_file = 'prompt_template/bar_game_request.txt'
+        request_list = [self.round_id]
+        request_msg = get_prompt(request_file, request_list)
+        request_prompt = [{"role": "user", "content": request_msg}]
+        responses = []
         
-        self.graphical_analysis(players_list)
-        self.statistic_analysis(players_list)
+        for player in tqdm(self.players):
+            player.prompt = player.prompt + request_prompt
+            while True:
+                gpt_responses = player.gpt_request(player.prompt)
+                try:
+                    parsered_responses = json.loads(gpt_responses)
+                    parsered_responses = parsered_responses["option"].lower()
+                    if parsered_responses not in ['yes', 'no']: continue
+                    player.records.append(parsered_responses)
+                    responses.append(parsered_responses)
+                    player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
+                    break
+                except:
+                    pass
+        round_record = self.compute_result(responses)
+        self.report_result(round_record)
+    
+    
+    def run(self, rounds):
+        # Update system prompt (number of round)
+        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
+        description_file = 'prompt_template/bar_game_description.txt'
+        description_list = [self.player_num, self.ratio_str, self.min, self.max, self.home, round_message]
+        super().run(rounds, description_file, description_list)

@@ -1,5 +1,6 @@
 import math
 import random
+import shutil
 
 from server import *
 from games.guessing_game import *
@@ -8,6 +9,18 @@ from games.pirate_game import *
 from games.diner_dilemma import *
 from games.divide_dollar import *
 
+def load(filename, object, name_exp=None):
+    if name_exp:
+        shutil.copy2(filename, f'save/{name_exp}.json')
+        filename = f'save/{name_exp}.json'
+    
+    with open(filename, 'r') as json_file:
+        loaded_file = json.loads(json_file.read())
+        game = object(**loaded_file["meta"])
+        game.load(loaded_file["round_records"], loaded_file["player_data"])
+    return game
+
+
 def ratio_randomization(min=1, max=10):
     numerator = random.randint(min, max)
     denominator = random.randint(numerator, max)    # ratio <= 1
@@ -15,6 +28,7 @@ def ratio_randomization(min=1, max=10):
     numerator = numerator // gcd
     denominator = denominator // gcd
     return numerator/denominator, f"{numerator}/{denominator}"
+
 
 def dish_randomization(min=10, max=100):
     while True:
@@ -30,33 +44,23 @@ def dish_randomization(min=10, max=100):
         
         if b > n:
             return a, b, m, n
-        
-num_players = 10
-num_rounds = 10
+
+player_num = 10
 
 # Guessing Game
-# min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
-# guessing_game = GuessingGame(num_players, num_rounds, min, max, ratio, ratio_str)
-# guessing_game.start()
+min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
+guessing_game = GuessingGame(player_num, min, max, ratio, ratio_str)
+guessing_game.run(5)
+game = load('save/guessing_game.json', GuessingGame)
+game.run(3)
+game.show('id', ['player_1', 'player_5'])
 
 
 # Bar Game
 # min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
-# bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
-# bargame.start()
-'''
-Loading samples:
-
-print("Select model = gpt-3.5-turbo")
-attribute = 'model'
-model_list = ['gpt-3.5-turbo']
-bargame.load('save/bar_game.json', attribute, model_list)
-
-print("Select id = 1,2,3,4")
-attribute = 'id'
-players_list = [f"player_{i}" for i in [1,2,3,4]]
-bargame.load('save/bar_game.json', attribute, players_list)
-'''
+# bargame = BarGame(player_num, min_utility, max_utility, home_utility, ratio, ratio_str, name_exp='bargame_explicit')
+# bargame = BarGame(player_num, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str, 'implicit', 'bargame_implicit')
+# bargame.run(5)
 
 
 # Pirate Game
@@ -65,13 +69,14 @@ bargame.load('save/bar_game.json', attribute, players_list)
 
 
 # Divide the Dollar Game
-golds = 100
-divide_dollar = DivideDollar(num_players, num_rounds, golds)
-divide_dollar.start()
+# golds = 100
+# golds = 200
+# divide_dollar = DivideDollar(player_num, golds)
+# divide_dollar.run(5)
 
 
 # Diner Dilemma
 # cheap_cost, cheap_utility, exp_cost, exp_utility = 20, 40, 50, 60
 # cheap_cost, cheap_utility, exp_cost, exp_utility = 5, 15, 10, 17
-# diner_dilemma = DinerDilemma(num_players, num_rounds, cheap_cost, cheap_utility, exp_cost, exp_utility)
-# diner_dilemma.start()
+# diner_dilemma = DinerDilemma(player_num, cheap_cost, cheap_utility, exp_cost, exp_utility)
+# diner_dilemma.run(5)
