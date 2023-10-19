@@ -96,9 +96,9 @@ class Player:
                 self.print_prompt(inputs, response)
                 return response
             elif self.model in ['gpt-3.5-turbo', 'gpt-4']:
-                # response = chat(self.model, inputs).strip()
+                response = chat(self.model, inputs).strip()
                 # Debug use
-                response = f'''{{"option": "{random.randint(0,100)}"}}'''
+                # response = f'''{{"option": "{random.randint(0,100)}"}}'''
                 # response = '{"option": "yes"}' if random.randint(0,2) < 1 else '{"option": "no"}'
                 # response = '{"option": "expensive"}' if random.randint(0,2) < 1 else '{"option": "cheap"}'
                 # response = f'''{{"propose": "{random.randint(0,100)}"}}'''

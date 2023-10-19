@@ -3,6 +3,7 @@ import random
 import shutil
 
 from server import *
+from prompt_template.prompt_rephrase import *
 from games.guessing_game import *
 from games.bar_game import *
 from games.pirate_game import *
@@ -49,6 +50,10 @@ def dish_randomization(min=10, max=100):
         
         if b > n:
             return a, b, m, n
+
+
+# Rephrase demo
+rephrase([f"prompt_template/bar_game_{i}.txt" for i in ['description', 'report', 'request']])
 
 player_num = 10
 # models = ['gpt-3.5-turbo' if i%2==0 else 'gpt-4' for i in range(player_num)]
