@@ -8,8 +8,8 @@ import json
 from server import *
 
 class DinerDilemma(GameServer):
-    def __init__(self, player_num, cheap_cost, cheap_utility, exp_cost, exp_utility, name_exp='diner_dilemma', round_id=0):
-        super().__init__(player_num, round_id)
+    def __init__(self, player_num, cheap_cost, cheap_utility, exp_cost, exp_utility, name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, models)
         self.name_exp = name_exp
         self.cheap_cost = cheap_cost
         self.cheap_utility = cheap_utility

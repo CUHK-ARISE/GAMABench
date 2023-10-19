@@ -9,8 +9,8 @@ import json
 from server import *
 
 class GuessingGame(GameServer):
-    def __init__(self, player_num, min, max, ratio, ratio_str, name_exp='guessing_game', round_id=0):
-        super().__init__(player_num, round_id)
+    def __init__(self, player_num, min, max, ratio, ratio_str, name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, models)
         self.min = min
         self.max = max
         self.ratio = ratio
@@ -127,10 +127,4 @@ class GuessingGame(GameServer):
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         description_file = 'prompt_template/guessing_game_description.txt'
         description_list = [self.player_num, self.min, self.max, self.ratio_str, round_message]
-        self.update_system_prompt(description_file, description_list)
-
-        for round_count in range(self.round_id+1, self.round_id+rounds+1):
-            self.start(round_count)
-            self.save(self.name_exp)
-            self.show()
-            time.sleep(1)
+        super().run(rounds, description_file, description_list)

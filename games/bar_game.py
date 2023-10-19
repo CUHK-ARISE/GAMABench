@@ -8,8 +8,8 @@ import json
 from server import *
 
 class BarGame(GameServer):
-    def __init__(self, player_num, min, max, home, ratio, ratio_str, mode='explicit', name_exp='bar_game', round_id=0):
-        super().__init__(player_num, round_id)
+    def __init__(self, player_num, min, max, home, ratio, ratio_str, mode='explicit', name_exp='bar_game', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, models)
         self.min = min
         self.max = max
         self.home = home

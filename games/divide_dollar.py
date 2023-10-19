@@ -8,8 +8,8 @@ import json
 from server import *
 
 class DivideDollar(GameServer):
-    def __init__(self, player_num, golds, name_exp='divide_dollar', round_id=0):
-        super().__init__(player_num, round_id)
+    def __init__(self, player_num, golds, name_exp='divide_dollar', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, models)
         self.name_exp = name_exp
         self.golds = golds
     
@@ -125,7 +125,7 @@ class DivideDollar(GameServer):
 
     def run(self, rounds):
         # Update system prompt (number of round)
-        round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
+        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         description_file = 'prompt_template/divide_dollar_description.txt'
         description_list = [self.player_num, self.golds, round_message]
         super().run(rounds, description_file, description_list)

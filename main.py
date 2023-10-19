@@ -16,8 +16,13 @@ def load(filename, object, name_exp=None):
     
     with open(filename, 'r') as json_file:
         loaded_file = json.loads(json_file.read())
+        if name_exp:
+            loaded_file["meta"]["name_exp"] = name_exp
         game = object(**loaded_file["meta"])
         game.load(loaded_file["round_records"], loaded_file["player_data"])
+        
+    with open(filename, 'w') as json_file:
+        json.dump(loaded_file, json_file, indent=4)
     return game
 
 
@@ -46,14 +51,19 @@ def dish_randomization(min=10, max=100):
             return a, b, m, n
 
 player_num = 10
+# models = ['gpt-3.5-turbo' if i%2==0 else 'gpt-4' for i in range(player_num)]
 
 # Guessing Game
+# init
 min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
 guessing_game = GuessingGame(player_num, min, max, ratio, ratio_str)
 guessing_game.run(5)
-game = load('save/guessing_game.json', GuessingGame)
-game.run(3)
-game.show('id', ['player_1', 'player_5'])
+
+# load & select
+game = load('save/guessing_game.json', GuessingGame, 'guessing_game2')  # load and rename the saved data 
+game.run(5)
+game.show('model', ['gpt-3.5-turbo'])
+game.show('id', [f"player_{i}" for i in range(player_num) if i%2==0])
 
 
 # Bar Game
