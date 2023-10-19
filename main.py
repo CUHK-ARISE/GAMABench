@@ -15,19 +15,34 @@ def ratio_randomization(min=1, max=10):
     denominator = denominator // gcd
     return numerator/denominator, f"{numerator}/{denominator}"
 
+def dish_randomization(min=10, max=100):
+    while True:
+        n = random.randint(min, max)
+        m = random.randint(n+1, max)
+        a = random.randint(m+1, max)
+        
+        b_min = a + n - m + 1
+        if b_min > max:
+            continue
+        
+        b = random.randint(b_min, max)
+        
+        if b > n:
+            return a, b, m, n
+        
 num_players = 10
 num_rounds = 10
 
 # Guessing Game
-min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
-guessing_game = GuessingGame(num_players, num_rounds, min, max, ratio, ratio_str)
-guessing_game.start()
+# min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
+# guessing_game = GuessingGame(num_players, num_rounds, min, max, ratio, ratio_str)
+# guessing_game.start()
 
 
 # Bar Game
-min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
-bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
-bargame.start()
+# min_utility, max_utility, home_utility, ratio, ratio_str = 0, 10, 5, 0.6, '60%'
+# bargame = BarGame(num_players, num_rounds, min_utility, max_utility, home_utility, ratio, ratio_str)
+# bargame.start()
 '''
 Loading samples:
 
@@ -44,11 +59,12 @@ bargame.load('save/bar_game.json', attribute, players_list)
 
 
 # Pirate Game
-pirate_game = PirateGame(player_num=10, rounds=10, gold=100)
-pirate_game.start()
+# pirate_game = PirateGame(player_num=10, rounds=10, gold=100)
+# pirate_game.start()
 
 
 # Diner Dilemma
-cheap_cost, cheap_utility, exp_cost, exp_utility = 20, 32, 90, 52
+cheap_cost, cheap_utility, exp_cost, exp_utility = 20, 40, 50, 60
+# cheap_cost, cheap_utility, exp_cost, exp_utility = 5, 15, 10, 17
 diner_dilemma = DinerDilemma(num_players, num_rounds, cheap_cost, cheap_utility, exp_cost, exp_utility)
 diner_dilemma.start()

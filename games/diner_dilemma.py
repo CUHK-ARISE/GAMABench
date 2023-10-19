@@ -28,6 +28,7 @@ class DinerDilemma(GameServer):
             "responses": responses,
             "cheap_player": cheap_player,
             "total_cost": total_cost,
+            "cost_msg": f"{(self.n - cheap_player)} * {self.exp_cost} + {cheap_player} * {self.cheap_cost} = {total_cost}",
             "avg_cost": avg_cost,
         }
         self.round_records.append(record)
@@ -39,10 +40,11 @@ class DinerDilemma(GameServer):
             player_utility = self.cheap_utility if player.records[-1] == "cheap" else self.exp_utility
             player_revenue = player_utility - round_record["avg_cost"]
             player.utility.append(player_revenue)
+            player_revenue_msg = f'{player_utility} - {round_record["total_cost"]}/{self.n} = {player_revenue:.2f}'
             report_file = 'prompt_template/diner_dilemma_report.txt'
             report_list = [self.current_round, self.n - round_record["cheap_player"], 
-                           round_record["cheap_player"], self.n, round_record["total_cost"], 
-                           player_revenue]
+                           round_record["cheap_player"], self.n, round_record["cost_msg"], 
+                           player.records[-1], player_revenue_msg]
             report_prompt = [{"role": "user", "content": self.get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
@@ -56,7 +58,7 @@ class DinerDilemma(GameServer):
         plt.plot(round_numbers, avg_cost_list, marker='x', color='b')
         plt.axhline(y=self.cheap_cost, color='r', linestyle='--', label='Cheap')
         plt.axhline(y=self.exp_cost, color='g', linestyle='--', label='Expensive')
-        plt.title(f'Diner Dilemma ({self.cheap_cost}/{self.exp_cost})')
+        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Average Cost')
         plt.ylim(self.cheap_cost - 5, self.exp_cost + 5)
@@ -70,7 +72,7 @@ class DinerDilemma(GameServer):
         for player in players_list:
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
             plt.plot(round_numbers, player.utility, marker='x', color=player_color[-1], label=player.id)
-        plt.title(f'Diner Dilemma ({self.cheap_cost}/{self.exp_cost})')
+        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
         fig = plt.gcf()
@@ -81,7 +83,7 @@ class DinerDilemma(GameServer):
         for index, player in enumerate(players_list):
             player_utility = [sum(player.utility[:i+1]) for i in range(self.rounds)]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Diner Dilemma ({self.cheap_cost}/{self.exp_cost})')
+        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Total Utility')
         fig = plt.gcf()
@@ -97,8 +99,7 @@ class DinerDilemma(GameServer):
             for player_id, player in enumerate(players_list):
                 cheap_ratio = player.records.count('cheap') / self.rounds * 100
                 exp_ratio = player.records.count('expensive') / self.rounds * 100
-                # print(f"Player {player_id} 'yes': {cheap_ratio:.1f}%, 'no': {exp_ratio:.1f}%")
-                text_file.write(f"Player {player_id} 'yes': {cheap_ratio:.1f}%, 'no': {exp_ratio:.1f}%\n")
+                text_file.write(f"Player {player_id} 'cheap': {cheap_ratio:.1f}%, 'expensive': {exp_ratio:.1f}%\n")
     
     
     def start(self):

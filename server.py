@@ -127,7 +127,7 @@ class GameServer:
             "n": self.n,
             "rounds": self.rounds
         }
-        save_data = {**save_data, **game_info}
+        save_data = {**game_info, **save_data}
         
         for player in self.players:
             player_info = {
