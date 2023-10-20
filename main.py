@@ -97,6 +97,5 @@ player_num = 10
 # diner_dilemma.run(5)
 
 # Public Goods Game
-player_num = 3
 public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
 public_goods_game.run(5)
