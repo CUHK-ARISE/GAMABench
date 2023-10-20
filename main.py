@@ -9,7 +9,9 @@ from games.bar_game import *
 from games.pirate_game import *
 from games.diner_dilemma import *
 from games.divide_dollar import *
+from games.vickrey_auction import *
 from games.public_goods_game import *
+from games.battle_royale import *
 
 def load(filename, object, name_exp=None):
     if name_exp:
@@ -96,6 +98,14 @@ player_num = 10
 # diner_dilemma = DinerDilemma(player_num, cheap_cost, cheap_utility, exp_cost, exp_utility)
 # diner_dilemma.run(5)
 
+# Vickrey auction 
+# vickrey_auction = VickreyAuction(player_num, valuation)
+# vickrey_auction.run(5)
+
 # Public Goods Game
-public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
-public_goods_game.run(5)
+# public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
+# public_goods_game.run(5)
+
+# Battle Royale
+battle_royale = BattleRoyale(player_num=3)
+battle_royale.run(20)
