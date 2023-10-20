@@ -9,6 +9,7 @@ from games.bar_game import *
 from games.pirate_game import *
 from games.diner_dilemma import *
 from games.divide_dollar import *
+from games.public_goods_game import *
 
 def load(filename, object, name_exp=None):
     if name_exp:
@@ -51,24 +52,23 @@ def dish_randomization(min=10, max=100):
         if b > n:
             return a, b, m, n
 
-
 # Rephrase demo
-rephrase([f"prompt_template/bar_game_{i}.txt" for i in ['description', 'report', 'request']])
+# rephrase([f"prompt_template/bar_game_{i}.txt" for i in ['description', 'report', 'request']])
 
 player_num = 10
 # models = ['gpt-3.5-turbo' if i%2==0 else 'gpt-4' for i in range(player_num)]
 
 # Guessing Game
 # init
-min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
-guessing_game = GuessingGame(player_num, min, max, ratio, ratio_str)
-guessing_game.run(5)
+# min, max, ratio, ratio_str = 0, 100, 2/3, '2/3'
+# guessing_game = GuessingGame(player_num, min, max, ratio, ratio_str)
+# guessing_game.run(5)
 
 # load & select
-game = load('save/guessing_game.json', GuessingGame, 'guessing_game2')  # load and rename the saved data 
-game.run(5)
-game.show('model', ['gpt-3.5-turbo'])
-game.show('id', [f"player_{i}" for i in range(player_num) if i%2==0])
+# game = load('save/guessing_game.json', GuessingGame, 'guessing_game2')  # load and rename the saved data 
+# game.run(5)
+# game.show('model', ['gpt-3.5-turbo'])
+# game.show('id', [f"player_{i}" for i in range(player_num) if i%2==0])
 
 
 # Bar Game
@@ -95,3 +95,8 @@ game.show('id', [f"player_{i}" for i in range(player_num) if i%2==0])
 # cheap_cost, cheap_utility, exp_cost, exp_utility = 5, 15, 10, 17
 # diner_dilemma = DinerDilemma(player_num, cheap_cost, cheap_utility, exp_cost, exp_utility)
 # diner_dilemma.run(5)
+
+# Public Goods Game
+player_num = 3
+public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
+public_goods_game.run(5)

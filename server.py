@@ -80,13 +80,13 @@ def select_players(player_list, attr_name, metric_list):
 
 
 class Player:
-    def __init__(self, model, id, prompt, records=None, utility=None):
+    def __init__(self, model, id, prompt, records=None, utility=None, tokens=None):
         self.model = model
         self.id = id
         self.prompt = prompt
         self.records = records if records else []
         self.utility = utility if utility else []
-    
+        self.tokens = tokens if tokens else []
 
     def gpt_request(self, inputs):
         start_time = time.time()
