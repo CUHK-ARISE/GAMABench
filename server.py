@@ -118,13 +118,14 @@ class Player:
 
 
 class GameServer:
-    def __init__(self, player_num, round_id, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, round_id, prompt_folder='', models='gpt-3.5-turbo'):
         default_prompt = [
             {"role": "system", "content": ""}
         ]
         self.round_id = round_id
         self.player_num = player_num
         self.round_records = []
+        self.prompt_folder = prompt_folder
         
         if isinstance(models, str):
             self.players = [Player('gpt-3.5-turbo', f"player_{i}", default_prompt) for i in range(player_num)]
