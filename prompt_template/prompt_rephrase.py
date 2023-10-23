@@ -1,3 +1,6 @@
+"""
+Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
+"""
 from tqdm import tqdm
 import json
 
