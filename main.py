@@ -81,8 +81,8 @@ player_num = 10
 
 
 # Pirate Game
-# pirate_game = PirateGame(player_num=10, rounds=10, gold=100)
-# pirate_game.start()
+# pirate_game = PirateGame(player_num=5, gold=100)
+# pirate_game.run(2)
 
 
 # Divide the Dollar Game
