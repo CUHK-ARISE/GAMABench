@@ -15,6 +15,7 @@ class BattleRoyale(GameServer):
         super().__init__(player_num, round_id, name_exp, models)
         self.name_exp = name_exp
         self.player_info = []
+        print("Initializing players:")
         for player in tqdm(self.players):
             self.player_info.append([player, self.round_to_1_sig_fig(random.uniform(0, 100))])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
@@ -55,27 +56,22 @@ class BattleRoyale(GameServer):
     def compute_result(self, responses):
         out = False
         player_shot_info = []
+        shot_player = str(responses[-1])
         initial_players= [player_info[0].id for player_info in self.player_info]
         shot = True if responses[-1] !='None' else False
         if shot:
             for player, hit_rate in self.player_info:
                 if str(responses[-1]) in player.id:
                     player_shot_info = [player, hit_rate]
+                    shot_player = player.id
                     out = self.out()
                     if out:
-                        self.player_remaining.append(len(self.player_info) - len(self.round_records[-1]['removed_player_info']))
-                        print('round:{}, player remaining: {}'.format(self.round_id, len(self.player_info) - len(self.round_records[-1]['removed_player_info'])))
                         self.player_info.remove(player_shot_info)
                         self.removed_player_info.append(player.id)
                         self.player_removed_info[player.id] = self.round_id
-                    else:
-                        print(f'round: {self.round_id}, player_remaining ={len(self.player_info)}')
-                        self.player_remaining.append(len(self.player_info))
-        elif not shot:
-            print(f'round: {self.round_id}, player_remaining ={len(self.player_info)}')
-            self.player_remaining.append(len(self.player_info))
-        print(f'test: {player_shot_info}, out:{out}')
-        shot_player = player_shot_info[0].id if len(player_shot_info) > 0 else []
+        self.player_remaining.append(len(self.player_info))
+        print(f'round_id: {self.round_id}, length:{len(self.player_info)}')
+        print(f'player shot: {shot_player}, out:{out}')
         record = {
             "responses": responses,
             "initial_players": initial_players,
@@ -126,14 +122,14 @@ class BattleRoyale(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
         plt.savefig('figures/players_over_rounds.png')
-        plt.show()
+        # plt.show()
+        plt.clf()
         
         graph_iter = {player.id: False for player in self.players}
         player_order = self.round_records[0]['initial_players']
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
         count = 0
         keys = list(graph_iter.keys())
-
         for round_num, record in enumerate(self.round_records, start=1):
             player_id = keys[count]
             count += 1
@@ -144,8 +140,12 @@ class BattleRoyale(GameServer):
                     count = 0
             marker = 'o' if record['shot'] else 'x'
             color = 'red' if record['out'] else 'green'
-            plt.plot(round_num, int(player_id.split('_')[1]), marker=marker, color=color, markersize=8)
-            graph_iter[player_id] += 1
+            x = round_num
+            y = int(player_id.split('_')[1])
+            plt.plot(x, y, marker=marker, color=color, markersize=8)
+            if(marker == 'o'):
+                player_shot = record['shot_player']
+                plt.text(x, y, f'{x}, {player_shot}', fontsize=8, ha='right', va='bottom')
             if count == len(keys):
                 count = 0
 
@@ -155,7 +155,8 @@ class BattleRoyale(GameServer):
         plt.xticks(rounds)
         plt.yticks(range(len(self.players)), labels=[player.id for player in self.players])
         plt.savefig('figures/player_decisions_over_rounds.png')
-        plt.show()
+        # plt.show()
+        plt.clf()
         return
     
     def save(self, savename):
