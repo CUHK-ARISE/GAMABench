@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import json
 from random import seed
 from math import log10
-
+import numpy as np
 from server import *
 
 seed(9)
 class BattleRoyale(GameServer):
     def __init__(self, player_num, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, models)
+        super().__init__(player_num, round_id, name_exp, models)
         self.name_exp = name_exp
         self.player_info = []
         for player in tqdm(self.players):
@@ -20,6 +20,9 @@ class BattleRoyale(GameServer):
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
+        self.player_remaining = []
+        self.player_colors = {f'{player.id}':plt.cm.viridis(int(player.id.split('_')[1]) / player_num) for player in self.players}
+        self.player_removed_info = {}
 
     def round_to_1_sig_fig(self, num):
         if num == 0:
@@ -52,6 +55,7 @@ class BattleRoyale(GameServer):
     def compute_result(self, responses):
         out = False
         player_shot_info = []
+        initial_players= [player_info[0].id for player_info in self.player_info]
         shot = True if responses[-1] !='None' else False
         if shot:
             for player, hit_rate in self.player_info:
@@ -59,12 +63,22 @@ class BattleRoyale(GameServer):
                     player_shot_info = [player, hit_rate]
                     out = self.out()
                     if out:
+                        self.player_remaining.append(len(self.player_info) - len(self.round_records[-1]['removed_player_info']))
+                        print('round:{}, player remaining: {}'.format(self.round_id, len(self.player_info) - len(self.round_records[-1]['removed_player_info'])))
                         self.player_info.remove(player_shot_info)
                         self.removed_player_info.append(player.id)
+                        self.player_removed_info[player.id] = self.round_id
+                    else:
+                        print(f'round: {self.round_id}, player_remaining ={len(self.player_info)}')
+                        self.player_remaining.append(len(self.player_info))
+        elif not shot:
+            print(f'round: {self.round_id}, player_remaining ={len(self.player_info)}')
+            self.player_remaining.append(len(self.player_info))
         print(f'test: {player_shot_info}, out:{out}')
         shot_player = player_shot_info[0].id if len(player_shot_info) > 0 else []
         record = {
             "responses": responses,
+            "initial_players": initial_players,
             "shot_player": shot_player,
             "removed_player_info": self.removed_player_info,
             "shot": shot,
@@ -77,7 +91,7 @@ class BattleRoyale(GameServer):
         return True if random.uniform(0, 100) < self.current_player_info[1] else False
 
     def report_result(self, round_record):
-        report_file = 'prompt_template/battle_royale_report.txt'
+        report_file = f'prompt_template/{self.prompt_folder}/battle_royale_report.txt'
         result = ""
         if not round_record["shot"]:
             result = 'did not shoot anyone.'
@@ -104,42 +118,44 @@ class BattleRoyale(GameServer):
 
     def graphical_analysis(self, players_list):
         # Choice Analysis
-        # os.makedirs("figures", exist_ok=True)
-        # round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        # proposed_list = [r["total_tokens"] for r in self.round_records]
-        # plt.plot(round_numbers, proposed_list, marker='x', color='b')
-        # plt.axhline(y=self.tokens, color='r', linestyle='--', label='tokens')
-        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Total Proposed Amount')
-        # # plt.legend()
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
-        # plt.clf()
+        os.makedirs("figures", exist_ok=True)
+        # Number of players over round
+        rounds = [i for i in range(1, self.round_id)]
+        plt.plot(rounds, self.player_remaining, marker='o')
+        plt.title('Number of Players Over Rounds')
+        plt.xlabel('Round')
+        plt.ylabel('Number of Players Remaining')
+        plt.savefig('figures/players_over_rounds.png')
+        plt.show()
         
-        # # User tokens Tendency
-        # player_color = []
-        # for player in players_list:
-        #     player_records = [player.records[i] for i in range(len(round_numbers))]
-        #     player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-        #     plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
-        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Proposed Amount')
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
-        # plt.clf()
-        
-        # # Player Revenue / Utility
-        # for index, player in enumerate(players_list):
-        #     player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-        #     plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Revenue')
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
-        # plt.clf()
+        graph_iter = {player.id: False for player in self.players}
+        player_order = self.round_records[0]['initial_players']
+        graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
+        count = 0
+        keys = list(graph_iter.keys())
+
+        for round_num, record in enumerate(self.round_records, start=1):
+            player_id = keys[count]
+            count += 1
+            if round_num > self.player_removed_info.get(player_id, 99999) + 1:
+                player_id = keys[count]
+                count += 1
+                if count == len(keys):
+                    count = 0
+            marker = 'o' if record['shot'] else 'x'
+            color = 'red' if record['out'] else 'green'
+            plt.plot(round_num, int(player_id.split('_')[1]), marker=marker, color=color, markersize=8)
+            graph_iter[player_id] += 1
+            if count == len(keys):
+                count = 0
+
+        plt.title('Player Decisions Over Rounds')
+        plt.xlabel('Round')
+        plt.ylabel('Player ID')
+        plt.xticks(rounds)
+        plt.yticks(range(len(self.players)), labels=[player.id for player in self.players])
+        plt.savefig('figures/player_decisions_over_rounds.png')
+        plt.show()
         return
     
     def save(self, savename):
@@ -150,7 +166,10 @@ class BattleRoyale(GameServer):
 
     def show(self, attr_name=None, metric_list='ALL'):
         eligible_players = select_players(self.players, attr_name, metric_list)
-        self.graphical_analysis(eligible_players)
+        if len(self.player_info) == 1:
+            return
+        else:
+            self.graphical_analysis(eligible_players)
 
     def start(self, round):
         if len(self.player_info) == 1:
@@ -158,7 +177,7 @@ class BattleRoyale(GameServer):
             return
         print(f"Round {round}: ")
         self.round_id = round
-        request_file = 'prompt_template/battle_royale_request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/battle_royale_request.txt'
         responses = []
         request_list = [self.round_id, self.current_player_info[1]]
         request_msg = []
@@ -186,8 +205,8 @@ class BattleRoyale(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        description_file = 'prompt_template/battle_royale_description.txt'
+        self.rounds = rounds
+        description_file = f'prompt_template/{self.prompt_folder}/battle_royale_description.txt'
         player_info_str = self.player_info_str_print()
-        print(player_info_str)
         description_list = [self.player_num, player_info_str, self.ordinal(self.player_info.index([self.current_player_info[0], self.current_player_info[1]]) + 1)]
         super().run(rounds, description_file, description_list)

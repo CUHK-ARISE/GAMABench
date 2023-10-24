@@ -81,8 +81,8 @@ player_num = 10
 
 
 # Pirate Game
-# pirate_game = PirateGame(player_num=5, gold=100)
-# pirate_game.run(2)
+# pirate_game = PirateGame(player_num=10, gold=100)
+# pirate_game.run(10)
 
 
 # Divide the Dollar Game
@@ -99,13 +99,14 @@ player_num = 10
 # diner_dilemma.run(5)
 
 # Vickrey auction 
-# vickrey_auction = VickreyAuction(player_num, valuation=100)
+# vickrey_auction = VickreyAuction(player_num=10, valuation=100)
 # vickrey_auction.run(5)
 
 # Public Goods Game
+# player_num = 10
 # public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
 # public_goods_game.run(5)
 
 # Battle Royale
-# battle_royale = BattleRoyale(player_num=3)
-# battle_royale.run(20)
+battle_royale = BattleRoyale(player_num=10)
+battle_royale.run(20)

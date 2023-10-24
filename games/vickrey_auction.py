@@ -11,7 +11,7 @@ from server import *
 
 class VickreyAuction(GameServer):
     def __init__(self, player_num, valuation, name_exp='vickrey_auction', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, models)
+        super().__init__(player_num, round_id, name_exp, models)
         self.name_exp = name_exp
         self.valuation = valuation
     
@@ -31,8 +31,8 @@ class VickreyAuction(GameServer):
     def report_result(self, round_record):
         for player in self.players:
             player_bid = player.records[-1]
-            report_file = 'prompt_template/vickrey_auction_report.txt'
-            player_util = player_bid - player.valuation[-1]
+            report_file = f'prompt_template/{self.prompt_folder}/vickrey_auction_report.txt'
+            player_util = player.valuation[-1] - round_record['bid_winner_payment']
             player.utility.append(player_util)
             result = 'won' if round_record["bid_winner"] == player_bid else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) if result == 'won' else ''
@@ -50,11 +50,14 @@ class VickreyAuction(GameServer):
         player_color = []
         for player in players_list:
             player_records = [player.records[i] for i in range(len(round_numbers))]
+            player_valuation_records = [player.valuation[i] for i in range(len(round_numbers))]
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
+            if player_records == player_valuation_records:
+                plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
+                # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
         plt.title(f'Vickrey Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
-        plt.ylabel('Bid')
+        plt.ylabel('Bid = Valuation')
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
         plt.clf()
@@ -88,7 +91,7 @@ class VickreyAuction(GameServer):
         self.round_id = round
         
         self.current_round = round
-        request_file = 'prompt_template/vickrey_auction_request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/vickrey_auction_request.txt'
         # valuation of item should be randomized here
         responses = []
         round_valuation = []
@@ -124,6 +127,6 @@ class VickreyAuction(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
-        description_file = 'prompt_template/vickrey_auction_description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/vickrey_auction_description.txt'
         description_list = [self.player_num, round_message]
         super().run(rounds, description_file, description_list)

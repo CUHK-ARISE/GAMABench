@@ -9,7 +9,7 @@ from server import *
 
 class PublicGoodsGame(GameServer):
     def __init__(self, player_num, tokens, ratio, name_exp='public_goods_game', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, models)
+        super().__init__(player_num, round_id, name_exp, models)
         self.name_exp = name_exp
         self.tokens = tokens
         self.ratio = ratio
@@ -32,7 +32,7 @@ class PublicGoodsGame(GameServer):
             player.tokens.append(player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num)
             player.utility.append(player.tokens[-1] - player_contributed_tokens)
             round_msg = f'You currently have {player.tokens[-1]} tokens.'
-            report_file = 'prompt_template/public_goods_game_report.txt'
+            report_file = f'prompt_template/{self.prompt_folder}/public_goods_game_report.txt'
             report_list = [self.round_id, player_contributed_tokens, total_tokens, player.tokens[-1]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
@@ -40,6 +40,7 @@ class PublicGoodsGame(GameServer):
 
 
     def graphical_analysis(self, players_list):
+        print(players_list)
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
@@ -122,7 +123,7 @@ class PublicGoodsGame(GameServer):
     def start(self, round):
         print(f"Round {round}: ")
         self.round_id = round
-        request_file = 'prompt_template/public_goods_game_request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/public_goods_game_request.txt'
         responses = []
         
         for player in tqdm(self.players):
@@ -150,6 +151,6 @@ class PublicGoodsGame(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        description_file = 'prompt_template/public_goods_game_description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/public_goods_game_description.txt'
         description_list = [self.player_num, self.ratio, round_message]
         super().run(rounds, description_file, description_list)
