@@ -4,6 +4,7 @@ Author: Eric John LI (ejli@link.cuhk.edu.hk)
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+from random import randint
 
 from server import *
 
@@ -97,7 +98,35 @@ class PublicGoodsGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-donations.png', dpi=300)
         plt.clf()
     
+        rankings_over_time = []
+
+        # Calculate rankings for each round
+        for i in range(self.round_id):
+            round_tokens = [player.tokens[i+1] for player in self.players]  # i+1 to skip the initial tokens
+            sorted_indices = [idx for idx, token in sorted(enumerate(round_tokens), key=lambda x: x[1], reverse=True)]
+            rankings = [0] * self.player_num
+            for rank, idx in enumerate(sorted_indices):
+                rankings[idx] = rank + 1
+            rankings_over_time.append(rankings)
+
+        # Plot rankings over time
+        for player_index, player in enumerate(self.players):
+            player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
+            plt.plot(round_numbers, player_rankings, marker='x', label=f'Player {player.id}')
+            for i, rank in enumerate(player_rankings):
+                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center')
+
+        plt.title(f'Ranking Over Time (Public Goods Game)')
+        plt.xlabel('Round')
+        plt.ylabel('Ranking')
+        plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
+        plt.legend()
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}-rankings.png', dpi=300)
+        plt.clf()
+
         plt.close()
+
 
     def save(self, savename):
         game_info = {
@@ -144,10 +173,15 @@ class PublicGoodsGame(GameServer):
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/public_goods_game_request.txt'
         responses = []
-        
+        initial_tokens = []
+
         for player in tqdm(self.players):
             if round == 1: 
-                player.tokens.append(self.tokens)
+                rand_token = randint(0, self.tokens)
+                while(rand_token in initial_tokens):
+                    rand_token = randint(0, self.tokens)  
+                initial_tokens.append(rand_token)  
+                player.tokens.append(rand_token)
             request_list = [self.round_id, player.tokens[-1]]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]

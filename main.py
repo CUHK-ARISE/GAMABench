@@ -103,9 +103,9 @@ player_num = 10
 # vickrey_auction.run(20)
 
 # Public Goods Game
-public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
-public_goods_game.run(20)
+# public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, plyaer_num / 2))
+# public_goods_game.run(20)
 
 # Battle Royale
-# battle_royale = BattleRoyale(player_num=10)
-# battle_royale.run(20)
+battle_royale = BattleRoyale(player_num=10)
+battle_royale.run(20)

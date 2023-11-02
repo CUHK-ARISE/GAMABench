@@ -7,7 +7,7 @@ import json
 import numpy as np
 from random import seed
 from random import randint
-
+import random
 from server import *
 
 class VickreyAuction(GameServer):
@@ -83,6 +83,7 @@ class VickreyAuction(GameServer):
         plt.title(f'Vickrey Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Bid')
+        plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
         plt.clf()
@@ -94,6 +95,7 @@ class VickreyAuction(GameServer):
         plt.title(f'Vickrey Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
+        plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
         plt.clf()
