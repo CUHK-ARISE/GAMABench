@@ -40,45 +40,61 @@ class PublicGoodsGame(GameServer):
 
 
     def graphical_analysis(self, players_list):
-        print(players_list)
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        proposed_list = [r["total_tokens"] for r in self.round_records]
-        plt.plot(round_numbers, proposed_list, marker='x', color='b')
-        plt.axhline(y=self.tokens, color='r', linestyle='--', label='tokens')
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        plt.xlabel('Round')
-        plt.ylabel('Total Proposed Amount')
-        # plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
-        plt.clf()
         
         # User tokens Tendency
         player_color = []
         for player in players_list:
             player_records = [player.records[i] for i in range(len(round_numbers))]
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        plt.xlabel('Round')
-        plt.ylabel('Proposed Amount')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
-        plt.clf()
         
-        # Player Revenue / Utility
         for index, player in enumerate(players_list):
             player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
+            for i, utility in enumerate(player_utility):
+                plt.annotate(str(utility), (round_numbers[i], utility), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
         plt.ylabel('Revenue')
+        plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
         plt.clf()
-        
+
+        # Player Current Tokens
+        for index, player in enumerate(players_list):
+            player_tokens = player.tokens[1:]  # Skip the initial tokens
+            plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'Player {player.id}')
+            for i, tokens in enumerate(player_tokens):
+                plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[-1])
+        plt.axhline(y=self.tokens, color='r', linestyle='--', label='Initial Tokens')
+        plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        plt.xlabel('Round')
+        plt.ylabel('Current Tokens')
+        plt.legend()
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}-current-tokens.png', dpi=300)
+        plt.clf()
+
+        # Individual Donations and Total Donations
+        total_donations_list = [r["total_tokens"] for r in self.round_records]
+        for index, player in enumerate(players_list):
+            player_donations = [record for record in player.records]
+            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'Player {player.id} Donations')
+            for i, donation in enumerate(player_donations):
+                plt.annotate(str(donation), (round_numbers[i], donation), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
+        plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        for i, total_donation in enumerate(total_donations_list):
+            plt.annotate(str(total_donation), (round_numbers[i], total_donation), textcoords="offset points", xytext=(0,10), ha='center', color='k')
+        plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        plt.xlabel('Round')
+        plt.ylabel('Donations')
+        plt.legend()
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}-donations.png', dpi=300)
+        plt.clf()
     
     def save(self, savename):
         game_info = {

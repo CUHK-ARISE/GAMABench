@@ -4,6 +4,7 @@ Author: LI, Eric John (ejli@link.cuhk.edu.hk)
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+import numpy as np
 from random import seed
 from random import randint
 
@@ -32,7 +33,10 @@ class VickreyAuction(GameServer):
         for player in self.players:
             player_bid = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/vickrey_auction_report.txt'
-            player_util = player.valuation[-1] - round_record['bid_winner_payment']
+            if player_bid == round_record['bid_winner']:             
+                player_util = player.valuation[-1] - round_record['bid_winner_payment']
+            else:
+                player_util = player.valuation[-1]
             player.utility.append(player_util)
             result = 'won' if round_record["bid_winner"] == player_bid else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) if result == 'won' else ''
@@ -41,6 +45,28 @@ class VickreyAuction(GameServer):
             player.prompt = player.prompt + report_prompt
         return
 
+
+    def plot_v_b(self, players_list):
+        plt.figure(figsize=(15, 10))  # Increase figure size 
+        round_numbers = [str(i+1) for i in range(self.round_id)]
+        for player in players_list:
+            valuations = np.array(player.valuation)
+            bids = np.array(player.records)
+            differences = bids - valuations
+            plt.plot(round_numbers, differences, label=player.id, marker='o')
+            
+            for i, diff in enumerate(differences):
+                plt.annotate(player.id, (round_numbers[i], diff), textcoords="offset points", xytext=(0,10), ha='center')
+
+        plt.axhline(0, color='black', linewidth=0.5, linestyle='--')
+
+        plt.title('Difference between Bids and Valuations Over Rounds')
+        plt.xlabel('Round')
+        plt.ylabel('Difference')
+        plt.legend()
+        # plt.grid(True)
+        plt.savefig(f'figures/{self.name_exp}-v-b-plot.png', dpi=300)
+        # plt.show()
 
     def graphical_analysis(self, players_list):
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
@@ -52,12 +78,11 @@ class VickreyAuction(GameServer):
             player_records = [player.records[i] for i in range(len(round_numbers))]
             player_valuation_records = [player.valuation[i] for i in range(len(round_numbers))]
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            if player_records == player_valuation_records:
-                plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
+            plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
                 # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
         plt.title(f'Vickrey Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
-        plt.ylabel('Bid = Valuation')
+        plt.ylabel('Bid')
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
         plt.clf()
@@ -70,10 +95,13 @@ class VickreyAuction(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Utility')
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
         plt.clf()
         
+        self.plot_v_b(players_list)
     
+        matplotlib.pyplot.close()
+        
     def save(self, savename):
         game_info = {
             "valuation": self.valuation,

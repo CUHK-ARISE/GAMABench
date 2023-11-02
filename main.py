@@ -100,13 +100,12 @@ player_num = 10
 
 # Vickrey auction 
 # vickrey_auction = VickreyAuction(player_num=10, valuation=100)
-# vickrey_auction.run(5)
+# vickrey_auction.run(20)
 
 # Public Goods Game
-# player_num = 10
-# public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
-# public_goods_game.run(5)
+public_goods_game = PublicGoodsGame(player_num, 100, random.randint(1, player_num))
+public_goods_game.run(20)
 
 # Battle Royale
-battle_royale = BattleRoyale(player_num=10)
-battle_royale.run(20)
+# battle_royale = BattleRoyale(player_num=10)
+# battle_royale.run(20)
