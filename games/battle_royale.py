@@ -124,40 +124,66 @@ class BattleRoyale(GameServer):
         plt.savefig('figures/players_over_rounds.png')
         # plt.show()
         plt.clf()
-        
+
+        # Assuming self.round_records, self.players, and other required variables are defined
+
         graph_iter = {player.id: False for player in self.players}
         player_order = self.round_records[0]['initial_players']
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
         count = 0
         keys = list(graph_iter.keys())
+        rounds = range(1, len(self.round_records) + 1)
+        fig, ax = plt.subplots(figsize=(10,6))
+
+        added_labels = set()
+
         for round_num, record in enumerate(self.round_records, start=1):
             player_id = keys[count]
             count += 1
+            if count >= len(keys):
+                count = 0
             if round_num > self.player_removed_info.get(player_id, 99999) + 1:
                 player_id = keys[count]
                 count += 1
-                if count == len(keys):
-                    count = 0
-            marker = 'o' if record['shot'] else 'x'
-            color = 'red' if record['out'] else 'green'
+            if count >= len(keys):
+                count = 0
             x = round_num
             y = int(player_id.split('_')[1])
-            plt.plot(x, y, marker=marker, color=color, markersize=8)
-            if(marker == 'o'):
-                player_shot = record['shot_player']
-                plt.text(x, y, f'{x}, {player_shot}', fontsize=8, ha='right', va='bottom')
-            if count == len(keys):
-                count = 0
+            
+            if not record['shot']:
+                label = 'Shot no one'
+                if label not in added_labels:
+                    ax.scatter(x, y, marker='x', color='black', label=label)
+                    added_labels.add(label)
+                else:
+                    ax.scatter(x, y, marker='x', color='black')
+            else:
+                color = 'red' if record['out'] else 'green'
+                label = 'Shot and hit' if record['out'] else 'Shot and missed'
+                if label not in added_labels:
+                    ax.scatter(x, y, marker='o', color=color, label=label)
+                    added_labels.add(label)
+                else:
+                    ax.scatter(x, y, marker='o', color=color)
+                if record['shot']:
+                    player_shot = record['shot_player']
+                    ax.text(x, y, f'{player_shot}', fontsize=8, ha='right', va='bottom')
 
-        plt.title('Player Decisions Over Rounds')
-        plt.xlabel('Round')
-        plt.ylabel('Player ID')
-        plt.xticks(rounds)
-        plt.yticks(range(len(self.players)), labels=[player.id for player in self.players])
-        plt.savefig('figures/player_decisions_over_rounds.png')
+
+        ax.set_title('Player Decisions Over Rounds')
+        ax.set_xlabel('Round')
+        ax.set_ylabel('Player ID')
+        ax.set_xticks(rounds)
+        ax.set_yticks(range(len(self.players)), labels=[player.id for player in self.players])
+
+        # Adjusting the position of the legend to the right
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+        plt.tight_layout()
+        plt.savefig('figures/player_decisions_over_rounds.png', bbox_inches='tight')  # Save the figure with the legend
         # plt.show()
         plt.clf()
-        return
+
     
     def save(self, savename):
         game_info = {
@@ -209,5 +235,6 @@ class BattleRoyale(GameServer):
         self.rounds = rounds
         description_file = f'prompt_template/{self.prompt_folder}/battle_royale_description.txt'
         player_info_str = self.player_info_str_print()
-        description_list = [self.player_num, player_info_str, self.ordinal(self.player_info.index([self.current_player_info[0], self.current_player_info[1]]) + 1)]
+        # description_list = [self.player_num, player_info_str, self.ordinal(self.player_info.index([self.current_player_info[0], self.current_player_info[1]]) + 1)]
+        description_list = [self.player_num, player_info_str]
         super().run(rounds, description_file, description_list)
