@@ -40,6 +40,7 @@ class PublicGoodsGame(GameServer):
 
 
     def graphical_analysis(self, players_list):
+        plt.figure(figsize=(15, 10)) 
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
@@ -96,6 +97,8 @@ class PublicGoodsGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-donations.png', dpi=300)
         plt.clf()
     
+        matplotlib.pyplot.close()
+
     def save(self, savename):
         game_info = {
             "tokens": self.tokens,

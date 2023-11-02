@@ -47,7 +47,6 @@ class VickreyAuction(GameServer):
 
 
     def plot_v_b(self, players_list):
-        plt.figure(figsize=(15, 10))  # Increase figure size 
         round_numbers = [str(i+1) for i in range(self.round_id)]
         for player in players_list:
             valuations = np.array(player.valuation)
@@ -69,6 +68,7 @@ class VickreyAuction(GameServer):
         # plt.show()
 
     def graphical_analysis(self, players_list):
+        plt.figure(figsize=(15, 10))  # Increase figure size 
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         # Choice Analysis
         
