@@ -69,7 +69,7 @@ class PublicGoodsGame(GameServer):
             player_tokens = player.tokens[1:]  # Skip the initial tokens
             plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'Player {player.id}')
             for i, tokens in enumerate(player_tokens):
-                plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[-1])
+                plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
         plt.axhline(y=self.tokens, color='r', linestyle='--', label='Initial Tokens')
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
@@ -97,7 +97,7 @@ class PublicGoodsGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-donations.png', dpi=300)
         plt.clf()
     
-        matplotlib.pyplot.close()
+        plt.close()
 
     def save(self, savename):
         game_info = {

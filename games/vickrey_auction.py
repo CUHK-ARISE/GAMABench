@@ -100,7 +100,7 @@ class VickreyAuction(GameServer):
         
         self.plot_v_b(players_list)
     
-        matplotlib.pyplot.close()
+        plt.close()
         
     def save(self, savename):
         game_info = {
