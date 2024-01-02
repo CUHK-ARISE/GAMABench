@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import json
 
 from server import *
+from global_functions import *
 
 class BarGame(GameServer):
     def __init__(self, player_num, min, max, home, ratio, ratio_str, mode='explicit', name_exp='bar_game', round_id=0, models='gpt-3.5-turbo'):
@@ -52,7 +53,7 @@ class BarGame(GameServer):
                 report_file = f'prompt_template/{self.prompt_folder}/report_implicit.txt'
                 report_list = [self.round_id, player_choice, player_utility]
             else:
-                report_file = f'prompt_template/{self.prompt_folder}/report.txt'
+                report_file = f'prompt_template/{self.prompt_folder}/report_explicit.txt'
                 report_list = [self.round_id, round_record["go_num"], self.player_num - round_record["go_num"],
                                self.player_num, result_msg, self.ratio_str, player_choice, player_utility]
 
@@ -65,6 +66,10 @@ class BarGame(GameServer):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
+        player_color = []
+        for player in players_list:
+            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+
         # Choice Analysis
         go_list = [r["go_num"] for r in self.round_records]
         plt.plot(round_numbers, go_list, marker='x', color='b')
@@ -77,12 +82,24 @@ class BarGame(GameServer):
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
         plt.clf()
+        
+        # Choice Distribution
+        go_list = [r["go_num"] for r in self.round_records]
+        for index, player in enumerate(players_list):
+            go_dist = [addnoise(player.records[:i+1].count('yes') / (i+1), 0.005) for i in range(len(round_numbers))]
+            plt.plot(round_numbers, go_dist, marker='x', color=player_color[index], label=player.id)
+        plt.axhline(y=self.ratio, color='r', linestyle='--', label='Capacity')
+        plt.title(f'El Farol Bar Game (n = {self.player_num})')
+        plt.xlabel('Round')
+        plt.ylabel('Probability of Go')
+        plt.ylim(-0.1, 1.1)
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        plt.clf()
 
         # Utility Received
-        player_color = []
-        for player in players_list:
-            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            plt.plot(round_numbers, player.utility, marker='x', color=player_color[-1], label=player.id)
+        for index, player in enumerate(players_list):
+            plt.plot(round_numbers, player.utility, marker='x', color=player_color[index], label=player.id)
         plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Total Utility')
