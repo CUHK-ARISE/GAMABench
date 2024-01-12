@@ -9,8 +9,8 @@ from server import *
 from global_functions import *
 
 class BarGame(GameServer):
-    def __init__(self, player_num, min, max, home, ratio, ratio_str, mode='explicit', name_exp='bar_game', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, 'bar_game', models)
+    def __init__(self, player_num, min, max, home, ratio, ratio_str, version, mode='explicit', name_exp='bar_game', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'bar_game', models, version)
         self.min = min
         self.max = max
         self.home = home
@@ -50,10 +50,10 @@ class BarGame(GameServer):
                     
             result_msg = "Equal or less" if round_record["winner"] == "yes" else "More"
             if self.mode == 'implicit' and player_choice == "not go":
-                report_file = f'prompt_template/{self.prompt_folder}/report_implicit.txt'
+                report_file = f'prompt_template/{self.prompt_folder}/report_implicit_{self.version}.txt'
                 report_list = [self.round_id, player_choice, player_utility]
             else:
-                report_file = f'prompt_template/{self.prompt_folder}/report_explicit.txt'
+                report_file = f'prompt_template/{self.prompt_folder}/report_explicit_{self.version}.txt'
                 report_list = [self.round_id, round_record["go_num"], self.player_num - round_record["go_num"],
                                self.player_num, result_msg, self.ratio_str, player_choice, player_utility]
 
@@ -151,7 +151,7 @@ class BarGame(GameServer):
         print(f"Round {round}: ")
         self.round_id = round
         
-        request_file = f'prompt_template/{self.prompt_folder}/request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         request_list = [self.round_id]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -178,6 +178,6 @@ class BarGame(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        description_file = f'prompt_template/{self.prompt_folder}/description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.ratio_str, self.min, self.max, self.home, round_message]
         super().run(rounds, description_file, description_list)

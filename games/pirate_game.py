@@ -7,8 +7,8 @@ import numpy as np
 from server import *
 
 class PirateGame(GameServer):
-    def __init__(self, player_num, gold, name_exp='pirate game', round_id=0, models='gpt-3.5'):
-        super().__init__(player_num, round_id, name_exp, models)
+    def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
+        super().__init__(player_num, round_id, 'pirate_game', models, version)
         self.name_exp = name_exp
         self.gold = gold
         self.accepting_list = []
@@ -24,7 +24,7 @@ class PirateGame(GameServer):
 
     def report_result(self, gold_distribution):
         count = 0
-        report_file = f'prompt_template/{self.prompt_folder}/pirate_game_report.txt'
+        report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         accepting_rate = self.accepted / (self.player_num - self.current_round + 1)
         print(f'accepting rate: {accepting_rate}')
         self.accepting_list.append(accepting_rate)
@@ -48,7 +48,7 @@ class PirateGame(GameServer):
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) +  '.'
             elif current_player_id + 1 == self.current_round and self.next_round:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was rejected. The game ends. Your gold is ' + str(gold_distribution[count]) +  '. ' + 'You died.'
-                with open(f"records/{player.id}.txt", 'a') as f:
+                with open(f"records/{player.id}_{self.version}.txt", 'a') as f:
                     f.write(f"{result}\n----\n")
             else:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
@@ -138,7 +138,7 @@ class PirateGame(GameServer):
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
                     continue
-            with open(f"records/{player.id}.txt", 'a') as f:
+            with open(f"records/{player.id}_{self.version}.txt", 'a') as f:
                 f.write(f"{player.prompt}\n----\n")
         return
 
@@ -164,13 +164,13 @@ class PirateGame(GameServer):
                 continue
             self.current_player = self.player_id_manipulation(current_player_id + 1)
             if self.current_round == current_player_id + 1:
-                request_file2 = f'prompt_template/{self.prompt_folder}/pirate_game_request2.txt'
+                request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
                 request_list2 = [current_player_id + 1, self.current_player, self.player_num, self.player_id_manipulation(self.player_num), self.gold]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
                 player.prompt = player.prompt + request_prompt2
             else: 
-                request_file1 = f'prompt_template/{self.prompt_folder}/pirate_game_request1.txt'
+                request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
                 request_list1 = [self.current_player, self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
@@ -231,6 +231,6 @@ class PirateGame(GameServer):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         # Call the constructor of the base class
-        description_file = f'prompt_template/{self.prompt_folder}/pirate_game_description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.gold]
         super().run(rounds, description_file, description_list)

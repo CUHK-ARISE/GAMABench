@@ -9,8 +9,8 @@ import json
 from server import *
 
 class GuessingGame(GameServer):
-    def __init__(self, player_num, min, max, ratio, ratio_str, name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, 'guessing_game', models)
+    def __init__(self, player_num, min, max, ratio, ratio_str, version='v1', name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'guessing_game', models, version)
         self.min = min
         self.max = max
         self.ratio = ratio
@@ -39,7 +39,7 @@ class GuessingGame(GameServer):
             player_choice = player.records[-1]
             won = player_choice == round_record["winner"]
             won_msg = "Congratulation you won" if won else "Unfortunately you lost"
-            report_file = f'prompt_template/{self.prompt_folder}/report.txt'
+            report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
             report_list = [self.round_id, result_str, round_record["mean"],
                             self.ratio_str, f'''{round_record["mean_ratio"]:.2f}''',
                             round_record["winner"], player_choice, won_msg]
@@ -99,7 +99,7 @@ class GuessingGame(GameServer):
         print(f"Round {round}: ")
         self.round_id = round
         
-        request_file = f'prompt_template/{self.prompt_folder}/request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         request_list = [self.round_id, self.min, self.max]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -125,6 +125,6 @@ class GuessingGame(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        description_file = f'prompt_template/{self.prompt_folder}/description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.min, self.max, self.ratio_str, round_message]
         super().run(rounds, description_file, description_list)

@@ -11,8 +11,8 @@ from server import *
 
 seed(9)
 class BattleRoyale(GameServer):
-    def __init__(self, player_num, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, name_exp, models)
+    def __init__(self, player_num, version, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'battle_royale', models, version)
         self.name_exp = name_exp
         self.player_info = []
         print("Initializing players:")
@@ -87,7 +87,7 @@ class BattleRoyale(GameServer):
         return True if random.uniform(0, 100) < self.current_player_info[1] else False
 
     def report_result(self, round_record):
-        report_file = f'prompt_template/{self.prompt_folder}/battle_royale_report.txt'
+        report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         result = ""
         if not round_record["shot"]:
             result = 'did not shoot anyone.'
@@ -204,7 +204,7 @@ class BattleRoyale(GameServer):
             return
         print(f"Round {round}: ")
         self.round_id = round
-        request_file = f'prompt_template/{self.prompt_folder}/battle_royale_request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         responses = []
         request_list = [self.round_id, self.current_player_info[1]]
         request_msg = []
@@ -233,7 +233,7 @@ class BattleRoyale(GameServer):
         # Update system prompt (number of round)
         round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         self.rounds = rounds
-        description_file = f'prompt_template/{self.prompt_folder}/battle_royale_description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         player_info_str = self.player_info_str_print()
         # description_list = [self.player_num, player_info_str, self.ordinal(self.player_info.index([self.current_player_info[0], self.current_player_info[1]]) + 1)]
         description_list = [self.player_num, player_info_str]

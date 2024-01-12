@@ -8,8 +8,8 @@ import json
 from server import *
 
 class DinerDilemma(GameServer):
-    def __init__(self, player_num, cheap_cost, cheap_utility, exp_cost, exp_utility, name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, 'diner_dilemma', models)
+    def __init__(self, player_num, cheap_cost, cheap_utility, exp_cost, exp_utility, version, name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'diner_dilemma', models, version)
         self.name_exp = name_exp
         self.cheap_cost = cheap_cost
         self.cheap_utility = cheap_utility
@@ -38,7 +38,7 @@ class DinerDilemma(GameServer):
             player_revenue = player_utility - round_record["avg_cost"]
             player.utility.append(player_revenue)
             player_revenue_msg = f'{player_utility} - {round_record["total_cost"]}/{self.player_num} = {player_revenue:.2f}'
-            report_file = f'prompt_template/{self.prompt_folder}/report.txt'
+            report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
             report_list = [self.round_id, self.player_num - round_record["cheap_player"], 
                            round_record["cheap_player"], self.player_num, round_record["cost_msg"], 
                            player.records[-1], player_revenue_msg]
@@ -90,7 +90,7 @@ class DinerDilemma(GameServer):
     
     def statistic_analysis(self, players_list):
         os.makedirs("results", exist_ok=True)
-        with open(f"results/{self.name_exp}-stat.txt", "w") as text_file:
+        with open(f"results/{self.name_exp}-stat_{self.version}.txt", "w") as text_file:
             text_file.write(f"Probability Distribution:\n")
             for player_id, player in enumerate(players_list):
                 cheap_ratio = player.records.count('cheap') / self.round_id * 100
@@ -118,7 +118,7 @@ class DinerDilemma(GameServer):
         print(f"Round {round}: ")
         self.round_id = round
         
-        request_file = f'prompt_template/{self.prompt_folder}/request.txt'
+        request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         request_list = [self.round_id]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -144,7 +144,7 @@ class DinerDilemma(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        description_file = f'prompt_template/{self.prompt_folder}/description.txt'
+        description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.exp_cost, self.exp_utility, self.cheap_cost, self.cheap_utility, round_message]
         super().run(rounds, description_file, description_list)
     
