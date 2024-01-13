@@ -19,17 +19,22 @@ class SealedBidAuction(GameServer):
     
     
     def compute_result(self, responses):
-        bid_winner = max(responses)
+        winning_bid = max(responses)
+        bid_winner_pay = 0
         # Different modes
-        if self.mode == 'second highest bid':
+        if self.mode == 'second-highest bid':
+            print(self.mode)
             bid_winner_pay = sorted(list(set(responses)))[-2]
         elif self.mode == 'highest bid':
             bid_winner_pay = sorted(list(set(responses)))[-1]
+        print(f"bid_winner: {winning_bid}, bid_winner_pay: {bid_winner_pay}, responses: {responses}") #bid_winner_pay: {bid_winner_pay)
+
         record = {
             "responses": responses,
-            "bid_winner": bid_winner,
+            "bid_winner_proposed": winning_bid,
             "bid_winner_payment": bid_winner_pay
         }
+        
         self.round_records.append(record)
         return record
         
@@ -44,7 +49,7 @@ class SealedBidAuction(GameServer):
                 player_util = player.valuation[-1]
             player.utility.append(player_util)
             result = 'won' if round_record["bid_winner"] == player_bid else 'lost'
-            report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) if result == 'won' else ''
+            report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
             report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player.valuation[-1] - round_record["bid_winner_payment"]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
@@ -85,7 +90,7 @@ class SealedBidAuction(GameServer):
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
             plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
                 # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
-        plt.title(f'Vickrey Auction (valuations = {self.valuation})')
+        plt.title(f'Sealed Bid Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Bid')
         plt.legend()
@@ -97,7 +102,7 @@ class SealedBidAuction(GameServer):
         for index, player in enumerate(players_list):
             player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Vickrey Auction (valuations = {self.valuation})')
+        plt.title(f'Sealed Bid Auction (valuations = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
         plt.legend()
@@ -163,5 +168,5 @@ class SealedBidAuction(GameServer):
         # Update system prompt (number of round)
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.mode,round_message]
+        description_list = [self.player_num, self.mode, round_message]
         super().run(rounds, description_file, description_list)

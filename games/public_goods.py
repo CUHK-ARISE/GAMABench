@@ -9,8 +9,8 @@ from random import randint
 from server import *
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods_game', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, 'public_goods_game', models, version)
+    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'public_goods', models, version)
         self.name_exp = name_exp
         self.tokens = tokens
         self.ratio = ratio
