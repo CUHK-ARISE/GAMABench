@@ -10,16 +10,21 @@ from random import randint
 import random
 from server import *
 
-class VickreyAuction(GameServer):
-    def __init__(self, player_num, valuation, version, name_exp='vickrey_auction', round_id=0, models='gpt-3.5-turbo'):
-        super().__init__(player_num, round_id, 'vickrey_auction', models, version)
+class SealedBidAuction(GameServer):
+    def __init__(self, player_num, valuation, version, mode = 'second-highest bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
+        super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
+        self.mode = mode
         self.name_exp = name_exp
         self.valuation = valuation
     
     
     def compute_result(self, responses):
         bid_winner = max(responses)
-        bid_winner_pay = sorted(list(set(responses)))[-2]
+        # Different modes
+        if self.mode == 'second highest bid':
+            bid_winner_pay = sorted(list(set(responses)))[-2]
+        elif self.mode == 'highest bid':
+            bid_winner_pay = sorted(list(set(responses)))[-1]
         record = {
             "responses": responses,
             "bid_winner": bid_winner,
@@ -158,5 +163,5 @@ class VickreyAuction(GameServer):
         # Update system prompt (number of round)
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, round_message]
+        description_list = [self.player_num, self.mode,round_message]
         super().run(rounds, description_file, description_list)
