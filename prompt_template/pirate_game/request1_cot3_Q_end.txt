@@ -1,0 +1,12 @@
+pirate_game_request1.txt
+
+Variables:
+!<INPUT 0>! -- player id
+!<INPUT 1>! -- round id 
+!<INPUT 2>! -- plan
+!<INPUT 3>! -- current player gold
+
+<commentblockmarker>###</commentblockmarker>
+
+You are the !<INPUT 0>! most senior pirate. Now the !<INPUT 1>! most senior pirate proposes a plan of !<INPUT 2>!. You will get !<INPUT 3>! gold in this plan. You need to decide whether to accept (answer "Yes") or not (answer "No").
+Please output your decision in the following JSON format: {"answer": "<Yes/No only>", "explanation":"<reason>"}. Break this down.
