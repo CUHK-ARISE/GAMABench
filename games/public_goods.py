@@ -11,6 +11,7 @@ from server import *
 class PublicGoods(GameServer):
     def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
+        self.version = version
         self.name_exp = name_exp
         self.tokens = tokens
         self.ratio = ratio
@@ -62,7 +63,7 @@ class PublicGoods(GameServer):
         plt.ylabel('Revenue')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-revenue-{self.version}.png', dpi=300)
         plt.clf()
 
         # Player Current Tokens
@@ -77,7 +78,7 @@ class PublicGoods(GameServer):
         plt.ylabel('Current Tokens')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-current-tokens.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.png', dpi=300)
         plt.clf()
 
         # Individual Donations and Total Donations
@@ -95,7 +96,7 @@ class PublicGoods(GameServer):
         plt.ylabel('Donations')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-donations.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-donations-{self.version}.png', dpi=300)
         plt.clf()
     
         rankings_over_time = []
@@ -122,7 +123,7 @@ class PublicGoods(GameServer):
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-rankings.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-rankings-{self.version}.png', dpi=300)
         plt.clf()
 
         plt.close()

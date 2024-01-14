@@ -9,6 +9,7 @@ from server import *
 class PirateGame(GameServer):
     def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
         super().__init__(player_num, round_id, 'pirate_game', models, version)
+        self.version = version
         self.name_exp = name_exp
         self.gold = gold
         self.accepting_list = []
@@ -93,7 +94,7 @@ class PirateGame(GameServer):
         plt.xlim(-1 , self.player_num + 1)
         plt.legend(loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'{self.name_exp} Voting {self.current_round}.png', dpi=300)
+        fig.savefig(f'{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
         plt.show()
         plt.clf()
 
@@ -117,7 +118,7 @@ class PirateGame(GameServer):
         plt.ylabel('Accepting Rate')
         plt.ylim(-.1, 1.1)
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}/{self.version}.png', dpi=300)
         plt.show()
         plt.clf()
 

@@ -16,6 +16,7 @@ class BattleRoyale(GameServer):
         self.name_exp = name_exp
         self.player_info = []
         print("Initializing players:")
+        self.version = version
         for player in tqdm(self.players):
             self.player_info.append([player, self.round_to_1_sig_fig(random.uniform(0, 100))])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
@@ -121,7 +122,7 @@ class BattleRoyale(GameServer):
         plt.title('Number of Players Over Rounds')
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
-        plt.savefig('figures/players_over_rounds.png')
+        plt.savefig(f'figures/players_over_rounds-{self.version}.png')
         # plt.show()
         plt.clf()
 
@@ -180,7 +181,7 @@ class BattleRoyale(GameServer):
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         plt.tight_layout()
-        plt.savefig('figures/player_decisions_over_rounds.png', bbox_inches='tight')  # Save the figure with the legend
+        plt.savefig(f'figures/player_decisions_over_rounds-{self.version}.png', bbox_inches='tight')  # Save the figure with the legend
         # plt.show()
         plt.clf()
 

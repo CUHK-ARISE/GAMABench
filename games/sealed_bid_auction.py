@@ -13,6 +13,7 @@ from server import *
 class SealedBidAuction(GameServer):
     def __init__(self, player_num, valuation, version, mode = 'second-highest bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
+        self.version = version
         self.mode = mode
         self.name_exp = name_exp
         self.valuation = valuation
@@ -74,7 +75,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Difference')
         plt.legend()
         # plt.grid(True)
-        plt.savefig(f'figures/{self.name_exp}-v-b-plot.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-v-b-plot-{self.mode}-{self.version}.png', dpi=300)
         # plt.show()
 
     def graphical_analysis(self, players_list):
@@ -95,7 +96,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Bid')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-individual-proposed-{self.mode}-{self.version}.png', dpi=300)
         plt.clf()
         
         # Player Revenue / Utility
@@ -107,7 +108,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Utility')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-utility-{self.mode}-{self.version}.png', dpi=300)
         plt.clf()
         
         self.plot_v_b(players_list)
