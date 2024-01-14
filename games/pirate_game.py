@@ -94,7 +94,7 @@ class PirateGame(GameServer):
         plt.xlim(-1 , self.player_num + 1)
         plt.legend(loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'/figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
         plt.show()
         plt.clf()
 
@@ -139,7 +139,7 @@ class PirateGame(GameServer):
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
                     continue
-            with open(f"records/{player.id}_{self.version}.txt", 'a') as f:
+            with open(f"records/{player.id}.txt", 'a') as f:
                 f.write(f"{player.prompt}\n----\n")
         return
 
