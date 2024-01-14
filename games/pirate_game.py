@@ -94,7 +94,7 @@ class PirateGame(GameServer):
         plt.xlim(-1 , self.player_num + 1)
         plt.legend(loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
+        fig.savefig(f'/figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
         plt.show()
         plt.clf()
 
@@ -118,7 +118,7 @@ class PirateGame(GameServer):
         plt.ylabel('Accepting Rate')
         plt.ylim(-.1, 1.1)
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}/{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-{self.version}.png', dpi=300)
         plt.show()
         plt.clf()
 
@@ -184,15 +184,15 @@ class PirateGame(GameServer):
                 print(f'gpt response before manipulating: {gpt_responses}')
                 try:
                     if self.current_round == current_player_id + 1:
-                        json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}', gpt_responses)
-                        if json_str_match:
-                            json_str = json_str_match.group(0)
-                            # Convert the string to a dictionary
-                        player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                        gpt_responses = literal_eval(json_str)
-                        self.current_plan = gpt_responses
+                        parsered_responses = json.loads(gpt_responses)
+                        parsered_responses = dict((parsered_responses["plan"]))
+                        player.records.append(parsered_responses)
+                        self.current_plan = parsered_responses
+                        responses.append(parsered_responses)
+                        player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
-                        gold_distribution = list(gpt_responses.values())
+                        gold_distribution = list(self.current_plan.values())
+                        print(gold_distribution)
                         player.records.append('Yes')
                         self.accepted += 1
                         responses.append('Yes')

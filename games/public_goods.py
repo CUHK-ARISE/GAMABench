@@ -191,7 +191,7 @@ class PublicGoods(GameServer):
                 gpt_responses = player.gpt_request(player.prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["Tokens"])
+                    parsered_responses = int(parsered_responses["tokens"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]

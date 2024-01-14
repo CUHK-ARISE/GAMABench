@@ -44,12 +44,12 @@ class SealedBidAuction(GameServer):
         for player in self.players:
             player_bid = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            if player_bid == round_record['bid_winner']:             
+            if player_bid == round_record['bid_winner_payment']:             
                 player_util = player.valuation[-1] - round_record['bid_winner_payment']
             else:
                 player_util = player.valuation[-1]
             player.utility.append(player_util)
-            result = 'won' if round_record["bid_winner"] == player_bid else 'lost'
+            result = 'won' if round_record["bid_winner_payment"] == player_bid else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
             report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player.valuation[-1] - round_record["bid_winner_payment"]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]

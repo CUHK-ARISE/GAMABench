@@ -71,7 +71,7 @@ class BattleRoyale(GameServer):
                         self.removed_player_info.append(player.id)
                         self.player_removed_info[player.id] = self.round_id
         self.player_remaining.append(len(self.player_info))
-        print(f'round_id: {self.round_id}, length:{len(self.player_info)}')
+        print(f'round_id: {self.round_id}, players left:{len(self.player_info)}')
         print(f'player shot: {shot_player}, out:{out}')
         record = {
             "responses": responses,
@@ -109,6 +109,7 @@ class BattleRoyale(GameServer):
             self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
         except:
             self.current_player_info = self.player_info[0]
+        self.current_player_info[0].prompt  = self.current_player_info[0].prompt + report_prompt
         self.round_id += 1
         return
 
