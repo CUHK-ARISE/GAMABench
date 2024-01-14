@@ -49,7 +49,7 @@ class PirateGame(GameServer):
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) +  '.'
             elif current_player_id + 1 == self.current_round and self.next_round:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was rejected. The game ends. Your gold is ' + str(gold_distribution[count]) +  '. ' + 'You died.'
-                with open(f"records/{player.id}_{self.version}.txt", 'a') as f:
+                with open(f"records/{current_player_id + 1}.txt", 'a') as f:
                     f.write(f"{result}\n----\n")
             else:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
@@ -72,14 +72,16 @@ class PirateGame(GameServer):
                 if 'thrown' not in labels_added:
                     plt.plot(current_player_id + 1, 0, 'x', color='grey', label='thrown')  # Plot at y=0 to indicate no gold
                     labels_added.add('thrown')
+                    plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
                 else:
                     plt.plot(current_player_id + 1, 0, 'x', color='grey')
-            
+                    plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
             # If the player is still in the game
             else:
                 color = 'green' if player.records[-1] == 'Yes' else 'red'
                 label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
                 plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
+                plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
                 if current_player_id + 1 == self.current_round and not self.next_round:
                     plt.plot(current_player_id + 1, gold_distribution[count], 'o', color='orange', label='winner')
 
@@ -95,7 +97,6 @@ class PirateGame(GameServer):
         plt.legend(loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
-        plt.show()
         plt.clf()
 
     def graphical_analysis(self, player_list):
@@ -119,7 +120,6 @@ class PirateGame(GameServer):
         plt.ylim(-.1, 1.1)
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}-{self.version}.png', dpi=300)
-        plt.show()
         plt.clf()
 
     def player_id_manipulation(self, player_id):
