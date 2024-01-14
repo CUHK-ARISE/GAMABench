@@ -157,6 +157,10 @@ class GameServer:
         }
         
         for player in self.players:
+            # Set the records limitation (prevent tokens from exceeding)
+            if self.round_id > 10:
+                player.prompt = player.prompt[:1] + player.prompt[4:]
+            
             player_info = {
                 "model": player.model,
                 "id": player.id,
