@@ -5,6 +5,7 @@ from ast import literal_eval
 import re
 import numpy as np
 from server import *
+from math import log10, floor
 
 class PirateGame(GameServer):
     def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
@@ -14,6 +15,7 @@ class PirateGame(GameServer):
         self.gold = gold
         self.accepting_list = []
         self.next_round = True
+        self.end = False
         self.current_plan = None
 
     def compute_result(self, responses):
@@ -29,7 +31,7 @@ class PirateGame(GameServer):
         accepting_rate = self.accepted / (self.player_num - self.current_round + 1)
         print(f'accepting rate: {accepting_rate}')
         self.accepting_list.append(accepting_rate)
-        print(f'accepting lsit: {self.accepting_list}')
+        print(f'accepting list: {self.accepting_list}')
         for player in self.players:
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
@@ -49,7 +51,7 @@ class PirateGame(GameServer):
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) +  '.'
             elif current_player_id + 1 == self.current_round and self.next_round:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was rejected. The game ends. Your gold is ' + str(gold_distribution[count]) +  '. ' + 'You died.'
-                with open(f"records/{current_player_id + 1}.txt", 'a') as f:
+                with open(f"records/player_{current_player_id + 1}.txt", 'a') as f:
                     f.write(f"{result}\n----\n")
             else:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
@@ -72,7 +74,7 @@ class PirateGame(GameServer):
                 if 'thrown' not in labels_added:
                     plt.plot(current_player_id + 1, 0, 'x', color='grey', label='thrown')  # Plot at y=0 to indicate no gold
                     labels_added.add('thrown')
-                    plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
+                    # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
                 else:
                     plt.plot(current_player_id + 1, 0, 'x', color='grey')
                     plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
@@ -93,13 +95,17 @@ class PirateGame(GameServer):
         plt.xlabel('Players')
         plt.ylabel('Gold Distribution')
         plt.ylim(-10 , self.gold + 10)
-        plt.xlim(-1 , self.player_num + 1)
+        plt.xlim(0 , self.player_num + 1)
         plt.legend(loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
         plt.clf()
 
     def graphical_analysis(self, player_list):
+        if self.next_round == False and self.end == True :
+            return
+        if self.next_round == False:
+            self.end = True
         # Data points
         os.makedirs("figures", exist_ok=True)
         x_values = np.array([i + 1 for i in range(len(self.accepting_list))])
@@ -108,7 +114,7 @@ class PirateGame(GameServer):
         plt.plot(x_values, y_values, 'o', color='black')
         # Adding annotations for each point
         for x, y in zip(x_values, y_values):
-            plt.annotate(f'({x:.0f}, {y:.1f})',  # Text to display
+            plt.annotate(f'({x:.0f}, {self.round_to_3_sig_fig(y)})',  # Text to display
                         (x, y),                  # Position to start the text
                         textcoords="offset points",  # Offset (in points)
                         xytext=(0,10),            # Distance from text to points (x,y)
@@ -122,6 +128,13 @@ class PirateGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-{self.version}.png', dpi=300)
         plt.clf()
 
+    def round_to_3_sig_fig(self, num):
+        
+        round_to_n = lambda x, n: x if x == 0 else round(x, -int(floor(log10(abs(x)))) + (n - 1))
+        
+        # Round the number to 3 significant figure
+        return round_to_n(num, 3)
+    
     def player_id_manipulation(self, player_id):
         player_id = int(player_id)
         if player_id == 1:
@@ -145,9 +158,8 @@ class PirateGame(GameServer):
 
     def show(self, attr_name=None, metric_list='ALL'):
         eligible_players = select_players(self.players, attr_name, metric_list)
-        if self.next_round == False:
-            return
         self.graphical_analysis(eligible_players)
+        return
 
     def start(self, round):
         if self.next_round == False:
@@ -182,6 +194,7 @@ class PirateGame(GameServer):
                 print(f'current plan: {self.current_plan}')
                 gpt_responses = player.gpt_request(player.prompt)
                 print(f'gpt response before manipulating: {gpt_responses}')
+                # if json format is given as responses as desired
                 try:
                     if self.current_round == current_player_id + 1:
                         parsered_responses = json.loads(gpt_responses)
@@ -214,7 +227,27 @@ class PirateGame(GameServer):
                         responses.append(gpt_responses)
                         break  
                 except:
-                    pass
+                    # more detailed explanation is given before json format, use regular expression to extract
+                    try:
+                        if self.current_round == current_player_id + 1:
+                            json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}', gpt_responses)
+                            if json_str_match:
+                                json_str = json_str_match.group(0)
+                            parsered_responses = json.loads(json_str)
+                            player.records.append(parsered_responses)
+                            self.current_plan = parsered_responses
+                            responses.append(parsered_responses)
+                            player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
+                            print(f'current_plan updated: {self.current_plan}')
+                            gold_distribution = list(self.current_plan.values())
+                            print(gold_distribution)
+                            player.records.append('Yes')
+                            self.accepted += 1
+                            responses.append('Yes')
+                            break
+                    except:
+                        pass
+                    
             if not self.next_round:
                 self.senior_pirate_turns = self.current_round
                 self.add_end_info()
