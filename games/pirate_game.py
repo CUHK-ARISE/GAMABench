@@ -77,7 +77,7 @@ class PirateGame(GameServer):
                     # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
                 else:
                     plt.plot(current_player_id + 1, 0, 'x', color='grey')
-                    plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
+                    # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
             # If the player is still in the game
             else:
                 color = 'green' if player.records[-1] == 'Yes' else 'red'
