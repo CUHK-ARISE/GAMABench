@@ -208,7 +208,7 @@ class BattleRoyale(GameServer):
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         responses = []
-        request_list = [self.round_id, self.current_player_info[1]]
+        request_list = [self.current_player_info[0].id ,self.round_id, self.current_player_info[1]]
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
