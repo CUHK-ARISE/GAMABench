@@ -7,6 +7,7 @@ import openai
 import time
 import os
 import json
+import copy
 import random
 from utils import *
 openai.api_key = openai_api_key
@@ -129,9 +130,9 @@ class GameServer:
         self.version = version
         
         if isinstance(models, str):
-            self.players = [Player('gpt-3.5-turbo', f"player_{i}", default_prompt) for i in range(player_num)]
+            self.players = [Player('gpt-3.5-turbo', f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
         elif isinstance(models, list):
-            self.players = [Player(models[i], f"player_{i}", default_prompt) for i in range(player_num)]
+            self.players = [Player(models[i], f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
 
 
     def update_system_prompt(self, description_file, description_list):
