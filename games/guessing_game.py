@@ -66,8 +66,8 @@ class GuessingGame(GameServer):
             else:
                 plt.plot(index, winner, marker='o', color='g')
         
-        # winning line
-        mean_list = [r["mean_ratio"] for r in self.round_records]
+        # average line
+        mean_list = [r["mean"] for r in self.round_records]
         
         plt.plot(round_numbers, mean_list, marker='o', label='Average', color='r')
         plt.title(f'Guessing Game (r = {self.ratio_str})')
