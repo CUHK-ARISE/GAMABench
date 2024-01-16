@@ -177,6 +177,7 @@ class PirateGame(GameServer):
             if current_player_id + 1 < self.current_round:
                 continue
             self.current_player = self.player_id_manipulation(current_player_id + 1)
+            # print(f"start:id{id(player)}\n\n{player.id}\n{player.prompt}")
             if self.current_round == current_player_id + 1:
                 request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
                 request_list2 = [current_player_id + 1, self.gold, self.player_num]
@@ -201,12 +202,13 @@ class PirateGame(GameServer):
                     if self.current_round == current_player_id + 1:
                         parsered_responses = json.loads(gpt_responses)
                         parsered_responses = dict((parsered_responses["option"]))
-                        player.records.append(parsered_responses)
+                        # player.records.append(parsered_responses)
                         self.current_plan = parsered_responses
-                        responses.append(parsered_responses)
+                        # responses.append(parsered_responses)
                         # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
                         gold_distribution = list(self.current_plan.values())
+                        player.records.append(gold_distribution)
                         print(gold_distribution)
                         player.records.append('Yes')
                         self.accepted += 1
@@ -235,13 +237,14 @@ class PirateGame(GameServer):
                             if json_str_match:
                                 json_str = json_str_match.group(0)
                             parsered_responses = json.loads(json_str)
-                            player.records.append(parsered_responses)
+                            # player.records.append(parsered_responses)
                             self.current_plan = parsered_responses
-                            responses.append(parsered_responses)
+                            # responses.append(parsered_responses)
                             # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                             print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(self.current_plan.values())
                             print(gold_distribution)
+                            player.records.append('gold_distribution')
                             player.records.append('Yes')
                             self.accepted += 1
                             responses.append('Yes')
@@ -253,11 +256,13 @@ class PirateGame(GameServer):
                 self.senior_pirate_turns = self.current_round
                 self.add_end_info()
                 break
+            
             if self.current_round == self.player_num:
                 self.senior_pirate_turns = self.player_num
                 self.next_round = False
                 self.add_end_info()
                 break
+            
         self.compute_result(responses, gold_distribution)
         self.report_result(gold_distribution)
         # self.graphical_analysis()
@@ -267,8 +272,10 @@ class PirateGame(GameServer):
             description_list = [int(player.id.split('_')[1]), self.player_num, self.gold]
             description_prompt = get_prompt(description_file, description_list)
             for item in player.prompt:
+                print(item)
                 if item.get("role") == "system":
                     item["content"] = description_prompt
+                    print(f"id: {id(player)}, current player id: {player.id}\nprompt: {player.prompt}")
                     break
     
     def run(self, rounds):
@@ -276,9 +283,9 @@ class PirateGame(GameServer):
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         # Call the constructor of the base class
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-
         self.update_system_prompt(description_file)
-
+        # for player in tqdm(self.players):
+        #     print(f"run: {player.id}, {player.prompt}")
         for round_count in range(self.round_id+1, self.round_id+rounds+1):
             self.start(round_count)
             self.save(self.name_exp)

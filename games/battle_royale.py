@@ -50,9 +50,19 @@ class BattleRoyale(GameServer):
 
     def player_info_str_print(self):
         player_info_str = ""
+        # for player, hit_rate in tqdm(self.player_info):
+        #     player_info_str += 'The {} player to shoot: {}, hit rate: {}%.\n'.format(self.ordinal(self.player_info.index([player, hit_rate]) + 1), player.id, hit_rate) + "\n"
+        # return player_info_str
+        players_list = []
         for player, hit_rate in tqdm(self.player_info):
-            player_info_str += 'The {} player to shoot: {}, hit rate: {}%.\n'.format(self.ordinal(self.player_info.index([player, hit_rate]) + 1), player.id, hit_rate) + "\n"
-        return player_info_str
+            player_index = self.player_info.index([player, hit_rate]) + 1
+            player_data = {
+                f"The {self.ordinal(player_index)} player to shot": player.id,
+                "hit_rate": hit_rate
+            }
+            players_list.append(player_data)
+
+        return json.dumps(players_list, indent=4)
 
     def compute_result(self, responses):
         out = False
@@ -100,7 +110,7 @@ class BattleRoyale(GameServer):
             else:
                 result += "but missed."
 
-        report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]) + 1, result, len(self.player_info), self.player_info_str_print()]
+        report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]) + 1, result, len(self.player_info)]
         report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
         for i in range(len(self.player_info)):
             self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
@@ -209,7 +219,7 @@ class BattleRoyale(GameServer):
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         responses = []
-        request_list = [self.current_player_info[0].id ,self.round_id, self.current_player_info[1]]
+        request_list = [self.round_id, self.player_info_str_print, self.current_player_info[1]]
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]

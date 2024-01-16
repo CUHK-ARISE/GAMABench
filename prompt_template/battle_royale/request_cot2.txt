@@ -1,9 +1,9 @@
 battle_royale_request.txt
 
-!<INPUT 0>! -- player id
-!<INPUT 1>! -- round id
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- player list
 !<INPUT 2>! -- player hit rate
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 1>! starts. You are !<INPUT 0>!. Your hit rate is !<INPUT 2>!%. You need to decide a player to shoot or not. You can either reply an integer indicating the player you choose, or reply "No" to indicate you want to intentionally miss the shot. Please output your decision in the following JSON format: '{"explanation": "<description of your thinking process>", "option": "<Yes or No>", "player to shoot": "<None, or the player you decide to shoot>"}'. Take a deep breath and work on this problem step-by-step.
+Now round !<INPUT 0>! starts. The current order and the hit rates of all players are: !<INPUT 1>!. Your hit rate is !<INPUT 2>!. You need to decide a player to shoot or not. You can only reply an integer indicating the player you choose. By replying "-1" you indicate that you want to intentionally miss the shot. Please output your decision in the following JSON format: '{"explanation": "<description of your thinking process>", "option": "<Yes or No>", "option": "<playerid>"}'. Take a deep breath and work on this problem step-by-step.
