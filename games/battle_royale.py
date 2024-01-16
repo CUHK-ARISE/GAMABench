@@ -103,16 +103,18 @@ class BattleRoyale(GameServer):
         report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]), result, len(self.player_info), self.player_info_str_print()]
         report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
 
-        self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
-        # switch to the next player
-        # try:
-        if self.player_info.index(self.current_player_info) + 1 == self.player_num:
-            self.current_player_info = self.player_info[0]
-        else:
-            self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
-        # except:
+        for i in range(self.player_num):
+            self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
+        # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
+        # # switch to the next player
+        # # try:
+        # if self.player_info.index(self.current_player_info) + 1 == self.player_num:
         #     self.current_player_info = self.player_info[0]
-        self.current_player_info[0].prompt  = self.current_player_info[0].prompt + report_prompt
+        # else:
+        #     self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
+        # # except:
+        # #     self.current_player_info = self.player_info[0]
+        # self.current_player_info[0].prompt  = self.current_player_info[0].prompt + report_prompt
         self.round_id += 1
 
         return
