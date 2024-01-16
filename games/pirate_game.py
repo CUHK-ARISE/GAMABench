@@ -181,18 +181,19 @@ class PirateGame(GameServer):
                 request_list2 = [current_player_id + 1, self.current_player, self.player_num, self.player_id_manipulation(self.player_num), self.gold]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
-                player.prompt = player.prompt + request_prompt2
+                # player.prompt = player.prompt + request_prompt2
+                gpt_responses = player.gpt_request(player.prompt + request_prompt2)
             else: 
                 request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
                 request_list1 = [self.current_player, self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
-                player.prompt = player.prompt + request_prompt1
+                # player.prompt = player.prompt + request_prompt1
+                gpt_responses = player.gpt_request(player.prompt + request_prompt1)
 
             while True:
                 print(f'proposing pirate: {self.current_round},voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
-                gpt_responses = player.gpt_request(player.prompt)
                 print(f'gpt response before manipulating: {gpt_responses}')
                 # if json format is given as responses as desired
                 try:
@@ -202,7 +203,7 @@ class PirateGame(GameServer):
                         player.records.append(parsered_responses)
                         self.current_plan = parsered_responses
                         responses.append(parsered_responses)
-                        player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
+                        # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
                         gold_distribution = list(self.current_plan.values())
                         print(gold_distribution)
@@ -214,12 +215,12 @@ class PirateGame(GameServer):
                         if 'no' not in gpt_responses and 'No' not in gpt_responses and 'yes' not in gpt_responses and 'Yes' not in gpt_responses: 
                             continue
                         elif 'yes' in gpt_responses or 'Yes' in gpt_responses:
-                            player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
+                            # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'Yes'
                             self.accepted += 1
                             player.records.append('Yes')
                         elif 'no' in gpt_responses or 'No' in gpt_responses:
-                            player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
+                            # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'No'
                             self.declined += 1
                             player.records.append('No')
@@ -237,7 +238,7 @@ class PirateGame(GameServer):
                             player.records.append(parsered_responses)
                             self.current_plan = parsered_responses
                             responses.append(parsered_responses)
-                            player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
+                            # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                             print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(self.current_plan.values())
                             print(gold_distribution)

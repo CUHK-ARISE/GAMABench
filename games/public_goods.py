@@ -35,7 +35,7 @@ class PublicGoods(GameServer):
             player.utility.append(player.tokens[-1] - player_contributed_tokens)
             round_msg = f'You currently have {player.tokens[-1]} tokens.'
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player_contributed_tokens, total_tokens, player.tokens[-1]]
+            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, - player_contributed_tokens + total_tokens * self.ratio/self.player_num , player.tokens[-1]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
@@ -69,7 +69,7 @@ class PublicGoods(GameServer):
         # Player Current Tokens
         for index, player in enumerate(players_list):
             player_tokens = player.tokens[1:]  # Skip the initial tokens
-            plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'Player {player.id}')
+            plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'{player.id}')
             for i, tokens in enumerate(player_tokens):
                 plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
         plt.axhline(y=self.tokens, color='r', linestyle='--', label='Initial Tokens')
@@ -85,7 +85,7 @@ class PublicGoods(GameServer):
         total_donations_list = [r["total_tokens"] for r in self.round_records]
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
-            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'Player {player.id} Donations')
+            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
             for i, donation in enumerate(player_donations):
                 plt.annotate(str(donation), (round_numbers[i], donation), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
         plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
@@ -113,9 +113,9 @@ class PublicGoods(GameServer):
         # Plot rankings over time
         for player_index, player in enumerate(self.players):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
-            plt.plot(round_numbers, player_rankings, marker='x', label=f'Player {player.id}')
+            plt.plot(round_numbers, player_rankings, marker='x', label=f'{player.id}', color=player_color[player_index])
             for i, rank in enumerate(player_rankings):
-                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[player.id])
+                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
 
         plt.title(f'Ranking Over Time (Public Goods Game)')
         plt.xlabel('Round')
@@ -186,15 +186,15 @@ class PublicGoods(GameServer):
             request_list = [self.round_id, player.tokens[-1]]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
-            player.prompt = player.prompt + request_prompt
+            # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.gpt_request(player.prompt)
+                gpt_responses = player.gpt_request(player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["tokens"])
+                    parsered_responses = int(parsered_responses["option"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
-                    player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
+                    # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                     break
                 except:
                     pass
