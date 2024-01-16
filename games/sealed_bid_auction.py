@@ -91,7 +91,7 @@ class SealedBidAuction(GameServer):
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
             plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
                 # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
-        plt.title(f'Sealed Bid Auction (valuations = {self.valuation})')
+        plt.title(f'Sealed Bid Auction (max valuation = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Bid')
         plt.legend()
@@ -103,7 +103,7 @@ class SealedBidAuction(GameServer):
         for index, player in enumerate(players_list):
             player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Sealed Bid Auction (valuations = {self.valuation})')
+        plt.title(f'Sealed Bid Auction (max valuation = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
         plt.legend()

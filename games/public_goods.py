@@ -115,7 +115,7 @@ class PublicGoods(GameServer):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
             plt.plot(round_numbers, player_rankings, marker='x', label=f'Player {player.id}')
             for i, rank in enumerate(player_rankings):
-                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center')
+                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[player.id])
 
         plt.title(f'Ranking Over Time (Public Goods Game)')
         plt.xlabel('Round')
