@@ -2,12 +2,9 @@ pirate_game_request2.txt
 
 Variables:
 !<INPUT 0>! -- player id
-!<INPUT 1>! -- player - th
+!<INPUT 1>! -- gold
 !<INPUT 2>! -- number of players
-!<INPUT 3>! -- last player id
-!<INPUT 4>! -- gold
 
 <commentblockmarker>###</commentblockmarker>
 
-Now you, the !<INPUT 1>! most senior pirate, needs to propose a plan. Your answer:
-Please output a json of the following format: '{"explanation": "<description of your thinking process>", "plan" "!<INPUT 1>!": g_!<INPUT 0>!, ..., "!<INPUT 3>!": g_!<INPUT 2>!}', where \sum_{i=!<INPUT 0>!}^{!<INPUT 2>!}{g_2} = !<INPUT 4>! and g_{i} >= 0, indicating the golds distributed to each pirate from !<INPUT 1>! most senior to !<INPUT 3>! most senior. Break this down.
+Now you, the !<INPUT 0>!-th most senior pirate, need to propose a plan to divide !<INPUT 1>! golds. The proposed numbers must be all non-negative numbers and sum up to !<INPUT 1>!. Please output your decision in the following JSON format: '{"explanation": "<description of your thinking process>", "option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}', indicating the golds distributed to each pirate from the !<INPUT 0>!-th most senior (you) to the !<INPUT 2>!-th most senior. Break this down.

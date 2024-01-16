@@ -18,8 +18,9 @@ class PirateGame(GameServer):
         self.end = False
         self.current_plan = None
 
-    def compute_result(self, responses):
+    def compute_result(self, responses, gold_distribution):
         record = {
+            "gold_distribution": gold_distribution,
             "responses": responses,
         }
         self.round_records.append(record)
@@ -56,7 +57,7 @@ class PirateGame(GameServer):
             else:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
 
-            report_list = [self.accepted, self.player_num - self.current_round + 1, player_choice, majority, result]
+            report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, player_choice, majority, result]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
             count += 1
@@ -178,14 +179,14 @@ class PirateGame(GameServer):
             self.current_player = self.player_id_manipulation(current_player_id + 1)
             if self.current_round == current_player_id + 1:
                 request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
-                request_list2 = [current_player_id + 1, self.current_player, self.player_num, self.player_id_manipulation(self.player_num), self.gold]
+                request_list2 = [current_player_id + 1, self.gold, self.player_num]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
                 # player.prompt = player.prompt + request_prompt2
                 gpt_responses = player.gpt_request(player.prompt + request_prompt2)
             else: 
                 request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
-                request_list1 = [self.current_player, self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
+                request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
                 # player.prompt = player.prompt + request_prompt1
@@ -199,7 +200,7 @@ class PirateGame(GameServer):
                 try:
                     if self.current_round == current_player_id + 1:
                         parsered_responses = json.loads(gpt_responses)
-                        parsered_responses = dict((parsered_responses["plan"]))
+                        parsered_responses = dict((parsered_responses["option"]))
                         player.records.append(parsered_responses)
                         self.current_plan = parsered_responses
                         responses.append(parsered_responses)
@@ -225,7 +226,6 @@ class PirateGame(GameServer):
                             self.declined += 1
                             player.records.append('No')
                         print(f'gpt response after manipulating: {gpt_responses}')
-                        responses.append(gpt_responses)
                         break  
                 except:
                     # more detailed explanation is given before json format, use regular expression to extract
@@ -258,14 +258,29 @@ class PirateGame(GameServer):
                 self.next_round = False
                 self.add_end_info()
                 break
-        self.compute_result(responses)
+        self.compute_result(responses, gold_distribution)
         self.report_result(gold_distribution)
         # self.graphical_analysis()
 
+    def update_system_prompt(self, description_file):
+        for player in self.players:
+            description_list = [int(player.id.split('_')[1]), self.player_num, self.gold]
+            description_prompt = get_prompt(description_file, description_list)
+            for item in player.prompt:
+                if item.get("role") == "system":
+                    item["content"] = description_prompt
+                    break
+    
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         # Call the constructor of the base class
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.gold]
-        super().run(rounds, description_file, description_list)
+
+        self.update_system_prompt(description_file)
+
+        for round_count in range(self.round_id+1, self.round_id+rounds+1):
+            self.start(round_count)
+            self.save(self.name_exp)
+            self.show()
+            time.sleep(1)    

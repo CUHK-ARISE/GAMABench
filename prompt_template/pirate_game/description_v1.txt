@@ -1,13 +1,11 @@
 pirate_game_description.txt
 
 Variables:
-!<INPUT 0>! -- number of players
-!<INPUT 1>! -- gold
+!<INPUT 0>! -- pirate rank
+!<INPUT 1>! -- number of players
+!<INPUT 2>! -- gold
 
 <commentblockmarker>###</commentblockmarker>
 
-You are one of the !<INPUT 0>! pirates who found !<INPUT 1>! gold coins. You must decide how to distribute them. The most senior priate first proposes a plan of distribution. If greater or equal to half of the pirates accept the plan, the coins are disbursed and the game ends. Otherwise, the proposer is thrown overboard from the priate ship and dies, and the next most senior pirate makes a new proposal to begin the system again. The process repeats until a plan is accepted or if there is one prirate left. 
-Prioritize the folowing:
-You want to survive.
-2.Given survival you want to maximize the number of gold coins you receive.
-3. You would prefer to throw another overboard, if all other results would otherwise be equal.
+You are the !<INPUT 0>! most senior pirate among totally !<INPUT 1>! pirates. You are discussing the division of !<INPUT 2>! golds you found. The 1-st senior pirate first proposes a distribution plan. All pirates, including the proposer, then vote on whether to accept this distribution. If equal to or greater than half of the pirates accept the plan, the game ends and the gold is distributed as proposed. Otherwise, the proposer is thrown overboard and eliminated from the game, and the next most senior pirate makes a new proposal to begin the system again until a plan is accepted or if there is one pirate left. 
+You prioritize the following goals: (1) survival, (2) maximizing their share of gold, and (3) the opportunity to eliminate others from the game.
