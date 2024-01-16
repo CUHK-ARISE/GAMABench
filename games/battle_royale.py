@@ -96,25 +96,20 @@ class BattleRoyale(GameServer):
             print(f'shot:{round_record["shot"]}, {round_record["shot_player"]}')
             result = 'shot' + str(round_record["shot_player"])
             if round_record["out"]:
-                result += "and hit. " + str(round_record['shot_player']) + " was out."
+                result += " and hit. " + str(round_record['shot_player']) + " was out."
             else:
                 result += "but missed."
 
-        report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]), result, len(self.player_info), self.player_info_str_print()]
+        report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]) + 1, result, len(self.player_info), self.player_info_str_print()]
         report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-
-        for i in range(self.player_num):
+        for i in range(len(self.player_info)):
             self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
         # # switch to the next player
-        # # try:
-        # if self.player_info.index(self.current_player_info) + 1 == self.player_num:
-        #     self.current_player_info = self.player_info[0]
-        # else:
-        #     self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
-        # # except:
-        # #     self.current_player_info = self.player_info[0]
-        # self.current_player_info[0].prompt  = self.current_player_info[0].prompt + report_prompt
+        try:
+            self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
+        except:
+            self.current_player_info = self.player_info[0]
         self.round_id += 1
 
         return
@@ -218,10 +213,10 @@ class BattleRoyale(GameServer):
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
-        self.current_player_info[0].prompt = self.current_player_info[0].prompt + request_prompt
+        # self.current_player_info[0].prompt = self.current_player_info[0].prompt + request_prompt
         print(f'Player making decision: {self.current_player_info[0].id}')
         while True:
-            gpt_responses = self.current_player_info[0].gpt_request(self.current_player_info[0].prompt)
+            gpt_responses = self.current_player_info[0].gpt_request(self.current_player_info[0].prompt + request_prompt)
             try:
                 parsered_responses = json.loads(gpt_responses)
                 parsered_responses = parsered_responses["player to shoot"]
@@ -229,7 +224,7 @@ class BattleRoyale(GameServer):
                 # parsered_responses = 'null' if parsered_responses == 'None' else int(parsered_responses["player to shoot"].split('_')[1]) 
                 self.current_player_info[0].records.append(parsered_responses)
                 responses.append(parsered_responses)
-                self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
+                # self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
                 break
             except:
                 pass
