@@ -35,7 +35,7 @@ class PublicGoods(GameServer):
             player.utility.append(player.tokens[-1] - player_contributed_tokens)
             round_msg = f'You currently have {player.tokens[-1]} tokens.'
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, - player_contributed_tokens + total_tokens * self.ratio/self.player_num , player.tokens[-1]]
+            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, total_tokens * self.ratio/self.player_num , player.tokens[-1]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
