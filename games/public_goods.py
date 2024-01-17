@@ -9,12 +9,14 @@ from random import randint
 from server import *
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
         self.version = version
         self.name_exp = name_exp
         self.tokens = tokens
         self.ratio = ratio
+        self.token_initialization = token_initialization
+        self.reset = reset
     
     def compute_result(self, responses):
         total_tokens = sum(responses)
@@ -31,56 +33,61 @@ class PublicGoods(GameServer):
         
         for player in self.players:
             player_contributed_tokens = player.records[-1]
-            player.tokens.append(player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num)
-            player.utility.append(player.tokens[-1] - player_contributed_tokens)
-            round_msg = f'You currently have {player.tokens[-1]} tokens.'
+            player_total_tokens = player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num
+            # print(f"Reset?{self.reset}\nplayer_total_tokens{player_total_tokens}\nplayer tokens{player.tokens[-1]}")
+            player_util = player.tokens[-1] - player_contributed_tokens 
+            if self.reset:
+                player.tokens.append(self.tokens)
+            else: 
+                player.tokens.append(player_total_tokens)
+            player.utility.append(player_util)
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, total_tokens * self.ratio/self.player_num , player.tokens[-1]]
+            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, total_tokens * self.ratio/self.player_num, player_total_tokens]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
 
 
     def graphical_analysis(self, players_list):
-        plt.figure(figsize=(15, 10)) 
+        plt.figure(figsize=(30, 20)) 
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        
-        # User tokens Tendency
         player_color = []
         for player in players_list:
             player_records = [player.records[i] for i in range(len(round_numbers))]
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+        # User tokens Tendency
         
-        for index, player in enumerate(players_list):
-            player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-            for i, utility in enumerate(player_utility):
-                plt.annotate(str(utility), (round_numbers[i], utility), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        plt.xlabel('Round')
-        plt.ylabel('Revenue')
-        plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-revenue-{self.version}.png', dpi=300)
-        plt.clf()
+        # for index, player in enumerate(players_list):
+        #     player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
+        #     plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
+        #     for i, utility in enumerate(player_utility):
+        #         plt.annotate(str(utility), (round_numbers[i], utility), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
+        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Revenue')
+        # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}-revenue-{self.version}.png', dpi=300)
+        # plt.clf()
 
         # Player Current Tokens
-        for index, player in enumerate(players_list):
-            player_tokens = player.tokens[1:]  # Skip the initial tokens
-            plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'{player.id}')
-            for i, tokens in enumerate(player_tokens):
-                plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
-        plt.axhline(y=self.tokens, color='r', linestyle='--', label='Initial Tokens')
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        plt.xlabel('Round')
-        plt.ylabel('Current Tokens')
-        plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.png', dpi=300)
-        plt.clf()
-
+        # for index, player in enumerate(players_list):
+        #     player_tokens = player.tokens[1:]  # Skip the initial tokens
+        #     plt.plot(round_numbers, player_tokens, marker='x', color=player_color[index], label=f'{player.id}')
+        #     for i, tokens in enumerate(player_tokens):
+        #         plt.annotate(str(tokens), (round_numbers[i], tokens), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
+        # plt.axhline(y=self.tokens, color='r', linestyle='--', label='Initial Tokens')
+        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Current Tokens')
+        # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.png', dpi=300)
+        # plt.clf()
+        
+        os.makedirs(f"figures/{self.name_exp}_{self.version}", exist_ok=True)
         # Individual Donations and Total Donations
         total_donations_list = [r["total_tokens"] for r in self.round_records]
         for index, player in enumerate(players_list):
@@ -93,17 +100,79 @@ class PublicGoods(GameServer):
             plt.annotate(str(total_donation), (round_numbers[i], total_donation), textcoords="offset points", xytext=(0,10), ha='center', color='k')
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
-        plt.ylabel('Donations')
+        plt.ylabel('Contributed Tokens')
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-donations-{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
         plt.clf()
+
+        # Initialize a dictionary to keep track of the number of annotations for player donations at each point
+        annotation_offsets = {}
+
+        for index, player in enumerate(players_list):
+            player_donations = [record for record in player.records]
+            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
+            for i, donation in enumerate(player_donations):
+                # Check if this player donation point has been annotated before
+                point_key = (round_numbers[i], donation)
+                if point_key not in annotation_offsets:
+                    annotation_offsets[point_key] = 0
+                else:
+                    annotation_offsets[point_key] += 1
+
+                # Adjust the vertical offset based on the number of annotations at this point
+                offset_multiplier = annotation_offsets[point_key]
+                vertical_offset = 10 + offset_multiplier * 10
+
+                plt.annotate(str(donation), (round_numbers[i], donation), 
+                            textcoords="offset points", xytext=(0, vertical_offset), 
+                            ha='center', color=player_color[index])
+
+        plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        for i, total_donation in enumerate(total_donations_list):
+            plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
+                        textcoords="offset points", xytext=(0, 10), 
+                        ha='center', color='k')
+
+        plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        plt.xlabel('Round')
+        plt.ylabel('Contributed Tokens')
+        plt.legend()
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        plt.clf()
+        # for index, player in enumerate(players_list):
+        #     player_donations = [record for record in player.records]
+        #     # Apply a small random offset to x coordinates
+        #     offset_donations = [d + random.uniform(-0.1, 0.1) for d in player_donations]
+        #     plt.plot(round_numbers, offset_donations, marker='x', linestyle='-', color=player_color[index], label=f'{player.id} Donations')
+        #     for i, donation in enumerate(offset_donations):
+        #         plt.annotate(str(donation), (round_numbers[i], donation), 
+        #                     textcoords="offset points", xytext=(0, 10), 
+        #                     ha='center', color=player_color[index])
+
+        # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        # for i, total_donation in enumerate(total_donations_list):
+        #     plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
+        #                 textcoords="offset points", xytext=(0, 10), 
+        #                 ha='center', color='k')
+
+        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Contributed Tokens')
+        # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        # plt.clf()
     
         rankings_over_time = []
 
         # Calculate rankings for each round
         for i in range(self.round_id):
-            round_tokens = [player.tokens[i+1] for player in self.players]  # i+1 to skip the initial tokens
+            if self.reset:
+                round_tokens = [player.tokens[i] - player.records[i] + self.round_records[i]['total_tokens'] * self.ratio/self.player_num for player in self.players]  # i+1 to skip the initial tokens
+            else:
+                round_tokens = [player.tokens[i+1] for player in self.players]
             sorted_indices = [idx for idx, token in sorted(enumerate(round_tokens), key=lambda x: x[1], reverse=True)]
             rankings = [0] * self.player_num
             for rank, idx in enumerate(sorted_indices):
@@ -120,10 +189,18 @@ class PublicGoods(GameServer):
         plt.title(f'Ranking Over Time (Public Goods Game)')
         plt.xlabel('Round')
         plt.ylabel('Ranking')
+        
+        plt.xticks(round_numbers)
+        plt.yticks(range(1, self.player_num + 1))
+
+        plt.legend()
+
+        # Enable the grid
+        plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-rankings-{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_rankings.png', dpi=300)
         plt.clf()
 
         plt.close()
@@ -177,12 +254,15 @@ class PublicGoods(GameServer):
         initial_tokens = []
 
         for player in tqdm(self.players):
-            if round == 1: 
-                rand_token = randint(0, self.tokens)
-                while(rand_token in initial_tokens):
-                    rand_token = randint(0, self.tokens)  
-                initial_tokens.append(rand_token)  
-                player.tokens.append(rand_token)
+            if self.token_initialization == "random":
+                if round == 1: 
+                    rand_token = randint(0, self.tokens)
+                    while(rand_token in initial_tokens):
+                        rand_token = randint(0, self.tokens)
+            elif self.token_initialization == "fixed":
+                rand_token = self.tokens  
+            initial_tokens.append(rand_token)  
+            player.tokens.append(rand_token)
             request_list = [self.round_id, player.tokens[-1]]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
