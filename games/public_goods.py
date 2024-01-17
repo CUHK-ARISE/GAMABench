@@ -90,48 +90,52 @@ class PublicGoods(GameServer):
         os.makedirs(f"figures/{self.name_exp}_{self.version}", exist_ok=True)
         # Individual Donations and Total Donations
         total_donations_list = [r["total_tokens"] for r in self.round_records]
+        # for index, player in enumerate(players_list):
+        #     player_donations = [record for record in player.records]
+        #     plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
+        #     for i, donation in enumerate(player_donations):
+        #         plt.annotate(str(donation), (round_numbers[i], donation), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
+        # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        # for i, total_donation in enumerate(total_donations_list):
+        #     plt.annotate(str(total_donation), (round_numbers[i], total_donation), textcoords="offset points", xytext=(0,10), ha='center', color='k')
+        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Contributed Tokens')
+        # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        # plt.clf()
+        
+        # Initialize a dictionary to keep track of the vertical offsets for each point
+        point_offsets = {}
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
-            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
+            adjusted_donations = []
             for i, donation in enumerate(player_donations):
-                plt.annotate(str(donation), (round_numbers[i], donation), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[index])
-        plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
-        for i, total_donation in enumerate(total_donations_list):
-            plt.annotate(str(total_donation), (round_numbers[i], total_donation), textcoords="offset points", xytext=(0,10), ha='center', color='k')
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        plt.xlabel('Round')
-        plt.ylabel('Contributed Tokens')
-        plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
-        plt.clf()
-
-        # Initialize a dictionary to keep track of the number of annotations for player donations at each point
-        annotation_offsets = {}
-
-        for index, player in enumerate(players_list):
-            player_donations = [record for record in player.records]
-            plt.plot(round_numbers, player_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
-            for i, donation in enumerate(player_donations):
-                # Check if this player donation point has been annotated before
-                point_key = (round_numbers[i], donation)
-                if point_key not in annotation_offsets:
-                    annotation_offsets[point_key] = 0
+                point = (i, donation)
+                # Count the occurrences of each point and adjust the offset
+                if point not in point_offsets:
+                    point_offsets[point] = 0
                 else:
-                    annotation_offsets[point_key] += 1
+                    point_offsets[point] += 1
 
-                # Adjust the vertical offset based on the number of annotations at this point
-                offset_multiplier = annotation_offsets[point_key]
-                vertical_offset = 10 + offset_multiplier * 10
-
-                plt.annotate(str(donation), (round_numbers[i], donation), 
-                            textcoords="offset points", xytext=(0, vertical_offset), 
+                # Calculate the adjusted y-coordinate for both the point and its annotation
+                adjusted_donation = donation + point_offsets[point] * 0.25  # Adjust by 0.1 or any small value
+                adjusted_donations.append(adjusted_donation)
+                # Annotate at the adjusted point
+                plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
+                            textcoords="offset points", xytext=(-10, -5 + point_offsets[point] * 1), 
                             ha='center', color=player_color[index])
+            # Plot the adjusted point
+            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
+        # clear the offset for another 
+        point_offsets.pop(donation, None)
 
+        # Plot and annotate total donations similarly
         plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
         for i, total_donation in enumerate(total_donations_list):
             plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
-                        textcoords="offset points", xytext=(0, 10), 
+                        textcoords="offset points", xytext=(0, -10), 
                         ha='center', color='k')
 
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
@@ -141,29 +145,7 @@ class PublicGoods(GameServer):
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
         plt.clf()
-        # for index, player in enumerate(players_list):
-        #     player_donations = [record for record in player.records]
-        #     # Apply a small random offset to x coordinates
-        #     offset_donations = [d + random.uniform(-0.1, 0.1) for d in player_donations]
-        #     plt.plot(round_numbers, offset_donations, marker='x', linestyle='-', color=player_color[index], label=f'{player.id} Donations')
-        #     for i, donation in enumerate(offset_donations):
-        #         plt.annotate(str(donation), (round_numbers[i], donation), 
-        #                     textcoords="offset points", xytext=(0, 10), 
-        #                     ha='center', color=player_color[index])
 
-        # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
-        # for i, total_donation in enumerate(total_donations_list):
-        #     plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
-        #                 textcoords="offset points", xytext=(0, 10), 
-        #                 ha='center', color='k')
-
-        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Contributed Tokens')
-        # plt.legend()
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
-        # plt.clf()
     
         rankings_over_time = []
 
@@ -256,13 +238,18 @@ class PublicGoods(GameServer):
         for player in tqdm(self.players):
             if self.token_initialization == "random":
                 if round == 1: 
-                    rand_token = randint(0, self.tokens)
+                    rand_token = randint(11, self.tokens)
                     while(rand_token in initial_tokens):
                         rand_token = randint(0, self.tokens)
+                    initial_tokens.append(rand_token) 
+                    player.tokens.append(rand_token)
             elif self.token_initialization == "fixed":
-                rand_token = self.tokens  
-            initial_tokens.append(rand_token)  
-            player.tokens.append(rand_token)
+                rand_token = self.tokens
+                if round == 1:
+                    initial_tokens.append(rand_token) 
+                    player.tokens.append(rand_token)
+                if self.reset:
+                    player.tokens.append(rand_token)
             request_list = [self.round_id, player.tokens[-1]]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
