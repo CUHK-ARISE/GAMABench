@@ -7,6 +7,7 @@ import json
 from random import randint
 import matplotlib as mpl
 from server import *
+from math import log, ceil
 
 class PublicGoods(GameServer):
     def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
@@ -34,7 +35,7 @@ class PublicGoods(GameServer):
         
         for player in self.players:
             player_contributed_tokens = player.records[-1]
-            player_total_tokens = player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num
+            player_total_tokens = round(player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num, 2)
             # print(f"Reset?{self.reset}\nplayer_total_tokens{player_total_tokens}\nplayer tokens{player.tokens[-1]}")
             player_util = player.tokens[-1] - player_contributed_tokens 
             if self.reset:
@@ -109,33 +110,37 @@ class PublicGoods(GameServer):
 
 
         # Set the default font size
-        mpl.rcParams['font.size'] = 24  # You can adjust this value as needed    
+        mpl.rcParams['font.size'] = 30  # You can adjust this value as needed    
         # Initialize a dictionary to keep track of the vertical offsets for each point
+        max_donation = 0
         if self.reset:
-            offset = 0.1
+            offset = 0.5
         else:
-            offset = 1
-        point_offsets = {}
+            offset = 0.01
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
+            for donation in player_donations:
+                if donation >= max_donation:
+                    max_donation = donation
             adjusted_donations = []
             player_id = int(player.id.split("_")[1])
             for i, donation in enumerate(player_donations):
-                point = (i, donation)
                 # Count the occurrences of each point and adjust the offset
                 # if point not in point_offsets:
-                point_offsets[point] = player_id
+                point_offsets = player_id
                 # Calculate the adjusted y-coordinate for both the point and its annotation
-                adjusted_donation = donation + point_offsets[point] * offset  # Adjust by 0.1 or any small value
+                if not self.reset:
+                    adjusted_donation = log(donation + 1, 10) + point_offsets / self.player_num * offset
+                else:
+                    adjusted_donation = donation + point_offsets * offset  # Adjust by 0.1 or any small value
                 adjusted_donations.append(adjusted_donation)
                 # Annotate at the adjusted point
                 plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
-                            textcoords="offset points", xytext=(-10, -5 + point_offsets[point] * 1), 
+                            textcoords="offset points", xytext=(-25, -10), 
                             ha='center', color=player_color[index])
             # Plot the adjusted point
-            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations', linewidth=2)
+            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations', linewidth=2, markersize=20)
         # clear the offset for another 
-        point_offsets.pop(donation, None)
 
         # Plot and annotate total donations similarly
         # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
@@ -147,6 +152,17 @@ class PublicGoods(GameServer):
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
         plt.ylabel('Contributed Tokens')
+        if not self.reset:
+            if max_donation == 0:
+                max_donation = 10
+            print(f"max donation: {max_donation}, ceil: {ceil(log(max_donation, 10))}")
+            y_ticks = [i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+            y_tick_labels = [10 ** i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+            y_ticks = [0] + y_ticks
+            y_tick_labels = [0] + y_tick_labels
+            print(y_ticks)
+            plt.yticks(y_ticks)
+            plt.gca().set_yticklabels(y_tick_labels)
         plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
