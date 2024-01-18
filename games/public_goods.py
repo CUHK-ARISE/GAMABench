@@ -5,11 +5,11 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
 from random import randint
-
+import matplotlib as mpl
 from server import *
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
         self.version = version
         self.name_exp = name_exp
@@ -17,6 +17,7 @@ class PublicGoods(GameServer):
         self.ratio = ratio
         self.token_initialization = token_initialization
         self.reset = reset
+        self.rand_min = rand_min
     
     def compute_result(self, responses):
         total_tokens = sum(responses)
@@ -53,10 +54,10 @@ class PublicGoods(GameServer):
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        player_color = []
-        for player in players_list:
-            player_records = [player.records[i] for i in range(len(round_numbers))]
-            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+        player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000']
+        # for player in players_list:
+        #     player_records = [player.records[i] for i in range(len(round_numbers))]
+        #     player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
         # User tokens Tendency
         
         # for index, player in enumerate(players_list):
@@ -105,38 +106,43 @@ class PublicGoods(GameServer):
         # fig = plt.gcf()
         # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
         # plt.clf()
-        
+
+
+        # Set the default font size
+        mpl.rcParams['font.size'] = 24  # You can adjust this value as needed    
         # Initialize a dictionary to keep track of the vertical offsets for each point
+        if self.reset:
+            offset = 0.1
+        else:
+            offset = 1
         point_offsets = {}
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
             adjusted_donations = []
+            player_id = int(player.id.split("_")[1])
             for i, donation in enumerate(player_donations):
                 point = (i, donation)
                 # Count the occurrences of each point and adjust the offset
-                if point not in point_offsets:
-                    point_offsets[point] = 0
-                else:
-                    point_offsets[point] += 1
-
+                # if point not in point_offsets:
+                point_offsets[point] = player_id
                 # Calculate the adjusted y-coordinate for both the point and its annotation
-                adjusted_donation = donation + point_offsets[point] * 0.25  # Adjust by 0.1 or any small value
+                adjusted_donation = donation + point_offsets[point] * offset  # Adjust by 0.1 or any small value
                 adjusted_donations.append(adjusted_donation)
                 # Annotate at the adjusted point
                 plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
                             textcoords="offset points", xytext=(-10, -5 + point_offsets[point] * 1), 
                             ha='center', color=player_color[index])
             # Plot the adjusted point
-            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
+            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations', linewidth=2)
         # clear the offset for another 
         point_offsets.pop(donation, None)
 
         # Plot and annotate total donations similarly
-        plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
-        for i, total_donation in enumerate(total_donations_list):
-            plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
-                        textcoords="offset points", xytext=(0, -10), 
-                        ha='center', color='k')
+        # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        # for i, total_donation in enumerate(total_donations_list):
+        #     plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
+        #                 textcoords="offset points", xytext=(0, -10), 
+        #                 ha='center', color='k')
 
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
@@ -175,7 +181,7 @@ class PublicGoods(GameServer):
         plt.xticks(round_numbers)
         plt.yticks(range(1, self.player_num + 1))
 
-        plt.legend()
+        plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
 
         # Enable the grid
         plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
@@ -238,7 +244,7 @@ class PublicGoods(GameServer):
         for player in tqdm(self.players):
             if self.token_initialization == "random":
                 if round == 1: 
-                    rand_token = randint(11, self.tokens)
+                    rand_token = randint(self.rand_min, self.tokens)
                     while(rand_token in initial_tokens):
                         rand_token = randint(0, self.tokens)
                     initial_tokens.append(rand_token) 
