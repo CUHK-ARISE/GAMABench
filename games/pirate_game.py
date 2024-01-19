@@ -177,7 +177,6 @@ class PirateGame(GameServer):
             if current_player_id + 1 < self.current_round:
                 continue
             self.current_player = self.player_id_manipulation(current_player_id + 1)
-            # print(f"start:id{id(player)}\n\n{player.id}\n{player.prompt}")
             if self.current_round == current_player_id + 1:
                 request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
                 request_list2 = [current_player_id + 1, self.gold, self.player_num]
@@ -221,11 +220,13 @@ class PirateGame(GameServer):
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'Yes'
                             self.accepted += 1
+                            responses.records.append('Yes')
                             player.records.append('Yes')
                         elif 'no' in gpt_responses or 'No' in gpt_responses:
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'No'
                             self.declined += 1
+                            responses.records.append('No')
                             player.records.append('No')
                         print(f'gpt response after manipulating: {gpt_responses}')
                         break  
@@ -249,6 +250,23 @@ class PirateGame(GameServer):
                             self.accepted += 1
                             responses.append('Yes')
                             break
+                        else: 
+                            if 'no' not in gpt_responses and 'No' not in gpt_responses and 'yes' not in gpt_responses and 'Yes' not in gpt_responses: 
+                                continue
+                            elif 'yes' in gpt_responses or 'Yes' in gpt_responses:
+                                # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
+                                gpt_responses = 'Yes'
+                                self.accepted += 1
+                                responses.records.append('Yes')
+                                player.records.append('Yes')
+                            elif 'no' in gpt_responses or 'No' in gpt_responses:
+                                # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
+                                gpt_responses = 'No'
+                                self.declined += 1
+                                responses.records.append('No')
+                                player.records.append('No')
+                            print(f'gpt response after manipulating: {gpt_responses}')
+                            break  
                     except:
                         pass
                     
@@ -269,13 +287,11 @@ class PirateGame(GameServer):
 
     def update_system_prompt(self, description_file):
         for player in self.players:
-            description_list = [int(player.id.split('_')[1]), self.player_num, self.gold]
+            description_list = [int(player.id.split('_')[1]) + 1, self.player_num, self.gold]
             description_prompt = get_prompt(description_file, description_list)
             for item in player.prompt:
-                print(item)
                 if item.get("role") == "system":
                     item["content"] = description_prompt
-                    print(f"id: {id(player)}, current player id: {player.id}\nprompt: {player.prompt}")
                     break
     
     def run(self, rounds):
@@ -284,8 +300,6 @@ class PirateGame(GameServer):
         # Call the constructor of the base class
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         self.update_system_prompt(description_file)
-        # for player in tqdm(self.players):
-        #     print(f"run: {player.id}, {player.prompt}")
         for round_count in range(self.round_id+1, self.round_id+rounds+1):
             self.start(round_count)
             self.save(self.name_exp)

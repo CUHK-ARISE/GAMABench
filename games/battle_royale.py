@@ -8,6 +8,7 @@ from random import seed
 from math import log10
 import numpy as np
 from server import *
+import re
 
 seed(9)
 class BattleRoyale(GameServer):
@@ -58,21 +59,24 @@ class BattleRoyale(GameServer):
             player_index = self.player_info.index([player, hit_rate]) + 1
             player_data = {
                 f"The {self.ordinal(player_index)} player to shot": player.id,
-                "hit_rate": hit_rate
+                "hit_rate": f"{hit_rate}%"
             }
             players_list.append(player_data)
 
-        return json.dumps(players_list, indent=4)
+        return json.dumps(players_list, indent=0)
 
     def compute_result(self, responses):
         out = False
         player_shot_info = []
-        shot_player = str(responses[-1])
+        shot_player = responses[-1]
+        shot = True
         initial_players= [player_info[0].id for player_info in self.player_info]
-        shot = True if responses[-1] !='None' else False
+        if "-1" in shot_player:
+            shot = False
+        print(shot)
         if shot:
             for player, hit_rate in self.player_info:
-                if str(responses[-1]) in player.id:
+                if shot_player in player.id:
                     player_shot_info = [player, hit_rate]
                     shot_player = player.id
                     out = self.out()
@@ -80,9 +84,10 @@ class BattleRoyale(GameServer):
                         self.player_info.remove(player_shot_info)
                         self.removed_player_info.append(player.id)
                         self.player_removed_info[player.id] = self.round_id
+                    break
         self.player_remaining.append(len(self.player_info))
         print(f'round_id: {self.round_id}, players left:{len(self.player_info)}')
-        print(f'player shot: {shot_player}, out:{out}')
+        print(f'player shot: {shot_player}, out: {out}')
         record = {
             "responses": responses,
             "initial_players": initial_players,
@@ -95,22 +100,22 @@ class BattleRoyale(GameServer):
         return record
         
     def out(self):
-        return True if random.uniform(0, 100) < self.current_player_info[1] else False
+        true_or_false = np.random.choice([True, False], p=[self.current_player_info[1] / 100, 1 - self.current_player_info[1] / 100])
+        return bool(true_or_false)
 
     def report_result(self, round_record):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         result = ""
         if not round_record["shot"]:
-            result = 'did not shoot anyone.'
+            result = 'intentionally missed his/her shot.'
         else:
             print(f'shot:{round_record["shot"]}, {round_record["shot_player"]}')
-            result = 'shot' + str(round_record["shot_player"])
+            result = 'shot ' + str(round_record["shot_player"])
             if round_record["out"]:
                 result += " and hit. " + str(round_record['shot_player']) + " was out."
             else:
                 result += "but missed."
-
-        report_list = [self.round_id, self.ordinal(self.current_player_info[0].id.split('_')[1]) + 1, result, len(self.player_info)]
+        report_list = [self.round_id, self.ordinal(int(self.current_player_info[0].id.split('_')[1]) + 1), result, len(self.player_info)]
         report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
         for i in range(len(self.player_info)):
             self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
@@ -164,7 +169,7 @@ class BattleRoyale(GameServer):
             y = int(player_id.split('_')[1])
             
             if not record['shot']:
-                label = 'Shot no one'
+                label = 'Intentionally miss'
                 if label not in added_labels:
                     ax.scatter(x, y, marker='x', color='black', label=label)
                     added_labels.add(label)
@@ -219,7 +224,7 @@ class BattleRoyale(GameServer):
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         responses = []
-        request_list = [self.round_id, self.player_info_str_print, self.current_player_info[1]]
+        request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[1]]
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -229,25 +234,46 @@ class BattleRoyale(GameServer):
             gpt_responses = self.current_player_info[0].gpt_request(self.current_player_info[0].prompt + request_prompt)
             try:
                 parsered_responses = json.loads(gpt_responses)
-                parsered_responses = parsered_responses["player to shoot"]
-                print(parsered_responses)
-                # parsered_responses = 'null' if parsered_responses == 'None' else int(parsered_responses["player to shoot"].split('_')[1]) 
+                parsered_responses = parsered_responses["option"]
                 self.current_player_info[0].records.append(parsered_responses)
                 responses.append(parsered_responses)
                 # self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
                 break
             except:
-                pass
+                try:
+                    match = re.search(r'"option":\s*(\d+|"[^"]+")', gpt_responses)
+                    # Retrieve the value if the pattern is found
+                    parsered_responses = match.group(1).strip('"') if match else None
+                    if parsered_responses is None:
+                        continue
+                    if parsered_responses == None:
+                        continue
+                    self.current_player_info[0].records.append(parsered_responses[1])
+                    responses.append(parsered_responses)
+                    break
+                except:
+                    pass
         print(f'responses:{responses}')
         round_record = self.compute_result(responses)
         self.report_result(round_record)     
 
+    def update_system_prompt(self, description_file):
+        for player in self.player_info:
+            description_list = [self.player_num, self.player_info_str_print(), self.player_info.index(player) + 1]
+            description_prompt = get_prompt(description_file, description_list)
+            for item in player[0].prompt:
+                if item.get("role") == "system":
+                    item["content"] = description_prompt
+                    break
+                
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         self.rounds = rounds
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        player_info_str = self.player_info_str_print()
-        # description_list = [self.player_num, player_info_str, self.ordinal(self.player_info.index([self.current_player_info[0], self.current_player_info[1]]) + 1)]
-        description_list = [self.player_num, player_info_str]
-        super().run(rounds, description_file, description_list)
+        self.update_system_prompt(description_file)
+        for round_count in range(self.round_id+1, self.round_id+rounds+1):
+            self.start(round_count)
+            self.save(self.name_exp)
+            self.show()
+            time.sleep(1)    

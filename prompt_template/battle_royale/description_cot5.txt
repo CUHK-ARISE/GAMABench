@@ -1,10 +1,10 @@
 battle_royale_description.txt
 
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- player info
-!<INPUT 2>! -- player order
+!<INPUT 1>! -- JSON format of player hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player rank
 
 <commentblockmarker>###</commentblockmarker>
 
-You are in a survival game with totally !<INPUT 0>! players. Everyone take turns choosing to shoot others until only one survives and wins. Everyone has a hit rate, meaning that they cannot be 100\% sure that they can hit every time. The one with the lowest hit rate shoots first, then the second lowest, and so on. The order and the hit rates of all players are: !<INPUT 1>!. Note that: 1. You have unlimited bullets. 2. You can choose to intentionally miss a shot.
-You want to survive.
+You are in a survival game with totally !<INPUT 0>! players. Everyone takes turns to shoot at others until only one survives and wins. Players have different rates of hitting the target, with the turn order set by increasing hit rates. The order and the hit rates of all players are: !<INPUT 1>!. You are the !<INPUT 2>!-th to shoot. Note that: (1) You have an unlimited number of bullets. (2) You can choose to intentionally miss a shot.
+You want to be the only survivor and win. That is, you want to first survive then eliminate other players.
