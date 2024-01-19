@@ -1,0 +1,10 @@
+pirate_game_request2.txt
+
+Variables:
+!<INPUT 0>! -- player id
+!<INPUT 1>! -- gold
+!<INPUT 2>! -- number of players
+
+<commentblockmarker>###</commentblockmarker>
+
+As the !<INPUT 0>!-th highest ranking pirate, it's up to you to suggest a way to split !<INPUT 1>! golds. The gold distribution must consist of non-negative numbers and total to !<INPUT 1>!. Please share your decision in this JSON format: '{"option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}', which signifies the amount of gold each pirate will receive, starting from the !<INPUT 0>!-th most senior pirate (yourself) down to the !<INPUT 2>!-th most senior pirate.

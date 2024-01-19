@@ -51,11 +51,12 @@ class PublicGoods(GameServer):
 
 
     def graphical_analysis(self, players_list):
-        plt.figure(figsize=(30, 20)) 
+        # plt.figure(figsize=(30, 20)) 
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000']
+        markers = ['o', 's', 'p', 'h', 'd', 'o', 's', 'p', 'h', 'd']
         # for player in players_list:
         #     player_records = [player.records[i] for i in range(len(round_numbers))]
         #     player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
@@ -109,37 +110,88 @@ class PublicGoods(GameServer):
         # plt.clf()
 
 
+        # # Set the default font size
+        # mpl.rcParams['font.size'] = 40  # You can adjust this value as needed    
+        # # Initialize a dictionary to keep track of the vertical offsets for each point
+        # max_donation = 0
+        # if self.reset:
+        #     offset = 0.5
+        # else:
+        #     offset = 0.05
+        # for index, player in enumerate(players_list):
+        #     player_donations = [record for record in player.records]
+        #     for donation in player_donations:
+        #         if donation >= max_donation:
+        #             max_donation = donation
+        #     adjusted_donations = []
+        #     player_id = int(player.id.split("_")[1])
+        #     for i, donation in enumerate(player_donations):
+        #         # Count the occurrences of each point and adjust the offset
+        #         # if point not in point_offsets:
+        #         point_offsets = player_id
+        #         # Calculate the adjusted y-coordinate for both the point and its annotation
+        #         if not self.reset:
+        #             adjusted_donation = log(donation + 1, 10) + point_offsets / self.player_num * offset
+        #         else:
+        #             adjusted_donation = donation + point_offsets * offset  # Adjust by 0.1 or any small value
+        #         adjusted_donations.append(adjusted_donation)
+        #         # Annotate at the adjusted point
+        #         plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
+        #                     textcoords="offset points", xytext=(-40, -15), 
+        #                     ha='center', color=player_color[index], fontsize=35)
+        #     # Plot the adjusted point
+        #     plt.plot(round_numbers, adjusted_donations, marker=markers[index], color=player_color[index], label=f'{player.id} Donations', markeredgewidth=5, linewidth=5, markerfacecolor='none', markersize=20)
+        # # clear the offset for another 
+
+        # # Plot and annotate total donations similarly
+        # # plt.plot(round_numbers, total_donations_list, marker='o', color='k', linestyle='--', label='Total Donations')
+        # # for i, total_donation in enumerate(total_donations_list):
+        # #     plt.annotate(str(total_donation), (round_numbers[i], total_donation), 
+        # #                 textcoords="offset points", xytext=(0, -10), 
+        # #                 ha='center', color='k')
+
+        # plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Contributed Tokens')
+        # if not self.reset:
+        #     if max_donation == 0:
+        #         max_donation = 10
+        #     y_ticks = [i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+        #     y_tick_labels = [10 ** i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+        #     y_ticks = [0] + y_ticks
+        #     y_tick_labels = [0] + y_tick_labels
+        #     # for y_tick in y_ticks:
+        #     #     plt.axhline(y=y_tick, color='lightgray', linestyle='-', linewidth=3)
+        #     plt.yticks(y_ticks)
+        #     plt.gca().set_yticklabels(y_tick_labels)
+        # # plt.legend()
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        # plt.clf()
+
         # Set the default font size
-        mpl.rcParams['font.size'] = 30  # You can adjust this value as needed    
+        # mpl.rcParams['font.size'] = 40  # You can adjust this value as needed    
         # Initialize a dictionary to keep track of the vertical offsets for each point
         max_donation = 0
-        if self.reset:
-            offset = 0.5
-        else:
-            offset = 0.01
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
             for donation in player_donations:
                 if donation >= max_donation:
                     max_donation = donation
             adjusted_donations = []
-            player_id = int(player.id.split("_")[1])
             for i, donation in enumerate(player_donations):
                 # Count the occurrences of each point and adjust the offset
                 # if point not in point_offsets:
-                point_offsets = player_id
                 # Calculate the adjusted y-coordinate for both the point and its annotation
-                if not self.reset:
-                    adjusted_donation = log(donation + 1, 10) + point_offsets / self.player_num * offset
-                else:
-                    adjusted_donation = donation + point_offsets * offset  # Adjust by 0.1 or any small value
+                adjusted_donation = donation / self.round_records[i]['total_tokens'] * 100
                 adjusted_donations.append(adjusted_donation)
                 # Annotate at the adjusted point
-                plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
-                            textcoords="offset points", xytext=(-25, -10), 
-                            ha='center', color=player_color[index])
+                # plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
+                #             textcoords="offset points", xytext=(-40, -15), 
+                #             ha='center', color=player_color[index], fontsize=35)
             # Plot the adjusted point
-            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations', linewidth=2, markersize=20)
+            # plt.plot(round_numbers, adjusted_donations, marker=markers[index], color=player_color[index], label=f'{player.id} Donations', markeredgewidth=5, linewidth=5, markerfacecolor='none', markersize=20)
+            plt.plot(round_numbers, adjusted_donations, marker=markers[index], color=player_color[index], label=f'{player.id} Donations', markerfacecolor='none')
         # clear the offset for another 
 
         # Plot and annotate total donations similarly
@@ -151,23 +203,22 @@ class PublicGoods(GameServer):
 
         plt.title(f'Public Goods Game (tokens = {self.tokens})')
         plt.xlabel('Round')
-        plt.ylabel('Contributed Tokens')
-        if not self.reset:
-            if max_donation == 0:
-                max_donation = 10
-            print(f"max donation: {max_donation}, ceil: {ceil(log(max_donation, 10))}")
-            y_ticks = [i for i in range(1, ceil(log(max_donation, 10)) + 1)]
-            y_tick_labels = [10 ** i for i in range(1, ceil(log(max_donation, 10)) + 1)]
-            y_ticks = [0] + y_ticks
-            y_tick_labels = [0] + y_tick_labels
-            print(y_ticks)
-            plt.yticks(y_ticks)
-            plt.gca().set_yticklabels(y_tick_labels)
-        plt.legend()
+        plt.ylabel('Contributed Tokens (%)')
+        # if not self.reset:
+        #     if max_donation == 0:
+        #         max_donation = 10
+        #     y_ticks = [i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+        #     y_tick_labels = [10 ** i for i in range(1, ceil(log(max_donation, 10)) + 1)]
+        #     y_ticks = [0] + y_ticks
+        #     y_tick_labels = [0] + y_tick_labels
+        #     # for y_tick in y_ticks:
+        #     #     plt.axhline(y=y_tick, color='lightgray', linestyle='-', linewidth=3)
+        #     plt.yticks(y_ticks)
+        #     plt.gca().set_yticklabels(y_tick_labels)
+        # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution_percentage.png', dpi=300)
         plt.clf()
-
     
         rankings_over_time = []
 
@@ -186,7 +237,7 @@ class PublicGoods(GameServer):
         # Plot rankings over time
         for player_index, player in enumerate(self.players):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
-            plt.plot(round_numbers, player_rankings, marker='x', label=f'{player.id}', color=player_color[player_index])
+            plt.plot(round_numbers, player_rankings, marker=markers[player_index], label=f'{player.id}', color=player_color[player_index], markersize=20, markerfacecolor='none', linewidth=5, markeredgewidth=5)
             for i, rank in enumerate(player_rankings):
                 plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
 
@@ -198,11 +249,10 @@ class PublicGoods(GameServer):
         plt.yticks(range(1, self.player_num + 1))
 
         plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
-
+        plt.tight_layout()
         # Enable the grid
         plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
-        plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_rankings.png', dpi=300)
         plt.clf()
