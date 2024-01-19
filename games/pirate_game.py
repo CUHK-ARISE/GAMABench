@@ -6,6 +6,7 @@ import re
 import numpy as np
 from server import *
 from math import log10, floor
+from collections import defaultdict 
 
 class PirateGame(GameServer):
     def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
@@ -61,36 +62,50 @@ class PirateGame(GameServer):
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
             count += 1
-        self.report_result_graph(gold_distribution)
+        self.report_result_graph()
         return
         
-    def report_result_graph(self, gold_distribution):
-        count = 0
-        labels_added = set()  # To keep track of which labels have been added
-        for player in self.players:
-            current_player_id = int(player.id.split('_')[1])
+    def report_result_graph(self):
+        player_golds_each_round = defaultdict(list)
+        gold_collected_list = []
+        player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000'] 
+        rounds = [i + 1 for i in range(self.current_round)]
+        for index, player in enumerate(self.players):
+            if index + 1 < self.current_round:
+                continue
+            for round_record in self.round_records:
+                print(round_record["gold_distribution"])
+                bottom_start = np.sum(gold_collected_list)
+                gold_collected = [0] * (len(self.round_records) - 1)+ [round_record["gold_distribution"][index - len(self.round_records) + 1]]
+                player_golds_each_round[player].append(gold_collected)
+                gold_collected_list.append(np.array(gold_collected))
+            plt.bar(rounds, player_golds_each_round[player], color=player_color[index], edgecolor='black', bottom=bottom_start)
+        # count = 0
+        # labels_added = set()  # To keep track of which labels have been added
+        # for player in self.players:
+        #     current_player_id = int(player.id.split('_')[1])
             
-            # If the player has already been thrown overboard
-            if current_player_id + 1 < self.current_round:
-                if 'thrown' not in labels_added:
-                    plt.plot(current_player_id + 1, 0, 'x', color='grey', label='thrown')  # Plot at y=0 to indicate no gold
-                    labels_added.add('thrown')
-                    # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-                else:
-                    plt.plot(current_player_id + 1, 0, 'x', color='grey')
-                    # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-            # If the player is still in the game
-            else:
-                color = 'green' if player.records[-1] == 'Yes' else 'red'
-                label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
-                plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
-                plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-                if current_player_id + 1 == self.current_round and not self.next_round:
-                    plt.plot(current_player_id + 1, gold_distribution[count], 'o', color='orange', label='winner')
+        #     # If the player has already been thrown overboard
+        #     if current_player_id + 1 < self.current_round:
+        #         if 'thrown' not in labels_added:
+        #             plt.plot(current_player_id + 1, 0, 'x', color='grey', label='thrown')  # Plot at y=0 to indicate no gold
+        #             labels_added.add('thrown')
+        #             # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
+        #         else:
+        #             plt.plot(current_player_id + 1, 0, 'x', color='grey')
+        #             # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
+        #     # If the player is still in the game
+        #     else:
+        #         color = 'green' if player.records[-1] == 'Yes' else 'red'
+        #         label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
+        #         plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
+        #         plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
+        #         if current_player_id + 1 == self.current_round and not self.next_round:
+        #             plt.plot(current_player_id + 1, gold_distribution[count], 'o', color='orange', label='winner')
 
-                if label:
-                    labels_added.add(label)
-                count += 1
+        #         if label:
+        #             labels_added.add(label)
+        #         count += 1
 
         plt.title(f'Pirate Game (players = {self.player_num})')
         plt.xlabel('Players')
@@ -205,8 +220,11 @@ class PirateGame(GameServer):
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
                 # player.prompt = player.prompt + request_prompt1
                 gpt_responses = player.gpt_request(player.prompt + request_prompt1)
-
+            count = 0
             while True:
+                if count == 2:
+                    break
+                count += 1
                 print(f'proposing pirate: {self.current_round},voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
                 print(f'gpt response before manipulating: {gpt_responses}')
@@ -234,15 +252,15 @@ class PirateGame(GameServer):
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'Yes'
                             self.accepted += 1
-                            responses.records.append('Yes')
+                            responses.append('Yes')
                             player.records.append('Yes')
                         elif 'no' in gpt_responses or 'No' in gpt_responses:
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                             gpt_responses = 'No'
                             self.declined += 1
-                            responses.records.append('No')
+                            responses.append('No')
                             player.records.append('No')
-                        print(f'gpt response after manipulating: {gpt_responses}')
+                        print(f'gpt response after manipulating: {parsered_responses}')
                         break  
                 except:
                     # more detailed explanation is given before json format, use regular expression to extract
@@ -259,28 +277,27 @@ class PirateGame(GameServer):
                             print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(self.current_plan.values())
                             print(gold_distribution)
-                            player.records.append('gold_distribution')
                             player.records.append('Yes')
                             self.accepted += 1
                             responses.append('Yes')
                             break
-                        else: 
+                        else:
                             if 'no' not in gpt_responses and 'No' not in gpt_responses and 'yes' not in gpt_responses and 'Yes' not in gpt_responses: 
                                 continue
                             elif 'yes' in gpt_responses or 'Yes' in gpt_responses:
                                 # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                                 gpt_responses = 'Yes'
                                 self.accepted += 1
-                                responses.records.append('Yes')
+                                responses.append('Yes')
                                 player.records.append('Yes')
                             elif 'no' in gpt_responses or 'No' in gpt_responses:
                                 # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
                                 gpt_responses = 'No'
                                 self.declined += 1
-                                responses.records.append('No')
+                                responses.append('No')
                                 player.records.append('No')
                             print(f'gpt response after manipulating: {gpt_responses}')
-                            break  
+                            break
                     except:
                         pass
                     
@@ -319,4 +336,4 @@ class PirateGame(GameServer):
             self.start(round_count)
             self.save(self.name_exp)
             self.show()
-            time.sleep(1)    
+            time.sleep(1)

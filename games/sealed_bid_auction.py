@@ -11,7 +11,7 @@ import random
 from server import *
 
 class SealedBidAuction(GameServer):
-    def __init__(self, player_num, valuation, version, mode = 'second-highest bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, valuation, version, mode = 'second_highest_bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
         self.version = version
         self.mode = mode
@@ -23,10 +23,10 @@ class SealedBidAuction(GameServer):
         winning_bid = max(responses)
         bid_winner_pay = 0
         # Different modes
-        if self.mode == 'second-highest bid':
+        if self.mode == 'second_highest_bid':
             print(self.mode)
             bid_winner_pay = sorted(list(set(responses)))[-2]
-        elif self.mode == 'highest bid':
+        elif self.mode == 'highest_bid':
             bid_winner_pay = sorted(list(set(responses)))[-1]
         print(f"bid_winner: {winning_bid}, bid_winner_pay: {bid_winner_pay}, responses: {responses}") #bid_winner_pay: {bid_winner_pay)
 
@@ -69,15 +69,15 @@ class SealedBidAuction(GameServer):
             differences = bids - valuations
             plt.plot(round_numbers, differences, label=player.id, color=player_color[index], marker=markers[index])
             
-            for i, diff in enumerate(differences):
-                plt.annotate(player.id, (round_numbers[i], diff), textcoords="offset points", xytext=(0,10), ha='center')
+            # for i, diff in enumerate(differences):
+            #     plt.annotate(player.id, (round_numbers[i], diff), textcoords="offset points", xytext=(0,10), ha='center')
 
         plt.axhline(0, color='grey', linewidth=0.5, linestyle='--')
 
         plt.title('Difference between Bids and Valuations Over Rounds')
         plt.xlabel('Round')
         plt.ylabel('Difference')
-        plt.legend()
+        # plt.legend()
         # plt.grid(True)
         plt.savefig(f'figures/{self.name_exp}_{self.mode}/{self.name_exp}_v-b_plot_{self.version}.png', dpi=300)
         # plt.show()
@@ -109,12 +109,12 @@ class SealedBidAuction(GameServer):
         
         # Player Revenue / Utility
         for index, player in enumerate(players_list):
-            player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
+            player_utility = [player.utility[i] for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker=markers[index], color=player_color[index], label=player.id)
         plt.title(f'Sealed Bid Auction (max valuation = {self.valuation})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
-        plt.legend()
+        # plt.legend()
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.mode}/{self.name_exp}_utility_{self.version}.png', dpi=300)
         plt.clf()
