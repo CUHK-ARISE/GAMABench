@@ -126,6 +126,7 @@ class DivideDollar(GameServer):
     def run(self, rounds):
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
+        round_message = f" There will be 20 rounds."
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.golds, round_message]
         super().run(rounds, description_file, description_list)
