@@ -2,10 +2,12 @@ diner_dilemma_request.txt
 
 Variables:
 !<INPUT 0>! -- round id
+!<INPUT 1>! -- output format
+!<INPUT 2>! -- cot message
 
 "explanation": "<explanation>"
 
 <commentblockmarker>###</commentblockmarker>
 
 Now round !<INPUT 0>! starts. You need to choose to order the expensive dish (answer "expensive") or the cheap dish (answer "cheap").
-Please output your decision in the following JSON format: '{"option": "<expensive or cheap>"}'.
+Please output your decision in the following JSON format: '!<INPUT 1>!'.!<INPUT 2>!

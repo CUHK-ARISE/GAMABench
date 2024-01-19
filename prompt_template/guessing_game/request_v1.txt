@@ -4,8 +4,10 @@ Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- min
 !<INPUT 2>! -- max
+!<INPUT 3>! -- output format
+!<INPUT 4>! -- cot message
 
 <commentblockmarker>###</commentblockmarker>
 
 Now round !<INPUT 0>! starts. You can only reply an integer between !<INPUT 1>! and !<INPUT 2>!.
-Please output your decision in the following JSON format: '{"option": "<chosen integer>"}'.
+Please output your decision in the following JSON format: '!<INPUT 3>!'.!<INPUT 4>!

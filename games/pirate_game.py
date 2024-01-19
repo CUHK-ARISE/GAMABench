@@ -179,14 +179,28 @@ class PirateGame(GameServer):
             self.current_player = self.player_id_manipulation(current_player_id + 1)
             if self.current_round == current_player_id + 1:
                 request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
-                request_list2 = [current_player_id + 1, self.gold, self.player_num]
+                
+                if self.cot:
+                    output_format = '{"explanation": "<description of your thinking process>", "option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}' 
+                else:
+                    output_format = '{"option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}'
+                cot_msg = get_cot_prompt(self.cot)
+                
+                request_list2 = [current_player_id + 1, self.gold, self.player_num, output_format, cot_msg]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
                 # player.prompt = player.prompt + request_prompt2
                 gpt_responses = player.gpt_request(player.prompt + request_prompt2)
             else: 
                 request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
-                request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1]]
+                
+                if self.cot:
+                    output_format = '{"explanation": "<description of your thinking process>", "option": "<answer>"}' 
+                else:
+                    output_format = '{"option": "<answer>"}'
+                cot_msg = get_cot_prompt(self.cot)
+                
+                request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format, cot_msg]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
                 # player.prompt = player.prompt + request_prompt1
@@ -294,7 +308,8 @@ class PirateGame(GameServer):
                     item["content"] = description_prompt
                     break
     
-    def run(self, rounds):
+    def run(self, rounds, cot=None):
+        self.cot = cot
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         # Call the constructor of the base class

@@ -4,7 +4,9 @@ Variables:
 !<INPUT 0>! -- round id 
 !<INPUT 1>! -- plan
 !<INPUT 2>! -- current player gold
+!<INPUT 3>! -- output format
+!<INPUT 4>! -- cot message
 
 <commentblockmarker>###</commentblockmarker>
 
-Now the !<INPUT 0>!-th most senior pirate proposes a plan of !<INPUT 1>!. You will get !<INPUT 2>! golds from this plan. You need to decide whether to accept (answer "Yes") or not (answer "No").Please output your decision in the following JSON format: {"option": "<answer>"}. 
+Now the !<INPUT 0>!-th most senior pirate proposes a plan of !<INPUT 1>!. You will get !<INPUT 2>! golds from this plan. You need to decide whether to accept (answer "Yes") or not (answer "No").Please output your decision in the following JSON format: !<INPUT 3>!.!<INPUT 4>! 

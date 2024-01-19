@@ -119,7 +119,14 @@ class DinerDilemma(GameServer):
         self.round_id = round
         
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
-        request_list = [self.round_id]
+        
+        if self.cot:
+            output_format = '{"explanation": "<description of your thinking process>", "option": "<expensive or cheap>"}' 
+        else:
+            output_format = '{"option": "<expensive or cheap>"}'
+        cot_msg = get_cot_prompt(self.cot)
+        
+        request_list = [self.round_id, output_format, cot_msg]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
         responses = []
@@ -141,7 +148,8 @@ class DinerDilemma(GameServer):
         self.report_result(round_record)
 
 
-    def run(self, rounds):
+    def run(self, rounds, cot=None):
+        self.cot = cot
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         round_message = f" There will be 20 rounds."

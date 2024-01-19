@@ -73,6 +73,13 @@ def get_prompt(filename, inputs):
     return generated_prompt
 
 
+def get_cot_prompt(cot):
+    if cot:
+        return " " + get_prompt(f"prompt_template/cot_prompts/cot{cot}.txt", [])
+    else:
+        return ""
+
+
 def select_players(player_list, attr_name, metric_list):
     if metric_list == 'ALL':
         return player_list

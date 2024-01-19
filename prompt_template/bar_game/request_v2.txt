@@ -1,7 +1,9 @@
 bar_game_request.txt
 
 !<INPUT 0>! -- round id
+!<INPUT 1>! -- output format
+!<INPUT 2>! -- cot message
 
 <commentblockmarker>###</commentblockmarker>
 
-The commencement of round !<INPUT 0>! is now. Your decision on whether to proceed (respond with 'yes') or refrain (respond with 'no') is necessary. Your choice should be given in this JSON structure: '{"option": "<yes or no>"}'.
+The commencement of round !<INPUT 0>! is now. Your decision on whether to proceed (respond with 'yes') or refrain (respond with 'no') is necessary. Your choice should be given in this JSON structure: '!<INPUT 1>!'.!<INPUT 2>!

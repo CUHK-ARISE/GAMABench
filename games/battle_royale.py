@@ -223,8 +223,15 @@ class BattleRoyale(GameServer):
         print(f"Round {round}: ")
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
+        
+        if self.cot:
+            output_format = '{"explanation": "<description of your thinking process>", "option": "<playerid>"}' 
+        else:
+            output_format = '{"option": "<playerid>"}'
+        cot_msg = get_cot_prompt(self.cot)
+        
         responses = []
-        request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[1]]
+        request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[1], output_format, cot_msg]
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -266,7 +273,8 @@ class BattleRoyale(GameServer):
                     item["content"] = description_prompt
                     break
                 
-    def run(self, rounds):
+    def run(self, rounds, cot=None):
+        self.cot = cot
         # Update system prompt (number of round)
         round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         self.rounds = rounds

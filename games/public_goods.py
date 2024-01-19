@@ -304,6 +304,13 @@ class PublicGoods(GameServer):
         print(f"Round {round}: ")
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
+        
+        if self.cot:
+            output_format = '{"explanation": "<description of your thinking process>", "option": "<tokens>"}' 
+        else:
+            output_format = '{"option": "<tokens>"}'
+        cot_msg = get_cot_prompt(self.cot)
+        
         responses = []
         initial_tokens = []
 
@@ -322,7 +329,7 @@ class PublicGoods(GameServer):
                     player.tokens.append(rand_token)
                 if self.reset:
                     player.tokens.append(rand_token)
-            request_list = [self.round_id, player.tokens[-1]]
+            request_list = [self.round_id, player.tokens[-1], output_format, cot_msg]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
             # player.prompt = player.prompt + request_prompt
@@ -341,7 +348,8 @@ class PublicGoods(GameServer):
         self.report_result(round_record)
 
 
-    def run(self, rounds):
+    def run(self, rounds, cot=None):
+        self.cot = cot
         # Update system prompt (number of round)
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
