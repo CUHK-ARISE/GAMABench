@@ -90,7 +90,7 @@ class PublicGoods(GameServer):
         # fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.png', dpi=300)
         # plt.clf()
         
-        os.makedirs(f"figures/{self.name_exp}_{self.version}", exist_ok=True)
+        os.makedirs(f"figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}", exist_ok=True)
         # Individual Donations and Total Donations
         total_donations_list = [r["total_tokens"] for r in self.round_records]
         # for index, player in enumerate(players_list):
@@ -217,7 +217,7 @@ class PublicGoods(GameServer):
         #     plt.gca().set_yticklabels(y_tick_labels)
         # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution_percentage.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_contribution_percentage.png', dpi=300)
         plt.clf()
     
         rankings_over_time = []
@@ -237,9 +237,9 @@ class PublicGoods(GameServer):
         # Plot rankings over time
         for player_index, player in enumerate(self.players):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
-            plt.plot(round_numbers, player_rankings, marker=markers[player_index], label=f'{player.id}', color=player_color[player_index], markersize=20, markerfacecolor='none', linewidth=5, markeredgewidth=5)
-            for i, rank in enumerate(player_rankings):
-                plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
+            plt.plot(round_numbers, player_rankings, marker=markers[player_index], label=f'{player.id}', color=player_color[player_index], markerfacecolor='none')
+            # for i, rank in enumerate(player_rankings):
+            #     plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
 
         plt.title(f'Ranking Over Time (Public Goods Game)')
         plt.xlabel('Round')
@@ -254,7 +254,7 @@ class PublicGoods(GameServer):
         plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_rankings.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_rankings.png', dpi=300)
         plt.clf()
 
         plt.close()

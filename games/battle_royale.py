@@ -19,13 +19,14 @@ class BattleRoyale(GameServer):
         print("Initializing players:")
         self.version = version
         for player in tqdm(self.players):
-            self.player_info.append([player, self.round_to_1_sig_fig(random.uniform(0, 100))])
+            self.player_info.append([player, self.round_to_1_sig_fig(random.randint(41, 51))])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
         self.player_remaining = []
         self.player_colors = {f'{player.id}':plt.cm.viridis(int(player.id.split('_')[1]) / player_num) for player in self.players}
         self.player_removed_info = {}
+        self.end = False
 
     def round_to_1_sig_fig(self, num):
         if num == 0:
@@ -71,7 +72,7 @@ class BattleRoyale(GameServer):
         shot_player = responses[-1]
         shot = True
         initial_players= [player_info[0].id for player_info in self.player_info]
-        if "-1" in shot_player:
+        if "-1" in str(shot_player):
             shot = False
         print(shot)
         if shot:
@@ -139,7 +140,7 @@ class BattleRoyale(GameServer):
         plt.title('Number of Players Over Rounds')
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
-        plt.savefig(f'figures/players_over_rounds-{self.version}.png')
+        plt.savefig(f'figures/players_over_rounds_{self.version}.png', dpi = 300)
         # plt.show()
         plt.clf()
 
@@ -198,7 +199,7 @@ class BattleRoyale(GameServer):
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         plt.tight_layout()
-        plt.savefig(f'figures/player_decisions_over_rounds-{self.version}.png', bbox_inches='tight')  # Save the figure with the legend
+        plt.savefig(f'figures/player_decisions_over_rounds_{self.version}.png', bbox_inches='tight', dpi=300)  # Save the figure with the legend
         # plt.show()
         plt.clf()
 
@@ -211,14 +212,10 @@ class BattleRoyale(GameServer):
 
     def show(self, attr_name=None, metric_list='ALL'):
         eligible_players = select_players(self.players, attr_name, metric_list)
-        if len(self.player_info) == 1:
-            return
-        else:
-            self.graphical_analysis(eligible_players)
+        self.graphical_analysis(eligible_players)
 
     def start(self, round):
-        if len(self.player_info) == 1:
-            print(f"The winner is {self.player_info[0][0].id} with a hit rate of {self.player_info[0][1]}%!")
+        if self.end:
             return
         print(f"Round {round}: ")
         self.round_id = round
@@ -263,7 +260,11 @@ class BattleRoyale(GameServer):
         print(f'responses:{responses}')
         round_record = self.compute_result(responses)
         self.report_result(round_record)     
-
+        if len(self.player_info) == 1:
+            print(f"The winner is {self.player_info[0][0].id} with a hit rate of {self.player_info[0][1]}%!")
+            self.end = True
+            return
+        
     def update_system_prompt(self, description_file):
         for player in self.player_info:
             description_list = [self.player_num, self.player_info_str_print(), self.player_info.index(player) + 1]

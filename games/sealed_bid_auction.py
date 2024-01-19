@@ -51,7 +51,7 @@ class SealedBidAuction(GameServer):
             player.utility.append(player_util)
             result = 'won' if round_record["bid_winner_payment"] == player_bid else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
-            report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player.valuation[-1] - round_record["bid_winner_payment"]]
+            report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player_util]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
@@ -59,7 +59,7 @@ class SealedBidAuction(GameServer):
 
     def plot_v_b(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs(f'figures/{self.name_exp}_{self.mode}', exist_ok=True)
+        os.makedirs(f'figures/{self.name_exp}_{self.mode}_{self.version}', exist_ok=True)
         player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000']
         markers = ['o', 's', 'p', 'h', 'd', 'o', 's', 'p', 'h', 'd']
         round_numbers = [str(i+1) for i in range(self.round_id)]
@@ -79,12 +79,12 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Difference')
         # plt.legend()
         # plt.grid(True)
-        plt.savefig(f'figures/{self.name_exp}_{self.mode}/{self.name_exp}_v-b_plot_{self.version}.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_v-b_plot.png', dpi=300)
         # plt.show()
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs(f'figures/{self.name_exp}_{self.mode}', exist_ok=True)
+        os.makedirs(f'figures/{self.name_exp}_{self.mode}_{self.version}', exist_ok=True)
         # plt.figure(figsize=(15, 10))  # Increase figure size 
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000']
@@ -111,12 +111,12 @@ class SealedBidAuction(GameServer):
         for index, player in enumerate(players_list):
             player_utility = [player.utility[i] for i in range(len(round_numbers))]
             plt.plot(round_numbers, player_utility, marker=markers[index], color=player_color[index], label=player.id)
-        plt.title(f'Sealed Bid Auction (max valuation = {self.valuation})')
+        plt.title(f'Sealed Bid Auction')
         plt.xlabel('Round')
         plt.ylabel('Utility')
         # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.mode}/{self.name_exp}_utility_{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_utility.png', dpi=300)
         plt.clf()
         
         self.plot_v_b(players_list)

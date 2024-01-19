@@ -7,7 +7,7 @@ import numpy as np
 from server import *
 from math import log10, floor
 from collections import defaultdict 
-
+import matplotlib.patches as mpatches
 class PirateGame(GameServer):
     def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
         super().__init__(player_num, round_id, 'pirate_game', models, version)
@@ -66,20 +66,26 @@ class PirateGame(GameServer):
         return
         
     def report_result_graph(self):
+        os.makedirs(f'figures/{self.name_exp}_{self.version}', exist_ok=True)
         player_golds_each_round = defaultdict(list)
-        gold_collected_list = []
+        player_golds_each_round_list = defaultdict(list)
         player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000'] 
         rounds = [i + 1 for i in range(self.current_round)]
-        for index, player in enumerate(self.players):
-            if index + 1 < self.current_round:
-                continue
-            for round_record in self.round_records:
-                print(round_record["gold_distribution"])
-                bottom_start = np.sum(gold_collected_list)
-                gold_collected = [0] * (len(self.round_records) - 1)+ [round_record["gold_distribution"][index - len(self.round_records) + 1]]
-                player_golds_each_round[player].append(gold_collected)
-                gold_collected_list.append(np.array(gold_collected))
-            plt.bar(rounds, player_golds_each_round[player], color=player_color[index], edgecolor='black', bottom=bottom_start)
+        for index1, round_record in enumerate(self.round_records):
+            for index2, player in enumerate(self.players):
+                current_round_gold_distribution = [0] * index1 + round_record["gold_distribution"]
+                player_golds_each_round[index2].append(current_round_gold_distribution[index2])
+                player_golds_each_round_list[index1].append(current_round_gold_distribution[index2])
+
+        for index2, player in enumerate(self.players):
+            bottom_start = np.sum([player_golds_each_round[i] for i in range(index2)], axis=0)
+            print(f"rounds:{rounds}, len{len(rounds)}")
+            print(f"player gold rounds:{player_golds_each_round[index2]}, len{len(player_golds_each_round[index2])}")
+            print(f"bottom{bottom_start}")
+            plt.bar(rounds, player_golds_each_round[index2], color=player_color[index2], edgecolor='black', bottom=bottom_start)
+        # Add labels here, outside the inner loop
+        legend_patches = [mpatches.Patch(color=player_color[index], label=player.id) for index, player in enumerate(self.players)]
+
         # count = 0
         # labels_added = set()  # To keep track of which labels have been added
         # for player in self.players:
@@ -111,10 +117,10 @@ class PirateGame(GameServer):
         plt.xlabel('Players')
         plt.ylabel('Gold Distribution')
         plt.ylim(-10 , self.gold + 10)
-        plt.xlim(0 , self.player_num + 1)
-        plt.legend(loc='best')  # 'best' will position it where there's most space
+        plt.xlim(0 , self.current_round + 4) 
+        plt.legend(handles=legend_patches, loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp} Voting {self.current_round}-{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/proposal', dpi=300)
         plt.clf()
 
     def graphical_analysis(self, player_list):
@@ -124,6 +130,7 @@ class PirateGame(GameServer):
             self.end = True
         # Data points
         os.makedirs("figures", exist_ok=True)
+        os.makedirs(f'figures/{self.name_exp}_{self.version}', exist_ok=True)
         x_values = np.array([i + 1 for i in range(len(self.accepting_list))])
         y_values = np.array(self.accepting_list)
         # Plotting each point
@@ -141,7 +148,7 @@ class PirateGame(GameServer):
         plt.ylabel('Accepting Rate')
         plt.ylim(-.1, 1.1)
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-{self.version}.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.png', dpi=300)
         plt.clf()
 
     def round_to_3_sig_fig(self, num):
@@ -239,6 +246,8 @@ class PirateGame(GameServer):
                         # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
                         gold_distribution = list(self.current_plan.values())
+                        if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
+                            continue
                         player.records.append(gold_distribution)
                         print(gold_distribution)
                         player.records.append('Yes')
@@ -276,6 +285,9 @@ class PirateGame(GameServer):
                             # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                             print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(self.current_plan.values())
+                            gold_distribution = list(self.current_plan.values())
+                            if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
+                                continue
                             print(gold_distribution)
                             player.records.append('Yes')
                             self.accepted += 1
