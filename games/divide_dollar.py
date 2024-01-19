@@ -107,15 +107,15 @@ class DivideDollar(GameServer):
         responses = []
         
         for player in tqdm(self.players):
-            player.prompt = player.prompt + request_prompt
+            # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.gpt_request(player.prompt)
+                gpt_responses = player.gpt_request(player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = int(parsered_responses["propose"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
-                    player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
+                    # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                     break
                 except:
                     pass
