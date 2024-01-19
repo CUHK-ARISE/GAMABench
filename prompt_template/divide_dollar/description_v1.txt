@@ -1,4 +1,4 @@
-divide_dollar_description.txt
+Divide the Dollar Description Prompt
 
 Variables:
 !<INPUT 0>! -- number of players
@@ -7,5 +7,5 @@ Variables:
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a game with totally !<INPUT 0>! players. Players are going to divide !<INPUT 1>! golds. Players secretly and simultaneously select an integer between 0 and !<INPUT 1>!, inclusive. However, if the sum of the proposals by all players is more than !<INPUT 1>!, everyone will receive nothing (receive 0 gold).!<INPUT 2>!
+You are participating in a game with totally !<INPUT 0>! players. Players are going to divide !<INPUT 1>! golds. Players secretly and simultaneously select an integer between 0 and !<INPUT 1>!, inclusive. If the sum of all proposals is equal to or less than !<INPUT 1>!, everyone will receive golds as proposed. If the sum is more than !<INPUT 1>!, everyone will receive 0 golds.!<INPUT 2>!
 You want to maximize your golds.
