@@ -103,9 +103,9 @@ class DivideDollar(GameServer):
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
         if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "option": "<amount>"}' 
+            output_format = '{"explanation": "<description of your thinking process>", "propose": "<amount>"}' 
         else:
-            output_format = '{"option": "<amount>"}'
+            output_format = '{"propose": "<amount>"}'
         cot_msg = get_cot_prompt(self.cot)
         
         request_list = [self.round_id, self.golds, output_format, cot_msg]
