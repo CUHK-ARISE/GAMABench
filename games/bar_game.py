@@ -66,7 +66,7 @@ class BarGame(GameServer):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
-        player_color = []
+        player_color = my_colors
         for player in players_list:
             player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
 
@@ -86,7 +86,7 @@ class BarGame(GameServer):
         # Choice Distribution
         go_list = [r["go_num"] for r in self.round_records]
         for index, player in enumerate(players_list):
-            go_dist = [addnoise(player.records[:i+1].count('yes') / (i+1), 0.005) for i in range(len(round_numbers))]
+            go_dist = [player.records[:i+1].count('yes') / (i+1) for i in range(len(round_numbers))]
             plt.plot(round_numbers, go_dist, marker='x', color=player_color[index], label=player.id)
         plt.axhline(y=self.ratio, color='r', linestyle='--', label='Capacity')
         plt.title(f'El Farol Bar Game (n = {self.player_num})')
@@ -97,26 +97,26 @@ class BarGame(GameServer):
         fig.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
         plt.clf()
 
-        # Utility Received
-        for index, player in enumerate(players_list):
-            plt.plot(round_numbers, player.utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'El Farol Bar Game (n = {self.player_num})')
-        plt.xlabel('Round')
-        plt.ylabel('Total Utility')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-utility-recieved.png', dpi=300)
-        plt.clf()
+        # # Utility Received
+        # for index, player in enumerate(players_list):
+        #     plt.plot(round_numbers, player.utility, marker='x', color=player_color[index], label=player.id)
+        # plt.title(f'El Farol Bar Game (n = {self.player_num})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Total Utility')
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}-utility-recieved.png', dpi=300)
+        # plt.clf()
         
-        # Utility Tendency
-        for index, player in enumerate(players_list):
-            player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'El Farol Bar Game (n = {self.player_num})')
-        plt.xlabel('Round')
-        plt.ylabel('Total Utility')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
-        plt.clf()
+        # # Utility Tendency
+        # for index, player in enumerate(players_list):
+        #     player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
+        #     plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
+        # plt.title(f'El Farol Bar Game (n = {self.player_num})')
+        # plt.xlabel('Round')
+        # plt.ylabel('Total Utility')
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
+        # plt.clf()
     
     
     def statistic_analysis(self, players_list):
