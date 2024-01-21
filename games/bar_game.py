@@ -84,7 +84,6 @@ class BarGame(GameServer):
         plt.clf()
         
         # Choice Distribution
-        go_list = [r["go_num"] for r in self.round_records]
         for index, player in enumerate(players_list):
             go_dist = [player.records[:i+1].count('yes') / (i+1) for i in range(len(round_numbers))]
             plt.plot(round_numbers, go_dist, marker='x', color=player_color[index], label=player.id)
