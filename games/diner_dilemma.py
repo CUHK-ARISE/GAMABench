@@ -82,14 +82,14 @@ class DinerDilemma(GameServer):
         
         # Choice Distribution
         for index, player in enumerate(players_list):
-            cheap_dist = [player.records[:i+1].count('cheap') / (i+1) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, cheap_dist, marker='x', color=player_color[index], label=player.id)
+            expensive_dist = [player.records[:i+1].count('expensive') / (i+1) for i in range(len(round_numbers))]
+            plt.plot(round_numbers, expensive_dist, marker='x', color=player_color[index], label=player.id)
         plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
-        plt.ylabel('Probability of choosing cheap dish')
+        plt.ylabel('Probability of choosing expensive dish')
         plt.ylim(-0.1, 1.1)
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
         plt.clf()
         
         # Utility Received
