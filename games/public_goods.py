@@ -183,7 +183,7 @@ class PublicGoods(GameServer):
                 # Count the occurrences of each point and adjust the offset
                 # if point not in point_offsets:
                 # Calculate the adjusted y-coordinate for both the point and its annotation
-                adjusted_donation = donation / self.round_records[i]['total_tokens'] * 100
+                adjusted_donation = donation / player.tokens[i] * 100
                 adjusted_donations.append(adjusted_donation)
                 # Annotate at the adjusted point
                 # plt.annotate(str(donation), (round_numbers[i], adjusted_donation), 
@@ -191,7 +191,7 @@ class PublicGoods(GameServer):
                 #             ha='center', color=player_color[index], fontsize=35)
             # Plot the adjusted point
             # plt.plot(round_numbers, adjusted_donations, marker=markers[index], color=player_color[index], label=f'{player.id} Donations', markeredgewidth=5, linewidth=5, markerfacecolor='none', markersize=20)
-            plt.plot(round_numbers, adjusted_donations, marker=markers[index], color=player_color[index], label=f'{player.id} Donations', markerfacecolor='none')
+            plt.plot(round_numbers, adjusted_donations, marker='x', color=player_color[index], label=f'{player.id} Donations')
         # clear the offset for another 
 
         # Plot and annotate total donations similarly
@@ -201,7 +201,7 @@ class PublicGoods(GameServer):
         #                 textcoords="offset points", xytext=(0, -10), 
         #                 ha='center', color='k')
 
-        plt.title(f'Public Goods Game (tokens = {self.tokens})')
+        plt.title(f'Contributed Tokens Percentage')
         plt.xlabel('Round')
         plt.ylabel('Contributed Tokens (%)')
         # if not self.reset:
@@ -237,11 +237,11 @@ class PublicGoods(GameServer):
         # Plot rankings over time
         for player_index, player in enumerate(self.players):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
-            plt.plot(round_numbers, player_rankings, marker=markers[player_index], label=f'{player.id}', color=player_color[player_index], markerfacecolor='none')
+            plt.plot(round_numbers, player_rankings, marker='x', label=f'{player.id}', color=player_color[player_index])
             # for i, rank in enumerate(player_rankings):
             #     plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
 
-        plt.title(f'Ranking Over Time (Public Goods Game)')
+        plt.title(f'Ranking Over Time')
         plt.xlabel('Round')
         plt.ylabel('Ranking')
         
@@ -251,7 +251,7 @@ class PublicGoods(GameServer):
         plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
         plt.tight_layout()
         # Enable the grid
-        plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
+        # plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_rankings.png', dpi=300)
@@ -319,7 +319,7 @@ class PublicGoods(GameServer):
                 if round == 1: 
                     rand_token = randint(self.rand_min, self.tokens)
                     while(rand_token in initial_tokens):
-                        rand_token = randint(0, self.tokens)
+                        rand_token = randint(1, self.tokens + 1)
                     initial_tokens.append(rand_token) 
                     player.tokens.append(rand_token)
             elif self.token_initialization == "fixed":

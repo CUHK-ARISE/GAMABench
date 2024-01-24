@@ -78,13 +78,13 @@ class PirateGame(GameServer):
                 player_golds_each_round_list[index1].append(current_round_gold_distribution[index2])
 
         for index2, player in enumerate(self.players):
-            bottom_start = np.sum([player_golds_each_round[i] for i in range(index2)], axis=0)
+            bottom_start = np.sum([player_golds_each_round[i] for i in range(index2 + 1, len(player_golds_each_round))], axis=0)
             print(f"rounds:{rounds}, len{len(rounds)}")
             print(f"player gold rounds:{player_golds_each_round[index2]}, len{len(player_golds_each_round[index2])}")
             print(f"bottom{bottom_start}")
             plt.bar(rounds, player_golds_each_round[index2], color=player_color[index2], edgecolor='black', bottom=bottom_start)
         # Add labels here, outside the inner loop
-        legend_patches = [mpatches.Patch(color=player_color[index], label=player.id) for index, player in enumerate(self.players)]
+        legend_patches = [mpatches.Patch(color=player_color[index], label=f"Rank {index + 1}") for index, player in enumerate(self.players)]
 
         # count = 0
         # labels_added = set()  # To keep track of which labels have been added
@@ -212,7 +212,7 @@ class PirateGame(GameServer):
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
                 # player.prompt = player.prompt + request_prompt2
-                gpt_responses = player.gpt_request(player.prompt + request_prompt2)
+                request_prompt = request_prompt2
             else: 
                 request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
                 
@@ -225,14 +225,26 @@ class PirateGame(GameServer):
                 request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format, cot_msg]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
+                request_prompt = request_prompt1
                 # player.prompt = player.prompt + request_prompt1
-                gpt_responses = player.gpt_request(player.prompt + request_prompt1)
-            count = 0
             while True:
-                if count == 2:
-                    break
-                count += 1
-                print(f'proposing pirate: {self.current_round},voting pirate:{current_player_id + 1}')
+                gpt_responses = player.gpt_request(player.prompt + request_prompt)
+                # if current_player_id + 1 == 1:
+                #     gpt_responses = """{
+                #         "option": {
+                #             "1-st": 96,
+                #             "2-nd": 0,
+                #             "3-rd": 1,
+                #             "4-th": 0,
+                #             "5-th": 1,
+                #             "6-th": 0,
+                #             "7-th": 1,
+                #             "8-th": 0,
+                #             "9-th": 1,
+                #             "10-th": 0
+                #         }
+                #     }"""
+                print(f'proposing pirate: {self.current_round}, voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
                 print(f'gpt response before manipulating: {gpt_responses}')
                 # if json format is given as responses as desired
@@ -248,7 +260,7 @@ class PirateGame(GameServer):
                         gold_distribution = list(self.current_plan.values())
                         if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
                             continue
-                        player.records.append(gold_distribution)
+                        # player.records.append(gold_distribution)
                         print(gold_distribution)
                         player.records.append('Yes')
                         self.accepted += 1

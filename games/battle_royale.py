@@ -18,8 +18,9 @@ class BattleRoyale(GameServer):
         self.player_info = []
         print("Initializing players:")
         self.version = version
-        for player in tqdm(self.players):
-            self.player_info.append([player, self.round_to_1_sig_fig(random.randint(41, 51))])
+        hit_rate = 10
+        for index, player in enumerate(self.players):
+            self.player_info.append([player, hit_rate * (index + 1)])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
@@ -67,14 +68,15 @@ class BattleRoyale(GameServer):
         return json.dumps(players_list, indent=0)
 
     def compute_result(self, responses):
+        # self.remove = False
+        # self.start_again = False
         out = False
         player_shot_info = []
         shot_player = responses[-1]
         shot = True
-        initial_players= [player_info[0].id for player_info in self.player_info]
+        initial_players = [[player_info[0].id, player_info[1]] for player_info in self.player_info]
         if "-1" in str(shot_player):
             shot = False
-        print(shot)
         if shot:
             for player, hit_rate in self.player_info:
                 if shot_player in player.id:
@@ -89,8 +91,13 @@ class BattleRoyale(GameServer):
         self.player_remaining.append(len(self.player_info))
         print(f'round_id: {self.round_id}, players left:{len(self.player_info)}')
         print(f'player shot: {shot_player}, out: {out}')
+        try:
+            shot_player = shot_player.split('_')[1]
+        except:
+            pass
         record = {
             "responses": responses,
+            "player_shooting": self.current_player_info[0].id.split('_')[1],
             "initial_players": initial_players,
             "shot_player": shot_player,
             "removed_player_info": self.removed_player_info,
@@ -104,6 +111,24 @@ class BattleRoyale(GameServer):
         true_or_false = np.random.choice([True, False], p=[self.current_player_info[1] / 100, 1 - self.current_player_info[1] / 100])
         return bool(true_or_false)
 
+    def find_next_in_current_order(self, player_order, current_player_order, current_player_id):
+        # Find the index of the current player in player_order
+        current_index = player_order.index(current_player_id)
+        
+        # Loop through player_order starting from the element after current_player_id
+        # Use modulo to cycle through the list
+        n = len(player_order)
+        for i in range(1, n):
+            next_index = (current_index + i) % n
+            next_player_id = player_order[next_index]
+            
+            # Check if the next player is in current_player_order
+            if next_player_id in current_player_order and "player_" + str(next_player_id) not in self.removed_player_info and next_player_id != self.current_player_info[0]:
+                return next_player_id
+
+        # Return None if no suitable player is found
+        return None
+    
     def report_result(self, round_record):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         result = ""
@@ -122,14 +147,17 @@ class BattleRoyale(GameServer):
             self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
         # # switch to the next player
-        try:
-            self.current_player_info = self.player_info[self.player_info.index(self.current_player_info) + 1]
-        except:
-            self.current_player_info = self.player_info[0]
+        current_player_id = self.current_player_info[0].id
+        player_order = [int(player[0].split('_')[1]) for player in self.round_records[0]['initial_players']]
+        current_player_order = [int(player[0].id.split('_')[1]) for player in self.player_info]
+        current_player_id = int(current_player_id.split('_')[1])
+        next_player = self.find_next_in_current_order(player_order, current_player_order, current_player_id)
+        for player_info in self.player_info:
+            if int(player_info[0].id.split("_")[1]) == next_player:
+                self.current_player_info = player_info
+                break
         self.round_id += 1
-
         return
-
 
     def graphical_analysis(self, players_list):
         # Choice Analysis
@@ -146,54 +174,49 @@ class BattleRoyale(GameServer):
 
         # Assuming self.round_records, self.players, and other required variables are defined
 
-        graph_iter = {player.id: False for player in self.players}
-        player_order = self.round_records[0]['initial_players']
+        graph_iter = {player.id.split("_")[1]: False for player in self.players}
+        player_order = [info[0].split("_")[1] for info in self.round_records[0]['initial_players']]
+        player_order = list(reversed(player_order))
+        # player_order = [player_info[0].id.split('_')[1] for player_info in self.player_info]
+        # print(player_order)
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
-        count = 0
-        keys = list(graph_iter.keys())
+        # print(graph_iter)
         rounds = range(1, len(self.round_records) + 1)
         fig, ax = plt.subplots(figsize=(10,6))
 
         added_labels = set()
 
         for round_num, record in enumerate(self.round_records, start=1):
-            player_id = keys[count]
-            count += 1
-            if count >= len(keys):
-                count = 0
-            if round_num > self.player_removed_info.get(player_id, 99999) + 1:
-                player_id = keys[count]
-                count += 1
-            if count >= len(keys):
-                count = 0
             x = round_num
-            y = int(player_id.split('_')[1])
-            
+            y = record["player_shooting"]
             if not record['shot']:
                 label = 'Intentionally miss'
                 if label not in added_labels:
-                    ax.scatter(x, y, marker='x', color='black', label=label)
+                    ax.scatter(x, player_order.index(y), marker='x', color='black', label=label)
                     added_labels.add(label)
                 else:
-                    ax.scatter(x, y, marker='x', color='black')
+                    ax.scatter(x, player_order.index(y), marker='x', color='black')
             else:
                 color = 'red' if record['out'] else 'green'
                 label = 'Shot and hit' if record['out'] else 'Shot and missed'
                 if label not in added_labels:
-                    ax.scatter(x, y, marker='o', color=color, label=label)
+                    ax.scatter(x, player_order.index(y), marker='o', color=color, label=label)
                     added_labels.add(label)
                 else:
-                    ax.scatter(x, y, marker='o', color=color)
+                    ax.scatter(x, player_order.index(y), marker='o', color=color)
                 if record['shot']:
-                    player_shot = record['shot_player']
-                    ax.text(x, y, f'{player_shot}', fontsize=8, ha='right', va='bottom')
+                    if record['shot_player'] == "-1":
+                        player_shot = -1
+                    else:
+                        player_shot = int(record['shot_player']) + 1
+                    ax.text(x, player_order.index(y) + 0.1, player_shot, fontsize=10,ha='center', va='bottom')
 
 
         ax.set_title('Player Decisions Over Rounds')
         ax.set_xlabel('Round')
         ax.set_ylabel('Player ID')
         ax.set_xticks(rounds)
-        ax.set_yticks(range(len(self.players)), labels=[player.id for player in self.players])
+        ax.set_yticks(range(len(self.players)), labels=[int(player) + 1 for player in player_order])
 
         # Adjusting the position of the legend to the right
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
@@ -238,7 +261,10 @@ class BattleRoyale(GameServer):
             gpt_responses = self.current_player_info[0].gpt_request(self.current_player_info[0].prompt + request_prompt)
             try:
                 parsered_responses = json.loads(gpt_responses)
-                parsered_responses = parsered_responses["option"]
+                try:
+                    parsered_responses = parsered_responses["option"].split("_")[1]
+                except:
+                    parsered_responses = parsered_responses["option"]
                 self.current_player_info[0].records.append(parsered_responses)
                 responses.append(parsered_responses)
                 # self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
@@ -252,7 +278,11 @@ class BattleRoyale(GameServer):
                         continue
                     if parsered_responses == None:
                         continue
-                    self.current_player_info[0].records.append(parsered_responses[1])
+                    try:
+                        parsered_responses = parsered_responses[1].split("_")[1]
+                    except:
+                        parsered_responses = parsered_responses[1]
+                    self.current_player_info[0].records.append(parsered_responses)
                     responses.append(parsered_responses)
                     break
                 except:

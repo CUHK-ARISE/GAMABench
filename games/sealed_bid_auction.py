@@ -44,7 +44,7 @@ class SealedBidAuction(GameServer):
         for player in self.players:
             player_bid = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            if player_bid == round_record['bid_winner_payment']:             
+            if player_bid == round_record['bid_winner_proposed']:             
                 player_util = player.valuation[-1] - round_record['bid_winner_payment']
             else:
                 player_util = 0
@@ -66,15 +66,15 @@ class SealedBidAuction(GameServer):
         for index, player in enumerate(players_list):
             valuations = np.array(player.valuation)
             bids = np.array(player.records)
-            differences = bids - valuations
-            plt.plot(round_numbers, differences, label=player.id, color=player_color[index], marker=markers[index])
+            differences = valuations - bids
+            plt.plot(round_numbers, differences, label=player.id, color=player_color[index], marker='x')
             
             # for i, diff in enumerate(differences):
             #     plt.annotate(player.id, (round_numbers[i], diff), textcoords="offset points", xytext=(0,10), ha='center')
 
         plt.axhline(0, color='grey', linewidth=0.5, linestyle='--')
 
-        plt.title('Difference between Bids and Valuations Over Rounds')
+        plt.title('Valuation - Bid')
         plt.xlabel('Round')
         plt.ylabel('Difference')
         # plt.legend()
@@ -92,25 +92,24 @@ class SealedBidAuction(GameServer):
         # Choice Analysis
         
         # User Proposal Tendency
-        # player_color = []
-        # for player in players_list:
-        #     player_records = [player.records[i] for i in range(len(round_numbers))]
-        #     player_valuation_records = [player.valuation[i] for i in range(len(round_numbers))]
-        #     player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-        #     plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
-        #         # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
-        # plt.title(f'Sealed Bid Auction (max valuation = {self.valuation})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Bid')
+        for index, player in enumerate(players_list):
+            player_records = [player.records[i] for i in range(len(round_numbers))]
+            player_valuation_records = [player.valuation[i] for i in range(len(round_numbers))]
+            # player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+            plt.plot(round_numbers, player_records, marker='x', color=player_color[index], label=player.id)
+                # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
+        plt.title(f'Bid Each Round')
+        plt.xlabel('Round')
+        plt.ylabel('Bid')
         # plt.legend()
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-individual-proposed-{self.mode}-{self.version}.png', dpi=300)
-        # plt.clf()
+        fig = plt.gcf()
+        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_bid_each_round.png', dpi=300)
+        plt.clf()
         
         # Player Revenue / Utility
         for index, player in enumerate(players_list):
             player_utility = [player.utility[i] for i in range(len(round_numbers))]
-            plt.plot(round_numbers, player_utility, marker=markers[index], color=player_color[index], label=player.id)
+            plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
         plt.title(f'Sealed Bid Auction')
         plt.xlabel('Round')
         plt.ylabel('Utility')
