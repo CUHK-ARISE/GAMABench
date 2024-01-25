@@ -1,9 +1,10 @@
 battle_royale_description.txt
 
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- player info
-!<INPUT 2>! -- player order
+!<INPUT 1>! -- JSON format of player hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player + player id 
+!<INPUT 3>! -- player rank
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a survival game, which includes a total of !<INPUT 0>! players. The game's structure involves each player taking their turn to attempt shooting the others, with the game continuing until only a single player remains standing. Every player has a hit rate, signifying that they do not possess absolute certainty of making a successful hit with each shot. The shooting order starts with the individual with the lowest hit rate, followed by the second lowest and continues in that order. Here's the shooting order along with the hit rates of every participant: !<INPUT 1>!. It's pertinent to note two things: 1. There are no limitations on the number of bullets you can use. 2. If desired, you have the option to deliberately miss a shot. Your ultimate aim is to be the last person surviving in the game.
+You are participating in a survival game along with a total of !<INPUT 0>! contestants. The purposes of the game is for everyone to take their turns in shooting at opponents until only a single player is left, who will be declared the winner. Each player has different accuracies of hitting their target, and players take their turns based on these varying hit rates, from lowest to highest. The sequence of order and the corresponding hit rates are: !<INPUT 1>!. You take on the role of the !<INPUT 2>!, and you will be the !<INPUT 3>!-th player to shoot. It is also important to remember that: (1) Your supply of bullets is limitless. (2) You can deliberately choose to miss a shot. The primary goal of the game is for you to maximize your chances of survival and then proceed to eliminate all the other players.

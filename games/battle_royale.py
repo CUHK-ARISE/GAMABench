@@ -18,9 +18,9 @@ class BattleRoyale(GameServer):
         self.player_info = []
         print("Initializing players:")
         self.version = version
-        hit_rate = 10
+        hit_rate = 1
         for index, player in enumerate(self.players):
-            self.player_info.append([player, hit_rate * (index + 1)])
+            self.player_info.append([player, 40 + hit_rate * (index + 1)])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
@@ -79,7 +79,7 @@ class BattleRoyale(GameServer):
             shot = False
         if shot:
             for player, hit_rate in self.player_info:
-                if shot_player in player.id:
+                if str(shot_player) in player.id:
                     player_shot_info = [player, hit_rate]
                     shot_player = player.id
                     out = self.out()
@@ -133,14 +133,14 @@ class BattleRoyale(GameServer):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         result = ""
         if not round_record["shot"]:
-            result = 'intentionally missed his/her shot.'
+            result = 'intentionally missed his/her shot'
         else:
             print(f'shot:{round_record["shot"]}, {round_record["shot_player"]}')
-            result = 'shot ' + str(round_record["shot_player"])
+            result = 'shot ' + "player_" + str(round_record["shot_player"])
             if round_record["out"]:
-                result += " and hit. " + str(round_record['shot_player']) + " was out."
+                result += " and hit " + "player_" + str(round_record['shot_player']) + " was out"
             else:
-                result += "but missed."
+                result += " but missed"
         report_list = [self.round_id, self.ordinal(int(self.current_player_info[0].id.split('_')[1]) + 1), result, len(self.player_info)]
         report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
         for i in range(len(self.player_info)):
@@ -162,13 +162,14 @@ class BattleRoyale(GameServer):
     def graphical_analysis(self, players_list):
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
+        os.makedirs(f"figures/{self.name_exp}", exist_ok=True)
         # Number of players over round
         rounds = [i for i in range(1, self.round_id)]
         plt.plot(rounds, self.player_remaining, marker='o')
         plt.title('Number of Players Over Rounds')
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
-        plt.savefig(f'figures/players_over_rounds_{self.version}.png', dpi = 300)
+        plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.png', dpi = 300)
         # plt.show()
         plt.clf()
 
@@ -222,7 +223,7 @@ class BattleRoyale(GameServer):
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         plt.tight_layout()
-        plt.savefig(f'figures/player_decisions_over_rounds_{self.version}.png', bbox_inches='tight', dpi=300)  # Save the figure with the legend
+        plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds_{self.version}.png', bbox_inches='tight', dpi=300)  # Save the figure with the legend
         # plt.show()
         plt.clf()
 
@@ -251,7 +252,7 @@ class BattleRoyale(GameServer):
         cot_msg = get_cot_prompt(self.cot)
         
         responses = []
-        request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[1], output_format, cot_msg]
+        request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[0].id, self.current_player_info[1], output_format, cot_msg]
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
@@ -297,7 +298,7 @@ class BattleRoyale(GameServer):
         
     def update_system_prompt(self, description_file):
         for player in self.player_info:
-            description_list = [self.player_num, self.player_info_str_print(), self.player_info.index(player) + 1]
+            description_list = [self.player_num, self.player_info_str_print(), player[0].id ,self.player_info.index(player) + 1]
             description_prompt = get_prompt(description_file, description_list)
             for item in player[0].prompt:
                 if item.get("role") == "system":

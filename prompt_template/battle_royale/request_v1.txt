@@ -2,10 +2,11 @@ battle_royale_request.txt
 
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- player list
-!<INPUT 2>! -- player hit rate
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 2>! -- player + playerid
+!<INPUT 3>! -- player hit rate
+!<INPUT 4>! -- output format
+!<INPUT 5>! -- cot message
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 0>! starts. The current order and the hit rates of all players are: !<INPUT 1>!. Your hit rate is !<INPUT 2>!. You need to decide a player to shoot or not. You can only reply an integer indicating the player you choose. By replying "-1" you indicate that you want to intentionally miss the shot. Please output your decision in the following JSON format: '!<INPUT 3>!'.!<INPUT 4>!
+Now round !<INPUT 0>! starts. The current order and the hit rates of all players are: !<INPUT 1>!. You are !<INPUT 2>!. You are the Your hit rate is !<INPUT 3>!%. You need to decide a player to shoot or not. You can only reply an integer indicating the player you choose. By replying "-1" you indicate that you want to intentionally miss the shot. Please output your decision in the following JSON format: '!<INPUT 4>!'.!<INPUT 5>!

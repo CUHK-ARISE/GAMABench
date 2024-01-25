@@ -32,10 +32,11 @@ class PublicGoods(GameServer):
 
     def report_result(self, round_record):
         total_tokens = round_record["total_tokens"]
-        
+        player_tokens_list = []
         for player in self.players:
             player_contributed_tokens = player.records[-1]
             player_total_tokens = round(player.tokens[-1] - player_contributed_tokens + total_tokens * self.ratio/self.player_num, 2)
+            player_tokens_list.append(player_total_tokens)
             # print(f"Reset?{self.reset}\nplayer_total_tokens{player_total_tokens}\nplayer tokens{player.tokens[-1]}")
             player_util = player.tokens[-1] - player_contributed_tokens 
             if self.reset:
@@ -43,8 +44,10 @@ class PublicGoods(GameServer):
             else: 
                 player.tokens.append(player_total_tokens)
             player.utility.append(player_util)
+            
+        for index, player in enumerate(self.players):
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player_contributed_tokens, self.round_records[-1]['responses'], total_tokens, total_tokens * self.ratio/self.player_num, player_total_tokens]
+            report_list = [self.round_id, player.records[-1], self.round_records[-1]['responses'], player_tokens_list,total_tokens, round(total_tokens * self.ratio/self.player_num, 2), player_tokens_list[index]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
@@ -237,7 +240,7 @@ class PublicGoods(GameServer):
         # Plot rankings over time
         for player_index, player in enumerate(self.players):
             player_rankings = [round_rankings[player_index] for round_rankings in rankings_over_time]
-            plt.plot(round_numbers, player_rankings, marker='x', label=f'{player.id}', color=player_color[player_index])
+            plt.plot(round_numbers, player_rankings, marker='x', label=f'{player_index + 1}', color=player_color[player_index])
             # for i, rank in enumerate(player_rankings):
             #     plt.annotate(str(rank), (round_numbers[i], rank), textcoords="offset points", xytext=(0,10), ha='center', color=player_color[int(player.id.split('_')[1])])
 
@@ -351,7 +354,7 @@ class PublicGoods(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
+        round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.ratio, round_message]
         super().run(rounds, description_file, description_list)
