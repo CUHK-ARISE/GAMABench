@@ -24,14 +24,20 @@ class SealedBidAuction(GameServer):
         bid_winner_pay = 0
         # Different modes
         if self.mode == 'second_highest_bid':
-            print(self.mode)
-            bid_winner_pay = sorted(list(set(responses)))[-2]
+            bid_winner_pay = sorted(list((responses)))[-2]
         elif self.mode == 'highest_bid':
-            bid_winner_pay = sorted(list(set(responses)))[-1]
-        print(f"bid_winner: {winning_bid}, bid_winner_pay: {bid_winner_pay}, responses: {responses}") #bid_winner_pay: {bid_winner_pay)
+            bid_winner_pay = sorted(list(responses))[-1]
+        winning_player = [player for player in self.players if player.records[-1] == winning_bid]
+        print(winning_player)
+        if len(winning_player) > 1:
+            winning_player = winning_player[randint(0, len(winning_player) - 1)].id
+        else:
+            winning_player = winning_player[0].id
+        print(f"bid_winner: {winning_player}, bid_winner_pay: {bid_winner_pay}, responses: {responses}") #bid_winner_pay: {bid_winner_pay)
 
         record = {
             "responses": responses,
+            "bid_winner": winning_player,
             "bid_winner_proposed": winning_bid,
             "bid_winner_payment": bid_winner_pay
         }
@@ -44,12 +50,12 @@ class SealedBidAuction(GameServer):
         for player in self.players:
             player_bid = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            if player_bid == round_record['bid_winner_proposed']:             
+            if player_bid == round_record['bid_winner_proposed'] and player.id == round_record['bid_winner']:             
                 player_util = player.valuation[-1] - round_record['bid_winner_payment']
             else:
                 player_util = 0
             player.utility.append(player_util)
-            result = 'won' if round_record["bid_winner_payment"] == player_bid else 'lost'
+            result = 'won' if round_record["bid_winner"] == player.id else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
             report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player_util]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
