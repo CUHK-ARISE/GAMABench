@@ -66,9 +66,11 @@ class BarGame(GameServer):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
-        player_color = my_colors
-        for player in players_list:
-            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
+        # Specify the representative color for each user
+        if my_colors is None:
+            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
+        else: 
+            player_color = my_colors
 
         # Choice Analysis
         go_list = [r["go_num"] for r in self.round_records]
@@ -79,8 +81,7 @@ class BarGame(GameServer):
         plt.ylabel('Number of players went to bar')
         plt.ylim(-0.5, self.player_num + 0.5)
         plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
         plt.clf()
         
         # Choice Distribution
@@ -92,8 +93,7 @@ class BarGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
         plt.clf()
 
         # # Utility Received

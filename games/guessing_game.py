@@ -52,11 +52,16 @@ class GuessingGame(GameServer):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
+        # Specify the representative color for each user
+        if my_colors is None:
+            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
+        else: 
+            player_color = my_colors
+        
+        
         # Player choices
-        player_color = []
-        for player in players_list:
-            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            plt.plot(round_numbers, player.records, marker='x', color=player_color[-1], label=player.id)
+        for pid, player in enumerate(players_list):
+            plt.plot(round_numbers, player.records, marker='x', color=player_color[pid], label=player.id)
         
         # winner points
         winning_list = [r["winner"] for r in self.round_records]
@@ -70,13 +75,13 @@ class GuessingGame(GameServer):
         mean_list = [r["mean"] for r in self.round_records]
         
         plt.plot(round_numbers, mean_list, marker='o', label='Average', color='r')
+        plt.axhline(y=self.min, color='r', linestyle='--')
+        plt.axhline(y=self.max, color='g', linestyle='--')
         plt.title(f'Guessing Game (r = {self.ratio_str})')
         plt.xlabel('Round')
         plt.ylabel('Chosen Number')
         plt.ylim(self.min - 10, self.max + 10)
-        # plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}.png', dpi=300)
         plt.clf()
     
     

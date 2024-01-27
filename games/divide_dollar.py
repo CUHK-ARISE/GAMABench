@@ -45,31 +45,33 @@ class DivideDollar(GameServer):
 
 
     def graphical_analysis(self, players_list):
-        # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        
+        # Specify the representative color for each user
+        if my_colors is None:
+            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
+        else: 
+            player_color = my_colors
+        
+        # Choice Analysis
         proposed_list = [r["total_proposal"] for r in self.round_records]
         plt.plot(round_numbers, proposed_list, marker='x', color='b')
         plt.axhline(y=self.golds, color='r', linestyle='--', label='Golds')
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Total Proposed Amount')
-        # plt.legend()
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
         plt.clf()
         
         # User Proposal Tendency
-        player_color = []
-        for player in players_list:
+        for index, player in enumerate(players_list):
             player_records = [player.records[i] for i in range(len(round_numbers))]
-            player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
-            plt.plot(round_numbers, player_records, marker='x', color=player_color[-1], label=player.id)
+            plt.plot(round_numbers, player_records, marker='x', color=player_color[index], label=player.id)
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Proposed Amount')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
         plt.clf()
         
         # Player Revenue / Utility
@@ -79,8 +81,7 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Revenue')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
         plt.clf()
         
     

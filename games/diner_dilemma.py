@@ -48,11 +48,16 @@ class DinerDilemma(GameServer):
 
 
     def graphical_analysis(self, players_list):
-        player_color = my_colors
-        
-        # Choice Analysis
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        
+        # Specify the representative color for each user
+        if my_colors is None:
+            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
+        else: 
+            player_color = my_colors
+        
+        # Choice Analysis
         total_cost_list = [r["total_cost"] for r in self.round_records]
         plt.plot(round_numbers, total_cost_list, marker='x', color='b')
         plt.axhline(y=self.cheap_cost * self.player_num, color='r', linestyle='--', label='Cheap')
@@ -61,8 +66,7 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Total Cost')
         plt.ylim(self.cheap_cost * self.player_num - 5, self.exp_cost * self.player_num + 5)
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-total-cost.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-total-cost.png', dpi=300)
         plt.clf()
         
         # # Choice Analysis
@@ -76,8 +80,7 @@ class DinerDilemma(GameServer):
         # plt.xlabel('Round')
         # plt.ylabel('Average Cost')
         # plt.ylim(self.cheap_cost - 5, self.exp_cost + 5)
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-cost.png', dpi=300)
+        # plt.savefig(f'figures/{self.name_exp}-cost.png', dpi=300)
         # plt.clf()
         
         # Choice Distribution
@@ -88,8 +91,7 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of choosing expensive dish')
         plt.ylim(-0.1, 1.1)
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
         plt.clf()
         
         # Utility Received
@@ -98,8 +100,7 @@ class DinerDilemma(GameServer):
         plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
         plt.clf()
         
         # Utility Tendency
@@ -109,8 +110,7 @@ class DinerDilemma(GameServer):
         # plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         # plt.xlabel('Round')
         # plt.ylabel('Total Utility')
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-totalutility.png', dpi=300)
+        # plt.savefig(f'figures/{self.name_exp}-totalutility.png', dpi=300)
         # plt.clf()
     
     

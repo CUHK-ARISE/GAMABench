@@ -31,7 +31,7 @@ def ratio_randomization(min=1, max=10):
     gcd = math.gcd(numerator, denominator)
     numerator = numerator // gcd
     denominator = denominator // gcd
-    return numerator/denominator, f"{numerator}/{denominator}"
+    return denominator, numerator, f"{denominator}/{numerator}"
 
 
 def dish_randomization(min=10, max=100):
