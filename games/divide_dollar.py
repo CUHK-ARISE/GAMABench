@@ -117,7 +117,7 @@ class DivideDollar(GameServer):
         for player in tqdm(self.players):
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.gpt_request(player.prompt + request_prompt)
+                gpt_responses = player.request(self.round_id, player.prompt + request_prompt, request_key="propose")
                 try:
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = int(parsered_responses["propose"])

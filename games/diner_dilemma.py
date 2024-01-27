@@ -160,7 +160,7 @@ class DinerDilemma(GameServer):
         for player in tqdm(self.players):
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.gpt_request(player.prompt + request_prompt)
+                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = parsered_responses["option"].lower()
