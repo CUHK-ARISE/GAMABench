@@ -259,7 +259,7 @@ class BattleRoyale(GameServer):
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + request_prompt
         print(f'Player making decision: {self.current_player_info[0].id}')
         while True:
-            gpt_responses = self.current_player_info[0].gpt_request(self.current_player_info[0].prompt + request_prompt)
+            gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt + request_prompt)
             try:
                 parsered_responses = json.loads(gpt_responses)
                 try:

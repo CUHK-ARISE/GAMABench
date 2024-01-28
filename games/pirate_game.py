@@ -228,7 +228,7 @@ class PirateGame(GameServer):
                 request_prompt = request_prompt1
                 # player.prompt = player.prompt + request_prompt1
             while True:
-                gpt_responses = player.gpt_request(player.prompt + request_prompt)
+                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 # if current_player_id + 1 == 1:
                 #     gpt_responses = """{
                 #         "option": {
