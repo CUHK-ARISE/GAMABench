@@ -64,24 +64,24 @@ class GuessingGame(GameServer):
             plt.plot(round_numbers, player.records, marker='x', color=player_color[pid], label=player.id)
         
         # winner points
-        winning_list = [r["winner"] for r in self.round_records]
-        for index, winner in enumerate(winning_list):
-            if index == 0:
-                plt.plot(index, winner, marker='o', color='g', label='Winner')
-            else:
-                plt.plot(index, winner, marker='o', color='g')
+        # winning_list = [r["winner"] for r in self.round_records]
+        # for index, winner in enumerate(winning_list):
+        #     if index == 0:
+        #         plt.plot(index, winner, marker='o', color='g', label='Winner')
+        #     else:
+        #         plt.plot(index, winner, marker='o', color='g')
         
         # average line
         mean_list = [r["mean"] for r in self.round_records]
+        plt.plot(round_numbers, mean_list, marker='o', label='Average', color='#000')
         
-        plt.plot(round_numbers, mean_list, marker='o', label='Average', color='r')
-        plt.axhline(y=self.min, color='r', linestyle='--')
-        plt.axhline(y=self.max, color='g', linestyle='--')
+        plt.axhline(y=self.min, color='#000', linestyle='--')
+        plt.axhline(y=self.max, color='#000', linestyle='--')
         plt.title(f'Guessing Game (r = {self.ratio_str})')
         plt.xlabel('Round')
         plt.ylabel('Chosen Number')
         plt.ylim(self.min - 10, self.max + 10)
-        plt.savefig(f'figures/{self.name_exp}.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}.svg', format="svg", dpi=300)
         plt.clf()
     
     

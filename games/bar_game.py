@@ -81,7 +81,8 @@ class BarGame(GameServer):
         plt.ylabel('Number of players went to bar')
         plt.ylim(-0.5, self.player_num + 0.5)
         plt.legend()
-        plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
+        # plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-capacity.svg', format="svg", dpi=300)
         plt.clf()
         
         # Choice Distribution
@@ -93,7 +94,8 @@ class BarGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
-        plt.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        # plt.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()
 
         # # Utility Received
