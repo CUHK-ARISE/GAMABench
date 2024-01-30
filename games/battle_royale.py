@@ -138,7 +138,7 @@ class BattleRoyale(GameServer):
             print(f'shot:{round_record["shot"]}, {round_record["shot_player"]}')
             result = 'shot ' + "player_" + str(round_record["shot_player"])
             if round_record["out"]:
-                result += " and hit " + "player_" + str(round_record['shot_player']) + " was out"
+                result += " and hit. " + "player_" + str(round_record['shot_player']) + " is out"
             else:
                 result += " but missed"
         report_list = [self.round_id, self.ordinal(int(self.current_player_info[0].id.split('_')[1]) + 1), result, len(self.player_info)]
@@ -169,7 +169,7 @@ class BattleRoyale(GameServer):
         plt.title('Number of Players Over Rounds')
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
-        plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.png', dpi = 300)
+        plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.svg', dpi = 300)
         # plt.show()
         plt.clf()
 
@@ -223,7 +223,7 @@ class BattleRoyale(GameServer):
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
         plt.tight_layout()
-        plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds_{self.version}.png', bbox_inches='tight', dpi=300)  # Save the figure with the legend
+        plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds_{self.version}.svg', bbox_inches='tight', dpi=300)  # Save the figure with the legend
         # plt.show()
         plt.clf()
 
@@ -316,4 +316,7 @@ class BattleRoyale(GameServer):
             self.start(round_count)
             self.save(self.name_exp)
             self.show()
+            # if self.end:
+            #     return self.player_info
             time.sleep(1)    
+        # return self.player_info

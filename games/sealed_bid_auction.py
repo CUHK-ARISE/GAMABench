@@ -85,7 +85,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Difference')
         # plt.legend()
         # plt.grid(True)
-        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_v-b_plot.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_v-b_plot.svg', dpi=300)
         # plt.show()
 
     def graphical_analysis(self, players_list):
@@ -109,7 +109,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Bid')
         # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_bid_each_round.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_bid_each_round.svg', dpi=300)
         plt.clf()
         
         # Player Revenue / Utility
@@ -121,7 +121,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Utility')
         # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_utility.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_utility.svg', dpi=300)
         plt.clf()
         
         self.plot_v_b(players_list)

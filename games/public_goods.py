@@ -47,7 +47,7 @@ class PublicGoods(GameServer):
             
         for index, player in enumerate(self.players):
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player.records[-1], self.round_records[-1]['responses'], player_tokens_list,total_tokens, round(total_tokens * self.ratio/self.player_num, 2), player_tokens_list[index]]
+            report_list = [self.round_id, player.records[-1], self.round_records[-1]['responses'], player_tokens_list,total_tokens, round(total_tokens * self.ratio/self.player_num - player.records[-1], 2), player_tokens_list[index]]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
         return
@@ -75,7 +75,7 @@ class PublicGoods(GameServer):
         # plt.ylabel('Revenue')
         # plt.legend()
         # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-revenue-{self.version}.png', dpi=300)
+        # fig.savefig(f'figures/{self.name_exp}-revenue-{self.version}.svg', dpi=300)
         # plt.clf()
 
         # Player Current Tokens
@@ -90,7 +90,7 @@ class PublicGoods(GameServer):
         # plt.ylabel('Current Tokens')
         # plt.legend()
         # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.png', dpi=300)
+        # fig.savefig(f'figures/{self.name_exp}-current-tokens-{self.version}.svg', dpi=300)
         # plt.clf()
         
         os.makedirs(f"figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}", exist_ok=True)
@@ -109,7 +109,7 @@ class PublicGoods(GameServer):
         # plt.ylabel('Contributed Tokens')
         # plt.legend()
         # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.svg', dpi=300)
         # plt.clf()
 
 
@@ -169,7 +169,7 @@ class PublicGoods(GameServer):
         #     plt.gca().set_yticklabels(y_tick_labels)
         # # plt.legend()
         # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.png', dpi=300)
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/{self.name_exp}_contribution.svg', dpi=300)
         # plt.clf()
 
         # Set the default font size
@@ -220,7 +220,7 @@ class PublicGoods(GameServer):
         #     plt.gca().set_yticklabels(y_tick_labels)
         # plt.legend()
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_contribution_percentage.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_contribution_percentage.svg', dpi=300)
         plt.clf()
     
         rankings_over_time = []
@@ -257,7 +257,7 @@ class PublicGoods(GameServer):
         # plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_rankings.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/{self.name_exp}_rankings.svg', dpi=300)
         plt.clf()
 
         plt.close()
@@ -266,6 +266,7 @@ class PublicGoods(GameServer):
     def save(self, savename):
         game_info = {
             "tokens": self.tokens,
+            "ratio": self.ratio
         }
         return super().save(savename, game_info)
 
@@ -276,12 +277,16 @@ class PublicGoods(GameServer):
                 "player_num": self.player_num,
                 **game_info,
                 "round_id": self.round_id,
+                "version": self.version,
             },
             "round_records": self.round_records,
             "player_data": [],
         }
         
         for player in self.players:
+            if self.round_id > 10:
+                player.prompt = player.prompt[:1] + player.prompt[2:]
+                
             player_info = {
                 "model": player.model,
                 "id": player.id,

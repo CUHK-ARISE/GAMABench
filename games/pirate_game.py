@@ -35,6 +35,8 @@ class PirateGame(GameServer):
         self.accepting_list.append(accepting_rate)
         print(f'accepting list: {self.accepting_list}')
         for player in self.players:
+            # for assistant format reply
+            # result2 = player.records[-1]
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
                 continue
@@ -53,12 +55,14 @@ class PirateGame(GameServer):
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) +  '.'
             elif current_player_id + 1 == self.current_round and self.next_round:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was rejected. The game ends. Your gold is ' + str(gold_distribution[count]) +  '. ' + 'You died.'
-                with open(f"records/player_{current_player_id + 1}.txt", 'a') as f:
-                    f.write(f"{result}\n----\n")
+                with open(f"records/player_{current_player_id}.txt", 'a') as f:
+                    f.write(f"{result}\n====\n")
             else:
                 result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
 
             report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, player_choice, majority, result]
+            # assistant reply format report
+            # report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, result2, majority, result]
             report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
             player.prompt = player.prompt + report_prompt
             count += 1
@@ -79,9 +83,6 @@ class PirateGame(GameServer):
 
         for index2, player in enumerate(self.players):
             bottom_start = np.sum([player_golds_each_round[i] for i in range(index2 + 1, len(player_golds_each_round))], axis=0)
-            print(f"rounds:{rounds}, len{len(rounds)}")
-            print(f"player gold rounds:{player_golds_each_round[index2]}, len{len(player_golds_each_round[index2])}")
-            print(f"bottom{bottom_start}")
             plt.bar(rounds, player_golds_each_round[index2], color=player_color[index2], edgecolor='black', bottom=bottom_start)
         # Add labels here, outside the inner loop
         legend_patches = [mpatches.Patch(color=player_color[index], label=f"Rank {index + 1}") for index, player in enumerate(self.players)]
@@ -120,7 +121,7 @@ class PirateGame(GameServer):
         plt.xlim(0 , self.current_round + 4) 
         plt.legend(handles=legend_patches, loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/proposal', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/proposal.svg', dpi=300)
         plt.clf()
 
     def graphical_analysis(self, player_list):
@@ -148,7 +149,7 @@ class PirateGame(GameServer):
         plt.ylabel('Accepting Rate')
         plt.ylim(-.1, 1.1)
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.png', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.svg', dpi=300)
         plt.clf()
 
     def round_to_3_sig_fig(self, num):
@@ -202,11 +203,14 @@ class PirateGame(GameServer):
             if self.current_round == current_player_id + 1:
                 request_file2 = f'prompt_template/{self.prompt_folder}/request2_{self.version}.txt'
                 
+                g_input_0 = current_player_id + 1
+                g_input_2 = self.player_num
+
                 if self.cot:
-                    output_format = '{"explanation": "<description of your thinking process>", "option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}' 
+                    output_format = f'{{"explanation": "<description of your thinking process>", "option": {{"{g_input_0}-th": g_{g_input_0}, ..., "{g_input_2}-th": g_{g_input_2}}}}}'
                 else:
-                    output_format = '{"option": {"!<INPUT 0>!-th": g_!<INPUT 0>!, ..., "!<INPUT 2>!-th": g_!<INPUT 2>!}}'
-                cot_msg = get_cot_prompt(self.cot)
+                    output_format = f'{{"option": {{"{g_input_0}-th": g_{g_input_0}, ..., "{g_input_2}-th": g_{g_input_2}}}}}'
+                    cot_msg = get_cot_prompt(self.cot)
                 
                 request_list2 = [current_player_id + 1, self.gold, self.player_num, output_format, cot_msg]
                 request_msg2 = get_prompt(request_file2, request_list2)
@@ -229,21 +233,6 @@ class PirateGame(GameServer):
                 # player.prompt = player.prompt + request_prompt1
             while True:
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
-                # if current_player_id + 1 == 1:
-                #     gpt_responses = """{
-                #         "option": {
-                #             "1-st": 96,
-                #             "2-nd": 0,
-                #             "3-rd": 1,
-                #             "4-th": 0,
-                #             "5-th": 1,
-                #             "6-th": 0,
-                #             "7-th": 1,
-                #             "8-th": 0,
-                #             "9-th": 1,
-                #             "10-th": 0
-                #         }
-                #     }"""
                 print(f'proposing pirate: {self.current_round}, voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
                 print(f'gpt response before manipulating: {gpt_responses}')
@@ -281,7 +270,6 @@ class PirateGame(GameServer):
                             self.declined += 1
                             responses.append('No')
                             player.records.append('No')
-                        print(f'gpt response after manipulating: {parsered_responses}')
                         break  
                 except:
                     # more detailed explanation is given before json format, use regular expression to extract
@@ -320,7 +308,6 @@ class PirateGame(GameServer):
                                 self.declined += 1
                                 responses.append('No')
                                 player.records.append('No')
-                            print(f'gpt response after manipulating: {gpt_responses}')
                             break
                     except:
                         pass
