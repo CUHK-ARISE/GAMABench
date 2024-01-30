@@ -11,7 +11,7 @@ import random
 from server import *
 
 class SealedBidAuction(GameServer):
-    def __init__(self, player_num, valuation, version, mode = 'second_highest_bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, valuation, version, mode = 'second highest bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
         self.version = version
         self.mode = mode
@@ -23,9 +23,9 @@ class SealedBidAuction(GameServer):
         winning_bid = max(responses)
         bid_winner_pay = 0
         # Different modes
-        if self.mode == 'second_highest_bid':
+        if self.mode == 'second highest bid':
             bid_winner_pay = sorted(list((responses)))[-2]
-        elif self.mode == 'highest_bid':
+        elif self.mode == 'highest bid':
             bid_winner_pay = sorted(list(responses))[-1]
         winning_player = [player for player in self.players if player.records[-1] == winning_bid]
         print(winning_player)
@@ -58,8 +58,12 @@ class SealedBidAuction(GameServer):
             result = 'won' if round_record["bid_winner"] == player.id else 'lost'
             report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
             report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player_util]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
 
 

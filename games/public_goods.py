@@ -48,8 +48,12 @@ class PublicGoods(GameServer):
         for index, player in enumerate(self.players):
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
             report_list = [self.round_id, player.records[-1], self.round_records[-1]['responses'], player_tokens_list,total_tokens, round(total_tokens * self.ratio/self.player_num - player.records[-1], 2), player_tokens_list[index]]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
 
 

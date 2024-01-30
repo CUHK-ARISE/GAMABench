@@ -36,7 +36,7 @@ class PirateGame(GameServer):
         print(f'accepting list: {self.accepting_list}')
         for player in self.players:
             # for assistant format reply
-            # result2 = player.records[-1]
+            result2 = player.records[-1]
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
                 continue
@@ -58,13 +58,17 @@ class PirateGame(GameServer):
                 with open(f"records/player_{current_player_id}.txt", 'a') as f:
                     f.write(f"{result}\n====\n")
             else:
-                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold is ' + str(gold_distribution[count]) + '.'
+                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold was ' + str(gold_distribution[count]) + '.'
 
-            report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, player_choice, majority, result]
+            report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, result2, majority, result]
             # assistant reply format report
             # report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, result2, majority, result]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
             count += 1
         self.report_result_graph()
         return

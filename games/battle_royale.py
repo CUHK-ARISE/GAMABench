@@ -18,9 +18,9 @@ class BattleRoyale(GameServer):
         self.player_info = []
         print("Initializing players:")
         self.version = version
-        hit_rate = 1
+        hit_rate = 10
         for index, player in enumerate(self.players):
-            self.player_info.append([player, 40 + hit_rate * (index + 1)])
+            self.player_info.append([player, hit_rate * (index + 1)])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
@@ -131,20 +131,35 @@ class BattleRoyale(GameServer):
     
     def report_result(self, round_record):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
+        report_file2 = f'prompt_template/{self.prompt_folder}/report2_{self.version}.txt'
         result = ""
+        result2 = ""
         if not round_record["shot"]:
-            result = 'intentionally missed his/her shot'
+            result = ' intentionally missed his/her shot.'
+            result2 = 'You intentionally missed your shot.'
         else:
             print(f'shot:{round_record["shot"]}, {round_record["shot_player"]}')
             result = 'shot ' + "player_" + str(round_record["shot_player"])
+            result2 = "You " + 'shot ' + "player_" + str(round_record["shot_player"])
             if round_record["out"]:
-                result += " and hit. " + "player_" + str(round_record['shot_player']) + " is out"
+                result += " and hit. " + "player_" + str(round_record['shot_player']) + " is out."
+                result2 += " and hit. " + "player_" + str(round_record['shot_player']) + " is out."
             else:
-                result += " but missed"
-        report_list = [self.round_id, self.ordinal(int(self.current_player_info[0].id.split('_')[1]) + 1), result, len(self.player_info)]
-        report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
+                result += " but missed."
+                result2 += " but missed."
+        report_list = [self.round_id, self.current_player_info[0].id, result, len(self.player_info)]
         for i in range(len(self.player_info)):
-            self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompt
+            if self.player_info[i][0] == self.current_player_info[0]:
+                report_list2 = [self.round_id, int(self.current_player_info[0].records[-1]), result2, len(self.player_info)]
+                report_prompts = get_prompt(report_file2, report_list2)
+                report_prompts = [
+                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                    for i, msg in enumerate(report_prompts)
+                ]
+                self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
+            # round reports for all 
+            report_prompts = [{"role": "user", "content": get_prompt(report_file, report_list)}]
+            self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
         # # switch to the next player
         current_player_id = self.current_player_info[0].id
@@ -220,7 +235,8 @@ class BattleRoyale(GameServer):
         ax.set_yticks(range(len(self.players)), labels=[int(player) + 1 for player in player_order])
 
         # Adjusting the position of the legend to the right
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+        ax.legend(loc='lower left') 
 
         plt.tight_layout()
         plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds_{self.version}.svg', bbox_inches='tight', dpi=300)  # Save the figure with the legend
@@ -316,7 +332,7 @@ class BattleRoyale(GameServer):
             self.start(round_count)
             self.save(self.name_exp)
             self.show()
-            # if self.end:
-            #     return self.player_info
+            if self.end:
+                return self.player_info
             time.sleep(1)    
-        # return self.player_info
+        return self.player_info
