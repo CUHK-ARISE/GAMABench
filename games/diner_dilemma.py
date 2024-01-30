@@ -42,8 +42,12 @@ class DinerDilemma(GameServer):
             report_list = [self.round_id, self.player_num - round_record["cheap_player"], 
                            round_record["cheap_player"], self.player_num, round_record["cost_msg"], 
                            player.records[-1], player_revenue_msg]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
 
 
@@ -66,7 +70,7 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Total Cost')
         plt.ylim(self.cheap_cost * self.player_num - 5, self.exp_cost * self.player_num + 5)
-        # plt.savefig(f'figures/{self.name_exp}-total-cost.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-total.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-total.svg', format="svg", dpi=300)
         plt.clf()
         
@@ -92,7 +96,7 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of choosing expensive dish')
         plt.ylim(-0.1, 1.1)
-        # plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()
         
@@ -102,7 +106,7 @@ class DinerDilemma(GameServer):
         plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
-        # plt.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-utility.svg', format="svg", dpi=300)
         plt.clf()
         

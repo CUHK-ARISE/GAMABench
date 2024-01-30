@@ -43,8 +43,12 @@ class GuessingGame(GameServer):
             report_list = [self.round_id, result_str, round_record["mean"],
                             self.ratio_str, f'''{round_record["mean_ratio"]:.2f}''',
                             round_record["winner"], player_choice, won_msg]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
     
     
@@ -81,6 +85,7 @@ class GuessingGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Chosen Number')
         plt.ylim(self.min - 10, self.max + 10)
+        plt.savefig(f'figures/{self.name_exp}.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}.svg', format="svg", dpi=300)
         plt.clf()
     

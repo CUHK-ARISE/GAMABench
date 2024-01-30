@@ -39,8 +39,12 @@ class DivideDollar(GameServer):
             player.utility.append(recieved_golds)
             report_list = [self.round_id, player_proposal, all_proposals_msg,
                            total_proposal, round_msg, recieved_golds]
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
 
 
@@ -61,7 +65,7 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Total Proposed Amount')
-        # plt.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-total.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-total.svg', format="svg", dpi=300)
         plt.clf()
         
@@ -72,7 +76,7 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Proposed Amount')
-        # plt.savefig(f'figures/{self.name_exp}-individual-proposed.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-proposed.svg', format="svg", dpi=300)
         plt.clf()
         
@@ -83,7 +87,7 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Revenue')
-        # plt.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-revenue.svg', format="svg", dpi=300)
         plt.clf()
         

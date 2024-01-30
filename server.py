@@ -70,6 +70,8 @@ def get_prompt(filename, inputs):
     for index, item in enumerate(inputs):
         key = f"!<INPUT {index}>!"
         generated_prompt = generated_prompt.replace(key, str(item))
+    if "<part>///</part>" in generated_prompt:
+        generated_prompt = [p.strip() for p in generated_prompt.split("<part>///</part>")]
     return generated_prompt
 
 

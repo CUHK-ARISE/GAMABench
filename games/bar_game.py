@@ -57,8 +57,12 @@ class BarGame(GameServer):
                 report_list = [self.round_id, round_record["go_num"], self.player_num - round_record["go_num"],
                                self.player_num, result_msg, self.ratio_str, player_choice, player_utility]
 
-            report_prompt = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            player.prompt = player.prompt + report_prompt
+            report_prompts = get_prompt(report_file, report_list)
+            report_prompts = [
+                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                for i, msg in enumerate(report_prompts)
+            ]
+            player.prompt = player.prompt + report_prompts
         return
 
 
@@ -81,7 +85,7 @@ class BarGame(GameServer):
         plt.ylabel('Number of players went to bar')
         plt.ylim(-0.5, self.player_num + 0.5)
         plt.legend()
-        # plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-capacity.svg', format="svg", dpi=300)
         plt.clf()
         
@@ -94,7 +98,7 @@ class BarGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
-        # plt.savefig(f'figures/{self.name_exp}-choice-distribution.png', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
         plt.savefig(f'figures/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()
 
