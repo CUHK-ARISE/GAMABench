@@ -53,6 +53,8 @@ class DinerDilemma(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
+        os.makedirs("figures/png", exist_ok=True)
+        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
         # Specify the representative color for each user
@@ -70,8 +72,8 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Total Cost')
         plt.ylim(self.cheap_cost * self.player_num - 5, self.exp_cost * self.player_num + 5)
-        plt.savefig(f'figures/{self.name_exp}-total.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-total.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-total.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-total.svg', format="svg", dpi=300)
         plt.clf()
         
         # # Choice Analysis
@@ -96,8 +98,8 @@ class DinerDilemma(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of choosing expensive dish')
         plt.ylim(-0.1, 1.1)
-        plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-distribution.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()
         
         # Utility Received
@@ -106,8 +108,8 @@ class DinerDilemma(GameServer):
         plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
         plt.ylabel('Utility')
-        plt.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-utility.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-utility.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-utility.svg', format="svg", dpi=300)
         plt.clf()
         
         # Utility Tendency
@@ -187,6 +189,6 @@ class DinerDilemma(GameServer):
         round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         round_message = f" There will be 20 rounds."
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.exp_cost, self.exp_utility, self.cheap_cost, self.cheap_utility, round_message]
+        description_list = [self.player_num, self.exp_cost, self.exp_utility, self.cheap_cost, self.cheap_utility, self.exp_utility - self.exp_cost, self.cheap_utility - self.cheap_cost,round_message]
         super().run(rounds, description_file, description_list)
     

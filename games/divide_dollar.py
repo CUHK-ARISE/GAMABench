@@ -50,6 +50,8 @@ class DivideDollar(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
+        os.makedirs("figures/png", exist_ok=True)
+        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
         # Specify the representative color for each user
@@ -65,8 +67,8 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Total Proposed Amount')
-        plt.savefig(f'figures/{self.name_exp}-total.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-total.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-total.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-total.svg', format="svg", dpi=300)
         plt.clf()
         
         # User Proposal Tendency
@@ -76,8 +78,8 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Proposed Amount')
-        plt.savefig(f'figures/{self.name_exp}-proposed.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-proposed.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-proposed.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-proposed.svg', format="svg", dpi=300)
         plt.clf()
         
         # Player Revenue / Utility
@@ -87,8 +89,8 @@ class DivideDollar(GameServer):
         plt.title(f'Divide Dollar (golds = {self.golds})')
         plt.xlabel('Round')
         plt.ylabel('Revenue')
-        plt.savefig(f'figures/{self.name_exp}-revenue.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-revenue.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-revenue.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-revenue.svg', format="svg", dpi=300)
         plt.clf()
         
     

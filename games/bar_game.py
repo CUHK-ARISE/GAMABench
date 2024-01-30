@@ -68,6 +68,8 @@ class BarGame(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
+        os.makedirs("figures/png", exist_ok=True)
+        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
         # Specify the representative color for each user
@@ -85,8 +87,8 @@ class BarGame(GameServer):
         plt.ylabel('Number of players went to bar')
         plt.ylim(-0.5, self.player_num + 0.5)
         plt.legend()
-        plt.savefig(f'figures/{self.name_exp}-capacity.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-capacity.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-capacity.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-capacity.svg', format="svg", dpi=300)
         plt.clf()
         
         # Choice Distribution
@@ -98,8 +100,8 @@ class BarGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
-        plt.savefig(f'figures/{self.name_exp}-distribution.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}-distribution.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()
 
         # # Utility Received

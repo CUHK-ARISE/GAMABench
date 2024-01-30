@@ -54,6 +54,8 @@ class GuessingGame(GameServer):
     
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
+        os.makedirs("figures/png", exist_ok=True)
+        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
         
         # Specify the representative color for each user
@@ -85,8 +87,8 @@ class GuessingGame(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Chosen Number')
         plt.ylim(self.min - 10, self.max + 10)
-        plt.savefig(f'figures/{self.name_exp}.png', dpi=300)
-        plt.savefig(f'figures/{self.name_exp}.svg', format="svg", dpi=300)
+        plt.savefig(f'figures/png/{self.name_exp}.png', dpi=300)
+        plt.savefig(f'figures/svg/{self.name_exp}.svg', format="svg", dpi=300)
         plt.clf()
     
     
