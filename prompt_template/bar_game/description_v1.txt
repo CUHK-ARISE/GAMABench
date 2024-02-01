@@ -1,13 +1,19 @@
 bar_game_description.txt
 
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- ratio string
-!<INPUT 2>! -- maximum utility
-!<INPUT 3>! -- minimum utility
-!<INPUT 4>! -- utility of staying home
-!<INPUT 5>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio string
+!<INPUT 3>! -- maximum utility
+!<INPUT 4>! -- minimum utility
+!<INPUT 5>! -- utility of staying home
 
 <commentblockmarker>###</commentblockmarker>
 
-!<INPUT 0>! people, including you, want to go to a bar. Space is limited, and it is enjoyable if things are not too crowded. Specifically, if more than !<INPUT 1>! of people go to the bar, then those who go to the bar gain a utility of !<INPUT 2>!. If !<INPUT 1>! or less of the people go to the bar, then those who go to the bar gain a utility of !<INPUT 3>!. All those who stay at home gain a utility of !<INPUT 4>!. Everyone decides at the same time whether to go or not, with no knowledge of others' choices.!<INPUT 5>!
-You want to maximize your utility.
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. Every round, you and the other players decide independently whether to go to a bar.
+2. If less than !<INPUT 2>! of the players go to the bar, everyone who goes has more fun than staying home, receiving a utility of !<INPUT 3>!.
+3. If more than !<INPUT 2>! of the players go to the bar, everyone who goes has less fun than staying home, receiving a utility of !<INPUT 4>!.
+4. Everyone who stays home receives a utility of !<INPUT 5>!.

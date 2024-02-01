@@ -1,26 +1,25 @@
 bar_game_report.txt
 
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- number of players who chose go
+!<INPUT 1>! -- number of players who chose to go
 !<INPUT 2>! -- number of players who chose not to go
 !<INPUT 3>! -- number of players
-!<INPUT 4>! -- result message
-!<INPUT 5>! -- ratio_str
-!<INPUT 6>! -- player choice
-!<INPUT 7>! -- gained utility
+!<INPUT 4>! -- number result
+!<INPUT 5>! -- fun result
+!<INPUT 6>! -- ratio_str
+!<INPUT 7>! -- player choice
+!<INPUT 8>! -- gained utility
 
 <commentblockmarker>###</commentblockmarker>
 
-Round !<INPUT 0>! results:
-!<INPUT 1>! of !<INPUT 3>! people chose to go.
-!<INPUT 2>! of !<INPUT 3>! people chose not to go.
-!<INPUT 4>! than !<INPUT 5>! of the people went to the bar.
+Game Results for Round !<INPUT 0>!:
+
+!<INPUT 1>! players went to the bar, while !<INPUT 2>! players stayed home.
+!<INPUT 1>!/!<INPUT 3>!, which is !<INPUT 4>! than !<INPUT 6>! of the players went to the bar.
+It was !<INPUT 5>! fun to go to the bar this round.
+
 You chose:
-
 <part>///</part>
-
-{"option": "!<INPUT 6>!"}
-
+{"decision": "!<INPUT 7>!"}
 <part>///</part>
-
-You gained !<INPUT 7>!.
+You gained !<INPUT 8>!.

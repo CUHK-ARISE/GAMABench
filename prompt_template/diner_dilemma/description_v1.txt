@@ -2,15 +2,20 @@ diner_dilemma_description.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- expensive dish's cost
-!<INPUT 2>! -- expensive dish's utility
-!<INPUT 3>! -- cheap dish's cost
-!<INPUT 4>! -- cheap dish's utility
-!<INPUT 5>! -- expensive dish's gain
-!<INPUT 6>! -- cheap dish's gain
-!<INPUT 7>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- expensive dish's cost
+!<INPUT 3>! -- expensive dish's utility
+!<INPUT 4>! -- cheap dish's cost
+!<INPUT 5>! -- cheap dish's utility
 
 <commentblockmarker>###</commentblockmarker>
 
-You go out to eat with totally !<INPUT 0>! people. The restaurant offers two dishes: the expensive or the cheap dish. The expensive dish costs !<INPUT 1>! and brings you a utility of !<INPUT 2>!. So the total utility of the expensive dish is !<INPUT 5>!. The cheap dish costs !<INPUT 3>! and brings you a utility of !<INPUT 4>!. So the total utility of the cheap dish is !<INPUT 6>!. Now all of you agree to split the cost equally this time.!<INPUT 7>!
-You want to maximize your utility.
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. Each player must choose to order either a costly dish or a cheap dish.
+2. The price of the costly dish is !<INPUT 2>!. The price of the cheap dish is !<INPUT 4>!.
+3. The costly dish brings you a utility of !<INPUT 3>!. The cheap dish brings you a utility of !<INPUT 5>!.
+4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.
+5. At the end of each round, the total cost of all dishes ordered is split equally among all players.

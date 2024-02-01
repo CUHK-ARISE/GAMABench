@@ -3,22 +3,20 @@ Divide the Dollar Report Prompt
 Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- player proposals
-!<INPUT 2>! -- all players proposal
-!<INPUT 3>! -- sum of proposal
-!<INPUT 4>! -- report message
-!<INPUT 4>! -- recieved golds
+!<INPUT 2>! -- sum of proposal
+!<INPUT 3>! -- report message
+!<INPUT 4>! -- number of golds
+!<INPUT 4>! -- received golds
 
 <commentblockmarker>###</commentblockmarker>
 
-Round !<INPUT 0>! results:
-Your proposed golds was: 
+Game Results for Round !<INPUT 0>!:
 
+Your bid amount was:
+<part>///</part>
+{"bid_amount": "!<INPUT 1>!"}
 <part>///</part>
 
-{"propose": "!<INPUT 1>!"}
-
-<part>///</part>
-
-Proposals by all players were !<INPUT 2>!.
-The sum of proposals by all players was !<INPUT 3>!.
-!<INPUT 4>!. You received !<INPUT 5>! golds.
+The sum of all bids was !<INPUT 2>!.
+The sum !<INPUT 3>! !<INPUT 4>!.
+You received !<INPUT 5>! golds.

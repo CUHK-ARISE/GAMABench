@@ -40,7 +40,7 @@ class DinerDilemma(GameServer):
             player_revenue_msg = f'{player_utility} - {round_record["total_cost"]}/{self.player_num} = {player_revenue:.2f}'
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
             report_list = [self.round_id, self.player_num - round_record["cheap_player"], 
-                           round_record["cheap_player"], self.player_num, round_record["cost_msg"], 
+                           round_record["cheap_player"], round_record["cost_msg"], round_record["avg_cost"],
                            player.records[-1], player_revenue_msg]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
@@ -92,11 +92,11 @@ class DinerDilemma(GameServer):
         
         # Choice Distribution
         for index, player in enumerate(players_list):
-            expensive_dist = [player.records[:i+1].count('expensive') / (i+1) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, expensive_dist, marker='x', color=player_color[index], label=player.id)
+            costly_dist = [player.records[:i+1].count('costly') / (i+1) for i in range(len(round_numbers))]
+            plt.plot(round_numbers, costly_dist, marker='x', color=player_color[index], label=player.id)
         plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
         plt.xlabel('Round')
-        plt.ylabel('Probability of choosing expensive dish')
+        plt.ylabel('Probability of choosing costly dish')
         plt.ylim(-0.1, 1.1)
         plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
         plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
@@ -129,8 +129,8 @@ class DinerDilemma(GameServer):
             text_file.write(f"Probability Distribution:\n")
             for player_id, player in enumerate(players_list):
                 cheap_ratio = player.records.count('cheap') / self.round_id * 100
-                exp_ratio = player.records.count('expensive') / self.round_id * 100
-                text_file.write(f"Player {player_id} 'cheap': {cheap_ratio:.1f}%, 'expensive': {exp_ratio:.1f}%\n")
+                exp_ratio = player.records.count('costly') / self.round_id * 100
+                text_file.write(f"Player {player_id} 'cheap': {cheap_ratio:.1f}%, 'costly': {exp_ratio:.1f}%\n")
     
     
     def save(self, savename):
@@ -155,13 +155,13 @@ class DinerDilemma(GameServer):
         
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
-        if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "option": "<expensive or cheap>"}' 
-        else:
-            output_format = '{"option": "<expensive or cheap>"}'
         cot_msg = get_cot_prompt(self.cot)
+        if self.cot:
+            output_format = f'{cot_msg} Please provide your thinking process and chosen dish in the following JSON format: {{"explanation": "thinking_process", "chosen_dish": "costly_or_cheap"}}'
+        else:
+            output_format = f'Please provide your chosen dish in the following JSON format: {{"chosen_dish": "costly_or_cheap"}}'
         
-        request_list = [self.round_id, output_format, cot_msg]
+        request_list = [self.round_id, output_format]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
         responses = []
@@ -172,7 +172,7 @@ class DinerDilemma(GameServer):
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = parsered_responses["option"].lower()
+                    parsered_responses = parsered_responses["chosen_dish"].lower()
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
@@ -186,9 +186,7 @@ class DinerDilemma(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        round_message = f" There will be 20 rounds."
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.exp_cost, self.exp_utility, self.cheap_cost, self.cheap_utility, self.exp_utility - self.exp_cost, self.cheap_utility - self.cheap_cost,round_message]
+        description_list = [self.player_num, self.round_id+rounds, self.exp_cost, self.exp_utility, self.cheap_cost, self.cheap_utility]
         super().run(rounds, description_file, description_list)
     

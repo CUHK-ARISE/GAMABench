@@ -40,9 +40,9 @@ class GuessingGame(GameServer):
             won = player_choice == round_record["winner"]
             won_msg = "Congratulation you won" if won else "Unfortunately you lost"
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, result_str, round_record["mean"],
-                            self.ratio_str, f'''{round_record["mean_ratio"]:.2f}''',
-                            round_record["winner"], player_choice, won_msg]
+            report_list = [self.round_id, round_record["mean"], self.ratio_str,
+                           f'''{round_record["mean_ratio"]:.2f}''',
+                           round_record["winner"], player_choice, won_msg]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
                 {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
@@ -113,13 +113,13 @@ class GuessingGame(GameServer):
         
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
-        if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "option": "<chosen integer>"}' 
-        else:
-            output_format = '{"option": "<chosen integer>"}'
         cot_msg = get_cot_prompt(self.cot)
+        if self.cot:
+            output_format = f'{cot_msg} Please provide your thinking process and chosen number in the following JSON format: {{"explanation": "thinking_process", "chosen_number": "integer_between_{self.min}_and_{self.max}"}}'
+        else:
+            output_format = f'Please provide your chosen number in the following JSON format: {{"chosen_number": "integer_between_{self.min}_and_{self.max}"}}'
         
-        request_list = [self.round_id, self.min, self.max, output_format, cot_msg]
+        request_list = [self.round_id, self.ratio_str, self.min, self.max, output_format]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
         responses = []
@@ -130,7 +130,7 @@ class GuessingGame(GameServer):
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["option"])
+                    parsered_responses = int(parsered_responses["chosen_number"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
@@ -144,8 +144,6 @@ class GuessingGame(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        round_message = f" There will be 20 rounds."
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.min, self.max, self.ratio_str, round_message]
+        description_list = [self.player_num, self.round_id+rounds, self.min, self.max, self.ratio_str]
         super().run(rounds, description_file, description_list)

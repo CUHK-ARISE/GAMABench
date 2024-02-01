@@ -2,12 +2,15 @@ guessing_game_request.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- min
-!<INPUT 2>! -- max
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 1>! -- ratio
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 0>! starts. You can only reply an integer between !<INPUT 1>! and !<INPUT 2>!.
-Please output your decision in the following JSON format: '!<INPUT 3>!'.!<INPUT 4>!
+Now round !<INPUT 0>! starts.
+
+Your goal is to choose a number that you believe will be closest to !<INPUT 1>! of the average of all numbers chosen by players, including your selection.
+
+!<INPUT 4>!

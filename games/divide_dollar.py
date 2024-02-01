@@ -30,15 +30,15 @@ class DivideDollar(GameServer):
         random.shuffle(all_proposals)
         all_proposals_msg = ', '.join(map(str, all_proposals))
         won = total_proposal <= self.golds
-        round_msg = f'Luckily {total_proposal} <= {self.golds}' if won else f'Unfortunately {total_proposal} > {self.golds}'
+        round_msg = f'does not exceeds' if won else f'exceeds'
         
         for player in self.players:
             player_proposal = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            recieved_golds = player_proposal if won else 0
-            player.utility.append(recieved_golds)
-            report_list = [self.round_id, player_proposal, all_proposals_msg,
-                           total_proposal, round_msg, recieved_golds]
+            received_golds = player_proposal if won else 0
+            player.utility.append(received_golds)
+            report_list = [self.round_id, player_proposal,
+                           total_proposal, round_msg, self.golds, received_golds]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
                 {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
@@ -112,13 +112,13 @@ class DivideDollar(GameServer):
         
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
-        if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "propose": "<amount>"}' 
-        else:
-            output_format = '{"propose": "<amount>"}'
         cot_msg = get_cot_prompt(self.cot)
+        if self.cot:
+            output_format = f'{cot_msg} Please provide your thinking process and bid amount in the following JSON format: {{"explanation": "thinking_process", "bid_amount": "integer_between_0_and_{self.golds}"}}'
+        else:
+            output_format = f'Please provide your bid amount in the following JSON format: {{"bid_amount": "integer_between_0_and_{self.golds}"}}'
         
-        request_list = [self.round_id, self.golds, output_format, cot_msg]
+        request_list = [self.round_id, self.golds, output_format]
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
         responses = []
@@ -126,10 +126,10 @@ class DivideDollar(GameServer):
         for player in tqdm(self.players):
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.request(self.round_id, player.prompt + request_prompt, request_key="propose")
+                gpt_responses = player.request(self.round_id, player.prompt + request_prompt, request_key="bid_amount")
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["propose"])
+                    parsered_responses = int(parsered_responses["bid_amount"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
@@ -143,8 +143,6 @@ class DivideDollar(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
-        round_message = f" There will be 20 rounds."
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.golds, round_message]
+        description_list = [self.player_num, self.round_id+rounds, self.golds]
         super().run(rounds, description_file, description_list)

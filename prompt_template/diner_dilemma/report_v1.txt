@@ -2,25 +2,22 @@ diner_dilemma_report.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- number of players who chose expensive dish
+!<INPUT 1>! -- number of players who chose costly dish
 !<INPUT 2>! -- number of players who chose cheap dish
-!<INPUT 3>! -- number of players
-!<INPUT 4>! -- total cost
+!<INPUT 3>! -- total cost
+!<INPUT 4>! -- player pay
 !<INPUT 5>! -- player choice
 !<INPUT 6>! -- utility recieved
 
 <commentblockmarker>###</commentblockmarker>
 
-Round !<INPUT 0>! results:
-!<INPUT 1>! of !<INPUT 3>! people chose the expensive dish.
-!<INPUT 2>! of !<INPUT 3>! people chose the cheap dish.
-The total cost is !<INPUT 4>!.
-You chose was: 
+Game Results for Round !<INPUT 0>!:
 
+!<INPUT 1>! people chose the costly dish, while !<INPUT 2>! chose the cheap dish.
+The total cost is !<INPUT 3>!. You need to pay !<INPUT 4>!.
+
+You chose: 
 <part>///</part>
-
-{"option": "!<INPUT 5>!"}
-
+{"chosen_dish": "!<INPUT 5>!"}
 <part>///</part>
-
 Your utility is !<INPUT 6>!.

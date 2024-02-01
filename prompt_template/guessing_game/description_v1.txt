@@ -2,12 +2,18 @@ guessing_game_description.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- minumum
-!<INPUT 2>! -- maximum
-!<INPUT 3>! -- ratio
-!<INPUT 4>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- ratio
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a game with totally !<INPUT 0>! players. In this game, players simultaneously select an integer between !<INPUT 1>! and !<INPUT 2>!, inclusive. The winner of the game is the player(s) who select a number closest to !<INPUT 3>! of the average of numbers chosen by all players.!<INPUT 4>!
-You want to win the game.
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. Each player selects an integer number between !<INPUT 2>! and !<INPUT 3>!, inclusive.
+2. After all selections are made, the average of all chosen numbers is calculated.
+3. The target number is !<INPUT 4>! of this average.
+4. The winner is the player(s) who selected a number closest to the target number.

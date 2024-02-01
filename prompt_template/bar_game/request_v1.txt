@@ -1,10 +1,13 @@
 bar_game_request.txt
 
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- output format
-!<INPUT 2>! -- cot message
+!<INPUT 1>! -- ratio string
+!<INPUT 2>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 0>! starts. You need to decide whether to go (answer "yes") or not (answer "no").
-Please output your decision in the following JSON format: '!<INPUT 1>!'.!<INPUT 2>!
+Now round !<INPUT 0>! starts.
+
+Your goal is to maximize your fun. Choose to go to the bar when you predict fewer than !<INPUT 1>! of the players will go, and choose to stay home otherwise.
+
+!<INPUT 2>!

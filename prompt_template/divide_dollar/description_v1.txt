@@ -2,10 +2,15 @@ Divide the Dollar Description Prompt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- number of golds
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- number of golds
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a game with totally !<INPUT 0>! players. Players are going to divide !<INPUT 1>! golds. Players secretly and simultaneously select an integer between 0 and !<INPUT 1>!, inclusive. If the sum of the proposals by all players is equal to or less than !<INPUT 1>!, all players will receive the golds they proposed. However, if the sum is more than !<INPUT 1>!, everyone will receive nothing (0 golds).!<INPUT 2>!
-You want to maximize your golds.
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. You are dividing !<INPUT 2>! golds. Each player independently proposes a bid.
+2. If the sum of all bids does not exceed !<INPUT 2>!, each player receives their bid amount.
+3. If the sum exceeds !<INPUT 2>!, all players receive nothing.
