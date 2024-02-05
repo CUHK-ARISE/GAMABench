@@ -1,0 +1,19 @@
+prompt_template/bar_game/description_v4.txt
+
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio string
+!<INPUT 3>! -- maximum utility
+!<INPUT 4>! -- minimum utility
+!<INPUT 5>! -- utility of staying home
+
+<commentblockmarker>###</commentblockmarker>
+
+You are engaged in a match that involves !<INPUT 0>! participants for a total of !<INPUT 1>! phases.
+
+Here are the guidelines for the match:
+
+1. Everyone decides independently in every phase whether they would like to visit a bar or not.
+2. Should fewer than !<INPUT 2>! of the participants decide to hit the bar, every attendee experiences a good time, scoring a payoff of !<INPUT 3>!.
+3. However, if the number of attendees exceeds !<INPUT 2>!, then those who go to the bar have a less enjoyable time, earning a utility of !<INPUT 4>!.
+4. Any players opting to stay home are awarded a utility of !<INPUT 5>!.

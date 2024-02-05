@@ -1,4 +1,4 @@
-bar_game_report_implicit.txt
+prompt_template/bar_game/report_implicit_v2.txt
 
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- player choice
@@ -6,12 +6,10 @@ bar_game_report_implicit.txt
 
 <commentblockmarker>###</commentblockmarker>
 
-The outcome of Round !<INPUT 0>! is as follows: Your choice was:
+The outcomes for Round !<INPUT 0>! are as follows:
 
+Your selection was: 
 <part>///</part>
-
-{"option": "!<INPUT 1>!"}
-
+{"decision": "!<INPUT 1>!"}
 <part>///</part>
-
-It led to your gain of !<INPUT 2>!.
+You acquired !<INPUT 2>!. 

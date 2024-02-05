@@ -1,12 +1,16 @@
-guessing_game_request.txt
+prompt_template/guessing_game/request_v3.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- min
-!<INPUT 2>! -- max
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 1>! -- ratio
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-We are beginning with round !<INPUT 0>!. Please provide your response as an integer within the range of !<INPUT 1>! to !<INPUT 2>!. Your choice should be presented in this JSON format: '!<INPUT 3>!'.!<INPUT 4>!
+The commencement of round !<INPUT 0>! is now.
+
+The objective is to select a number that you think will be nearest to !<INPUT 1>! times the average of all the digits chosen by the participants, your choice included.
+
+!<INPUT 4>!

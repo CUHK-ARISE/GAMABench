@@ -1,12 +1,19 @@
-bar_game_description.txt
+prompt_template/bar_game/description_v2.txt
 
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- ratio string
-!<INPUT 2>! -- maximum utility
-!<INPUT 3>! -- minimum utility
-!<INPUT 4>! -- utility of staying home
-!<INPUT 5>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio string
+!<INPUT 3>! -- maximum utility
+!<INPUT 4>! -- minimum utility
+!<INPUT 5>! -- utility of staying home
 
 <commentblockmarker>###</commentblockmarker>
 
-A total of !<INPUT 0>! individuals, including yourself, are interested in visiting a bar. However, due to limited space, a less crowded atmosphere is preferred. In detail, if the number of attendees exceeds !<INPUT 1>! people, then the utility gain for those at the bar sums up to !<INPUT 2>!. Conversely, if the attendees are !<INPUT 1>! people or fewer, the utility gain for the attendees will be !<INPUT 3>!. Those who opt to stay home instead will be rewarded with a utility gain of !<INPUT 4>!. Everyone, oblivious of others' decisions, concurrently decides whether to attend or not. !<INPUT 5>! Your goal is to make a decision that maximizes your utility.
+You are taking part in a game that is composed of !<INPUT 0>! participants and spans across !<INPUT 1>! rounds.
+
+Here's how the Game is set:
+
+1. At each round, the decision to visit a bar is independently made by you and your fellow players.
+2. In scenarios where the count of players visiting the bar is under !<INPUT 2>!, every visiting player has a more enjoyable experience than the ones staying at home and hence acquires a utility of !<INPUT 3>!.
+3. On the other hand, a bar attendance that exceeds the !<INPUT 2>! threshold indicates a diminished fun experience, translating into a reduced utility of !<INPUT 4>! for every bar-attending player.
+4. Staying home is always a viable choice, pegging the utility of home-stay at !<INPUT 5>!.

@@ -1,12 +1,19 @@
-guessing_game_description.txt
+prompt_template/guessing_game/description_v5.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- minumum
-!<INPUT 2>! -- maximum
-!<INPUT 3>! -- ratio
-!<INPUT 4>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- ratio
 
 <commentblockmarker>###</commentblockmarker>
 
-A game is being joined by you with exactly !<INPUT 0>! players. In this contest, all players simultaneously choose a whole number between !<INPUT 1>! and !<INPUT 2>!, inclusively. The victor of the game is the individual or individuals who choose a number nearest to !<INPUT 3>! of the average values selected by all participants.!<INPUT 4>! Your aim is to triumph in this game.
+You will be engaging in a game that is played over !<INPUT 1>! rounds and includes a total of !<INPUT 0>! players. 
+
+The Instructions of the Game:
+
+1. Every player is supposed to pick an integer that is within the range of !<INPUT 2>! and !<INPUT 3>!, both numbers inclusive. 
+2. The median of all the numbers chosen by the players is then determined after all choices have been made. 
+3. The number that players are aiming for is !<INPUT 4>! times the calculated average. 
+4. The player or players who opt for the number closest to this target are declared the winners.

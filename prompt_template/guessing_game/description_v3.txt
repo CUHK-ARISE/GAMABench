@@ -1,12 +1,19 @@
-guessing_game_description.txt
+prompt_template/guessing_game/description_v3.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- minumum
-!<INPUT 2>! -- maximum
-!<INPUT 3>! -- ratio
-!<INPUT 4>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- ratio
 
 <commentblockmarker>###</commentblockmarker>
 
-You are engaging in a game featuring a total of !<INPUT 0>! participants. All players in this game make a simultaneous selection of a number ranging from !<INPUT 1>! to !<INPUT 2>!, inclusive. The player(s) who choose a number nearest to !<INPUT 3>! of the average of all selected numbers is crowned the winner. !<INPUT 4>! You're aiming to be victorious in this game.
+You're engaged in a game, involving !<INPUT 0>! participants across !<INPUT 1>! rounds.
+
+Rules of the Game:
+
+1. An integer number is chosen by every player, within the range of !<INPUT 2>! and !<INPUT 3>!, both numbers included.
+2. Once each player has chosen, the average is determined from all the selected numbers.
+3. The average is multiplied by !<INPUT 4>! to find the target number.
+4. The individual or individuals whose chosen number is nearest to the target number are declared the winners.

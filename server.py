@@ -75,6 +75,15 @@ def get_prompt(filename, inputs):
     return generated_prompt
 
 
+def get_rephrase_prompt(filename, inputs):
+    with open(filename, 'r') as file:
+        generated_prompt = file.read().split("<commentblockmarker>###</commentblockmarker>")[1].strip()
+    for index, item in enumerate(inputs):
+        key = f"!<REPHRASE_INPUT {index}>!"
+        generated_prompt = generated_prompt.replace(key, str(item))
+    return generated_prompt
+
+
 def get_cot_prompt(cot):
     if cot:
         return " " + get_prompt(f"prompt_template/cot_prompts/cot{cot}.txt", [])

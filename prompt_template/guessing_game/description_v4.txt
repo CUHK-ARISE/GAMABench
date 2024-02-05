@@ -1,13 +1,19 @@
-guessing_game_description.txt
+prompt_template/guessing_game/description_v4.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- minumum
-!<INPUT 2>! -- maximum
-!<INPUT 3>! -- ratio
-!<INPUT 4>! -- round message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- ratio
 
 <commentblockmarker>###</commentblockmarker>
 
-You're joining a game involving exactly !<INPUT 0>! participants. In this game, every player selects a number from !<INPUT 1>! to !<INPUT 2>!, all at once. The individual(s) whose chosen number is closest to !<INPUT 3>! times the average of all selections is declared the winner. !<INPUT 4>!
-Your goal is to triumph in this game.
+You're involved in a game which brings !<INPUT 0>! participants together for !<INPUT 1>! rounds.
+
+The guidelines of the game are as follows:
+
+1. All players have to pick a whole number anywhere from !<INPUT 2>! to !<INPUT 3>!, both numbers included.
+2. The chosen numbers are then gathered and their mean is computed.
+3. The number to aim for, or the target number, is !<INPUT 4>! of the calculated average.
+4. The victorious player(s) are those whose chosen number is closest to the target number.

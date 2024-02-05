@@ -1,23 +1,24 @@
-guessing_game_report.txt
+prompt_template/guessing_game/report_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- list of number
-!<INPUT 2>! -- average
-!<INPUT 3>! -- ratio string
-!<INPUT 4>! -- average after taking ratio
-!<INPUT 5>! -- winner
-!<INPUT 6>! -- chosen number
-!<INPUT 7>! -- message
+!<INPUT 1>! -- average number
+!<INPUT 2>! -- ratio
+!<INPUT 3>! -- target number
+!<INPUT 4>! -- winning number
+!<INPUT 5>! -- chosen number
+!<INPUT 6>! -- message
 
 <commentblockmarker>###</commentblockmarker>
 
-The outcomes of round !<INPUT 0>! are as follows: All players have selected the numbers: !<INPUT 1>!. The original average was !<INPUT 2>!, which after an operation with !<INPUT 3>!, became !<INPUT 4>!. The victorious players are those who opted for: !<INPUT 5>!. Your choice was:
+The outcomes of the game for Round !<INPUT 0>! are as follows:
 
+The average number selected was !<INPUT 1>! 
+The target number, which is !<INPUT 2>! of the average, is !<INPUT 3>!
+The number that won was !<INPUT 4>!.
+
+Your selection was:
 <part>///</part>
-
-{"option": "!<INPUT 6>!"}
-
+{"chosen_number": "!<INPUT 5>!"}
 <part>///</part>
-
-!<INPUT 7>!.
+!<INPUT 6>!.

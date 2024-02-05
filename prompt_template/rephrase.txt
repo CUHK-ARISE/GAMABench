@@ -1,9 +1,15 @@
 rephrase.txt
 
-!<INPUT 0>! -- prompt
+!<REPHRASE_INPUT 0>! -- variables
+!<REPHRASE_INPUT 1>! -- prompt
 
 <commentblockmarker>###</commentblockmarker>
 
 Please rephrase the following sentences:
-!<INPUT 0>!
-Output the rephrased sentences in the following JSON format: {"sentences": "<rephrased sentences>"}.
+"!<REPHRASE_INPUT 1>!"
+
+Here are some supplements for the sentences, please do not include the following to the rephrased sentences.
+Here are the variables and their corresponding representations, please do not rephrase those variables within the sentences.
+!<REPHRASE_INPUT 0>!
+If "<part>///</part>" exists in the sentences, do not rephrase and shuffle its position.
+Output the rephrased sentences in the following JSON format: {"sentences": "rephrased sentences"}.

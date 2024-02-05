@@ -1,12 +1,16 @@
-guessing_game_request.txt
+prompt_template/guessing_game/request_v4.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- min
-!<INPUT 2>! -- max
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 1>! -- ratio
+!<INPUT 2>! -- minimum
+!<INPUT 3>! -- maximum
+!<INPUT 4>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-The commencement of round !<INPUT 0>! is now. Only an integer between !<INPUT 1>! and !<INPUT 2>! is acceptable as a response. Give your chosen decision in this JSON format: '!<INPUT 3>!'.!<INPUT 4>!
+The commencement of round !<INPUT 0>! is now.
+
+You are tasked with selecting a number that, in your estimation, will be as close as possible to !<INPUT 1>! times the average of numbers chosen by all players, your own choice included.
+
+!<INPUT 4>!
