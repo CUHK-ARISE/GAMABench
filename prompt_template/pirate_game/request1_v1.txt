@@ -4,9 +4,14 @@ Variables:
 !<INPUT 0>! -- round id 
 !<INPUT 1>! -- plan
 !<INPUT 2>! -- current player gold
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 3>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-Now the !<INPUT 0>!-th most senior pirate proposes a plan of !<INPUT 1>!. You will get !<INPUT 2>! golds from this plan. You need to decide whether to accept (answer "Yes") or not (answer "No").Please output your decision in the following JSON format: !<INPUT 3>!.!<INPUT 4>! 
+Now the !<INPUT 0>!-th most senior pirate needs to propose a plan.
+
+Your primary goal is to survive. If you survive, your next goal is to maximize the number of gold coins you receive. You may also prefer to throw another pirate overboard if it does not negatively impact your other goals.
+
+The proposed plan is !<INPUT 1>!. You will get !<INPUT 2>! golds from this plan.
+
+!<INPUT 3>!

@@ -2,25 +2,23 @@ public_goods_report.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- contributed tokens
-!<INPUT 2>! -- list of tokens
-!<INPUT 3>! -- list of player current tokens
-!<INPUT 4>! -- total tokens
-!<INPUT 5>! -- gained tokens
-!<INPUT 6>! -- current tokens
+!<INPUT 1>! -- list of tokens
+!<INPUT 2>! -- contributed tokens
+!<INPUT 3>! -- total tokens
+!<INPUT 4>! -- gained tokens
+!<INPUT 5>! -- current tokens
+!<INPUT 6>! -- list of player current tokens
 
 <commentblockmarker>###</commentblockmarker>
 
-Round !<INPUT 0>! results:
+Game Results for Round !<INPUT 0>!:
+
+Contributed tokens of each player: !<INPUT 1>!
 You contributed:
-
 <part>///</part>
-
-{"option": "!<INPUT 1>!"}
-
+{"tokens_contributed": "!<INPUT 2>!"}
 <part>///</part>
-
-Contributions of all players were !<INPUT 2>!.
-Total tokens of all players are !<INPUT 3>!.
-There are !<INPUT 4>! tokens in the public pot.
-You gained !<INPUT 5>! tokens. You currently have !<INPUT 6>! tokens.
+Tokens in the public pot: !<INPUT 3>!
+Your gain: !<INPUT 4>!
+Your tokens after round !<INPUT 0>!: !<INPUT 5>!
+Tokens of each player after round !<INPUT 0>!: !<INPUT 6>!

@@ -3,9 +3,12 @@ sealed_bid_auction_request.txt
 Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- valuation of item
-!<INPUT 2>! -- output format
-!<INPUT 3>! -- cot message
+!<INPUT 2>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 0>! starts. Your valuation of this item is !<INPUT 1>!. You need to decide a bid on this item. You can only reply an integer between 0 and !<INPUT 1>!. Please output your decision in the following JSON format: '!<INPUT 2>!'.!<INPUT 3>!
+Now round !<INPUT 0>! starts.
+
+Your primary goal is to maximize your total utility. Your valuation for this round's item is !<INPUT 1>!.
+
+!<INPUT 2>!

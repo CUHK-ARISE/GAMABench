@@ -1,12 +1,16 @@
 battle_royale_request.txt
 
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- player list
-!<INPUT 2>! -- player + playerid
+!<INPUT 1>! -- current player names and hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player name
 !<INPUT 3>! -- player hit rate
-!<INPUT 4>! -- output format
-!<INPUT 5>! -- cot message
+!<INPUT 4>! -- player order
+!<INPUT 5>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-Now round !<INPUT 0>! starts. The current order and the hit rates of all players are: !<INPUT 1>!. You are !<INPUT 2>!. Your hit rate is !<INPUT 3>!%. You need to decide a player to shoot or not. You can only reply an integer indicating the player you choose. By replying "-1" you indicate that you want to intentionally miss the shot. Please output your decision in the following JSON format: '!<INPUT 4>!'.!<INPUT 5>!
+Now round !<INPUT 0>! starts.
+
+Your goal is to eliminate other players to survive until the end and win the game. The remaining players' names and hit rates ranked by shooting order are: !<INPUT 1>!. You are !<INPUT 2>!. Your hit rate is !<INPUT 3>!%. You are the <INPUT 4>!-th to shoot. Please decide whether to shoot at a player or intentionally miss.
+
+!<INPUT 5>!

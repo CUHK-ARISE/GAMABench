@@ -41,24 +41,24 @@ class PirateGame(GameServer):
             if current_player_id + 1 < self.current_round:
                 continue
             print(f'player_records: {player.records}')
-            player_choice = 'to accept' if player.records[-1] == 'Yes' else 'not to accept'
+            player_choice = 'accept' if player.records[-1] == 'accept' else 'reject'
             if accepting_rate >= 0.5:
-                majority = 'Greater or equal to half of the'
+                majority = 'Equal to or greater'
                 self.next_round = False
             else:
-                majority = "Less than half"
+                majority = "Less"
                 self.next_round = True
 
             if current_player_id + 1 == self.current_round and not self.next_round:
-                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) + '. ' + 'Congradulations! You won.'
+                result = f'Your plan was accepted. The game ends. You receive {gold_distribution[count]} golds.'
             elif current_player_id + 1 != self.current_round and not self.next_round:
-                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was accepted. The game ends. Your gold is ' + str(gold_distribution[count]) +  '.'
+                result = f'The {self.player_id_manipulation(self.current_round)}-th most senior pirate\'s plan was accepted. The game ends. You receive {gold_distribution[count]} golds.'
             elif current_player_id + 1 == self.current_round and self.next_round:
-                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate\'s plan was rejected. The game ends. Your gold is ' + str(gold_distribution[count]) +  '. ' + 'You died.'
+                result = f'Your plan was rejected. You are eliminated from the game and receive nothing.'
                 with open(f"records/player_{current_player_id}.txt", 'a') as f:
                     f.write(f"{result}\n====\n")
             else:
-                result = 'The ' + self.player_id_manipulation(self.current_round) + ' most senior pirate was thrown overboard from the pirate ship and died. The game continues. Your gold was ' + str(gold_distribution[count]) + '.'
+                result = f'The {self.player_id_manipulation(self.current_round)}-th most senior pirate was thrown overboard and eliminated from the game. The game continues.'
 
             report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, result2, majority, result]
             # assistant reply format report
@@ -107,7 +107,7 @@ class PirateGame(GameServer):
         #             # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
         #     # If the player is still in the game
         #     else:
-        #         color = 'green' if player.records[-1] == 'Yes' else 'red'
+        #         color = 'green' if player.records[-1] == 'accept' else 'red'
         #         label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
         #         plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
         #         plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
@@ -197,8 +197,10 @@ class PirateGame(GameServer):
         self.declined = 0
         print(f"Round {round}: ")
         self.current_round = round
+        self.round_id = round
         responses = []
         gold_distribution = []
+        cot_msg = None
         for player in tqdm(self.players):
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
@@ -211,12 +213,11 @@ class PirateGame(GameServer):
                 g_input_2 = self.player_num
 
                 if self.cot:
-                    output_format = f'{{"explanation": "<description of your thinking process>", "option": {{"{g_input_0}-th": g_{g_input_0}, ..., "{g_input_2}-th": g_{g_input_2}}}}}'
-                else:
-                    output_format = f'{{"option": {{"{g_input_0}-th": g_{g_input_0}, ..., "{g_input_2}-th": g_{g_input_2}}}}}'
                     cot_msg = get_cot_prompt(self.cot)
-                
-                request_list2 = [current_player_id + 1, self.gold, self.player_num, output_format, cot_msg]
+                    output_format = f'{cot_msg} Please provide your thinking process and proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: \\{{"explanation": "thinking_process", "proposal": \\{{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"\\}}\\}}'
+                else:
+                    output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: \\{{"proposal": \\{{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"\\}}\\}}'
+                request_list2 = [current_player_id + 1, self.gold, output_format]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
                 # player.prompt = player.prompt + request_prompt2
@@ -224,13 +225,13 @@ class PirateGame(GameServer):
             else: 
                 request_file1 = f'prompt_template/{self.prompt_folder}/request1_{self.version}.txt'
                 
-                if self.cot:
-                    output_format = '{"explanation": "<description of your thinking process>", "option": "<answer>"}' 
-                else:
-                    output_format = '{"option": "<answer>"}'
                 cot_msg = get_cot_prompt(self.cot)
+                if self.cot:
+                    output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: \{"explanation": "thinking_process", "decision": "accept_or_reject"\}'
+                else:
+                    output_format = f'Please provide your decision on the current proposal in the following JSON format: \\{{"decision": "accept_or_reject"\\}}'
                 
-                request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format, cot_msg]
+                request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
                 request_prompt = request_prompt1
@@ -244,36 +245,36 @@ class PirateGame(GameServer):
                 try:
                     if self.current_round == current_player_id + 1:
                         parsered_responses = json.loads(gpt_responses)
-                        parsered_responses = dict((parsered_responses["option"]))
+                        parsered_responses = dict((parsered_responses["proposal"]))
                         # player.records.append(parsered_responses)
                         self.current_plan = parsered_responses
                         # responses.append(parsered_responses)
                         # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
-                        gold_distribution = list(self.current_plan.values())
+                        gold_distribution = [int(gold) for gold in list(self.current_plan.values())]
                         if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
                             continue
                         # player.records.append(gold_distribution)
                         print(gold_distribution)
-                        player.records.append('Yes')
+                        player.records.append('accept')
                         self.accepted += 1
-                        responses.append('Yes')
+                        responses.append('accept')
                         break
                     else: 
-                        if 'no' not in gpt_responses and 'No' not in gpt_responses and 'yes' not in gpt_responses and 'Yes' not in gpt_responses: 
+                        if 'accept' not in gpt_responses and 'Accept' not in gpt_responses and 'reject' not in gpt_responses and 'Reject' not in gpt_responses: 
                             continue
-                        elif 'yes' in gpt_responses or 'Yes' in gpt_responses:
+                        elif 'accept' in gpt_responses or 'Accept' in gpt_responses:
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                            gpt_responses = 'Yes'
+                            gpt_responses = 'accept'
                             self.accepted += 1
-                            responses.append('Yes')
-                            player.records.append('Yes')
-                        elif 'no' in gpt_responses or 'No' in gpt_responses:
+                            responses.append('accept')
+                            player.records.append('accept')
+                        elif 'reject' in gpt_responses or 'Reject' in gpt_responses:
                             # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                            gpt_responses = 'No'
+                            gpt_responses = 'reject'
                             self.declined += 1
-                            responses.append('No')
-                            player.records.append('No')
+                            responses.append('reject')
+                            player.records.append('reject')
                         break  
                 except:
                     # more detailed explanation is given before json format, use regular expression to extract
@@ -293,25 +294,25 @@ class PirateGame(GameServer):
                             if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
                                 continue
                             print(gold_distribution)
-                            player.records.append('Yes')
+                            player.records.append('accept')
                             self.accepted += 1
-                            responses.append('Yes')
+                            responses.append('accept')
                             break
                         else:
-                            if 'no' not in gpt_responses and 'No' not in gpt_responses and 'yes' not in gpt_responses and 'Yes' not in gpt_responses: 
+                            if 'reject' not in gpt_responses and 'Reject' not in gpt_responses and 'accept' not in gpt_responses and 'Accept' not in gpt_responses: 
                                 continue
-                            elif 'yes' in gpt_responses or 'Yes' in gpt_responses:
+                            elif 'accept' in gpt_responses or 'Accept' in gpt_responses:
                                 # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                                gpt_responses = 'Yes'
+                                gpt_responses = 'accept'
                                 self.accepted += 1
-                                responses.append('Yes')
-                                player.records.append('Yes')
-                            elif 'no' in gpt_responses or 'No' in gpt_responses:
+                                responses.append('accept')
+                                player.records.append('accept')
+                            elif 'reject' in gpt_responses or 'Reject' in gpt_responses:
                                 # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                                gpt_responses = 'No'
+                                gpt_responses = 'reject'
                                 self.declined += 1
-                                responses.append('No')
-                                player.records.append('No')
+                                responses.append('reject')
+                                player.records.append('reject')
                             break
                     except:
                         pass
@@ -333,7 +334,7 @@ class PirateGame(GameServer):
 
     def update_system_prompt(self, description_file):
         for player in self.players:
-            description_list = [int(player.id.split('_')[1]) + 1, self.player_num, self.gold]
+            description_list = [self.player_num, self.gold, int(player.id.split('_')[1]) + 1]
             description_prompt = get_prompt(description_file, description_list)
             for item in player.prompt:
                 if item.get("role") == "system":
@@ -343,7 +344,6 @@ class PirateGame(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f" There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         # Call the constructor of the base class
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         self.update_system_prompt(description_file)

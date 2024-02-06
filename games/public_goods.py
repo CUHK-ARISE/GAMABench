@@ -47,7 +47,7 @@ class PublicGoods(GameServer):
             
         for index, player in enumerate(self.players):
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            report_list = [self.round_id, player.records[-1], self.round_records[-1]['responses'], player_tokens_list,total_tokens, round(total_tokens * self.ratio/self.player_num - player.records[-1], 2), player_tokens_list[index]]
+            report_list = [self.round_id, self.round_records[-1]['responses'], player.records[-1], total_tokens, round(total_tokens * self.ratio/self.player_num - player.records[-1], 2), player_tokens_list[index], player_tokens_list]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
                 {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
@@ -317,12 +317,6 @@ class PublicGoods(GameServer):
         self.round_id = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
-        if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "option": "<tokens>"}' 
-        else:
-            output_format = '{"option": "<tokens>"}'
-        cot_msg = get_cot_prompt(self.cot)
-        
         responses = []
         initial_tokens = []
 
@@ -341,7 +335,13 @@ class PublicGoods(GameServer):
                     player.tokens.append(rand_token)
                 if self.reset:
                     player.tokens.append(rand_token)
-            request_list = [self.round_id, player.tokens[-1], output_format, cot_msg]
+        
+            cot_msg = get_cot_prompt(self.cot)
+            if self.cot:
+                output_format = f'{cot_msg} Please provide your thinking process and the number of tokens in the following JSON format: \\{{"explanation": "thinking_process", "tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"\\}}'
+            else:
+                output_format = f'Please provide the number of tokens in the following JSON format: \\{{"tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"\\}}'
+            request_list = [self.round_id, player.tokens[-1], output_format]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
             # player.prompt = player.prompt + request_prompt
@@ -349,7 +349,7 @@ class PublicGoods(GameServer):
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["option"])
+                    parsered_responses = int(parsered_responses["tokens_contributed"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
@@ -363,7 +363,6 @@ class PublicGoods(GameServer):
     def run(self, rounds, cot=None):
         self.cot = cot
         # Update system prompt (number of round)
-        round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.ratio, round_message]
+        description_list = [self.player_num, self.round_id+rounds, self.ratio]
         super().run(rounds, description_file, description_list)

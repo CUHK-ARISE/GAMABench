@@ -2,9 +2,16 @@ sealed_bid_auction_description.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- bid paid 
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- bid paid
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in an auction with totally !<INPUT 0>! people. Everyone secretly and simultaneously submits written bid without knowing the valuations of other people in the auction. If you win, your utility is your valuation subtracts the price you paid. If you lose, your utility is 0. The highest bidder wins and pays the !<INPUT 1>!. !<INPUT 2>!
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. Each player has a private valuation for the item in each round.
+2. Without knowing the bids and valuations of other players, each player submits a written bid for the item.
+3. The highest bidder wins the item and pays the price of the !<INPUT 2>!.
+4. If you win, your utility for that round is your valuation minus the price paid. If you lose, your utility is zero.

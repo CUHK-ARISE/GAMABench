@@ -4,20 +4,20 @@ Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- valuation 
 !<INPUT 2>! -- bid
-!<INPUT 3>! -- result of the round
-!<INPUT 4>! -- price
-!<INPUT 5>! -- utility
+!<INPUT 3>! -- winning bid
+!<INPUT 4>! -- price paid
+!<INPUT 5>! -- result
+!<INPUT 6>! -- utility
 
 <commentblockmarker>###</commentblockmarker>
 
-Round !<INPUT 0>! results:
-Your valuation of the item was !<INPUT 1>!.
+Game Results for Round !<INPUT 0>!:
+
+Your valuation for this round's item was !<INPUT 1>!.
 Your bid was:
-
 <part>///</part>
-
-{"option": "!<INPUT 2>!"}
-
+{"bid": "!<INPUT 2>!"}
 <part>///</part>
-
-You !<INPUT 3>!. !<INPUT 4>!Your utility is !<INPUT 5>!.
+The winning bid was: !<INPUT 3>!.
+The price paid was: !<INPUT 4>!.
+You !<INPUT 5>!. Your utility is !<INPUT 6>!.

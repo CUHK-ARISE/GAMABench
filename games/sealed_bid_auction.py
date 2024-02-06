@@ -56,8 +56,8 @@ class SealedBidAuction(GameServer):
                 player_util = 0
             player.utility.append(player_util)
             result = 'won' if round_record["bid_winner"] == player.id else 'lost'
-            report_msg = 'You pay ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
-            report_list = [self.current_round, player.valuation[-1], player_bid, result, report_msg, player_util]
+            report_msg = 'You paid ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
+            report_list = [self.current_round, player.valuation[-1], player_bid, str(round_record['bid_winner_proposed']), str(round_record["bid_winner_payment"]), result, player_util]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
                 {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
@@ -151,24 +151,25 @@ class SealedBidAuction(GameServer):
         self.current_round = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         
-        if self.cot:
-            output_format = '{"explanation": "<description of your thinking process>", "option": "<bid>"}' 
-        else:
-            output_format = '{"option": "<bid>"}'
-        cot_msg = get_cot_prompt(self.cot)
-        
         # valuation of item should be randomized here
         responses = []
         round_valuation = []
 
         for player in tqdm(self.players):
-            rand_valuation = randint(0, self.valuation)
+
+            rand_valuation = randint(0, self.valuation / 10) * 10
             while rand_valuation in round_valuation:
-                rand_valuation = randint(0, self.valuation)
+                rand_valuation = randint(0, self.valuation / 10) * 10
             round_valuation.append(rand_valuation)
 
             player.valuation.append(rand_valuation)
-            request_list = [self.current_round, player.valuation[-1], output_format, cot_msg]
+        
+            cot_msg = get_cot_prompt(self.cot)
+            if self.cot:
+                output_format = f'{cot_msg} Please provide your thinking process and bid in the following JSON format: \\{{"explanation": "thinking_process", "bid": "integer_between_0_and_{player.valuation[-1]}"\\}}'
+            else:
+                output_format = f'Please provide your bid in the following JSON format: \\{{"bid": "integer_between_0_and_{player.valuation[-1]}"\\}}'
+            request_list = [self.current_round, player.valuation[-1], output_format]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
             # player.prompt = player.prompt + request_prompt
@@ -176,7 +177,7 @@ class SealedBidAuction(GameServer):
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
-                    parsered_responses = int(parsered_responses["option"])
+                    parsered_responses = int(parsered_responses["bid"])
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
@@ -194,5 +195,5 @@ class SealedBidAuction(GameServer):
         # Update system prompt (number of round)
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.mode, round_message]
+        description_list = [self.player_num, self.round_id+rounds, self.mode]
         super().run(rounds, description_file, description_list)

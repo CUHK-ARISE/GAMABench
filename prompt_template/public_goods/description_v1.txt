@@ -2,10 +2,16 @@ public_goods_description.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- ratio
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a game with totally !<INPUT 0>! players. Everyone secretly chooses how many of their private tokens to put into a public pot. The tokens in this pot are multiplied by !<INPUT 1>!. This "public good" payoff is evenly divided among players at the end of each round. Everyone also keeps the tokens they do not contribute. !<INPUT 2>!
-You want to maximize your tokens.
+You are participating in a game played by !<INPUT 0>! players over !<INPUT 1>! rounds.
+
+Game Rules:
+
+1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.
+2. The total tokens in this pot will be multiplied by the factor !<INPUT 2>! to create the "public good" payoff.
+3. This payoff will then be evenly divided among all players, regardless of their individual contribution.
+4. Any tokens you do not contribute will be retained in your private collection.
