@@ -190,9 +190,10 @@ class BarGame(GameServer):
         self.report_result(round_record)
     
     
-    def run(self, rounds, cot=None):
+    def run(self, rounds, cot=None, role=None):
         self.cot = cot
         # Update system prompt (number of round)
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.round_id+rounds, self.ratio_str, self.max, self.min, self.home]
+        role_msg = get_role_msg(role)
+        description_list = [self.player_num, self.round_id+rounds, self.ratio_str, self.max, self.min, self.home, role_msg]
         super().run(rounds, description_file, description_list)

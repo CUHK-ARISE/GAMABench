@@ -89,6 +89,13 @@ def get_cot_prompt(cot):
         return " " + get_prompt(f"prompt_template/cot_prompts/cot{cot}.txt", [])
     else:
         return ""
+    
+
+def get_role_msg(role):
+    if role:
+        return " " + get_prompt(f"prompt_template/role_prompts/role{role}.txt", [])
+    else:
+        return ""
 
 
 def select_players(player_list, attr_name, metric_list):
