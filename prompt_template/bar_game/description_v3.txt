@@ -1,0 +1,20 @@
+prompt_template/bar_game/description_v3.txt
+
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio string
+!<INPUT 3>! -- maximum utility
+!<INPUT 4>! -- minimum utility
+!<INPUT 5>! -- utility of staying home
+!<INPUT 6>! -- role player message
+
+<commentblockmarker>###</commentblockmarker>
+
+In this game, you are one of the !<INPUT 0>! participants and the game will be carried out over !<INPUT 1>! rounds. 
+
+Here's how the game works:
+
+1. Each round, every player must independently make a decision to either go to a bar or stay home.
+2. If the number of players who decide to go the bar is equal to or less than !<INPUT 2>!, the level of fun experienced by those at the bar exceeds the one at home, and they receive a utility value of !<INPUT 3>!.
+3. However, if the players at the bar are greater than !<INPUT 2>!, those players will have less fun than if they had stayed home, thus receiving a utility value of !<INPUT 4>!.
+4. The players who decide to stay home will receive a utility of !<INPUT 5>!.

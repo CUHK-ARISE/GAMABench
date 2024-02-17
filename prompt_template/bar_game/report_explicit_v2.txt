@@ -1,0 +1,25 @@
+prompt_template/bar_game/report_explicit_v2.txt
+
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- number of players who chose to go
+!<INPUT 2>! -- number of players who chose not to go
+!<INPUT 3>! -- number of players
+!<INPUT 4>! -- number result
+!<INPUT 5>! -- fun result
+!<INPUT 6>! -- ratio_str
+!<INPUT 7>! -- player choice
+!<INPUT 8>! -- gained utility
+
+<commentblockmarker>###</commentblockmarker>
+
+The outcome of Round !<INPUT 0>! is as follows:
+
+!<INPUT 1>! participants chose to visit the bar, whilst !<INPUT 2>! decided to remain at home.
+!<INPUT 1>! out of a total of !<INPUT 3>! participants, equating to !<INPUT 4>!, higher than !<INPUT 6>!, opted for the bar.
+Attending the bar proved to be !<INPUT 5>! enjoyable in this round.
+
+Your selection was:
+<part>///</part>
+{"decision": "!<INPUT 7>!"}
+<part>///</part>
+This decision led you to acquire !<INPUT 8>!.

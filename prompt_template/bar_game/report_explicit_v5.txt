@@ -1,0 +1,25 @@
+prompt_template/bar_game/report_explicit_v5.txt
+
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- number of players who chose to go
+!<INPUT 2>! -- number of players who chose not to go
+!<INPUT 3>! -- number of players
+!<INPUT 4>! -- number result
+!<INPUT 5>! -- fun result
+!<INPUT 6>! -- ratio_str
+!<INPUT 7>! -- player choice
+!<INPUT 8>! -- gained utility
+
+<commentblockmarker>###</commentblockmarker>
+
+Scores for Round !<INPUT 0>!:
+
+The bar was visited by !<INPUT 1>! players, while !<INPUT 2>! decided to stay at home.
+The proportion of players heading to the bar amounted to !<INPUT 1>!/!<INPUT 3>!, a score !<INPUT 4>! higher than !<INPUT 6>! of the players.
+Evidently, the fun factor of attending the bar this round was !<INPUT 5>!.
+
+Your choice:
+<part>///</part>
+Your decision was: "!<INPUT 7>!".
+<part>///</part>
+You accumulated a total of !<INPUT 8>!.
