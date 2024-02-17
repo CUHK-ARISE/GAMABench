@@ -1,0 +1,22 @@
+prompt_template/diner_dilemma/description_v4.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- expensive dish's cost
+!<INPUT 3>! -- expensive dish's utility
+!<INPUT 4>! -- cheap dish's cost
+!<INPUT 5>! -- cheap dish's utility
+!<INPUT 6>! -- role player message
+
+<commentblockmarker>###</commentblockmarker>
+
+You are engaged in a game involving !<INPUT 0>! participants spanning across !<INPUT 1>! sessions. 
+
+Game protocol:
+ 
+1. Every player is required to select either an expensive meal or a budget meal.
+2. The expensive meal costs !<INPUT 2>!, whereas the price of the budget meal is !<INPUT 4>!.
+3. Selecting the expensive meal will give you a utility of !<INPUT 3>!, and selecting the budget meal will give you a utility of !<INPUT 5>!.
+4. Although the expensive meal is more appetizing compared to the budget meal, its cost doesn't equate when dining individually.
+5. After each session, the collective expense for all the meals ordered is evenly distributed amongst all players.

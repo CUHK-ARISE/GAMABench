@@ -1,0 +1,23 @@
+prompt_template/diner_dilemma/report_v4.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- number of players who chose costly dish
+!<INPUT 2>! -- number of players who chose cheap dish
+!<INPUT 3>! -- total cost
+!<INPUT 4>! -- player pay
+!<INPUT 5>! -- player choice
+!<INPUT 6>! -- utility recieved
+
+<commentblockmarker>###</commentblockmarker>
+
+Outcomes of Round !<INPUT 0>!:
+
+!<INPUT 1>! participants opted for the expensive meal, whereas !<INPUT 2>! went for the budget-friendly dish.
+The overall expense amounts to !<INPUT 3>!. Your payment stands at !<INPUT 4>!.
+
+Your selection: 
+<part>///</part>
+{"chosen_dish": "!<INPUT 5>!"}
+<part>///</part>
+Your gain from this round is !<INPUT 6>!.

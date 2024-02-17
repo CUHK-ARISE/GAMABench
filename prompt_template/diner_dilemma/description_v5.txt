@@ -1,0 +1,22 @@
+prompt_template/diner_dilemma/description_v5.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- expensive dish's cost
+!<INPUT 3>! -- expensive dish's utility
+!<INPUT 4>! -- cheap dish's cost
+!<INPUT 5>! -- cheap dish's utility
+!<INPUT 6>! -- role player message
+
+<commentblockmarker>###</commentblockmarker>
+
+You are involved in a game that involves !<INPUT 0>! participants and spans over !<INPUT 1>! rounds. 
+
+Details of the Game:
+
+1. Players are required to select a meal from two available options: an expensive dish or an economical dish.
+2. The expensive dish comes at a price of !<INPUT 2>! while the economical dish costs !<INPUT 4>!.
+3. Selecting the expensive dish yields a utility value of !<INPUT 3>!. Opting for the economical dish results in a utility value of !<INPUT 5>!.
+4. Despite being more flavorsome, the expensive dish doesn't offer enough value for its cost when eating alone.
+5. At the close of each round, the accumulated cost of all ordered dishes is divided evenly among all participants.
