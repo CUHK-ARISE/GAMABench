@@ -1,4 +1,4 @@
-prompt_template/divide_dollar/report_v2.txt
+prompt_template/divide_dollar/report_v3.txt
 
 Variables:
 !<INPUT 0>! -- round id
@@ -10,13 +10,10 @@ Variables:
 
 <commentblockmarker>###</commentblockmarker>
 
-Results of the Game for Round !<INPUT 0>!:
+Results for the Gameplay of Round !<INPUT 0>!: 
 
-The sum total of all proposals stood at !<INPUT 2>!.
-It was reported that the sum !<INPUT 3>! !<INPUT 4>!.
-You have gained !<INPUT 5>! golds. 
-
-Your proposed bid was:
 <part>///</part>
 {"bid_amount": "!<INPUT 1>!"}
 <part>///</part>
+
+The total sum of all proposals totaled to !<INPUT 2>!. The message reported was !<INPUT 3>! !<INPUT 4>!. You have accrued !<INPUT 5>! amount of golds.

@@ -1,4 +1,4 @@
-prompt_template/divide_dollar/report_v2.txt
+prompt_template/divide_dollar/report_v4.txt
 
 Variables:
 !<INPUT 0>! -- round id
@@ -10,13 +10,13 @@ Variables:
 
 <commentblockmarker>###</commentblockmarker>
 
-Results of the Game for Round !<INPUT 0>!:
+Results for the Game, Round !<INPUT 0>!:
 
-The sum total of all proposals stood at !<INPUT 2>!.
-It was reported that the sum !<INPUT 3>! !<INPUT 4>!.
-You have gained !<INPUT 5>! golds. 
-
-Your proposed bid was:
+Here's the amount you proposed:
 <part>///</part>
 {"bid_amount": "!<INPUT 1>!"}
 <part>///</part>
+
+The total of all proposals came to !<INPUT 2>!.
+The report states that the total !<INPUT 3>! !<INPUT 4>!.
+You were awarded !<INPUT 5>! golds.

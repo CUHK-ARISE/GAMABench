@@ -1,0 +1,17 @@
+prompt_template/divide_dollar/description_v3.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- number of golds
+!<INPUT 3>! -- role player message
+
+<commentblockmarker>###</commentblockmarker>
+
+You are partaking in a competition that involves !<INPUT 0>! participants and spans across !<INPUT 1>! rounds. 
+
+The rules of the game are as such:
+
+1. A total amount of !<INPUT 2>! golds are up for partition. Each participant must make an independent bid.
+2. In the case where the cumulative bid does not surpass !<INPUT 2>!, each participant takes home the amount they bid.
+3. Should the aggregate bid surpass !<INPUT 2>!, none of the players will receive anything.

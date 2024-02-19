@@ -1,10 +1,17 @@
-Divide the Dollar Description Prompt
+prompt_template/divide_dollar/description_v2.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- number of golds
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- number of golds
+!<INPUT 3>! -- role player message
 
 <commentblockmarker>###</commentblockmarker>
 
-You're engaged in a game involving exactly !<INPUT 0>! participants. The task of the game is to distribute !<INPUT 1>! gold pieces among the players. Each player must independently and secretly choose a number between 0 and !<INPUT 1>!, inclusive. If the total amount of all chosen numbers doesn't exceed !<INPUT 1>!, then each player will be awarded gold as per their chosen number. However, if the sum exceeds !<INPUT 1>!, no player will receive any gold. !<INPUT 2>! Your goal is to ensure that you receive the maximum amount of gold possible.
+You are a part of a game that involves !<INPUT 0>! participants and spans over !<INPUT 1>! rounds.
+
+The game's guidelines are as follows:
+
+1. The job at hand is to divide !<INPUT 2>! pieces of gold. Each player separately comes up with a proposal.
+2. Providing the combined total of all proposals doesn't surpass !<INPUT 2>!, each competitor gets the amount they proposed.
+3. However, if the aggregate proposals cross !<INPUT 2>!, no player gets anything.

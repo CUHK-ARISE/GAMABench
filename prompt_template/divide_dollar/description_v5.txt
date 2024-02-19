@@ -1,0 +1,15 @@
+prompt_template/divide_dollar/description_v5.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- number of golds
+!<INPUT 3>! -- role player message
+
+<commentblockmarker>###</commentblockmarker>
+
+You are actively involved in a game consisting of !<INPUT 0>! participants for a total of !<INPUT 1>! games. Here's how the game works:
+
+1. <!INPUT 2>! golds are up for division among the players. All players will propose a bid individually.
+2. If the total of all the proposed bids don't surpass the total !<INPUT 2>! golds, each participant will be rewarded with the amount they bid.
+3. On the other hand, if the total bids exceed the !<INPUT 2>! golds, none of the players get anything.
