@@ -1,0 +1,18 @@
+prompt_template/public_goods/description_v4.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio
+!<INPUT 3>! -- role play message
+
+<commentblockmarker>###</commentblockmarker>
+
+!<INPUT 3>!
+
+You're partaking in a game that is played across several rounds, specifically !<INPUT 1>!, by a group of !<INPUT 0>! participants. Here are the guidelines of the game:
+
+1. As one of the game's participants, you're expected to select an amount from your personal token pool to privately add to the communal pot each round.
+2. The total sum of tokens amassed in this pot will then be increased by a factor of !<INPUT 2>! and become the 'public good' payoff.
+3. This resulted payoff will be distributed equally among every player, irrespective of how much they individually contributed.
+4. The tokens that you opt not to contribute will stay within your private stash.

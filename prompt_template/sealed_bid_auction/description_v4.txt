@@ -1,0 +1,20 @@
+prompt_template/sealed_bid_auction/description_v4.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- bid paid
+!<INPUT 3>! -- role play message
+
+<commentblockmarker>###</commentblockmarker>
+
+!<INPUT 3>!
+
+You're engaging in a competition with !<INPUT 0>! participants spanning over !<INPUT 1>! sessions. 
+
+Guidelines for the Competition:
+
+1. Each competitor has a personal estimation for the value of the item each session.
+2. Oblivious to other competitors' bids and estimations, everyone puts forth a written offer for the item.
+3. The individual with the highest offer acquires the item and pays the cost equivalent to the !<INPUT 2>!. 
+4. If you emerge victorious, your payoff for that session is the difference between your estimation and the amount paid. If you don't, your payoff is nil.

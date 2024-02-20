@@ -1,10 +1,19 @@
-public_goods_description.txt
+prompt_template/public_goods/description_v2.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- ratio
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- ratio
+!<INPUT 3>! -- role play message
 
 <commentblockmarker>###</commentblockmarker>
 
-You're engaged in a game that involves exactly !<INPUT 0>! participants. Each player covertly decides on the quantity of their personal tokens to deposit into a community pot. The tokens in this communal vessel are then multiplied by !<INPUT 1>!. This enhanced 'common good' reward is equally distributed among the participants at the conclusion of every round. Moreover, players are allowed to retain any tokens they opt not to contribute. !<INPUT 2>! You aim to augment your token count significantly.
+!<INPUT 3>!
+
+You are involved in a game that consists of !<INPUT 0>! players engaged for !<INPUT 1>! rounds. 
+
+Game Guidelines:
+1. Every round, your task is to choose the quantity of your private tokens you want to privately contribute to the community collection.
+2. The collective tokens in the collection will be increased by a factor of !<INPUT 2>! to create the 'public good' incentive.
+3. Regardless of each player's individual input, this incentive will be distributed equally among all players.
+4. If you choose not to contribute any of your tokens, they will remain in your personal stash.

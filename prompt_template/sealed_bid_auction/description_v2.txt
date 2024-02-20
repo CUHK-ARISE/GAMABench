@@ -1,10 +1,20 @@
-sealed_bid_auction_description.txt
+prompt_template/sealed_bid_auction/description_v2.txt
 
 Variables:
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- bid paid 
-!<INPUT 2>! -- number of rounds message
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- bid paid
+!<INPUT 3>! -- role play message
 
 <commentblockmarker>###</commentblockmarker>
 
-You are partaking in an auction alongside a total of !<INPUT 0>! individuals. Each participant submits a hidden and simultaneous written bid, unaware of others' estimations. Your profit stands as the estimation minus the amount you paid if you achieve a win. However, if you do not win, then your profit becomes zero. The individual who offers the highest bid is the victor, yet the payment made equals the !<INPUT 1>!. !<INPUT 2>!
+!<INPUT 3>!
+
+You are engaged in a competition with !<INPUT 0>! other participants, which will last for !<INPUT 1>! rounds. 
+
+Let's go over the rules of this game:
+
+1. For each round, every participant has a hidden estimation of the item's value.
+2. Each player, in the absence of knowledge regarding others' evaluations and bids, puts forth a written bid for the piece.
+3. The one with the leading bid will acquire the item and is required to pay the cost of the !<INPUT 2>!.
+4. If you emerge victorious, your reward for that round will be your valuation price subtracted by the payment you made. On the other hand, losing brings your reward down to zero.

@@ -1,0 +1,22 @@
+prompt_template/pirate_game/report_v5.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- plan
+!<INPUT 2>! -- accepted
+!<INPUT 3>! -- current number of pirates
+!<INPUT 4>! -- accept or not
+!<INPUT 5>! -- comparison
+!<INPUT 6>! -- result
+
+<commentblockmarker>###</commentblockmarker>
+
+The pirate who is !<INPUT 0>! in line of succession suggested a !<INPUT 1>! approach. 
+Amongst the crew, !<INPUT 2>! out of !<INPUT 3>! members agreed to the division.
+
+You decided: 
+<part>///</part>
+{"decision": "!<INPUT 4>!"}
+<part>///</part>
+!<INPUT 5>! of the pirates agreed to the proposed plan.
+!<INPUT 6>!

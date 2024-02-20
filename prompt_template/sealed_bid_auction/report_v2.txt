@@ -1,21 +1,23 @@
-sealed_bid_auction_report.txt
+prompt_template/sealed_bid_auction/report_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- valuation 
 !<INPUT 2>! -- bid
-!<INPUT 3>! -- result of the round
-!<INPUT 4>! -- price
-!<INPUT 5>! -- utility
+!<INPUT 3>! -- winning bid
+!<INPUT 4>! -- price paid
+!<INPUT 5>! -- result
+!<INPUT 6>! -- utility
 
 <commentblockmarker>###</commentblockmarker>
 
-The outcomes from round !<INPUT 0>! are as follows: 
-You evaluated the item at a cost of !<INPUT 1>!. 
-The amount you bid was:
-<part>///</part>
+The outcome from round !<INPUT 0>!: 
 
-{"option": "!<INPUT 1>!"}
-
+The item valued this round was !<INPUT 1>!. 
+You entered a bid: 
 <part>///</part>
-You !<INPUT 3>!. !<INPUT 4>!The utility you received is !<INPUT 5>!.
+{"bid": "!<INPUT 2>!"}
+<part>///</part> 
+The highest bid was: !<INPUT 3>!. 
+The payment received was: !<INPUT 4>!. 
+You !<INPUT 5>!. Your benefit achieved from this round is !<INPUT 6>!.

@@ -1,13 +1,12 @@
-public_goods_game_request.txt
+prompt_template/public_goods/request_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id
 !<INPUT 1>! -- current tokens
-!<INPUT 2>! -- output format
-!<INPUT 3>! -- cot message
-
-You can only reply an integer between 0 and !<INPUT 1>!.
+!<INPUT 2>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-The round !<INPUT 0>! is commencing now. Your token count is !<INPUT 1>!. It's time for you to choose how many tokens you wish to add to the community pot. Please note that your answer must be an integer and it should be between 0 and !<INPUT 1>!. Express your choice in this JSON format: '!<INPUT 2>!'.!<INPUT 3>!
+The commencement of round !<INPUT 0>! is now. The objective is to have the highest token count when the game concludes. At this moment, you possess !<INPUT 1>! tokens. Making a decision on the quantity of tokens that goes into the public pot is required. 
+
+!<INPUT 2>!

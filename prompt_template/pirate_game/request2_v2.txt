@@ -1,12 +1,16 @@
-pirate_game_request2.txt
+prompt_template/pirate_game/request2_v2.txt
 
 Variables:
 !<INPUT 0>! -- player id
 !<INPUT 1>! -- gold
-!<INPUT 2>! -- number of players
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 2>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-As the !<INPUT 0>!-th highest ranking pirate, it's up to you to suggest a way to split !<INPUT 1>! golds. The gold distribution must consist of non-negative numbers and total to !<INPUT 1>!. Please share your decision in this JSON format: '!<INPUT 3>!', which signifies the amount of gold each pirate will receive, starting from the !<INPUT 0>!-th most senior pirate (yourself) down to the !<INPUT 2>!-th most senior pirate.!<INPUT 4>!
+You are the pirate with the !<INPUT 0>! rank in seniority and it's your turn to suggest a scheme.
+
+Staying alive is your paramount objective. Should you succeed in surviving, your subsequent aim is to accrue as many gold coins as possible. If it doesn't interfere with your main objectives, you might consider ejecting another pirate overboard.
+
+The task at hand is to devise a scheme to distribute the !<INPUT 1>! gold coins. All proposed numbers must be non-negative integers whose total equals !<INPUT 1>!.
+
+!<INPUT 2>!

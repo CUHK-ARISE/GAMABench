@@ -1,10 +1,22 @@
-battle_royale_description.txt
+prompt_template/battle_royale/description_v2.txt
 
 !<INPUT 0>! -- number of players
-!<INPUT 1>! -- JSON format of player hit rates in an ascending order (their shooting order)
-!<INPUT 2>! -- player + player id 
-!<INPUT 3>! -- player rank
+!<INPUT 1>! -- player names and hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player name
+!<INPUT 3>! -- player hit rate
+!<INPUT 4>! -- player order
+!<INPUT 5>! -- role play message
 
 <commentblockmarker>###</commentblockmarker>
 
-You are participating in a survival game along with a total of !<INPUT 0>! contestants. The purposes of the game is for everyone to take their turns in shooting at opponents until only a single player is left, who will be declared the winner. Each player has different accuracies of hitting their target, and players take their turns based on these varying hit rates, from lowest to highest. The sequence of order and the corresponding hit rates are: !<INPUT 1>!. You take on the role of the !<INPUT 2>!, and you will be the !<INPUT 3>!-th player to shoot. It is also important to remember that: (1) Your supply of bullets is limitless. (2) You can deliberately choose to miss a shot. The primary goal of the game is for you to maximize your chances of survival and then proceed to eliminate all the other players.
+!<INPUT 5>!
+
+You are an active participant in a game that has a total of !<INPUT 0>! participants.
+
+Here are the rules of the game:
+
+1. The game is focused on survival, only one player can emerge victorious.
+2. Each player will attack others in an order established by their respective hit rates, going from the lowest to the highest.
+3. The participants of the game along with their hit rates in order of their shooting turn are listed as follows: !<INPUT 1>!. You are known as !<INPUT 2>! and your hit rate is !<INPUT 3>!%. Your turn to shoot is at position !<INPUT 4>!.
+4. There's no limit to the bullets you have at your disposal.
+5. Optionally, you can choose not to hit your target on your turn.

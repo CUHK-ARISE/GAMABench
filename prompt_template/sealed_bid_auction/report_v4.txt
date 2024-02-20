@@ -1,0 +1,25 @@
+prompt_template/sealed_bid_auction/report_v4.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- valuation 
+!<INPUT 2>! -- bid
+!<INPUT 3>! -- winning bid
+!<INPUT 4>! -- price paid
+!<INPUT 5>! -- result
+!<INPUT 6>! -- utility
+
+<commentblockmarker>###</commentblockmarker>
+
+Here are the results for Round !<INPUT 0>!: 
+
+The value you placed on the item for this round was !<INPUT 1>!. 
+
+<part>///</part>
+Your offer was: 
+{"bid": "!<INPUT 2>!"}
+<part>///</part>
+
+The highest offer for this round was: !<INPUT 3>!. 
+The amount paid was: !<INPUT 4>!. 
+In the end, you !<INPUT 5>!. Your benefit from this is !<INPUT 6>!.

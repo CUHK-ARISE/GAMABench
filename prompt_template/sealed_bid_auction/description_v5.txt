@@ -1,0 +1,20 @@
+prompt_template/sealed_bid_auction/description_v5.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- number of rounds
+!<INPUT 2>! -- bid paid
+!<INPUT 3>! -- role play message
+
+<commentblockmarker>###</commentblockmarker>
+
+!<INPUT 3>!
+
+You are involved in a contest that includes !<INPUT 0>! participants and lasts for !<INPUT 1>! turns. 
+
+Legality of the Contest:
+ 
+1. Each contestant has a personal appreciation for the item in each turn.
+2. Every contestant provides a written offer for the item without being aware of the offers or valuations of other contestants.
+3. Whoever makes the highest offer secures the item and pays the cost of !<INPUT 2>!.
+4. In case of winning, your advantage for that turn is your personal appreciation minus the cost incurred. If you don't win, your advantage is null.

@@ -1,0 +1,21 @@
+prompt_template/pirate_game/report_v4.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- plan
+!<INPUT 2>! -- accepted
+!<INPUT 3>! -- current number of pirates
+!<INPUT 4>! -- accept or not
+!<INPUT 5>! -- comparison
+!<INPUT 6>! -- result
+
+<commentblockmarker>###</commentblockmarker>
+
+The pirate who held the !<INPUT 0>!-th position in the hierarchy suggested a !<INPUT 1>! scheme. The offer was agreed on by !<INPUT 2>! out of the !<INPUT 3>! pirates.
+
+You opted for: 
+<part>///</part>
+{"decision": "!<INPUT 4>!"}
+<part>///</part>
+A !<INPUT 5>! proportion of the pirates were agreeable to the scheme.
+!<INPUT 6>!

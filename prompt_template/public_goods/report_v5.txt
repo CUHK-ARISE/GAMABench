@@ -1,0 +1,24 @@
+prompt_template/public_goods/report_v5.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- list of tokens
+!<INPUT 2>! -- contributed tokens
+!<INPUT 3>! -- total tokens
+!<INPUT 4>! -- gained tokens
+!<INPUT 5>! -- current tokens
+!<INPUT 6>! -- list of player current tokens
+
+<commentblockmarker>###</commentblockmarker>
+
+Outcomes of Round !<INPUT 0>!:
+
+Each player's token contribution: !<INPUT 1>!
+Your contribution:
+<part>///</part>
+{"tokens_contributed": "!<INPUT 2>!"}
+<part>///</part>
+Total tokens in the communal pot: !<INPUT 3>!
+Tokens gained by you: !<INPUT 4>!
+Your token count after Round !<INPUT 0>!: !<INPUT 5>!
+Player's token count after Round !<INPUT 0>!: !<INPUT 6>!

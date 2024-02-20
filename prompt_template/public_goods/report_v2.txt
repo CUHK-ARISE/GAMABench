@@ -1,23 +1,24 @@
-public_goods_report.txt
+prompt_template/public_goods/report_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- contributed tokens
-!<INPUT 2>! -- list of tokens
-!<INPUT 3>! -- list of player current tokens
-!<INPUT 4>! -- total tokens
-!<INPUT 5>! -- gained tokens
-!<INPUT 6>! -- current tokens
+!<INPUT 1>! -- list of tokens
+!<INPUT 2>! -- contributed tokens
+!<INPUT 3>! -- total tokens
+!<INPUT 4>! -- gained tokens
+!<INPUT 5>! -- current tokens
+!<INPUT 6>! -- list of player current tokens
 
 <commentblockmarker>###</commentblockmarker>
 
-The outcome of round !<INPUT 0>! is as follows: 
-You donated: 
+Results of the Game for Round !<INPUT 0>!:
 
+Each player's token contribution: !<INPUT 1>!
+Your contribution:
 <part>///</part>
-
-{"option": "!<INPUT 1>!"}
-
+{"tokens_contributed": "!<INPUT 2>!"}
 <part>///</part>
-
-The collective contribution from all players amounted to !<INPUT 2>!. The total number of tokens held by all players stands at !<INPUT 3>!. The public pot currently holds !<INPUT 4>! tokens. You earned !<INPUT 5>! tokens. Your current token balance is !<INPUT 6>!.
+Total tokens in the community pot: !<INPUT 3>!
+Earnings you received: !<INPUT 4>!
+Tokens on your account after Round !<INPUT 0>!: !<INPUT 5>!
+Tokens remaining for each player after Round !<INPUT 0>!: !<INPUT 6>!

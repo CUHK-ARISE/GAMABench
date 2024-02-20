@@ -1,0 +1,23 @@
+prompt_template/sealed_bid_auction/report_v3.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- valuation 
+!<INPUT 2>! -- bid
+!<INPUT 3>! -- winning bid
+!<INPUT 4>! -- price paid
+!<INPUT 5>! -- result
+!<INPUT 6>! -- utility
+
+<commentblockmarker>###</commentblockmarker>
+
+These are the results for Round !<INPUT 0>!: 
+
+For this round's item, your valuation stood at !<INPUT 1>!. 
+Your proposed bid was:
+<part>///</part>
+{"bid": "!<INPUT 2>!"}
+<part>///</part>
+The bid that won was: !<INPUT 3>!. 
+The final price settled at: !<INPUT 4>!. 
+You !<INPUT 5>!. Your utility for this round is !<INPUT 6>!.

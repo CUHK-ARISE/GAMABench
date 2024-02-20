@@ -1,0 +1,23 @@
+prompt_template/sealed_bid_auction/report_v5.txt
+
+Variables:
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- valuation 
+!<INPUT 2>! -- bid
+!<INPUT 3>! -- winning bid
+!<INPUT 4>! -- price paid
+!<INPUT 5>! -- result
+!<INPUT 6>! -- utility
+
+<commentblockmarker>###</commentblockmarker>
+
+Results from Game, Round !<INPUT 0>!:
+
+For the item in this round, your valuation was !<INPUT 1>!.
+You placed the following bid:
+<part>///</part>
+{"bid": "!<INPUT 2>!"}
+<part>///</part>
+The successful bid turned out to be: !<INPUT 3>!.
+The amount required to pay was: !<INPUT 4>!.
+You ended up with a(n) !<INPUT 5>!. Your benefit from this is !<INPUT 6>!.

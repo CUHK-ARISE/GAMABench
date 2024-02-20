@@ -1,21 +1,17 @@
-battle_royale_report.txt
+prompt_template/battle_royale/report2_v2.txt
 
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- shooter player id
-!<INPUT 2>! -- previous round result
-!<INPUT 3>! -- players left
+!<INPUT 1>! -- action
+!<INPUT 2>! -- target
+!<INPUT 3>! -- round result
+!<INPUT 4>! -- players left
 
 <commentblockmarker>###</commentblockmarker>
 
-The results of round !<INPUT 0>! are as follows: 
-Your decision:
+The outcome of Round !<INPUT 0>! is as follows:
 
+Your move:
 <part>///</part>
-
-{"option": "!<INPUT 1>!"}
-
+{"action": "!<INPUT 1>!", "target": "!<INPUT 2>!"}
 <part>///</part>
-
-!<INPUT 2>!
-
-The number of remaining players is !<INPUT 3>!.
+!<INPUT 3>! There remain !<INPUT 4>! participants.

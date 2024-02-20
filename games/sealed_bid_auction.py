@@ -11,15 +11,19 @@ import random
 from server import *
 
 class SealedBidAuction(GameServer):
-    def __init__(self, player_num, valuation, version, mode = 'second highest bid', name_exp='sealed_bid_auction', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, valuation_min=0, valuation_max=200, interval=10, version="v1", mode = 'second highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
         self.version = version
         self.mode = mode
         self.name_exp = name_exp
-        self.valuation = valuation
-    
-    
+        self.valuation_min = valuation_min
+        self.valuation_max = valuation_max
+        self.interval = interval
+        self.round_valuation = []
+        self.seed = seed
+        
     def compute_result(self, responses):
+        player_utilities = []
         winning_bid = max(responses)
         bid_winner_pay = 0
         # Different modes
@@ -34,12 +38,20 @@ class SealedBidAuction(GameServer):
         else:
             winning_player = winning_player[0].id
         print(f"bid_winner: {winning_player}, bid_winner_pay: {bid_winner_pay}, responses: {responses}") #bid_winner_pay: {bid_winner_pay)
-
+        for player in self.players:
+            if player.records[-1] == winning_bid and player.id == winning_player:        
+                player_util = player.valuation[-1] - bid_winner_pay
+            else:
+                player_util = 0
+            player.utility.append(player_util)
+            player_utilities.append(player_util)
         record = {
             "responses": responses,
             "bid_winner": winning_player,
             "bid_winner_proposed": winning_bid,
-            "bid_winner_payment": bid_winner_pay
+            "bid_winner_payment": bid_winner_pay,
+            "utility": player_utilities,
+            "valuations": self.round_valuation
         }
         
         self.round_records.append(record)
@@ -50,14 +62,9 @@ class SealedBidAuction(GameServer):
         for player in self.players:
             player_bid = player.records[-1]
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
-            if player_bid == round_record['bid_winner_proposed'] and player.id == round_record['bid_winner']:             
-                player_util = player.valuation[-1] - round_record['bid_winner_payment']
-            else:
-                player_util = 0
-            player.utility.append(player_util)
             result = 'won' if round_record["bid_winner"] == player.id else 'lost'
             report_msg = 'You paid ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
-            report_list = [self.current_round, player.valuation[-1], player_bid, str(round_record['bid_winner_proposed']), str(round_record["bid_winner_payment"]), result, player_util]
+            report_list = [self.current_round, player.valuation[-1], player_bid, str(round_record['bid_winner_proposed']), str(round_record["bid_winner_payment"]), result, player.utility[-1]]
             report_prompts = get_prompt(report_file, report_list)
             report_prompts = [
                 {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
@@ -65,7 +72,6 @@ class SealedBidAuction(GameServer):
             ]
             player.prompt = player.prompt + report_prompts
         return
-
 
     def plot_v_b(self, players_list):
         os.makedirs("figures", exist_ok=True)
@@ -103,8 +109,8 @@ class SealedBidAuction(GameServer):
         
         # User Proposal Tendency
         for index, player in enumerate(players_list):
-            player_records = [player.records[i] for i in range(len(round_numbers))]
-            player_valuation_records = [player.valuation[i] for i in range(len(round_numbers))]
+            player_records = [player.records[i] for i in range(self.round_id)]
+            # player_valuation_records = [player.valuation[i] for i in range(self.round_id)]
             # player_color.append("#{:06x}".format(random.randint(0, 0xFFFFFF)))
             plt.plot(round_numbers, player_records, marker='x', color=player_color[index], label=player.id)
                 # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
@@ -118,7 +124,7 @@ class SealedBidAuction(GameServer):
         
         # Player Revenue / Utility
         for index, player in enumerate(players_list):
-            player_utility = [player.utility[i] for i in range(len(round_numbers))]
+            player_utility = [player.utility[i] for i in range(self.round_id)]
             plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
         plt.title(f'Sealed Bid Auction')
         plt.xlabel('Round')
@@ -127,14 +133,16 @@ class SealedBidAuction(GameServer):
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/{self.name_exp}_utility.svg', dpi=300)
         plt.clf()
-        
         self.plot_v_b(players_list)
     
         plt.close()
         
     def save(self, savename):
         game_info = {
-            "valuation": self.valuation,
+            "valuation_min": self.valuation_min,
+            "valuation_max": self.valuation_max,
+            "interval": self.interval,
+            "seed": self.seed
         }
         return super().save(savename, game_info)
 
@@ -147,28 +155,26 @@ class SealedBidAuction(GameServer):
     def start(self, round):
         print(f"Round {round}: ")
         self.round_id = round
-        
+        print(self.seed)
+        random.seed(self.seed)
         self.current_round = round
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
-        
+        self.round_valuation = random.sample(range(self.valuation_min, self.valuation_max + self.interval, self.interval), self.player_num)
         # valuation of item should be randomized here
         responses = []
-        round_valuation = []
 
-        for player in tqdm(self.players):
+        for idx, player in tqdm(enumerate(self.players)):
+            # rand_valuation = random.choice(range(self.valuation_min, self.valuation_max + self.interval, self.interval))
+            # while rand_valuation in self.round_valuation:
+            #     rand_valuation = random.choice(range(self.valuation_min, self.valuation_max + self.interval, self.interval))
+            # self.round_valuation.append(rand_valuation)
+            player.valuation.append(self.round_valuation[idx])
 
-            rand_valuation = randint(0, self.valuation / 10) * 10
-            while rand_valuation in round_valuation:
-                rand_valuation = randint(0, self.valuation / 10) * 10
-            round_valuation.append(rand_valuation)
-
-            player.valuation.append(rand_valuation)
-        
             cot_msg = get_cot_prompt(self.cot)
             if self.cot:
-                output_format = f'{cot_msg} Please provide your thinking process and bid in the following JSON format: \\{{"explanation": "thinking_process", "bid": "integer_between_0_and_{player.valuation[-1]}"\\}}'
+                output_format = f'{cot_msg} Please provide your thinking process and bid in the following JSON format: {{"explanation": "thinking_process", "bid": "integer_between_0_and_{player.valuation[-1]}"}}'
             else:
-                output_format = f'Please provide your bid in the following JSON format: \\{{"bid": "integer_between_0_and_{player.valuation[-1]}"\\}}'
+                output_format = f'Please provide your bid in the following JSON format: {{"bid": "integer_between_0_and_{player.valuation[-1]}"}}'
             request_list = [self.current_round, player.valuation[-1], output_format]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
@@ -186,14 +192,16 @@ class SealedBidAuction(GameServer):
                     pass
         round_record = self.compute_result(responses)
         self.report_result(round_record)
+        self.seed += 1
         # savefile = self.save(f'{self.name_exp}.json')
         # self.load(savefile)
 
 
-    def run(self, rounds, cot=None):
+    def run(self, rounds, cot=None, role=None):
         self.cot = cot
+        role_msg = get_role_msg(role)
         # Update system prompt (number of round)
         round_message = f" There will be {rounds} rounds." if rounds > 1 else ""
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.round_id+rounds, self.mode]
+        description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)

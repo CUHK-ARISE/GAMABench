@@ -1,4 +1,4 @@
-pirate_game_report.txt
+prompt_template/pirate_game/report_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id
@@ -11,12 +11,11 @@ Variables:
 
 <commentblockmarker>###</commentblockmarker>
 
-The most senior pirate, ranked !<INPUT 0>!, suggested a plan of !<INPUT 1>!. Of the total !<INPUT 3>! pirates, !<INPUT 2>! decided to agree to the allocation. You made the decision to go with:
+The pirate with the !<INPUT 0>!-th highest rank suggested a !<INPUT 1>! scheme. Among the present !<INPUT 3>! pirates, !<INPUT 2>! agreed to the proposed distribution. 
 
+Your selection was: 
 <part>///</part>
-
-{"option": "!<INPUT 4>!"}
-
-<part>///</part>
-
-The plan was accepted by !<INPUT 5>! of the pirates. !<INPUT 6>!
+{"decision": "!<INPUT 4>!"}
+<part>///</part> 
+The plan secured acceptance from a !<INPUT 5>! majority of the pirates. 
+The result was: !<INPUT 6>!

@@ -1,0 +1,16 @@
+prompt_template/battle_royale/request_v5.txt
+
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- current player names and hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player name
+!<INPUT 3>! -- player hit rate
+!<INPUT 4>! -- player order
+!<INPUT 5>! -- JSON format
+
+<commentblockmarker>###</commentblockmarker>
+
+We're now beginning round !<INPUT 0>!. 
+
+The objective of the game is to outlast your competitors by eliminating them first. The list of remaining adversaries, together with their respective hit rates, arranged according to shooting sequence is !<INPUT 1>!. You are known as !<INPUT 2>!. You have a hit rate of !<INPUT 3>!%. Shooting order places you at position number !<INPUT 4>!. Now, you must make a choice: aim at an opponent or miss on purpose. 
+
+!<INPUT 5>!

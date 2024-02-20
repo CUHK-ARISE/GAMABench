@@ -1,12 +1,17 @@
-pirate_game_request1.txt
+prompt_template/pirate_game/request1_v2.txt
 
 Variables:
 !<INPUT 0>! -- round id 
 !<INPUT 1>! -- plan
 !<INPUT 2>! -- current player gold
-!<INPUT 3>! -- output format
-!<INPUT 4>! -- cot message
+!<INPUT 3>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-The pirate holding the position of !<INPUT 0>! in terms of seniority now suggests a plan of !<INPUT 1>!. From this proposal, you stand to gain !<INPUT 2>! gold coins. You are tasked with making the decision to either accept, responding with 'Yes', or decline, responding with 'No'. Please register your response in the subsequent JSON structure: !<INPUT 3>!.!<INPUT 4>!
+The pirate who ranks !<INPUT 0>! in terms of seniority must now suggest a plan. 
+
+Your first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.
+
+The plan which has been put forward is !<INPUT 1>!. This plan will provide you with !<INPUT 2>! gold pieces. 
+
+!<INPUT 3>!

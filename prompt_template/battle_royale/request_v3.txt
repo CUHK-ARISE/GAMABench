@@ -1,0 +1,14 @@
+prompt_template/battle_royale/request_v3.txt
+
+!<INPUT 0>! -- round id
+!<INPUT 1>! -- current player names and hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player name
+!<INPUT 3>! -- player hit rate
+!<INPUT 4>! -- player order
+!<INPUT 5>! -- JSON format
+
+<commentblockmarker>###</commentblockmarker>
+
+We are now beginning round !<INPUT 0>!. The aim of this game is to outlast the other contestants in order to emerge victorious. Standings of the remaining contestants, as well as their hit rates, sorted by the sequence of their turns are: !<INPUT 1>!. Your character is !<INPUT 2>!, with a hit rate of !<INPUT 3>!%. You rank !<INPUT 4>!-th in the shooting sequence. Make your choice to either aim at another player or deliberately miss.
+
+!<INPUT 5>!

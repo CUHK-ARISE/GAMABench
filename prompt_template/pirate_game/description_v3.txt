@@ -1,0 +1,23 @@
+prompt_template/pirate_game/description_v3.txt
+
+Variables:
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- gold
+!<INPUT 2>! -- pirate rank
+!<INPUT 3>! -- role play message
+
+<commentblockmarker>###</commentblockmarker>
+
+!<INPUT 3>!
+
+You are engaged in a game with !<INPUT 0>! participants.
+
+Here are the regulations of the game:
+
+1. As pirates, you've discovered !<INPUT 1>! gold coins and must decide how to allocate them among your group.
+2. The pirates will make choices based on their seniority level. You rank as the !<INPUT 2>!-th in terms of seniority.
+3. The oldest pirate initiates the suggestion on how to share the !<INPUT 1>! gold coins.
+4. Every pirate, including the one who suggested, votes on the proposed allocation.
+5. Should the suggested plan get a majority vote, each pirate will get the gold coins as proposed by the most senior pirate.
+6. However, if the majority dismisses the proposed plan, the pirate who proposed it is thrown overboard and the next senior pirate proposes a new distribution.
+7. The game concludes when a distribution plan is approved, or only one pirate is left. 

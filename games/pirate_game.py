@@ -18,6 +18,7 @@ class PirateGame(GameServer):
         self.next_round = True
         self.end = False
         self.current_plan = None
+        
 
     def compute_result(self, responses, gold_distribution):
         record = {
@@ -214,9 +215,9 @@ class PirateGame(GameServer):
 
                 if self.cot:
                     cot_msg = get_cot_prompt(self.cot)
-                    output_format = f'{cot_msg} Please provide your thinking process and proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: \\{{"explanation": "thinking_process", "proposal": \\{{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"\\}}\\}}'
+                    output_format = f'{cot_msg} Please provide your thinking process and proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: {{"explanation": "thinking_process", "proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
                 else:
-                    output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: \\{{"proposal": \\{{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"\\}}\\}}'
+                    output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: {{"proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
                 request_list2 = [current_player_id + 1, self.gold, output_format]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
@@ -240,6 +241,10 @@ class PirateGame(GameServer):
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 print(f'proposing pirate: {self.current_round}, voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
+                try:
+                    gpt_responses = gpt_responses.replace('\\', '')
+                except:
+                    pass
                 print(f'gpt response before manipulating: {gpt_responses}')
                 # if json format is given as responses as desired
                 try:
@@ -252,7 +257,7 @@ class PirateGame(GameServer):
                         # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
                         print(f'current_plan updated: {self.current_plan}')
                         gold_distribution = [int(gold) for gold in list(self.current_plan.values())]
-                        if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
+                        if sum(gold_distribution) != self.gold or len(gold_distribution) != self.player_num - self.current_round + 1:
                             continue
                         # player.records.append(gold_distribution)
                         print(gold_distribution)
@@ -280,10 +285,12 @@ class PirateGame(GameServer):
                     # more detailed explanation is given before json format, use regular expression to extract
                     try:
                         if self.current_round == current_player_id + 1:
-                            json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}', gpt_responses)
+                            json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}|\"proposal\": (\{.*?\})', gpt_responses)
+                            print(json_str_match)
                             if json_str_match:
                                 json_str = json_str_match.group(0)
                             parsered_responses = json.loads(json_str)
+                            print("parsered", parsered_responses)
                             # player.records.append(parsered_responses)
                             self.current_plan = parsered_responses
                             # responses.append(parsered_responses)
@@ -291,7 +298,7 @@ class PirateGame(GameServer):
                             print(f'current_plan updated: {self.current_plan}')
                             gold_distribution = list(self.current_plan.values())
                             gold_distribution = list(self.current_plan.values())
-                            if sum(gold_distribution) != 100 or len(gold_distribution) != self.player_num - self.current_round + 1:
+                            if sum(gold_distribution) != self.gold or len(gold_distribution) != self.player_num - self.current_round + 1:
                                 continue
                             print(gold_distribution)
                             player.records.append('accept')
@@ -332,21 +339,22 @@ class PirateGame(GameServer):
         self.report_result(gold_distribution)
         # self.graphical_analysis()
 
-    def update_system_prompt(self, description_file):
+    def update_system_prompt(self, description_file, role):
+        role_msg = get_role_msg(role)
         for player in self.players:
-            description_list = [self.player_num, self.gold, int(player.id.split('_')[1]) + 1]
+            description_list = [self.player_num, self.gold, int(player.id.split('_')[1]) + 1, role_msg]
             description_prompt = get_prompt(description_file, description_list)
             for item in player.prompt:
                 if item.get("role") == "system":
                     item["content"] = description_prompt
                     break
     
-    def run(self, rounds, cot=None):
+    def run(self, rounds, cot=None, role=None):
         self.cot = cot
         # Update system prompt (number of round)
         # Call the constructor of the base class
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        self.update_system_prompt(description_file)
+        self.update_system_prompt(description_file, role)
         for round_count in range(self.round_id+1, self.round_id+rounds+1):
             self.start(round_count)
             self.save(self.name_exp)

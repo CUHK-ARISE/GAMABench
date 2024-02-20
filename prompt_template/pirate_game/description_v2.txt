@@ -1,10 +1,23 @@
-pirate_game_description.txt
+prompt_template/pirate_game/description_v2.txt
 
 Variables:
-!<INPUT 0>! -- pirate rank
-!<INPUT 1>! -- number of players
-!<INPUT 2>! -- gold
+!<INPUT 0>! -- number of players
+!<INPUT 1>! -- gold
+!<INPUT 2>! -- pirate rank
+!<INPUT 3>! -- role play message
 
 <commentblockmarker>###</commentblockmarker>
 
-Within a group of !<INPUT 1>! pirates, your rank is !<INPUT 0>!. The topic of conversation is how to divide the !<INPUT 2>! pieces of gold that have been discovered. The oldest pirate initiates the discussion with a proposed distribution. Every pirate, including the one who proposed the plan, votes to either accept or reject the plan. If half or more pirates favor the plan, it is implemented and the game concludes with the gold being shared as planned. If the plan does not garner sufficient support, the pirate who proposed it is removed from the game, being cast overboard. Afterwards, the pirate next in line of seniority proposes a new plan and the process is repeated until a consensus is reached or only one pirate remains. Your main objectives are: staying alive, getting the maximum possible share of the gold, and having the chance to eliminate other pirates from the game.
+!<INPUT 3>!
+
+You are involved in a game with !<INPUT 0>! participants. 
+
+The guidelines of the game are:
+
+1. As pirates who have discovered !<INPUT 1>! gold coins, you must decide how to split them among your crew.
+2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the !<INPUT 2>!-th pirate in order of seniority.
+3. The top-ranking pirate is responsible for suggesting a scheme to divide the !<INPUT 1>! gold coins.
+4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.
+5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.
+6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.
+7. The game concludes when a proposal is accepted or if there's only one pirate left.

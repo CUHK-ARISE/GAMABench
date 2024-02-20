@@ -1,12 +1,16 @@
-battle_royale_request.txt
+prompt_template/battle_royale/request_v2.txt
 
 !<INPUT 0>! -- round id
-!<INPUT 1>! -- player list
-!<INPUT 2>! -- player + playerid
+!<INPUT 1>! -- current player names and hit rates in an ascending order (their shooting order)
+!<INPUT 2>! -- player name
 !<INPUT 3>! -- player hit rate
-!<INPUT 4>! -- output format
-!<INPUT 5>! -- cot message
+!<INPUT 4>! -- player order
+!<INPUT 5>! -- JSON format
 
 <commentblockmarker>###</commentblockmarker>
 
-We're now beginning round !<INPUT 0>!. The updated order and success rates of all participants are as follows: !<INPUT 1>!. You're identified as !<INPUT 2>!. Your personal hit rate stands at !<INPUT 3>!%. You are faced with the decision of choosing which competitor to aim at, or choosing not to shoot. To communicate your choice of player, you must reply with an integer representing that player. Should you choose to miss your shot on purpose, please reply with '-1'. Kindly express your decision in this JSON format: '!<INPUT 4>!'. !<INPUT 5>!
+We're now beginning round !<INPUT 0>!. 
+
+The objective is to outlast the other participants by eliminating them, ensuring your survival till the end to be the victor. Here's a list of the remaining contestants in their shooting order along with their hit rates: !<INPUT 1>!. Note that you are !<INPUT 2>!, and your hit accuracy is !<INPUT 3>!%. You're !<INPUT 4>!-th in line to take your shot, so ascertain whether to hit another player or deliberately miss. 
+
+!<INPUT 5>!

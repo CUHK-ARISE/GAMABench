@@ -10,7 +10,7 @@ from server import *
 from math import log, ceil
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num, tokens, ratio, version, name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, tokens, ratio=2, version='v1', name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
         self.version = version
         self.name_exp = name_exp
@@ -270,11 +270,14 @@ class PublicGoods(GameServer):
     def save(self, savename):
         game_info = {
             "tokens": self.tokens,
-            "ratio": self.ratio
+            "ratio": self.ratio,
+            "token_initialization": self.token_initialization,
+            "reset": self.reset,
+            "rand_min": self.rand_min
         }
-        return super().save(savename, game_info)
+        return self.save2(savename, game_info)
 
-    def save(self, savename, game_info={}):
+    def save2(self, savename, game_info={}):
         save_data = {
             "meta": {
                 "name_exp": self.name_exp,
@@ -325,7 +328,7 @@ class PublicGoods(GameServer):
                 if round == 1: 
                     rand_token = randint(self.rand_min, self.tokens)
                     while(rand_token in initial_tokens):
-                        rand_token = randint(1, self.tokens + 1)
+                        rand_token = randint(self.rand_min, self.tokens + 1)
                     initial_tokens.append(rand_token) 
                     player.tokens.append(rand_token)
             elif self.token_initialization == "fixed":
@@ -338,9 +341,9 @@ class PublicGoods(GameServer):
         
             cot_msg = get_cot_prompt(self.cot)
             if self.cot:
-                output_format = f'{cot_msg} Please provide your thinking process and the number of tokens in the following JSON format: \\{{"explanation": "thinking_process", "tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"\\}}'
+                output_format = f'{cot_msg} Please provide your thinking process and the number of tokens in the following JSON format: {{"explanation": "thinking_process", "tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"}}'
             else:
-                output_format = f'Please provide the number of tokens in the following JSON format: \\{{"tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"\\}}'
+                output_format = f'Please provide the number of tokens in the following JSON format: {{"tokens_contributed": "integer_between_0_and_{player.tokens[-1]}"}}'
             request_list = [self.round_id, player.tokens[-1], output_format]
             request_msg = get_prompt(request_file, request_list)
             request_prompt = [{"role": "user", "content": request_msg}]
@@ -359,10 +362,10 @@ class PublicGoods(GameServer):
         round_record = self.compute_result(responses)
         self.report_result(round_record)
 
-
-    def run(self, rounds, cot=None):
+    def run(self, rounds, cot=None, role=None):
         self.cot = cot
+        role_msg = get_role_msg(role)
         # Update system prompt (number of round)
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        description_list = [self.player_num, self.round_id+rounds, self.ratio]
+        description_list = [self.player_num, self.round_id+rounds, self.ratio, role_msg]
         super().run(rounds, description_file, description_list)

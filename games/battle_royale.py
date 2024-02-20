@@ -12,15 +12,15 @@ import re
 
 seed(9)
 class BattleRoyale(GameServer):
-    def __init__(self, player_num, version, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num, version, base_hit_rate=35, interval=5, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'battle_royale', models, version)
         self.name_exp = name_exp
         self.player_info = []
         print("Initializing players:")
         self.version = version
-        hit_rate = 40
         for index, player in enumerate(self.players):
-            self.player_info.append([player, hit_rate + 1 * (index + 1)])
+            self.player_info.append([player, base_hit_rate + interval * (index)])
+            print([player, base_hit_rate + interval * (index)])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
@@ -28,6 +28,8 @@ class BattleRoyale(GameServer):
         self.player_colors = {f'{player.id}':plt.cm.viridis(int(player.id.split('_')[1]) / player_num) for player in self.players}
         self.player_removed_info = {}
         self.end = False
+        self.base_hit_rate = base_hit_rate
+        self.interval = interval
 
     def round_to_1_sig_fig(self, num):
         if num == 0:
@@ -248,7 +250,8 @@ class BattleRoyale(GameServer):
     
     def save(self, savename):
         game_info = {
-            # "player_info": self.player_info
+            "base_hit_rate": self.base_hit_rate,
+            "interval": self.interval
         }
         return super().save(savename, game_info)
 
@@ -264,9 +267,9 @@ class BattleRoyale(GameServer):
         request_file = f'prompt_template/{self.prompt_folder}/request_{self.version}.txt'
         cot_msg = get_cot_prompt(self.cot)
         if self.cot:
-            output_format = f'{cot_msg} Please provide your thinking process and action in the following JSON format: \\{{"explanation": "thinking_process", "action": "shoot_or_miss", "target": "playerID_or_null"\\}}'
+            output_format = f'{cot_msg} Please provide your thinking process and action in the following JSON format: {{"explanation": "thinking_process", "action": "shoot_or_miss", "target": "playerID_or_null"}}'
         else:
-            output_format = f'Please provide your action in the following JSON format: \\{{"action": "shoot_or_miss", "target": "playerID_or_null"\\}}'
+            output_format = f'Please provide your action in the following JSON format: {{"action": "shoot_or_miss", "target": "playerID_or_null"}}'
         
         responses = []
         request_list = [self.round_id, self.player_info_str_print(), self.current_player_info[0].id, self.current_player_info[1], int(self.player_info.index(self.current_player_info)) + 1, output_format]
@@ -287,6 +290,8 @@ class BattleRoyale(GameServer):
                 if parsered_responses == None:
                     parsered_responses = "null"
                 else:
+                    if parsered_responses == "playerID_or_null":
+                        continue
                     try:
                         parsered_responses = parsered_responses.split("_")[1]
                         print(parsered_responses)
@@ -306,7 +311,7 @@ class BattleRoyale(GameServer):
                     match = re.search(r'"target":\s*(\d+|"[^"]+"|null)', gpt_responses)
                     # Retrieve the value if the pattern is found
                     parsered_responses = match.group(1).strip('"') if match else None
-                    if parsered_responses == None:
+                    if parsered_responses == None or parsered_responses == "playerID_or_null":
                         continue
                     try:
                         parsered_responses = parsered_responses[1].split("_")[1]
@@ -325,27 +330,33 @@ class BattleRoyale(GameServer):
             self.end = True
             return
 
-    def update_system_prompt(self, description_file):
+    def update_system_prompt(self, description_file, role):
+        role_msg = get_role_msg(role)
         for player, hit_rate in self.player_info:
-            description_list = [self.player_num, self.player_info_str_print(), player.id, hit_rate, int(player.id.split("_")[1]) + 1]
+            description_list = [self.player_num, self.player_info_str_print(), player.id, hit_rate, int(player.id.split("_")[1]) + 1, role_msg]
             description_prompt = get_prompt(description_file, description_list)
             for item in player.prompt:
                 if item.get("role") == "system":
                     item["content"] = description_prompt
                     break
                 
-    def run(self, rounds, cot=None):
+    def run(self, rounds, cot=None, role=None):
         self.cot = cot
         # Update system prompt (number of round)
         round_message = f"There will be {self.round_id+rounds} rounds." if rounds > 1 else ""
         self.rounds = rounds
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
-        self.update_system_prompt(description_file)
+        self.update_system_prompt(description_file, role)
+        target_list = []
         for round_count in range(self.round_id+1, self.round_id+rounds+1):
             self.start(round_count)
             self.save(self.name_exp)
             self.show()
             if self.end:
-                return self.player_info
+                for record in self.round_records:
+                    target_list.append(record['shot_player'])
+                return target_list
             time.sleep(1)    
-        return self.player_info
+        for record in self.round_records:
+            target_list.append(record['shot_player'])
+        return target_list
