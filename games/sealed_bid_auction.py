@@ -142,7 +142,8 @@ class SealedBidAuction(GameServer):
             "valuation_min": self.valuation_min,
             "valuation_max": self.valuation_max,
             "interval": self.interval,
-            "seed": self.seed
+            "seed": self.seed,
+            "mode": self.mode
         }
         return super().save(savename, game_info)
 

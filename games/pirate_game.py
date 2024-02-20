@@ -228,9 +228,9 @@ class PirateGame(GameServer):
                 
                 cot_msg = get_cot_prompt(self.cot)
                 if self.cot:
-                    output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: \{"explanation": "thinking_process", "decision": "accept_or_reject"\}'
+                    output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: {"explanation": "thinking_process", "decision": "accept_or_reject"}'
                 else:
-                    output_format = f'Please provide your decision on the current proposal in the following JSON format: \\{{"decision": "accept_or_reject"\\}}'
+                    output_format = f'Please provide your decision on the current proposal in the following JSON format: {{"decision": "accept_or_reject"}}'
                 
                 request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format]
                 request_msg1 = get_prompt(request_file1, request_list1)    
