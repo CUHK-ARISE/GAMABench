@@ -163,7 +163,7 @@ class SealedBidAuction(GameServer):
         # valuation of item should be randomized here
         responses = []
 
-        for idx, player in tqdm(enumerate(self.players)):
+        for idx, player in enumerate(tqdm(self.players)):
             # rand_valuation = random.choice(range(self.valuation_min, self.valuation_max + self.interval, self.interval))
             # while rand_valuation in self.round_valuation:
             #     rand_valuation = random.choice(range(self.valuation_min, self.valuation_max + self.interval, self.interval))
@@ -182,6 +182,11 @@ class SealedBidAuction(GameServer):
             while True:
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
+                    # Find the start of the JSON substring
+                    json_start_index = gpt_responses.find('{')
+                    json_end_index = gpt_responses.rfind('}')
+                    # Extract the JSON substring from the original string
+                    gpt_responses = gpt_responses[json_start_index:json_end_index+1]
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = int(parsered_responses["bid"])
                     player.records.append(parsered_responses)
