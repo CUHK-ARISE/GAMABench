@@ -215,7 +215,7 @@ class PirateGame(GameServer):
 
                 if self.cot:
                     cot_msg = get_cot_prompt(self.cot)
-                    output_format = f'{cot_msg} Please provide your thinking process and proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: {{"explanation": "thinking_process", "proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
+                    output_format = '{{"explanation": "thinking_process", "proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'.format(g_input_0=g_input_0, g_input_2=g_input_2, cot_msg=cot_msg)
                 else:
                     output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: {{"proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
                 request_list2 = [current_player_id + 1, self.gold, output_format]
@@ -228,7 +228,7 @@ class PirateGame(GameServer):
                 
                 cot_msg = get_cot_prompt(self.cot)
                 if self.cot:
-                    output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: {"explanation": "thinking_process", "decision": "accept_or_reject"}'
+                    output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: {{"explanation": "thinking_process", "decision": "accept_or_reject"}}'
                 else:
                     output_format = f'Please provide your decision on the current proposal in the following JSON format: {{"decision": "accept_or_reject"}}'
                 
