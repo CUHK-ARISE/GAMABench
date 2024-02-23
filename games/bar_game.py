@@ -95,12 +95,13 @@ class BarGame(GameServer):
         # Choice Distribution
         for index, player in enumerate(players_list):
             go_dist = [player.records[:i+1].count('go') / (i+1) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, go_dist, marker='x', color=player_color[index], label=player.id)
+            plt.plot(round_numbers, go_dist, marker='x', color=player_color[index])
         plt.axhline(y=self.ratio, color='r', linestyle='--', label='Capacity')
         plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
+        plt.legend(loc="upper right")
         plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
         plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
         plt.clf()

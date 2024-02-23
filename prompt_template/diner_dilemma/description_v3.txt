@@ -3,20 +3,22 @@ prompt_template/diner_dilemma/description_v3.txt
 Variables:
 !<INPUT 0>! -- number of players
 !<INPUT 1>! -- number of rounds
-!<INPUT 2>! -- expensive dish's cost
-!<INPUT 3>! -- expensive dish's utility
+!<INPUT 2>! -- costly dish's cost
+!<INPUT 3>! -- costly dish's utility
 !<INPUT 4>! -- cheap dish's cost
 !<INPUT 5>! -- cheap dish's utility
 !<INPUT 6>! -- role player message
 
 <commentblockmarker>###</commentblockmarker>
 
-You are actively involved in a game that requires !<INPUT 0>! players and is played over !<INPUT 1>! rounds.
+!<INPUT 6>!
 
-The Guidelines of the Game state:
+You're part of a game involving !<INPUT 0>! participants that spans across !<INPUT 1>! rounds. 
 
-1. Every participant must make a choice to order a dish, either cheap or costly.
-2. The cost for the expensive dish is !<INPUT 2>!. The economical dish costs !<INPUT 4>!.
-3. Choosing the costly dish gives you a utility of !<INPUT 3>!. While opting for the cheap dish provides a utility of !<INPUT 5>!.
-4. Although the costly dish tastes better than the cheap one, it does not justify its price if you are dining alone.
-5. When each round concludes, the combined cost of all the dishes that have been ordered will be divided equally amongst all the participants.
+The guidelines for this game are:
+
+1. Each participant has the option of selecting either a costly dish or one that is cheap.
+2. The costly dish has a price tag of !<INPUT 2>! while the cheap dish comes at a cost of !<INPUT 4>!.
+3. Opting for a costly dish will provide you with a utility of !<INPUT 3>!. The cheap dish, on the other hand, gives a utility of !<INPUT 5>!.
+4. The costly dish is more appealing than the cheap one in terms of taste, however, its price doesn't seem justifiable if you're dining by yourself.
+5. After the completion of each round, the combined cost of all the dishes ordered is distributed equally amongst all participants.
