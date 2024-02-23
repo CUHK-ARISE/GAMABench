@@ -190,7 +190,7 @@ class BattleRoyale(GameServer):
         plt.plot(rounds, self.player_remaining, marker='o')
         plt.title('Number of Players Over Rounds')
         plt.yticks(range(1, self.player_num + 1))
-        plt.xticks(range(1, self.round_id + 1))
+        plt.xticks(range(1, self.round_id))
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
         plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.svg', dpi = 300)
@@ -207,7 +207,7 @@ class BattleRoyale(GameServer):
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
         # print(graph_iter)
         rounds = range(1, len(self.round_records) + 1)
-        fig, ax = plt.subplots(figsize=(10,6))
+        fig, ax = plt.subplots()
 
         added_labels = set()
 
