@@ -211,6 +211,8 @@ class PublicGoods(GameServer):
         plt.title(f'Contributed Tokens Percentage')
         plt.xlabel('Round')
         plt.ylabel('Contributed Tokens (%)')
+        plt.yticks(range(0, 120, 20))
+        plt.xticks(range(1, self.round_id+1))
         # if not self.reset:
         #     if max_donation == 0:
         #         max_donation = 10

@@ -189,6 +189,8 @@ class BattleRoyale(GameServer):
         rounds = [i for i in range(1, self.round_id)]
         plt.plot(rounds, self.player_remaining, marker='o')
         plt.title('Number of Players Over Rounds')
+        plt.yticks(range(1, self.player_num + 1))
+        plt.xticks(range(1, self.round_id + 1))
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
         plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.svg', dpi = 300)

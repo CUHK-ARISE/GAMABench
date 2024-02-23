@@ -122,12 +122,14 @@ class PirateGame(GameServer):
         plt.title(f'Pirate Game (players = {self.player_num})')
         plt.xlabel('Players')
         plt.ylabel('Gold Distribution')
-        plt.ylim(-10 , self.gold + 10)
-        plt.xlim(0 , self.current_round + 4) 
+        plt.xlim(0, self.current_round + 2)
+        plt.ylim(0, self.gold + self.gold * 0.01)
+        plt.xticks(range(1, self.current_round + 1))
         plt.legend(handles=legend_patches, loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}/proposal.svg', dpi=300)
         plt.clf()
+        plt.close()
 
     def graphical_analysis(self, player_list):
         if self.next_round == False and self.end == True :
@@ -152,10 +154,14 @@ class PirateGame(GameServer):
         plt.title(f'Pirate Game (players = {self.player_num})')
         plt.xlabel('Senior Pirate turns')
         plt.ylabel('Accepting Rate')
-        plt.ylim(-.1, 1.1)
+        yrange = range(0, 12, 2)
+        yrange = [i / 10 for i in yrange]
+        plt.yticks(yrange)
+        plt.xticks(range(1, len(x_values) + 1))
         fig = plt.gcf()
         fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.svg', dpi=300)
         plt.clf()
+        plt.close()
 
     def round_to_3_sig_fig(self, num):
         
