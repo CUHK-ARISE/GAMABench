@@ -146,7 +146,7 @@ class Player:
                 response = completion(self.model, inputs).strip()
                 self.print_prompt(inputs, response)
                 return response
-            elif self.model in ['gpt-3.5-turbo', 'gpt-4']:
+            elif self.model.startswith(('gpt-3.5-turbo', 'gpt-4')):
                 response = chat(self.model, inputs).strip()
                 # Debug use
                 # response = f'''{{"option": "{random.randint(0,100)}"}}'''
@@ -179,7 +179,7 @@ class GameServer:
         self.version = version
         
         if isinstance(models, str):
-            self.players = [Player('gpt-3.5-turbo', f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
+            self.players = [Player(models, f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
         elif isinstance(models, list):
             self.players = [Player(models[i], f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
 
@@ -241,7 +241,3 @@ class GameServer:
             self.save(self.name_exp)
             self.show()
             time.sleep(1)
-    
-
-    
-    
