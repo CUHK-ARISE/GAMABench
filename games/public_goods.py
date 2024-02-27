@@ -353,6 +353,11 @@ class PublicGoods(GameServer):
             while True:
                 gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
+                    # Find the start of the JSON substring
+                    json_start_index = gpt_responses.find('{')
+                    json_end_index = gpt_responses.rfind('}')
+                    # Extract the JSON substring from the original string
+                    gpt_responses = gpt_responses[json_start_index:json_end_index+1]
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = int(parsered_responses["tokens_contributed"])
                     player.records.append(parsered_responses)

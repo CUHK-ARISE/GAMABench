@@ -223,7 +223,7 @@ class PirateGame(GameServer):
                     cot_msg = get_cot_prompt(self.cot)
                     output_format = '{{"explanation": "thinking_process", "proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'.format(g_input_0=g_input_0, g_input_2=g_input_2, cot_msg=cot_msg)
                 else:
-                    output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format: {{"proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
+                    output_format = f'Please provide your proposal of the golds distributed to each pirate from the you to the {g_input_2}-th most senior in the following JSON format only: {{"proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'
                 request_list2 = [current_player_id + 1, self.gold, output_format]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
@@ -236,7 +236,7 @@ class PirateGame(GameServer):
                 if self.cot:
                     output_format = f'{cot_msg} Please provide your thinking process and decision on the current proposal in the following JSON format: {{"explanation": "thinking_process", "decision": "accept_or_reject"}}'
                 else:
-                    output_format = f'Please provide your decision on the current proposal in the following JSON format: {{"decision": "accept_or_reject"}}'
+                    output_format = f'Please only provide your decision on the current proposal in the following JSON format: {{"decision": "accept_or_reject"}}'
                 
                 request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format]
                 request_msg1 = get_prompt(request_file1, request_list1)    
@@ -251,10 +251,21 @@ class PirateGame(GameServer):
                     gpt_responses = gpt_responses.replace('\\', '')
                 except:
                     pass
-                print(f'gpt response before manipulating: {gpt_responses}')
                 # if json format is given as responses as desired
                 try:
                     if self.current_round == current_player_id + 1:
+                        try:
+                            if cot_msg:
+                                traget_str = '"explanation"'
+                            else: 
+                                traget_str = '"proposal"'
+                            targetIndex = gpt_responses.rfind(traget_str)
+                            json_start_index = gpt_responses.rfind("{", 0, targetIndex)
+                            json_end_index = json_start_index + gpt_responses[json_start_index:].rfind('}')
+                            gpt_responses = gpt_responses[json_start_index:json_end_index+1]
+                        except:
+                            pass
+                        print(f'gpt response: {gpt_responses}')
                         parsered_responses = json.loads(gpt_responses)
                         parsered_responses = dict((parsered_responses["proposal"]))
                         # player.records.append(parsered_responses)
@@ -266,12 +277,25 @@ class PirateGame(GameServer):
                         if sum(gold_distribution) != self.gold or len(gold_distribution) != self.player_num - self.current_round + 1:
                             continue
                         # player.records.append(gold_distribution)
-                        print(gold_distribution)
                         player.records.append('accept')
                         self.accepted += 1
                         responses.append('accept')
                         break
                     else: 
+                        try:
+                            if cot_msg:
+                                traget_str = '"explanation"'
+                            else: 
+                                traget_str = '"decision"'
+                            targetIndex = gpt_responses.rfind(traget_str)
+                            json_start_index = gpt_responses.rfind("{", 0, targetIndex)
+                            json_end_index = json_start_index + gpt_responses[json_start_index:].rfind('}')
+                            gpt_responses= gpt_responses[json_start_index:json_end_index+1]
+                        except:
+                            pass
+                        print(f'gpt response: {gpt_responses}')
+                        parsered_responses = json.loads(gpt_responses)
+                        gpt_responses = parsered_responses["decision"]
                         if 'accept' not in gpt_responses and 'Accept' not in gpt_responses and 'reject' not in gpt_responses and 'Reject' not in gpt_responses: 
                             continue
                         elif 'accept' in gpt_responses or 'Accept' in gpt_responses:
@@ -288,48 +312,7 @@ class PirateGame(GameServer):
                             player.records.append('reject')
                         break  
                 except:
-                    # more detailed explanation is given before json format, use regular expression to extract
-                    try:
-                        if self.current_round == current_player_id + 1:
-                            json_str_match = re.search(r'{\s*(?:(?:"[^"]+"|\'[^\']+\')\s*:\s*\d+\s*,?\s*)+}|\"proposal\": (\{.*?\})', gpt_responses)
-                            print(json_str_match)
-                            if json_str_match:
-                                json_str = json_str_match.group(0)
-                            parsered_responses = json.loads(json_str)
-                            print("parsered", parsered_responses)
-                            # player.records.append(parsered_responses)
-                            self.current_plan = parsered_responses
-                            # responses.append(parsered_responses)
-                            # player.prompt = player.prompt + [{"role": "assistant", "content": gpt_responses}]
-                            print(f'current_plan updated: {self.current_plan}')
-                            gold_distribution = list(self.current_plan.values())
-                            gold_distribution = list(self.current_plan.values())
-                            if sum(gold_distribution) != self.gold or len(gold_distribution) != self.player_num - self.current_round + 1:
-                                continue
-                            print(gold_distribution)
-                            player.records.append('accept')
-                            self.accepted += 1
-                            responses.append('accept')
-                            break
-                        else:
-                            if 'reject' not in gpt_responses and 'Reject' not in gpt_responses and 'accept' not in gpt_responses and 'Accept' not in gpt_responses: 
-                                continue
-                            elif 'accept' in gpt_responses or 'Accept' in gpt_responses:
-                                # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                                gpt_responses = 'accept'
-                                self.accepted += 1
-                                responses.append('accept')
-                                player.records.append('accept')
-                            elif 'reject' in gpt_responses or 'Reject' in gpt_responses:
-                                # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]
-                                gpt_responses = 'reject'
-                                self.declined += 1
-                                responses.append('reject')
-                                player.records.append('reject')
-                            break
-                    except:
-                        pass
-                    
+                    pass
             if not self.next_round:
                 self.senior_pirate_turns = self.current_round
                 self.add_end_info()
