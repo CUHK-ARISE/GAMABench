@@ -159,14 +159,37 @@ class BattleRoyale(GameServer):
             if self.player_info[i][0] == self.current_player_info[0]:
                 report_list2 = [self.round_id, round_record["action"], round_record["shot_player"], result2, len(self.player_info)]
                 report_prompts = get_prompt(report_file2, report_list2)
-                report_prompts = [
-                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
-                    for i, msg in enumerate(report_prompts)
-                ]
-                self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
+                gemini_msg = []
+                if self.player_info[i][0].model.startswith('gemini'):
+                    for k, msg in enumerate(report_prompts):
+                        if k == 0:
+                            self.player_info[i][0].prompt[-1]['parts'].append(msg)
+                            print(msg)
+                        elif k == 1:
+                            self.player_info[i][0].prompt.append({'role': 'model', 'parts': [msg]})
+                            print(msg)
+                        else:         
+                            gemini_msg.append(msg)
+                            print(msg)
+                    self.player_info[i][0].prompt.append({'role': 'user', 'parts': gemini_msg})
+                else:
+                    report_prompts = [
+                        {"role": f"{'assistant' if k == 1 else 'user'}", "content": msg}
+                        for k, msg in enumerate(report_prompts)
+                    ]
+                    self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
             # round reports for all 
-            report_prompts = [{"role": "user", "content": get_prompt(report_file, report_list)}]
-            self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
+            report_msg = get_prompt(report_file, report_list)
+            gemini_msg = []
+            if self.player_info[i][0].model.startswith('gemini'):
+                if self.player_info[i][0].prompt[-1]['role'] == "model":
+                    self.player_info[i][0].prompt.append({'role': 'user', 'parts': report_msg})
+                else:
+                    self.player_info[i][0].prompt[-1]['parts'].append(report_msg)
+                print(self.player_info[i][0].prompt) 
+            else:
+                report_prompts = [{"role": "user", "content": report_msg}]
+                self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
         # # switch to the next player
         current_player_id = self.current_player_info[0].id
@@ -281,7 +304,12 @@ class BattleRoyale(GameServer):
         # self.current_player_info[0].prompt = self.current_player_info[0].prompt + request_prompt
         print(f'Player making decision: {self.current_player_info[0].id}')
         while True:
-            gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt + request_prompt)
+            if self.current_player_info[0].model.startswith("gemini"):
+                print(self.current_player_info[0].prompt[-1]['parts'])
+                self.current_player_info[0].prompt[-1]['parts'].append(request_msg)
+                gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt)
+            else:
+                gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt + request_prompt)
             try:
                 print(gpt_responses)
                 parsered_responses = json.loads(gpt_responses)
@@ -337,10 +365,16 @@ class BattleRoyale(GameServer):
         for player, hit_rate in self.player_info:
             description_list = [self.player_num, self.player_info_str_print(), player.id, hit_rate, int(player.id.split("_")[1]) + 1, role_msg]
             description_prompt = get_prompt(description_file, description_list)
-            for item in player.prompt:
-                if item.get("role") == "system":
-                    item["content"] = description_prompt
-                    break
+            if player.model.startswith("gemini"):
+                for item in player.prompt:
+                    if item.get("role") == "user":
+                        item["parts"] = [description_prompt]
+                        break
+            else:
+                for item in player.prompt:
+                    if item.get("role") == "system":
+                        item["content"] = description_prompt
+                        break
                 
     def run(self, rounds, cot=None, role=None):
         self.cot = cot

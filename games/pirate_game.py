@@ -65,12 +65,22 @@ class PirateGame(GameServer):
             # assistant reply format report
             # report_list = [self.player_id_manipulation(self.current_round), self.current_plan, self.accepted, self.player_num - self.current_round + 1, result2, majority, result]
             report_prompts = get_prompt(report_file, report_list)
-            report_prompts = [
-                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
-                for i, msg in enumerate(report_prompts)
-            ]
-            player.prompt = player.prompt + report_prompts
-            count += 1
+            gemini_msg = []
+            if player.model.startswith('gemini'):
+                for i, msg in enumerate(report_prompts):
+                    if i == 0:
+                        player.prompt[-1]['parts'].append(msg)
+                    elif i == 1:
+                        player.prompt.append({'role': 'model', 'parts': [msg]})
+                    else:         
+                        gemini_msg.append(msg)
+                player.prompt.append({'role': 'user', 'parts': gemini_msg})
+            else:
+                report_prompts = [
+                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                    for i, msg in enumerate(report_prompts)
+                ]
+                player.prompt = player.prompt + report_prompts
         self.report_result_graph()
         return
         
@@ -227,6 +237,7 @@ class PirateGame(GameServer):
                 request_list2 = [current_player_id + 1, self.gold, output_format]
                 request_msg2 = get_prompt(request_file2, request_list2)
                 request_prompt2 = [{"role": "user", "content": request_msg2}]
+                request_msg = request_msg2
                 # player.prompt = player.prompt + request_prompt2
                 request_prompt = request_prompt2
             else: 
@@ -241,10 +252,15 @@ class PirateGame(GameServer):
                 request_list1 = [self.current_round, self.current_plan, gold_distribution[current_player_id - self.current_round + 1], output_format]
                 request_msg1 = get_prompt(request_file1, request_list1)    
                 request_prompt1 = [{"role": "user", "content": request_msg1}]
+                request_msg = request_msg1
                 request_prompt = request_prompt1
                 # player.prompt = player.prompt + request_prompt1
             while True:
-                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
+                if player.model.startswith("gemini"):
+                    player.prompt[-1]['parts'].append(request_msg)
+                    gpt_responses = player.request(self.round_id, player.prompt)
+                else:
+                    gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 print(f'proposing pirate: {self.current_round}, voting pirate:{current_player_id + 1}')
                 print(f'current plan: {self.current_plan}')
                 try:
@@ -333,10 +349,16 @@ class PirateGame(GameServer):
         for player in self.players:
             description_list = [self.player_num, self.gold, int(player.id.split('_')[1]) + 1, role_msg]
             description_prompt = get_prompt(description_file, description_list)
-            for item in player.prompt:
-                if item.get("role") == "system":
-                    item["content"] = description_prompt
-                    break
+            if player.model.startswith("gemini"):
+                for item in player.prompt:
+                    if item.get("role") == "user":
+                        item["parts"] = [description_prompt]
+                        break
+            else:
+                for item in player.prompt:
+                    if item.get("role") == "system":
+                        item["content"] = description_prompt
+                        break
     
     def run(self, rounds, cot=None, role=None):
         self.cot = cot

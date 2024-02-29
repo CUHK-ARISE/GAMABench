@@ -49,11 +49,22 @@ class PublicGoods(GameServer):
             report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
             report_list = [self.round_id, self.round_records[-1]['responses'], player.records[-1], total_tokens, round(total_tokens * self.ratio/self.player_num - player.records[-1], 2), player_tokens_list[index], player_tokens_list]
             report_prompts = get_prompt(report_file, report_list)
-            report_prompts = [
-                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
-                for i, msg in enumerate(report_prompts)
-            ]
-            player.prompt = player.prompt + report_prompts
+            gemini_msg = []
+            if player.model.startswith('gemini'):
+                for i, msg in enumerate(report_prompts):
+                    if i == 0:
+                        player.prompt[-1]['parts'].append(msg)
+                    elif i == 1:
+                        player.prompt.append({'role': 'model', 'parts': [msg]})
+                    else:         
+                        gemini_msg.append(msg)
+                player.prompt.append({'role': 'user', 'parts': gemini_msg})
+            else:
+                report_prompts = [
+                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                    for i, msg in enumerate(report_prompts)
+                ]
+                player.prompt = player.prompt + report_prompts
         return
 
 
@@ -293,9 +304,18 @@ class PublicGoods(GameServer):
         }
         
         for player in self.players:
-            if self.round_id > 10:
-                player.prompt = player.prompt[:1] + player.prompt[2:]
-                
+            # if player.model.startswith("gemini"):
+            #     if self.round_id > 10:
+            #         player.prompt[2:][0]["parts"][0] = player.prompt[0]["parts"][0]
+            #         player.prompt = player.prompt[2:]
+            # else:
+            #     if self.round_id > 10:
+            #         player.prompt = player.prompt[:1] + player.prompt[2:]
+            
+            if not player.model.startswith("gemini"):
+                if self.round_id > 10:
+                    player.prompt = player.prompt[:1] + player.prompt[2:]  
+                    
             player_info = {
                 "model": player.model,
                 "id": player.id,
@@ -351,7 +371,11 @@ class PublicGoods(GameServer):
             request_prompt = [{"role": "user", "content": request_msg}]
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
+                if player.model.startswith("gemini"):
+                    player.prompt[-1]['parts'].append(request_msg)
+                    gpt_responses = player.request(self.round_id, player.prompt)
+                else:
+                    gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     # Find the start of the JSON substring
                     json_start_index = gpt_responses.find('{')

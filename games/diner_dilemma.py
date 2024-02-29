@@ -43,11 +43,22 @@ class DinerDilemma(GameServer):
                            round_record["cheap_player"], round_record["cost_msg"], round_record["avg_cost"],
                            player.records[-1], player_revenue_msg]
             report_prompts = get_prompt(report_file, report_list)
-            report_prompts = [
-                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
-                for i, msg in enumerate(report_prompts)
-            ]
-            player.prompt = player.prompt + report_prompts
+            gemini_msg = []
+            if player.model.startswith('gemini'):
+                for i, msg in enumerate(report_prompts):
+                    if i == 0:
+                        player.prompt[-1]['parts'].append(msg)
+                    elif i == 1:
+                        player.prompt.append({'role': 'model', 'parts': [msg]})
+                    else:         
+                        gemini_msg.append(msg)
+                player.prompt.append({'role': 'user', 'parts': gemini_msg})
+            else:
+                report_prompts = [
+                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                    for i, msg in enumerate(report_prompts)
+                ]
+                player.prompt = player.prompt + report_prompts
         return
 
 
@@ -169,7 +180,11 @@ class DinerDilemma(GameServer):
         for player in tqdm(self.players):
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
+                if player.model.startswith("gemini"):
+                    player.prompt[-1]['parts'].append(request_msg)
+                    gpt_responses = player.request(self.round_id, player.prompt)
+                else:
+                    gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = parsered_responses["chosen_dish"].lower()

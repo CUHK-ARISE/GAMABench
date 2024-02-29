@@ -66,11 +66,22 @@ class SealedBidAuction(GameServer):
             report_msg = 'You paid ' + str(round_record["bid_winner_payment"]) + ". " if result == 'won' else ''
             report_list = [self.current_round, player.valuation[-1], player_bid, str(round_record['bid_winner_proposed']), str(round_record["bid_winner_payment"]), result, player.utility[-1]]
             report_prompts = get_prompt(report_file, report_list)
-            report_prompts = [
-                {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
-                for i, msg in enumerate(report_prompts)
-            ]
-            player.prompt = player.prompt + report_prompts
+            gemini_msg = []
+            if player.model.startswith('gemini'):
+                for i, msg in enumerate(report_prompts):
+                    if i == 0:
+                        player.prompt[-1]['parts'].append(msg)
+                    elif i == 1:
+                        player.prompt.append({'role': 'model', 'parts': [msg]})
+                    else:         
+                        gemini_msg.append(msg)
+                player.prompt.append({'role': 'user', 'parts': gemini_msg})
+            else:
+                report_prompts = [
+                    {"role": f"{'assistant' if i == 1 else 'user'}", "content": msg}
+                    for i, msg in enumerate(report_prompts)
+                ]
+                player.prompt = player.prompt + report_prompts
         return
 
     def plot_v_b(self, players_list):
@@ -181,7 +192,11 @@ class SealedBidAuction(GameServer):
             request_prompt = [{"role": "user", "content": request_msg}]
             # player.prompt = player.prompt + request_prompt
             while True:
-                gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
+                if player.model.startswith("gemini"):
+                    player.prompt[-1]['parts'].append(request_msg)
+                    gpt_responses = player.request(self.round_id, player.prompt)
+                else:
+                    gpt_responses = player.request(self.round_id, player.prompt + request_prompt)
                 try:
                     # Find the start of the JSON substring
                     json_start_index = gpt_responses.find('{')
