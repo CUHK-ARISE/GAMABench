@@ -9,7 +9,7 @@ from math import log10, floor
 from collections import defaultdict 
 import matplotlib.patches as mpatches
 class PirateGame(GameServer):
-    def __init__(self, player_num, gold, version, name_exp='pirate_game', round_id=0, models='gpt-3.5'):
+    def __init__(self, player_num, gold="100", version="v1", name_exp='pirate_game', round_id=0, models='gpt-3.5'):
         super().__init__(player_num, round_id, 'pirate_game', models, version)
         self.version = version
         self.name_exp = name_exp
@@ -81,14 +81,14 @@ class PirateGame(GameServer):
                     for i, msg in enumerate(report_prompts)
                 ]
                 player.prompt = player.prompt + report_prompts
-        self.report_result_graph()
+        self.plot_proposal()
         return
         
-    def report_result_graph(self):
-        os.makedirs(f'figures/{self.name_exp}_{self.version}', exist_ok=True)
+    def plot_proposal(self):
+        os.makedirs(f'figures/{self.name_exp}', exist_ok=True)
         player_golds_each_round = defaultdict(list)
         player_golds_each_round_list = defaultdict(list)
-        player_color =  ['#e6194B', '#42d4f4', '#ffe119', '#3cb44b', '#f032e6', '#fabed4', '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000', '#aaffc3', '#000075', '#a9a9a9', '#000000'] 
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         rounds = [i + 1 for i in range(self.current_round)]
         for index1, round_record in enumerate(self.round_records):
             for index2, player in enumerate(self.players):
@@ -102,33 +102,6 @@ class PirateGame(GameServer):
         # Add labels here, outside the inner loop
         legend_patches = [mpatches.Patch(color=player_color[index], label=f"Rank {index + 1}") for index, player in enumerate(self.players)]
 
-        # count = 0
-        # labels_added = set()  # To keep track of which labels have been added
-        # for player in self.players:
-        #     current_player_id = int(player.id.split('_')[1])
-            
-        #     # If the player has already been thrown overboard
-        #     if current_player_id + 1 < self.current_round:
-        #         if 'thrown' not in labels_added:
-        #             plt.plot(current_player_id + 1, 0, 'x', color='grey', label='thrown')  # Plot at y=0 to indicate no gold
-        #             labels_added.add('thrown')
-        #             # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-        #         else:
-        #             plt.plot(current_player_id + 1, 0, 'x', color='grey')
-        #             # plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-        #     # If the player is still in the game
-        #     else:
-        #         color = 'green' if player.records[-1] == 'accept' else 'red'
-        #         label = 'accept' if color == 'green' and 'accept' not in labels_added else 'reject' if color == 'red' and 'reject' not in labels_added else None
-        #         plt.plot(current_player_id + 1, gold_distribution[count], 'o', color=color, label=label)
-        #         plt.annotate(str(gold_distribution[count]), (current_player_id + 1, gold_distribution[count]),textcoords="offset points",  xytext=(0, 5), ha='center') 
-        #         if current_player_id + 1 == self.current_round and not self.next_round:
-        #             plt.plot(current_player_id + 1, gold_distribution[count], 'o', color='orange', label='winner')
-
-        #         if label:
-        #             labels_added.add(label)
-        #         count += 1
-
         plt.title(f'Pirate Game (players = {self.player_num})')
         plt.xlabel('Players')
         plt.ylabel('Gold Distribution')
@@ -137,10 +110,22 @@ class PirateGame(GameServer):
         plt.xticks(range(1, self.current_round + 1))
         plt.legend(handles=legend_patches, loc='best')  # 'best' will position it where there's most space
         fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/proposal.svg', dpi=300)
+        fig.savefig(f'figures/{self.name_exp}/proposal.svg', dpi=300)
         plt.clf()
         plt.close()
 
+    def L1_dist(self, gold_dis, NE_gold_dis):
+        dist = 0
+        for i in range(len(gold_dis)):
+            dist += abs(gold_dis[i] / self.gold * 100 - NE_gold_dis[i]) 
+        return dist
+    
+    def save(self, savename):
+        game_info = {
+            "gold": self.gold   
+        }
+        return super().save(savename, game_info)
+    
     def graphical_analysis(self, player_list):
         if self.next_round == False and self.end == True :
             return
@@ -148,30 +133,118 @@ class PirateGame(GameServer):
             self.end = True
         # Data points
         os.makedirs("figures", exist_ok=True)
-        os.makedirs(f'figures/{self.name_exp}_{self.version}', exist_ok=True)
-        x_values = np.array([i + 1 for i in range(len(self.accepting_list))])
-        y_values = np.array(self.accepting_list)
-        # Plotting each point
-        plt.plot(x_values, y_values, 'o', color='black')
-        # Adding annotations for each point
-        for x, y in zip(x_values, y_values):
-            plt.annotate(f'({x:.0f}, {self.round_to_3_sig_fig(y)})',  # Text to display
-                        (x, y),                  # Position to start the text
-                        textcoords="offset points",  # Offset (in points)
-                        xytext=(0,10),            # Distance from text to points (x,y)
-                        ha='center')              # Horizontal alignment can be left, right or center
-        # Rest of your plot settings
-        plt.title(f'Pirate Game (players = {self.player_num})')
-        plt.xlabel('Senior Pirate turns')
-        plt.ylabel('Accepting Rate')
-        yrange = range(0, 12, 2)
-        yrange = [i / 10 for i in yrange]
-        plt.yticks(yrange)
-        plt.xticks(range(1, len(x_values) + 1))
-        fig = plt.gcf()
-        fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.svg', dpi=300)
+        os.makedirs(f'figures/{self.name_exp}', exist_ok=True)
+        # x_values = np.array([i + 1 for i in range(len(self.accepting_list))])
+        # y_values = np.array(self.accepting_list)
+        # # Plotting each point
+        # plt.plot(x_values, y_values, 'o', color='black')
+        # # Adding annotations for each point
+        # for x, y in zip(x_values, y_values):
+        #     plt.annotate(f'({x:.0f}, {self.round_to_3_sig_fig(y)})',  # Text to display
+        #                 (x, y),                  # Position to start the text
+        #                 textcoords="offset points",  # Offset (in points)
+        #                 xytext=(0,10),            # Distance from text to points (x,y)
+        #                 ha='center')              # Horizontal alignment can be left, right or center
+        # # Rest of your plot settings
+        # plt.title(f'Pirate Game (players = {self.player_num})')
+        # plt.xlabel('Senior Pirate turns')
+        # plt.ylabel('Accepting Rate')
+        # yrange = range(0, 12, 2)
+        # yrange = [i / 10 for i in yrange]
+        # plt.yticks(yrange)
+        # plt.xticks(range(1, len(x_values) + 1))
+        # fig = plt.gcf()
+        # fig.savefig(f'figures/{self.name_exp}_{self.version}/accepting_rate.svg', dpi=300)
+        # plt.clf()
+        # plt.close()
+        L1_distances = []
+        correct_actions = 0
+        total_actions = 0
+        accuracy = []
+        for index1, round_record in enumerate(self.round_records):
+            print(self.round_records)
+            print(index1, round_record)
+            current_gold_distribution = round_record["gold_distribution"]
+            NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
+            print(current_gold_distribution, NE_gold_distribution)
+            L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
+            for index2, player in enumerate(player_list):
+                player_gold = round_record["gold_distribution"][index2 - self.round_id + 1]
+                if index2 == 0:
+                    continue
+                if player_gold >= 2:
+                    if player.records[index1] == 'accept':
+                        correct_actions += 1
+                elif player_gold == 1 and (index2 - self.round_id + 1) % 2 == 0:
+                    if player.records[index1] == 'accept':
+                        correct_actions += 1
+                elif player_gold == 0:
+                    if player.records[index1] == 'reject':
+                        correct_actions += 1
+                total_actions += len(current_gold_distribution) - 1
+            accuracy.append(correct_actions / total_actions)
+                
+        # Create the first plot
+        
+        fig, ax1 = plt.subplots()
+        rounds = [i + 1 for i in range(len(accuracy))]
+        rounds2 = [i + 1 + 1 + len(rounds) for i in range(len(accuracy))]
+        print(rounds)
+        ax1.plot(rounds, L1_distances, marker='x', color='red', label='L1 distance')
+        ax1.tick_params(axis='y')
+        plt.axvline(x=len(accuracy) + 1, color='black', linestyle='--')
+
+        # Create a second y-axis for the second dataset
+        ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+
+ 
+        ax2.plot(rounds2, accuracy, marker='.',color='blue', label='Accuracy')
+        ax2.tick_params(axis='y')
+        # Handle legends
+        lines, labels = ax1.get_legend_handles_labels()
+        lines2, labels2 = ax2.get_legend_handles_labels()
+        plt.legend(lines + lines2, labels + labels2, loc='best')
+
+        fig.tight_layout()  # otherwise the right y-label is slightly clipped
+        plt.xticks([i + 1 for i in range(2 * len(rounds) + 1)], rounds + [''] + rounds)
+        plt.title("Accuracy and L1 distance")
+        ax1.set_xlabel('rounds')
+        ax1.set_ylabel('L1 distance')
+        ax2.set_ylabel('Accuracy')  # we already handled the x-label with ax1
+        plt.legend()
+        plt.savefig(f'figures/{self.name_exp}/AccuracyAndL1.svg', dpi=300)
         plt.clf()
+        
+        player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
+        
+        fig, ax1 = plt.subplots()
+        ax1.set_ylim(bottom=-100, top=200)
+
+        ax2 = ax1.twinx()
+        ax2.set_ylim(bottom=-100, top=200)   
+        count = 0
+        x = np.arange(self.round_id) + 1
+        width = 0.15
+        # for l1, acc in zip(L1_distances_list, accuracy_list):
+        ax1.bar(x, L1_distances, width, color=player_color[count])
+        ax2.bar(x, [(-100) * j for j in accuracy], width, color=player_color[count])
+        count += 1
+        
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(x)
+
+        ax1.set_yticks([0, 50, 100, 150, 200])
+
+        ax2.set_yticks([0, -50, -100])
+        ax2.set_yticklabels(['0.0', '0.5', '1.0'])
+
+        ax1.axhline(y=0, color='black', linestyle='-')
+        ax2.axhline(y=0, color='black', linestyle='-')
+        # plt.legend()
+        plt.savefig(f'figures/{self.name_exp}/L1_acc.svg', dpi=300)
+    
         plt.close()
+        
 
     def round_to_3_sig_fig(self, num):
         

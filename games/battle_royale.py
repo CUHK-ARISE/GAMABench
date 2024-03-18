@@ -80,6 +80,7 @@ class BattleRoyale(GameServer):
         if shot_player == "null":
             shot = False
             action = "miss"
+        # self.removed_player_info_temp = self.removed_player_info
         initial_players = [[player_info[0].id, player_info[1]] for player_info in self.player_info]
         if "-1" in str(shot_player):
             shot = False
@@ -106,7 +107,7 @@ class BattleRoyale(GameServer):
             "player_shooting": self.current_player_info[0].id.split('_')[1],
             "initial_players": initial_players,
             "shot_player": shot_player,
-            "removed_player_info": self.removed_player_info,
+            # "removed_player_info": self.removed_player_info_temp,
             "action": action,
             "out": out
         }
@@ -206,18 +207,18 @@ class BattleRoyale(GameServer):
         os.makedirs(f"figures/{self.name_exp}", exist_ok=True)
         # Number of players over round
         rounds = [i for i in range(1, self.round_id)]
-        plt.plot(rounds, self.player_remaining, marker='o')
+        plt.plot(rounds, self.player_remaining, color='blue', marker='.')
         plt.title('Number of Players Over Rounds')
         plt.yticks(range(1, self.player_num + 1))
-        plt.xticks(range(1, self.round_id))
+        plt.xticks([i for i in range(1, self.round_id + 1) if i % 2 == 0])
         plt.xlabel('Round')
         plt.ylabel('Number of Players Remaining')
-        plt.savefig(f'figures/{self.name_exp}/players_over_rounds_{self.version}.svg', dpi = 300)
+        plt.savefig(f'figures/{self.name_exp}/players_over_rounds.svg', dpi = 300)
         # plt.show()
         plt.clf()
 
         # Assuming self.round_records, self.players, and other required variables are defined
-
+        players_list = [i + 1 for i in range(self.player_num)]
         graph_iter = {player.id.split("_")[1]: False for player in self.players}
         player_order = [info[0].split("_")[1] for info in self.round_records[0]['initial_players']]
         player_order = list(reversed(player_order))
@@ -226,48 +227,69 @@ class BattleRoyale(GameServer):
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
         # print(graph_iter)
         rounds = range(1, len(self.round_records) + 1)
-        fig, ax = plt.subplots()
-
+        
+        plt.figure()
         added_labels = set()
-
+        counts = []
+        temp = 0
         for round_num, record in enumerate(self.round_records, start=1):
             x = round_num
             y = record["player_shooting"]
             if record["action"] == "miss":
                 label = 'Intentionally miss'
                 if label not in added_labels:
-                    ax.scatter(x, player_order.index(y), marker='x', color='black', label=label)
+                    plt.scatter(x, player_order.index(y), marker='x', color='black', label=label)
                     added_labels.add(label)
                 else:
-                    ax.scatter(x, player_order.index(y), marker='x', color='black')
+                    plt.scatter(x, player_order.index(y), marker='x', color='black')
             else:
-                color = 'red' if record['out'] else 'green'
+                color = 'red' if record['out'] else 'blue'
                 label = 'Shot and hit' if record['out'] else 'Shot and missed'
                 if record['shot_player'] != "null":
                     player_shot = int(record['shot_player']) + 1
+                    if player_shot in players_list:
+                        if players_list[-1] == int(y) + 1:
+                            if player_shot == players_list[-2]:
+                                temp += 1
+                        else:
+                            if player_shot == players_list[-1]:
+                                temp += 1
+                    
+                    if color == 'red':
+                        players_list.remove(player_shot)
+                    
                 if label not in added_labels:
-                    ax.scatter(x, player_order.index(y), marker='o', color=color, label=label)
+                    plt.scatter(x, player_order.index(y), marker='o', color=color, label=label)
                     added_labels.add(label)
                 else:
-                    ax.scatter(x, player_order.index(y), marker='o', color=color)
-                ax.text(x, player_order.index(y) + 0.1, player_shot, fontsize=10, ha='center', va='bottom')
+                    plt.scatter(x, player_order.index(y), marker='o', color=color)
+                plt.text(x, player_order.index(y) + 0.1, player_shot, fontsize=10, ha='center', va='bottom')
+            counts.append(temp)
 
-
-        ax.set_title('Player Decisions Over Rounds')
-        ax.set_xlabel('Round')
-        ax.set_ylabel('Player ID')
-        ax.set_xticks(rounds)
-        ax.set_yticks(range(len(self.players)), labels=[int(player) + 1 for player in player_order])
-
+        plt.title('Player Decisions Over Rounds')
+        plt.xlabel('Round')
+        plt.ylabel('Player ID')
+        plt.xticks([i for i in range(1, self.round_id + 1) if i % 2 == 0])
+        plt.yticks(range(len(self.players)), labels=[int(player) + 1 for player in player_order])
         # Adjusting the position of the legend to the right
-        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-        ax.legend(loc='lower left') 
+        # plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+        plt.legend(loc='lower left') 
 
         plt.tight_layout()
-        plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds_{self.version}.svg', bbox_inches='tight', dpi=300)  # Save the figure with the legend
+        plt.savefig(f'figures/{self.name_exp}/player_decisions_over_rounds.svg', bbox_inches='tight', dpi=300)   
         # plt.show()
         plt.clf()
-
+        
+        top_hit_rate = [x / y for x, y in zip(counts, rounds)]
+        plt.plot(rounds, top_hit_rate, marker='.', color='blue')
+        plt.xticks([i for i in range(1, self.round_id + 1) if i % 2 == 0])
+        plt.ylim(-0.05, 1.05)
+        plt.title("Rate of Aiming Highest Hit Rate Player")
+        plt.xlabel("Round")
+        plt.ylabel("Hit Rate (0-1)")
+        plt.savefig(f'figures/{self.name_exp}/Top Hit Rate.svg', dpi=300)
+        plt.clf()
+        plt.close()
     
     def save(self, savename):
         game_info = {

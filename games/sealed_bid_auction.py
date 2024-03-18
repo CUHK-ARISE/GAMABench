@@ -129,13 +129,13 @@ class SealedBidAuction(GameServer):
         os.makedirs("figures", exist_ok=True)
         os.makedirs(f'figures/{self.name_exp}_{self.mode}_{self.version}', exist_ok=True)
         # plt.figure(figsize=(15, 10))  # Increase figure size 
-        player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         round_numbers = [i for i in range(1, self.round_id+1)]
         
         # User Proposal Tendency
         for index, player in enumerate(players_list):
             player_records = [player.records[i] for i in range(self.round_id)]
-            plt.plot(round_numbers, player_records, marker='x', color=player_color[index], label=player.id)
+            plt.plot(round_numbers, player_records, marker='.', color=player_color[index], label=player.id)
                 # plt.plot(round_numbers, player_valuation_records, marker='o', color=player_color[-1], label=player.id)
         plt.title(f'Bid Each Round')
         plt.xlabel('Round')
