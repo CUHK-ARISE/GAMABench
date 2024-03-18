@@ -1,0 +1,1894 @@
+{
+  "meta": {
+    "name_exp": "diner_dilemma_v1_savept3_3",
+    "player_num": 10,
+    "cheap_cost": 10,
+    "cheap_utility": 15,
+    "exp_cost": 20,
+    "exp_utility": 20,
+    "round_id": 11,
+    "version": "v1"
+  },
+  "round_records": [
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 9,
+      "total_cost": 110,
+      "cost_msg": "1 * 20 + 9 * 10 = 110",
+      "avg_cost": 11.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 9,
+      "total_cost": 110,
+      "cost_msg": "1 * 20 + 9 * 10 = 110",
+      "avg_cost": 11.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 9,
+      "total_cost": 110,
+      "cost_msg": "1 * 20 + 9 * 10 = 110",
+      "avg_cost": 11.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 10,
+      "total_cost": 100,
+      "cost_msg": "0 * 20 + 10 * 10 = 100",
+      "avg_cost": 10.0
+    },
+    {
+      "responses": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "cheap_player": 9,
+      "total_cost": 110,
+      "cost_msg": "1 * 20 + 9 * 10 = 110",
+      "avg_cost": 11.0
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"costly\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 20 - 110/10 = 9.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"costly\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 20 - 110/10 = 9.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"costly\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 20 - 110/10 = 9.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"costly\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 20 - 110/10 = 9.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "cheap",
+        "costly",
+        "cheap",
+        "costly"
+      ],
+      "utility": [
+        5.0,
+        9.0,
+        5.0,
+        5.0,
+        5.0,
+        9.0,
+        5.0,
+        5.0,
+        9.0,
+        5.0,
+        9.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 11 rounds.\n\nGame Rules:\n\n1. Each player must choose to order either a costly dish or a cheap dish.\n2. The price of the costly dish is 20. The price of the cheap dish is 10.\n3. The costly dish brings you a utility of 20. The cheap dish brings you a utility of 15.\n4. The costly dish is tastier than the cheap dish, but not sufficiently to justify its price when dining alone.\n5. At the end of each round, the total cost of all dishes ordered is split equally among all players."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\n0 people chose the costly dish, while 10 chose the cheap dish.\nThe total cost is 0 * 20 + 10 * 10 = 100. You need to pay 10.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 100/10 = 5.00."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\n1 people chose the costly dish, while 9 chose the cheap dish.\nThe total cost is 1 * 20 + 9 * 10 = 110. You need to pay 11.0.\n\nYou chose:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"chosen_dish\": \"cheap\"}"
+        },
+        {
+          "role": "user",
+          "content": "Your utility is 15 - 110/10 = 4.00."
+        }
+      ],
+      "records": [
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap",
+        "cheap"
+      ],
+      "utility": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        4.0
+      ]
+    }
+  ]
+}
