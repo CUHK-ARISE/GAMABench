@@ -164,13 +164,10 @@ class BattleRoyale(GameServer):
                     for k, msg in enumerate(report_prompts):
                         if k == 0:
                             self.player_info[i][0].prompt[-1]['parts'].append(msg)
-                            print(msg)
                         elif k == 1:
                             self.player_info[i][0].prompt.append({'role': 'model', 'parts': [msg]})
-                            print(msg)
                         else:         
                             gemini_msg.append(msg)
-                            print(msg)
                     self.player_info[i][0].prompt.append({'role': 'user', 'parts': gemini_msg})
                 else:
                     report_prompts = [
@@ -186,7 +183,6 @@ class BattleRoyale(GameServer):
                     self.player_info[i][0].prompt.append({'role': 'user', 'parts': report_msg})
                 else:
                     self.player_info[i][0].prompt[-1]['parts'].append(report_msg)
-                print(self.player_info[i][0].prompt) 
             else:
                 report_prompts = [{"role": "user", "content": report_msg}]
                 self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts

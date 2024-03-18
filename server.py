@@ -11,6 +11,8 @@ import copy
 import random
 from utils import *
 import google.generativeai as genai
+import matplotlib.pyplot as plt
+import numpy as np
 openai.api_key = openai_api_key
 genai.configure(api_key=google_api_key)
 
@@ -217,6 +219,10 @@ class GameServer:
         elif isinstance(models, list):
             self.players = [Player(models[i], f"player_{i}", copy.deepcopy(default_prompt)) for i in range(player_num)]
 
+    def cstm_color(self, x, min_x, max_x):
+        # https://matplotlib.org/stable/gallery/color/colormap_reference.html
+        # autumn(_r), viridis(_r), plasma, RdBu_r, Paired, coolwarm
+        return plt.cm.plasma_r((np.clip(x,min_x,max_x)-min_x)/(max_x - min_x))
 
     def update_system_prompt(self, description_file, description_list):
         for player in self.players:

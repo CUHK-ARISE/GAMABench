@@ -180,6 +180,26 @@ class PirateGame(GameServer):
         # Round the number to 3 significant figure
         return round_to_n(num, 3)
     
+    def return_NE_plan(self, players, gold):
+        num_of_ones = []
+        for i in range(players):
+            if i % 2 == 0 and i != 0:
+                num_of_ones.append(i)
+        
+        proposal = [0] * players
+        for index in num_of_ones:
+            proposal[index] = 1
+        proposal[0] = gold - len(num_of_ones)
+        return proposal
+    
+    def return_random_proposal(self, players, gold):
+        dis = []
+        for i in range(players):
+            gold_i = random.randint(0, gold)
+            dis.append(gold_i)
+            gold -= gold_i
+        return dis
+    
     def player_id_manipulation(self, player_id):
         player_id = int(player_id)
         if player_id == 1:
@@ -228,7 +248,6 @@ class PirateGame(GameServer):
                 
                 g_input_0 = current_player_id + 1
                 g_input_2 = self.player_num
-
                 if self.cot:
                     cot_msg = get_cot_prompt(self.cot)
                     output_format = '{{"explanation": "thinking_process", "proposal": {{"{g_input_0}-th": "g_{g_input_0}", ..., "{g_input_2}-th": "g_{g_input_2}"}}}}'.format(g_input_0=g_input_0, g_input_2=g_input_2, cot_msg=cot_msg)
@@ -270,6 +289,7 @@ class PirateGame(GameServer):
                 # if json format is given as responses as desired
                 try:
                     if self.current_round == current_player_id + 1:
+                        # Convert to JSON format
                         try:
                             if cot_msg:
                                 traget_str = '"explanation"'
