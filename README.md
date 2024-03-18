@@ -1,4 +1,4 @@
-# MPGA
+# GAMABench
 
 - `utils.py`:
     ```py
