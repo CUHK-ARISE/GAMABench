@@ -1,0 +1,439 @@
+{
+  "meta": {
+    "name_exp": "pirate_game",
+    "player_num": 10,
+    "round_id": 2,
+    "version": "v5"
+  },
+  "round_records": [
+    {
+      "gold_distribution": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject"
+      ]
+    },
+    {
+      "gold_distribution": [
+        1,
+        99,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept"
+      ]
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 1-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nYour plan was rejected. You are eliminated from the game and receive nothing."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 2-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nYour plan was accepted. The game ends. You receive 1 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 3-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 99 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 4-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 5-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 6-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 7-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 8-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 9-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game that involves 10 participants.\n\nThe Game's Guidelines:\n\n1. As pirates, you've discovered 100 pieces of gold and are now making decisions about split among the group.\n2. The deciding order among the pirates is according to rank, with you being the 10-th in the line.\n3. The highest-ranking pirate is responsible for suggesting how to divide the 100 pieces of gold.\n4. Every pirate, including the one who proposed, will cast their vote regarding the proposed gold distribution.\n5. The distribution of coins as proposed by the highest-ranking pirate goes into effect if the majority agrees to the plan. \n6. If the proposed plan is not accepted by most, the proposing pirate meets with a watery fate, and the second-ranking pirate comes up with a new distribution plan.\n7. The game concludes when a pirate\u2019s distribution proposal has been accepted or natural selection has left only one pirate standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 1-st in line of succession suggested a {'1-th': 100, '2-nd': 0, '3-rd': 0, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 1 out of 10 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "Less of the pirates agreed to the proposed plan.\nThe 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who is 2-nd in line of succession suggested a {'2-th': 1, '3-rd': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0} approach. \nAmongst the crew, 9 out of 9 members agreed to the division.\n\nYou decided:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "Equal to or greater of the pirates agreed to the proposed plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    }
+  ]
+}
