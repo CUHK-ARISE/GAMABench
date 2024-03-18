@@ -80,63 +80,35 @@ class BarGame(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs("figures/png", exist_ok=True)
-        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         
-        # Specify the representative color for each user
-        if my_colors is None:
-            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
-        else: 
-            player_color = my_colors
-
-        # Choice Analysis
-        go_list = [r["go_num"] for r in self.round_records]
-        plt.plot(round_numbers, go_list, marker='x', color='b')
-        plt.axhline(y=self.ratio * self.player_num, color='r', linestyle='--', label='Capacity')
-        plt.title(f'El Farol Bar Game (n = {self.player_num})')
-        plt.xlabel('Round')
-        plt.ylabel('Number of players went to bar')
-        plt.ylim(-0.5, self.player_num + 0.5)
-        plt.legend()
-        plt.savefig(f'figures/png/{self.name_exp}-capacity.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-capacity.svg', format="svg", dpi=300)
-        plt.clf()
-        
-        # Choice Distribution
+        # Single
         for index, player in enumerate(players_list):
             go_dist = [player.records[:i+1].count('go') / (i+1) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, go_dist, marker='x', color=player_color[index])
-        plt.axhline(y=self.ratio, color='r', linestyle='--', label='Capacity')
+            plt.plot(round_numbers, go_dist, marker='.', color=player_color[index], label=f"Player {index+1}")
+        plt.axhline(y=self.ratio, color='#000', linestyle='--', label='Capacity')
         plt.title(f'El Farol Bar Game (n = {self.player_num})')
         plt.xlabel('Round')
         plt.ylabel('Probability of Go')
         plt.ylim(-0.1, 1.1)
-        plt.legend(loc="upper right")
-        plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
+        plt.legend(loc=1).set_zorder(1000)
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-single.svg', format="svg", dpi=300)
         plt.clf()
-
-        # # Utility Received
-        # for index, player in enumerate(players_list):
-        #     plt.plot(round_numbers, player.utility, marker='x', color=player_color[index], label=player.id)
-        # plt.title(f'El Farol Bar Game (n = {self.player_num})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Total Utility')
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-utility-recieved.png', dpi=300)
-        # plt.clf()
         
-        # # Utility Tendency
-        # for index, player in enumerate(players_list):
-        #     player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-        #     plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        # plt.title(f'El Farol Bar Game (n = {self.player_num})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Total Utility')
-        # fig = plt.gcf()
-        # fig.savefig(f'figures/{self.name_exp}-utility.png', dpi=300)
-        # plt.clf()
+        # Average
+        go_list = [r["go_num"] for r in self.round_records]
+        plt.plot(round_numbers, go_list, marker='.', color='b')
+        plt.axhline(y = self.ratio * self.player_num, color='#000', linestyle='--', label='Capacity')
+        plt.title(f'El Farol Bar Game (n = {self.player_num})')
+        plt.xlabel('Round')
+        plt.ylabel('Number of players went to bar')
+        plt.ylim(-0.5, self.player_num + 0.5)
+        plt.xticks(ticks=range(1,21,2))
+        plt.legend()
+        plt.savefig(f'figures/{self.name_exp}-average.svg', format="svg", dpi=300)
+        plt.clf()
     
     
     def statistic_analysis(self, players_list):

@@ -64,74 +64,32 @@ class DinerDilemma(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs("figures/png", exist_ok=True)
-        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         
-        # Specify the representative color for each user
-        if my_colors is None:
-            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
-        else: 
-            player_color = my_colors
-        
-        # Choice Analysis
-        total_cost_list = [r["total_cost"] for r in self.round_records]
-        plt.plot(round_numbers, total_cost_list, marker='x', color='b')
-        plt.axhline(y=self.cheap_cost * self.player_num, color='r', linestyle='--', label='Cheap')
-        plt.axhline(y=self.exp_cost * self.player_num, color='g', linestyle='--', label='Expensive')
-        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
-        plt.xlabel('Round')
-        plt.ylabel('Total Cost')
-        plt.ylim(self.cheap_cost * self.player_num - 5, self.exp_cost * self.player_num + 5)
-        plt.savefig(f'figures/png/{self.name_exp}-total.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-total.svg', format="svg", dpi=300)
-        plt.clf()
-        
-        # # Choice Analysis
-        # os.makedirs("figures", exist_ok=True)
-        # round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        # avg_cost_list = [r["avg_cost"] for r in self.round_records]
-        # plt.plot(round_numbers, avg_cost_list, marker='x', color='b')
-        # plt.axhline(y=self.cheap_cost, color='r', linestyle='--', label='Cheap')
-        # plt.axhline(y=self.exp_cost, color='g', linestyle='--', label='Expensive')
-        # plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Average Cost')
-        # plt.ylim(self.cheap_cost - 5, self.exp_cost + 5)
-        # plt.savefig(f'figures/{self.name_exp}-cost.png', dpi=300)
-        # plt.clf()
-        
-        # Choice Distribution
+        # Player
         for index, player in enumerate(players_list):
-            costly_dist = [player.records[:i+1].count('costly') / (i+1) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, costly_dist, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
+            cheap_dist = [player.records[:i+1].count("cheap") / (i+1) for i in range(len(round_numbers))]
+            plt.plot(round_numbers, cheap_dist, marker='.', color=player_color[index], label=f"Player {index+1}", zorder=index)
+        plt.title(f'Diner Dilemma')
         plt.xlabel('Round')
-        plt.ylabel('Probability of choosing costly dish')
+        plt.ylabel('Average Probability of choosing cheap dish')
+        plt.legend(loc=1).set_zorder(1000)
         plt.ylim(-0.1, 1.1)
-        plt.savefig(f'figures/png/{self.name_exp}-distribution.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-distribution.svg', format="svg", dpi=300)
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-player.svg', format="svg", dpi=300)
         plt.clf()
         
-        # Utility Received
-        for pid, player in enumerate(players_list):
-            plt.plot(round_numbers, player.utility, marker='x', color=player_color[pid], label=player.id)
-        plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
+        # Average
+        cheap_list = [r["cheap_player"]/self.player_num for r in self.round_records]
+        plt.plot(round_numbers, cheap_list, color="b", marker='.')
+        plt.title(f'Diner Dilemma')
         plt.xlabel('Round')
-        plt.ylabel('Utility')
-        plt.savefig(f'figures/png/{self.name_exp}-utility.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-utility.svg', format="svg", dpi=300)
+        plt.ylabel('Probability of choosing cheap dish')
+        plt.ylim(-0.1, 1.1)
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-average.svg', format="svg", dpi=300)
         plt.clf()
-        
-        # Utility Tendency
-        # for index, player in enumerate(players_list):
-        #     player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-        #     plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        # plt.title(f'Diner Dilemma ({self.cheap_cost}:{self.cheap_utility}/{self.exp_cost}:{self.exp_utility})')
-        # plt.xlabel('Round')
-        # plt.ylabel('Total Utility')
-        # plt.savefig(f'figures/{self.name_exp}-totalutility.png', dpi=300)
-        # plt.clf()
     
     
     def statistic_analysis(self, players_list):

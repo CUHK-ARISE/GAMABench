@@ -4,6 +4,7 @@ Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+from statistics import mean, stdev
 
 from server import *
 
@@ -61,47 +62,39 @@ class DivideDollar(GameServer):
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs("figures/png", exist_ok=True)
-        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
-        
-        # Specify the representative color for each user
-        if my_colors is None:
-            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
-        else: 
-            player_color = my_colors
-        
-        # Choice Analysis
-        proposed_list = [r["total_proposal"] for r in self.round_records]
-        plt.plot(round_numbers, proposed_list, marker='x', color='b')
-        plt.axhline(y=self.golds, color='r', linestyle='--', label='Golds')
-        plt.title(f'Divide Dollar (golds = {self.golds})')
-        plt.xlabel('Round')
-        plt.ylabel('Total Proposed Amount')
-        plt.savefig(f'figures/png/{self.name_exp}-total.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-total.svg', format="svg", dpi=300)
-        plt.clf()
-        
-        # User Proposal Tendency
-        for index, player in enumerate(players_list):
-            player_records = [player.records[i] for i in range(len(round_numbers))]
-            plt.plot(round_numbers, player_records, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Divide Dollar (golds = {self.golds})')
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
+
+        # Player
+        for pid, player in enumerate(players_list):
+            plt.plot(round_numbers, player.records, marker='.', color=player_color[pid], label=f"Player {pid+1}")
+        plt.axhline(y=self.golds/self.player_num , color='#000', linestyle='--')
+        plt.legend(loc=1)
+        plt.title(f'Divide Dollar')
         plt.xlabel('Round')
         plt.ylabel('Proposed Amount')
-        plt.savefig(f'figures/png/{self.name_exp}-proposed.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-proposed.svg', format="svg", dpi=300)
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-player.svg', format="svg", dpi=300)
         plt.clf()
         
-        # Player Revenue / Utility
-        for index, player in enumerate(players_list):
-            player_utility = [sum(player.utility[:i+1]) for i in range(len(round_numbers))]
-            plt.plot(round_numbers, player_utility, marker='x', color=player_color[index], label=player.id)
-        plt.title(f'Divide Dollar (golds = {self.golds})')
+        # Average
+        responses_list = [r["responses"] for r in self.round_records]
+        stdev_list = [stdev(r) for r in responses_list]
+        mean_list = [mean(r) for r in responses_list]
+        plt.plot(round_numbers, mean_list, marker='.', label='Average', color='b')
+        plt.fill_between(
+            round_numbers,
+            [y - s for y, s in zip(mean_list, stdev_list)],
+            [y + s for y, s in zip(mean_list, stdev_list)],
+            alpha=0.2, color='b'
+        )
+        plt.axhline(y=self.golds/self.player_num, color='#000', linestyle='--')
+        plt.legend(loc=1)
+        plt.title(f'Divide Dollar')
         plt.xlabel('Round')
-        plt.ylabel('Revenue')
-        plt.savefig(f'figures/png/{self.name_exp}-revenue.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}-revenue.svg', format="svg", dpi=300)
+        plt.ylabel('Average Proposed Amount')
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-average.svg', format="svg", dpi=300)
         plt.clf()
         
     

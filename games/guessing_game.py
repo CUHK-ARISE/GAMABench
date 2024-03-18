@@ -3,7 +3,7 @@ Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
 """
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-from statistics import mean
+from statistics import mean, stdev
 import json
 
 from server import *
@@ -65,41 +65,39 @@ class GuessingGame(GameServer):
     
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs("figures/png", exist_ok=True)
-        os.makedirs("figures/svg", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         
-        # Specify the representative color for each user
-        if my_colors is None:
-            player_color = ["#{:06x}".format(random.randint(0, 0xFFFFFF)) for _ in players_list]
-        else: 
-            player_color = my_colors
-        
-        
-        # Player choices
+        # Player
         for pid, player in enumerate(players_list):
-            plt.plot(round_numbers, player.records, marker='x', color=player_color[pid], label=player.id)
-        
-        # winner points
-        # winning_list = [r["winner"] for r in self.round_records]
-        # for index, winner in enumerate(winning_list):
-        #     if index == 0:
-        #         plt.plot(index, winner, marker='o', color='g', label='Winner')
-        #     else:
-        #         plt.plot(index, winner, marker='o', color='g')
-        
-        # average line
-        mean_list = [r["mean"] for r in self.round_records]
-        plt.plot(round_numbers, mean_list, marker='o', label='Average', color='#000')
-        
-        plt.axhline(y=self.min, color='#000', linestyle='--')
-        plt.axhline(y=self.max, color='#000', linestyle='--')
-        plt.title(f'Guessing Game (r = {self.ratio_str})')
+            plt.plot(round_numbers, player.records, marker='.', color=player_color[pid], label=f"Player {pid+1}")
+        plt.legend(loc=1).set_zorder(1000)
+        plt.title(f'Guessing Game)')
         plt.xlabel('Round')
         plt.ylabel('Chosen Number')
-        plt.ylim(self.min - 10, self.max + 10)
-        plt.savefig(f'figures/png/{self.name_exp}.png', dpi=300)
-        plt.savefig(f'figures/svg/{self.name_exp}.svg', format="svg", dpi=300)
+        plt.xticks(ticks=range(1,21,2))
+        plt.savefig(f'figures/{self.name_exp}-player.svg', format="svg", dpi=300)
+        plt.clf()
+        
+        # Average
+        winning_list = [r["winner"] for r in self.round_records]
+        plt.plot(round_numbers, winning_list, marker='.', label='Winner', color='r')
+        responses_list = [r["responses"] for r in self.round_records]
+        stdev_list = [stdev(r) for r in responses_list]
+        mean_list = [mean(r) for r in responses_list]
+        plt.plot(round_numbers, mean_list, marker='.', label='Average', color='b')
+        plt.fill_between(
+            round_numbers,
+            [y - s for y, s in zip(mean_list, stdev_list)],
+            [y + s for y, s in zip(mean_list, stdev_list)],
+            alpha=0.2, color='b'
+        )
+        plt.title(f'Guessing Game')
+        plt.xlabel('Round')
+        plt.ylabel('Chosen Number')
+        plt.xticks(ticks=range(1,21,2))
+        plt.legend(loc=1)
+        plt.savefig(f"figures/{self.name_exp}-average.svg", format="svg", dpi=300)
         plt.clf()
     
     
