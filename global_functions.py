@@ -8,19 +8,19 @@ def addnoise(value, epsilon=0.02):
     noise = np.random.normal(0, epsilon)
     return value + noise
 
-def load(filename, object, name_exp=None):
-    if name_exp:
-        shutil.copy2(filename, f'save/{name_exp}.json')
-        filename = f'save/{name_exp}.json'
+def load(filepath, object, newfile=None):
+    if newfile:
+        shutil.copy2(filepath, f'save/{newfile}.json')
+        filepath = f'save/{newfile}.json'
     
-    with open(filename, 'r') as json_file:
+    with open(filepath, 'r') as json_file:
         loaded_file = json.loads(json_file.read())
-        if name_exp:
-            loaded_file["meta"]["name_exp"] = name_exp
+        if newfile:
+            loaded_file["meta"]["name_exp"] = newfile
         game = object(**loaded_file["meta"])
         game.load(loaded_file["round_records"], loaded_file["player_data"])
         
-    with open(filename, 'w') as json_file:
+    with open(filepath, 'w') as json_file:
         json.dump(loaded_file, json_file, indent=4)
     return game
 
