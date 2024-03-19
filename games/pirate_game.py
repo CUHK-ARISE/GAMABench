@@ -32,7 +32,6 @@ class PirateGame(GameServer):
         count = 0
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         accepting_rate = self.accepted / (self.player_num - self.current_round + 1)
-        print(f'accepting rate: {accepting_rate}')
         self.accepting_list.append(accepting_rate)
         print(f'accepting list: {self.accepting_list}')
         for player in self.players:
@@ -41,7 +40,6 @@ class PirateGame(GameServer):
             current_player_id = int(player.id.split('_')[1])
             if current_player_id + 1 < self.current_round:
                 continue
-            print(f'player_records: {player.records}')
             player_choice = 'accept' if player.records[-1] == 'accept' else 'reject'
             if accepting_rate >= 0.5:
                 majority = 'Equal to or greater'
@@ -162,11 +160,8 @@ class PirateGame(GameServer):
         total_actions = 0
         accuracy = []
         for index1, round_record in enumerate(self.round_records):
-            print(self.round_records)
-            print(index1, round_record)
             current_gold_distribution = round_record["gold_distribution"]
             NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
-            print(current_gold_distribution, NE_gold_distribution)
             L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
             for index2, player in enumerate(player_list):
                 player_gold = round_record["gold_distribution"][index2 - self.round_id + 1]
@@ -189,7 +184,6 @@ class PirateGame(GameServer):
         fig, ax1 = plt.subplots()
         rounds = [i + 1 for i in range(len(accuracy))]
         rounds2 = [i + 1 + 1 + len(rounds) for i in range(len(accuracy))]
-        print(rounds)
         ax1.plot(rounds, L1_distances, marker='x', color='red', label='L1 distance')
         ax1.tick_params(axis='y')
         plt.axvline(x=len(accuracy) + 1, color='black', linestyle='--')
@@ -244,7 +238,8 @@ class PirateGame(GameServer):
         plt.savefig(f'figures/{self.name_exp}/L1_acc.svg', dpi=300)
     
         plt.close()
-        
+        self.L1 = np.mean(L1_distances,axis=0)
+        self.accuracy = accuracy[-1]
 
     def round_to_3_sig_fig(self, num):
         
@@ -374,7 +369,7 @@ class PirateGame(GameServer):
                             gpt_responses = gpt_responses[json_start_index:json_end_index+1]
                         except:
                             pass
-                        print(f'gpt response: {gpt_responses}')
+                        # print(f'gpt response: {gpt_responses}')
                         parsered_responses = json.loads(gpt_responses)
                         parsered_responses = dict((parsered_responses["proposal"]))
                         # player.records.append(parsered_responses)
@@ -402,7 +397,7 @@ class PirateGame(GameServer):
                             gpt_responses= gpt_responses[json_start_index:json_end_index+1]
                         except:
                             pass
-                        print(f'gpt response: {gpt_responses}')
+                        # print(f'gpt response: {gpt_responses}')
                         parsered_responses = json.loads(gpt_responses)
                         gpt_responses = parsered_responses["decision"]
                         if 'accept' not in gpt_responses and 'Accept' not in gpt_responses and 'reject' not in gpt_responses and 'Reject' not in gpt_responses: 
@@ -464,3 +459,5 @@ class PirateGame(GameServer):
             self.save(self.name_exp)
             self.show()
             time.sleep(1)
+        print("\n====\n")
+        print(f"Score: {(200-self.L1)/4 + 50 * self.accuracy:.2f}")

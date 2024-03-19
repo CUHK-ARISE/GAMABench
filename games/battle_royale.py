@@ -280,6 +280,7 @@ class BattleRoyale(GameServer):
         # plt.show()
         plt.clf()
         
+        self.correct_aim = counts[-1]
         top_hit_rate = [x / y for x, y in zip(counts, rounds)]
         plt.plot(rounds, top_hit_rate, marker='.', color='blue')
         plt.xticks([i for i in range(1, self.round_id + 1) if i % 2 == 0])
@@ -375,6 +376,8 @@ class BattleRoyale(GameServer):
         self.report_result(round_record)     
         if len(self.player_info) == 1:
             print(f"The winner is {self.player_info[0][0].id} with a hit rate of {self.player_info[0][1]}%!")
+            print("\n====\n")
+            print(f"Score: {self.correct_aim/ (self.round_id - 1) * 100:.2f}")
             self.end = True
             return
 

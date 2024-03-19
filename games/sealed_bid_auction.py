@@ -95,12 +95,12 @@ class SealedBidAuction(GameServer):
         round_numbers = [i for i in range(1, self.round_id+1)]
         differences = []
         for index, player in enumerate(players_list):
-            valuations = np.array(player.valuation)
+            valuations = np.array(player.valuation) 
             bids = np.array(player.records)
-            difference = valuations - bids
+            difference = (valuations - bids) / self.valuation_max * 200
             differences.append(difference)
             plt.plot(round_numbers, difference, label=player.id, color=player_color[index], marker='.')
-        
+        self.averages = np.mean(np.mean(differences, axis=0),0)
         # add a line for comparing to Nash Equilibrium    
         plt.axhline(0, color='black', linestyle='--')
         plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
@@ -221,3 +221,5 @@ class SealedBidAuction(GameServer):
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)
+        print("\n====\n")
+        print(f"Score: {100-self.averages:.2f}")

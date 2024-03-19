@@ -80,6 +80,7 @@ class PublicGoods(GameServer):
         # Individual Donations and Total Donations
         total_donations_list = [r["total_tokens"] for r in self.round_records]
         max_donation = 0
+        donation_list = []
         for index, player in enumerate(players_list):
             player_donations = [record for record in player.records]
             for donation in player_donations:
@@ -89,7 +90,13 @@ class PublicGoods(GameServer):
             for i, donation in enumerate(player_donations):
                 adjusted_donation = donation / player.tokens[i] * 100
                 adjusted_donations.append(adjusted_donation)
+            temp_list = []
+            for j, donation in enumerate(player_donations):
+                donation_in_terms_of_default = donation / player.tokens[j] * 20
+                temp_list.append(donation_in_terms_of_default)
+            donation_list.append(temp_list)
             plt.plot(round_numbers, adjusted_donations, marker='.', color=player_color[index], label=f'{player.id} Donations')
+        self.temp_score = np.mean(np.mean(donation_list, axis=0), axis=0)
         # clear the offset for another 
 
         plt.title(f'Contributed Tokens Percentage')
@@ -279,3 +286,5 @@ class PublicGoods(GameServer):
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.round_id+rounds, self.ratio, role_msg]
         super().run(rounds, description_file, description_list)
+        print("\n====\n")
+        print(f"Score: {100 - self.temp_score * 5:.2f}")
