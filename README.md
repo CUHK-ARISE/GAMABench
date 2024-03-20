@@ -2,16 +2,16 @@
     <h1> 💰GAMA-Bench</h1>
 </div>
 
-<div align="center">
-
-</div>
-
-</div>
 
 <div align="center">
 <img src="framework.png" width="750px">
 </div>
 
+
+## Leaderboard
+<div align="center">
+<img src="leaderboard.png" width="750px">
+</div>
 
 ## Execution Process
 
