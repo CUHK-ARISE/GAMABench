@@ -69,10 +69,10 @@ def completion(
 
 @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
 def gemini_chat(
-    model,                      # gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301
-    messages,                   # [{"role": "system"/"user"/"assistant", "content": "Hello!", "name": "example"}]
+    model,                      # gemini-1.0-pro, gemini-1.0-pro-001, gemini-1.0-pro-latest, gemini-1.0-pro-vision-latest, gemini-pro, gemini-pro-vision
+    messages,                   # [{'role': 'user', 'parts': "In one sentence, explain how a computer works to a young child."}, {'role': "model', 'parts': "A computer is like a very smart machine that can understand and follow our instructions, help us with our work, and even play games with us!"}
     temperature=temperature,    # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
-    n=1,                        # Chat completion choices to generate for each input message.
+    n=1,                        # Chat response choices to generate for each input message.
     max_tokens=1024,            # The maximum number of tokens to generate in the chat completion.
     delay=delay_time            # Seconds to sleep after each request.
 ):
