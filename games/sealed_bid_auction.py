@@ -222,4 +222,4 @@ class SealedBidAuction(GameServer):
         description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)
         print("\n====\n")
-        print(f"Score: {100-self.averages:.2f}")
+        print(f"Score: {self.averages / 2:.2f}")

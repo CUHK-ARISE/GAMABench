@@ -287,4 +287,4 @@ class PublicGoods(GameServer):
         description_list = [self.player_num, self.round_id+rounds, self.ratio, role_msg]
         super().run(rounds, description_file, description_list)
         print("\n====\n")
-        print(f"Score: {100 - self.temp_score * 5:.2f}")
+        print(f"Score: {self.temp_score * 5:.2f}")
