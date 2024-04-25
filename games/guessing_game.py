@@ -63,6 +63,10 @@ class GuessingGame(GameServer):
         return
     
     
+    def analyze(self):
+        return 1, [r["mean"] for r in self.round_records]
+    
+    
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [str(i) for i in range(1, self.round_id+1)]

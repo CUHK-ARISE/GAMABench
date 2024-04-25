@@ -4,6 +4,7 @@ Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+import pandas as pd
 
 from server import *
 from global_functions import *
@@ -76,6 +77,18 @@ class BarGame(GameServer):
                 ]
                 player.prompt = player.prompt + report_prompts
         return
+    
+    
+    def analyze(self):
+        go_ratio = [r["go_ratio"] for r in self.round_records]
+        
+        df = pd.DataFrame()
+        for player in self.players:
+            go_dist = [player.records[:i+1].count("go") / (i+1) for i in range(self.round_id)]
+            player_df = pd.DataFrame([go_dist])
+            df = pd.concat([df, player_df], ignore_index=True)
+        
+        return 2, (go_ratio, list(df.mean()))
 
 
     def graphical_analysis(self, players_list):

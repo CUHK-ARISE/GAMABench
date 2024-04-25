@@ -58,6 +58,10 @@ class DivideDollar(GameServer):
                 ]
                 player.prompt = player.prompt + report_prompts
         return
+    
+    
+    def analyze(self):
+        return 1, [r["total_proposal"] / self.player_num for r in self.round_records]
 
 
     def graphical_analysis(self, players_list):

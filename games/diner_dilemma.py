@@ -4,6 +4,7 @@ Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+import pandas as pd
 
 from server import *
 
@@ -90,6 +91,18 @@ class DinerDilemma(GameServer):
         plt.xticks(ticks=range(1,21,2))
         plt.savefig(f'figures/{self.name_exp}-average.svg', format="svg", dpi=300)
         plt.clf()
+    
+    
+    def analyze(self):
+        cheap_ratio = [r["cheap_player"] / self.player_num for r in self.round_records]
+        
+        df = pd.DataFrame()
+        for player in self.players:
+            cheap_dish = [player.records[:i+1].count("cheap") / (i+1) for i in range(self.round_id)]
+            player_df = pd.DataFrame([cheap_dish])
+            df = pd.concat([df, player_df], ignore_index=True)
+        
+        return 2, (cheap_ratio, list(df.mean()))
     
     
     def statistic_analysis(self, players_list):

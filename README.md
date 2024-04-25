@@ -129,6 +129,48 @@ rephrase([f"prompt_template/{game_file}/{filename}_v1.txt" for filename in rephr
 
 
 
+## Result Analysis
+For GuessingGame, BarGame, DivideDollar, and DinerDilemma, we developed a tool to visualize and integrate multiple runs into a figure, as shown in our paper. `analysis_main.ipynb` demonstrated the sample usage of our tool.
+
+### Analyze Multiple Runs
+In `analysis_main.ipynb`, specify the server and analysis parameters:
+1. Import the following files:
+    ```py
+    from server import *
+    from global_functions import *
+    from analysis import *
+    ```
+
+2. Import the game:
+    ```py
+    from games.guessing_game import *
+    ```
+
+3. Create an Analysis instance:
+    ```py
+    plane = Analysis(GuessingGame)
+    ```
+
+4. Add the saved run with label:
+    ```py
+    plane.add('raw_results/guessing_game/guessing_game_v1_1.json', "T1")
+    ```
+
+5. Plot the graph:
+    ```py
+    plane.plot()
+    ```
+    - `index`: Figure index, for some games, we provided more than one figure for the analysis. For example, in DinerDilemma, we provide a graph demonstrating the percentage of players who choose "cheap" in each round; we also provide a graph demonstrating the averaged accumulated percentage of players who chose "cheap"; default `0`.
+    - `title`: Title of the graph; default `None`
+    - `xlabel`: Label of the x axis, default `"Round"`
+    - `ylabel`: Label of the y axis, default `None`
+    - `ylim`: Range of y axis, default `None`
+    - `loc`: Location of the legend, default `"upper right"`
+    - `format`: Figure format, default `"png"`
+    - `savename`: Name of the figure, default `"merge"`
+
+
+
 ## 👉 Paper and Citation
 For more details, please refer to our paper <a href="https://arxiv.org/abs/2403.11807">here</a>.
 
