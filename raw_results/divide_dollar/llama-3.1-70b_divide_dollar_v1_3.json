@@ -1,0 +1,3253 @@
+{
+  "meta": {
+    "name_exp": "llama-3.1-70b_divide_dollar_v1_3",
+    "player_num": 10,
+    "golds": 100,
+    "round_id": 20,
+    "version": "v1"
+  },
+  "round_records": [
+    {
+      "responses": [
+        5,
+        9,
+        5,
+        10,
+        8,
+        5,
+        10,
+        10,
+        5,
+        10
+      ],
+      "total_proposal": 77
+    },
+    {
+      "responses": [
+        10,
+        10,
+        10,
+        8,
+        12,
+        10,
+        8,
+        12,
+        11,
+        12
+      ],
+      "total_proposal": 103
+    },
+    {
+      "responses": [
+        8,
+        9,
+        7,
+        8,
+        8,
+        8,
+        8,
+        8,
+        4,
+        7
+      ],
+      "total_proposal": 75
+    },
+    {
+      "responses": [
+        10,
+        15,
+        9,
+        12,
+        9,
+        9,
+        15,
+        11,
+        12,
+        9
+      ],
+      "total_proposal": 111
+    },
+    {
+      "responses": [
+        7,
+        6,
+        5,
+        7,
+        6,
+        6,
+        9,
+        7,
+        8,
+        8
+      ],
+      "total_proposal": 69
+    },
+    {
+      "responses": [
+        7,
+        12,
+        20,
+        10,
+        8,
+        8,
+        9,
+        10,
+        10,
+        8
+      ],
+      "total_proposal": 102
+    },
+    {
+      "responses": [
+        7,
+        7,
+        6,
+        5,
+        6,
+        8,
+        7,
+        8,
+        7,
+        6
+      ],
+      "total_proposal": 67
+    },
+    {
+      "responses": [
+        11,
+        11,
+        12,
+        10,
+        10,
+        9,
+        8,
+        10,
+        9,
+        9
+      ],
+      "total_proposal": 99
+    },
+    {
+      "responses": [
+        12,
+        9,
+        10,
+        12,
+        11,
+        13,
+        10,
+        12,
+        12,
+        11
+      ],
+      "total_proposal": 112
+    },
+    {
+      "responses": [
+        8,
+        10,
+        9,
+        5,
+        5,
+        8,
+        8,
+        8,
+        8,
+        9
+      ],
+      "total_proposal": 78
+    },
+    {
+      "responses": [
+        10,
+        8,
+        9,
+        10,
+        11,
+        10,
+        11,
+        8,
+        9,
+        9
+      ],
+      "total_proposal": 95
+    },
+    {
+      "responses": [
+        10,
+        11,
+        12,
+        10,
+        9,
+        12,
+        12,
+        10,
+        12,
+        11
+      ],
+      "total_proposal": 109
+    },
+    {
+      "responses": [
+        8,
+        6,
+        8,
+        8,
+        9,
+        6,
+        7,
+        5,
+        10,
+        8
+      ],
+      "total_proposal": 75
+    },
+    {
+      "responses": [
+        11,
+        12,
+        12,
+        11,
+        8,
+        12,
+        9,
+        12,
+        9,
+        9
+      ],
+      "total_proposal": 105
+    },
+    {
+      "responses": [
+        7,
+        5,
+        7,
+        9,
+        7,
+        6,
+        7,
+        7,
+        8,
+        7
+      ],
+      "total_proposal": 70
+    },
+    {
+      "responses": [
+        11,
+        10,
+        9,
+        8,
+        11,
+        11,
+        9,
+        8,
+        8,
+        8
+      ],
+      "total_proposal": 93
+    },
+    {
+      "responses": [
+        11,
+        10,
+        9,
+        9,
+        9,
+        12,
+        10,
+        9,
+        12,
+        10
+      ],
+      "total_proposal": 101
+    },
+    {
+      "responses": [
+        10,
+        6,
+        7,
+        10,
+        6,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "total_proposal": 79
+    },
+    {
+      "responses": [
+        8,
+        8,
+        9,
+        9,
+        11,
+        9,
+        9,
+        9,
+        10,
+        8
+      ],
+      "total_proposal": 90
+    },
+    {
+      "responses": [
+        10,
+        10,
+        12,
+        9,
+        11,
+        6,
+        10,
+        10,
+        8,
+        10
+      ],
+      "total_proposal": 96
+    }
+  ],
+  "player_data": [
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 12 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"13\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        }
+      ],
+      "records": [
+        10,
+        11,
+        9,
+        12,
+        8,
+        10,
+        7,
+        12,
+        13,
+        8,
+        9,
+        10,
+        8,
+        11,
+        7,
+        9,
+        10,
+        6,
+        8,
+        9
+      ],
+      "utility": [
+        10,
+        0,
+        9,
+        0,
+        8,
+        0,
+        7,
+        12,
+        0,
+        8,
+        9,
+        0,
+        8,
+        0,
+        7,
+        9,
+        0,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 12 golds."
+        }
+      ],
+      "records": [
+        5,
+        10,
+        8,
+        12,
+        9,
+        10,
+        8,
+        11,
+        12,
+        10,
+        11,
+        12,
+        10,
+        12,
+        9,
+        11,
+        12,
+        10,
+        11,
+        12
+      ],
+      "utility": [
+        5,
+        0,
+        8,
+        0,
+        9,
+        0,
+        8,
+        11,
+        0,
+        10,
+        11,
+        0,
+        10,
+        0,
+        9,
+        11,
+        0,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        }
+      ],
+      "records": [
+        10,
+        12,
+        8,
+        15,
+        7,
+        9,
+        6,
+        10,
+        12,
+        8,
+        9,
+        10,
+        5,
+        12,
+        7,
+        11,
+        10,
+        8,
+        9,
+        6
+      ],
+      "utility": [
+        10,
+        0,
+        8,
+        0,
+        7,
+        0,
+        6,
+        10,
+        0,
+        8,
+        9,
+        0,
+        5,
+        0,
+        7,
+        11,
+        0,
+        8,
+        9,
+        6
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        }
+      ],
+      "records": [
+        5,
+        10,
+        8,
+        9,
+        7,
+        8,
+        6,
+        10,
+        12,
+        9,
+        11,
+        12,
+        8,
+        9,
+        7,
+        10,
+        11,
+        8,
+        9,
+        10
+      ],
+      "utility": [
+        5,
+        0,
+        8,
+        0,
+        7,
+        0,
+        6,
+        10,
+        0,
+        9,
+        11,
+        0,
+        8,
+        0,
+        7,
+        10,
+        0,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        }
+      ],
+      "records": [
+        5,
+        8,
+        7,
+        9,
+        6,
+        8,
+        7,
+        8,
+        9,
+        5,
+        8,
+        9,
+        6,
+        8,
+        5,
+        9,
+        10,
+        7,
+        8,
+        10
+      ],
+      "utility": [
+        5,
+        0,
+        7,
+        0,
+        6,
+        0,
+        7,
+        8,
+        0,
+        5,
+        8,
+        0,
+        6,
+        0,
+        5,
+        9,
+        0,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        }
+      ],
+      "records": [
+        10,
+        12,
+        8,
+        15,
+        5,
+        20,
+        7,
+        9,
+        11,
+        8,
+        10,
+        12,
+        6,
+        11,
+        7,
+        8,
+        9,
+        6,
+        8,
+        10
+      ],
+      "utility": [
+        10,
+        0,
+        8,
+        0,
+        5,
+        0,
+        7,
+        9,
+        0,
+        8,
+        10,
+        0,
+        6,
+        0,
+        7,
+        8,
+        0,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"4\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 4 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        }
+      ],
+      "records": [
+        5,
+        8,
+        4,
+        10,
+        6,
+        7,
+        8,
+        9,
+        10,
+        5,
+        8,
+        12,
+        7,
+        9,
+        6,
+        8,
+        9,
+        8,
+        9,
+        10
+      ],
+      "utility": [
+        5,
+        0,
+        4,
+        0,
+        6,
+        0,
+        8,
+        9,
+        0,
+        5,
+        8,
+        0,
+        7,
+        0,
+        6,
+        8,
+        0,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 11 golds."
+        }
+      ],
+      "records": [
+        10,
+        12,
+        8,
+        9,
+        7,
+        10,
+        6,
+        11,
+        12,
+        8,
+        10,
+        11,
+        9,
+        12,
+        8,
+        11,
+        12,
+        10,
+        10,
+        11
+      ],
+      "utility": [
+        10,
+        0,
+        8,
+        0,
+        7,
+        0,
+        6,
+        11,
+        0,
+        8,
+        10,
+        0,
+        9,
+        0,
+        8,
+        11,
+        0,
+        10,
+        10,
+        11
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"6\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 6 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 5 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        }
+      ],
+      "records": [
+        8,
+        10,
+        7,
+        9,
+        6,
+        8,
+        5,
+        9,
+        10,
+        8,
+        9,
+        10,
+        8,
+        12,
+        7,
+        8,
+        9,
+        8,
+        9,
+        10
+      ],
+      "utility": [
+        8,
+        0,
+        7,
+        0,
+        6,
+        0,
+        5,
+        9,
+        0,
+        8,
+        9,
+        0,
+        8,
+        0,
+        7,
+        8,
+        0,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 100 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 100, each player receives their bid amount.\n3. If the sum exceeds 100, all players receive nothing."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 1:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 77.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 2:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 103.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 3:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 4:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 111.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 69.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"12\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 102.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 67.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 99.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 112.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 78.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 95.\nThe sum does not exceeds 100.\nYou received 10 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"11\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 109.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 75.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 105.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"7\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 70.\nThe sum does not exceeds 100.\nYou received 7 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 93.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 101.\nThe sum exceeds 100.\nYou received 0 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 79.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"9\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 90.\nThe sum does not exceeds 100.\nYou received 9 golds."
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nYour bid amount was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"bid_amount\": \"8\"}"
+        },
+        {
+          "role": "user",
+          "content": "The sum of all bids was 96.\nThe sum does not exceeds 100.\nYou received 8 golds."
+        }
+      ],
+      "records": [
+        9,
+        10,
+        8,
+        11,
+        8,
+        12,
+        7,
+        10,
+        11,
+        9,
+        10,
+        11,
+        8,
+        9,
+        7,
+        8,
+        9,
+        8,
+        9,
+        8
+      ],
+      "utility": [
+        9,
+        0,
+        8,
+        0,
+        8,
+        0,
+        7,
+        10,
+        0,
+        9,
+        10,
+        0,
+        8,
+        0,
+        7,
+        8,
+        0,
+        8,
+        9,
+        8
+      ]
+    }
+  ]
+}
