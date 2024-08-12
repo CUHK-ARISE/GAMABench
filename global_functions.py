@@ -1,3 +1,4 @@
+import re
 import math
 import random
 import shutil
@@ -48,3 +49,11 @@ def dish_randomization(min=10, max=100):
         
         if b > n:
             return a, b, m, n
+
+def extract_json_from_string(input_string):
+    json_match = re.search(r'\{.*\}', input_string)
+    if json_match:
+        json_content = json_match.group(0)
+        return json_content
+    else:
+        return input_string

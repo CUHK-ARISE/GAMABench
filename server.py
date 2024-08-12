@@ -1,95 +1,17 @@
-from tenacity import (
-    retry,
-    stop_after_attempt,
-    wait_random_exponential,
-)
-import openai
 import time
 import os
 import json
 import copy
-import random
-from utils import *
-import google.generativeai as genai
 import matplotlib.pyplot as plt
 import numpy as np
-openai.api_key = openai_api_key
-genai.configure(api_key=google_api_key)
 
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
-def chat(
-    model,                      # gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301
-    messages,                   # [{"role": "system"/"user"/"assistant", "content": "Hello!", "name": "example"}]
-    temperature=temperature,    # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
-    n=1,                        # Chat completion choices to generate for each input message.
-    max_tokens=1024,            # The maximum number of tokens to generate in the chat completion.
-    delay=delay_time            # Seconds to sleep after each request.
-):
-    time.sleep(delay)
-    
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-        n=n,
-        max_tokens=max_tokens
-    )
-    
-    if n == 1:
-        return response['choices'][0]['message']['content']
-    else:
-        return [i['message']['content'] for i in response['choices']]
+from utils import *
+from global_functions import *
 
-
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
-def completion(
-    model,                      # text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
-    prompt,                     # The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
-    temperature=temperature,    # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
-    n=1,                        # Completions to generate for each prompt.
-    max_tokens=1024,            # The maximum number of tokens to generate in the chat completion.
-    delay=delay_time            # Seconds to sleep after each request.
-):
-    time.sleep(delay)
-    
-    response = openai.Completion.create(
-        model=model,
-        prompt=prompt,
-        temperature=temperature,
-        n=n,
-        max_tokens=max_tokens
-    )
-    
-    if n == 1:
-        return response['choices'][0]['text']
-    else:
-        response = response['choices']
-        response.sort(key=lambda x: x['index'])
-        return [i['text'] for i in response['choices']]
-
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
-def gemini_chat(
-    model,                      # gemini-1.0-pro, gemini-1.0-pro-001, gemini-1.0-pro-latest, gemini-1.0-pro-vision-latest, gemini-pro, gemini-pro-vision
-    messages,                   # [{'role': 'user', 'parts': "In one sentence, explain how a computer works to a young child."}, {'role': "model', 'parts': "A computer is like a very smart machine that can understand and follow our instructions, help us with our work, and even play games with us!"}
-    temperature=temperature,    # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
-    n=1,                        # Chat response choices to generate for each input message.
-    max_tokens=1024,            # The maximum number of tokens to generate in the chat completion.
-    delay=delay_time            # Seconds to sleep after each request.
-):
-    time.sleep(delay)
-    model = genai.GenerativeModel(model)
-    response = model.generate_content(
-        messages,
-        generation_config=genai.types.GenerationConfig(
-            # Only one candidate for now.
-            candidate_count=n,
-            # stop_sequences=['x'],
-            max_output_tokens=max_tokens,
-            temperature=temperature)
-    )   
-    
-    if n == 1:
-        return response.text
+# Import LLM settings
+from llm_settings.openai_models import *
+from llm_settings.gemini_models import *
+from llm_settings.deepinfra_models import *
 
 def get_prompt(filename, inputs):
     with open(filename, 'r') as file:
@@ -169,23 +91,31 @@ class Player:
     def gpt_request(self, inputs):
         start_time = time.time()
         while time.time() - start_time < 10:
+            
+            # Text-davinci models (deleted)
             if self.model == 'text-davinci-003':
                 response = completion(self.model, inputs).strip()
                 self.print_prompt(inputs, response)
                 return response
+            
+            # OpenAI models
             elif self.model.startswith(('gpt-3.5-turbo', 'gpt-4')):
                 response = chat(self.model, inputs).strip()
-                # Debug use
-                # response = f'''{{"option": "{random.randint(0,100)}"}}'''
-                # response = '{"option": "yes"}' if random.randint(0,2) < 1 else '{"option": "no"}'
-                # response = '{"option": "expensive"}' if random.randint(0,2) < 1 else '{"option": "cheap"}'
-                # response = f'''{{"propose": "{random.randint(0,100)}"}}'''
                 self.print_prompt(self.id, inputs, response)
                 return response
+            
+            # Gemini models
             elif self.model.startswith('gemini'):
                 response = gemini_chat(self.model, inputs).strip()
                 self.print_prompt(self.id, inputs, response)
                 return response
+            
+            # Open source models from Deep Infra
+            elif self.model.startswith(('meta-llama', 'mistralai', 'Qwen')):
+                response = deepinfra_chat(self.model, inputs).strip()
+                self.print_prompt(self.id, inputs, response)
+                return response
+            
             else:
                 raise ValueError("The model is not supported or does not exist.")
     

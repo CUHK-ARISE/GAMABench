@@ -23,6 +23,7 @@
 Customize the model api, create a `utils.py` in this dictionary:
 ```py
 openai_api_key = "<key>"    # Keep it empty string if not use
+infradeep_api_key = "<key>" # Keep it empty string if not use
 google_api_key = "<key>"    # Keep it empty string if not use
 temperature = "<model temperature>"
 delay_time = "<time break between each request>"
