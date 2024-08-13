@@ -56,7 +56,7 @@ def completion(
     )
     
     if n == 1:
-        return response['choices'][0]['text']
+        return extract_json_from_string(response['choices'][0]['text'])
     else:
         response = response['choices']
         response.sort(key=lambda x: x['index'])

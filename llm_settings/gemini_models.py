@@ -33,4 +33,4 @@ def gemini_chat(
     )   
     
     if n == 1:
-        return response.text
+        return extract_json_from_string(response.text)
