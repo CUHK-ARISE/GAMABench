@@ -138,6 +138,7 @@ class GameServer:
             default_prompt = [
                 {"role": "system", "content": ""}
             ]
+        self.models = models
         self.round_id = round_id
         self.player_num = player_num
         self.round_records = []
@@ -176,6 +177,7 @@ class GameServer:
                 **game_info,
                 "round_id": self.round_id,
                 "version": self.version,
+                "model": self.models
             },
             "round_records": self.round_records,
             "player_data": [],

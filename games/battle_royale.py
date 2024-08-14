@@ -20,7 +20,6 @@ class BattleRoyale(GameServer):
         self.version = version
         for index, player in enumerate(self.players):
             self.player_info.append([player, base_hit_rate + interval * (index)])
-            print([player, base_hit_rate + interval * (index)])
         self.player_info = sorted(self.player_info, key=lambda x: x[1])
         self.current_player_info = self.player_info[0]
         self.removed_player_info = []
@@ -111,7 +110,6 @@ class BattleRoyale(GameServer):
             "action": action,
             "out": out
         }
-        print("here 2: player_action:", record['action'])
         self.round_records.append(record)
         return record
         
@@ -146,7 +144,6 @@ class BattleRoyale(GameServer):
             result = 'intentionally missed the shot.'
             result2 = 'You intentionally missed your shot.'
         else:
-            print(f'shot:{round_record["action"]}, {round_record["shot_player"]}')
             result = f'shot at player_{round_record["shot_player"]}'
             result2 = f'You shot at player_{round_record["shot_player"]}'
             if round_record["out"]:
@@ -324,13 +321,13 @@ class BattleRoyale(GameServer):
         print(f'Player making decision: {self.current_player_info[0].id}')
         while True:
             if self.current_player_info[0].model.startswith("gemini"):
-                print(self.current_player_info[0].prompt[-1]['parts'])
+                # print(self.current_player_info[0].prompt[-1]['parts'])
                 self.current_player_info[0].prompt[-1]['parts'].append(request_msg)
                 gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt)
             else:
                 gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt + request_prompt)
             try:
-                print(gpt_responses)
+                # print(gpt_responses)
                 parsered_responses = json.loads(gpt_responses)
                 action = parsered_responses["action"]
                 # if not (action == "shoot" or action == "miss"):
@@ -343,10 +340,10 @@ class BattleRoyale(GameServer):
                         continue
                     try:
                         parsered_responses = parsered_responses.split("_")[1]
-                        print(parsered_responses)
+                        # print(parsered_responses)
                     except:
                         pass
-                print(self.current_player_info)
+                # print(self.current_player_info)
                 self.current_player_info[0].records.append(parsered_responses)
                 responses.append(parsered_responses)
                 # self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
@@ -354,7 +351,7 @@ class BattleRoyale(GameServer):
             except:
                 try:
                     action = re.search(r'"action":\s*(\d+|"[^"]+"|null)', gpt_responses)
-                    action = action.group(1).strip('"') if match else None
+                    action = action.group(1).strip('"') if action else None
                     # if not (action == "shoot" or action == "miss"):
                     #     continue
                     match = re.search(r'"target":\s*(\d+|"[^"]+"|null)', gpt_responses)
@@ -363,18 +360,23 @@ class BattleRoyale(GameServer):
                     if parsered_responses == None or parsered_responses == "playerID_or_null":
                         continue
                     try:
-                        parsered_responses = parsered_responses[1].split("_")[1]
+                        parsered_responses = parsered_responses[1].split("_")[1]                      
                     except:
-                        parsered_responses = parsered_responses[1]
-                    self.current_player_info[0].records.append(parsered_responses)
+                        # specifically for gemini output
+                        if parsered_responses.find('player') != -1:
+                            parsered_responses = parsered_responses.split("_")[1]
+                        # manipulate either 'null' or a single digit for 'player' representation
+                        elif parsered_responses == 'null' or len(parsered_responses) == 1:
+                            parsered_responses = parsered_responses      
                     responses.append(parsered_responses)
                     break
                 except:
                     pass
-        print(f'responses:{responses}')
+        # print(f'responses:{responses}')
         round_record = self.compute_result(responses)
-        self.report_result(round_record)     
-        if len(self.player_info) == 1:
+        self.report_result(round_record)    
+        self.show()
+        if len(self.player_info) == 1 or self.round_id >= self.rounds + 1: 
             print(f"The winner is {self.player_info[0][0].id} with a hit rate of {self.player_info[0][1]}%!")
             print("\n====\n")
             print(f"Score: {self.correct_aim/ (self.round_id - 1) * 100:.2f}")
@@ -408,7 +410,6 @@ class BattleRoyale(GameServer):
         for round_count in range(self.round_id+1, self.round_id+rounds+1):
             self.start(round_count)
             self.save(self.name_exp)
-            self.show()
             if self.end:
                 for record in self.round_records:
                     target_list.append(record['shot_player'])

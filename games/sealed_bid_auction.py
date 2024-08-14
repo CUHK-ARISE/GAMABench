@@ -153,7 +153,7 @@ class SealedBidAuction(GameServer):
             "valuation_max": self.valuation_max,
             "interval": self.interval,
             "seed": self.seed,
-            "mode": self.mode
+            "mode": self.mode,
         }
         return super().save(savename, game_info)
 
@@ -222,4 +222,9 @@ class SealedBidAuction(GameServer):
         description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)
         print("\n====\n")
-        print(f"Score: {self.averages / 2:.2f}")
+        if self.mode.find('second'):
+            print("second price")
+            print(f"Score: {100 - self.averages / 2:.2f}")
+        else:
+            print("first price")
+            print(f"Score: {self.averages / 2:.2f}")

@@ -120,7 +120,7 @@ class PirateGame(GameServer):
     
     def save(self, savename):
         game_info = {
-            "gold": self.gold   
+            "gold": self.gold 
         }
         return super().save(savename, game_info)
     
@@ -164,13 +164,13 @@ class PirateGame(GameServer):
             NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
             L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
             for index2, player in enumerate(player_list):
-                player_gold = round_record["gold_distribution"][index2 - self.round_id + 1]
-                if index2 == 0:
+                if index2 <= index1:
                     continue
+                player_gold = round_record["gold_distribution"][index2 - index1]
                 if player_gold >= 2:
                     if player.records[index1] == 'accept':
                         correct_actions += 1
-                elif player_gold == 1 and (index2 - self.round_id + 1) % 2 == 0:
+                elif player_gold == 1 and (index2 - index1) % 2 == 0:
                     if player.records[index1] == 'accept':
                         correct_actions += 1
                 elif player_gold == 0:
