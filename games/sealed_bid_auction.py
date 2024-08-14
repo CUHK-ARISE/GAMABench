@@ -222,7 +222,7 @@ class SealedBidAuction(GameServer):
         description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)
         print("\n====\n")
-        if self.mode.find('second'):
+        if self.mode.find('second') != -1:
             print("second price")
             print(f"Score: {100 - self.averages / 2:.2f}")
         else:

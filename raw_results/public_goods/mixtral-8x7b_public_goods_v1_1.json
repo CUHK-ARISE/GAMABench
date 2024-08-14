@@ -1,0 +1,3287 @@
+{
+  "meta": {
+    "name_exp": "public_goods",
+    "player_num": 10,
+    "tokens": 20,
+    "ratio": 2,
+    "token_initialization": "fixed",
+    "reset": true,
+    "rand_min": 11,
+    "round_id": 20,
+    "version": "v1"
+  },
+  "round_records": [
+    {
+      "responses": [
+        8,
+        10,
+        0,
+        0,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "total_tokens": 78
+    },
+    {
+      "responses": [
+        10,
+        15,
+        15,
+        20,
+        12,
+        12,
+        7,
+        0,
+        5,
+        10
+      ],
+      "total_tokens": 106
+    },
+    {
+      "responses": [
+        15,
+        18,
+        10,
+        0,
+        15,
+        15,
+        10,
+        10,
+        15,
+        10
+      ],
+      "total_tokens": 118
+    },
+    {
+      "responses": [
+        10,
+        10,
+        15,
+        20,
+        18,
+        10,
+        15,
+        5,
+        10,
+        15
+      ],
+      "total_tokens": 128
+    },
+    {
+      "responses": [
+        15,
+        20,
+        5,
+        15,
+        15,
+        20,
+        10,
+        15,
+        15,
+        10
+      ],
+      "total_tokens": 140
+    },
+    {
+      "responses": [
+        0,
+        10,
+        10,
+        10,
+        20,
+        15,
+        15,
+        10,
+        10,
+        15
+      ],
+      "total_tokens": 115
+    },
+    {
+      "responses": [
+        10,
+        20,
+        15,
+        20,
+        20,
+        15,
+        15,
+        20,
+        15,
+        10
+      ],
+      "total_tokens": 160
+    },
+    {
+      "responses": [
+        15,
+        20,
+        20,
+        20,
+        15,
+        15,
+        15,
+        20,
+        15,
+        10
+      ],
+      "total_tokens": 165
+    },
+    {
+      "responses": [
+        10,
+        20,
+        20,
+        20,
+        17,
+        18,
+        20,
+        20,
+        10,
+        20
+      ],
+      "total_tokens": 175
+    },
+    {
+      "responses": [
+        20,
+        35,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        10
+      ],
+      "total_tokens": 205
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        10
+      ],
+      "total_tokens": 190
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        15,
+        20,
+        20,
+        20,
+        20,
+        20,
+        10
+      ],
+      "total_tokens": 185
+    },
+    {
+      "responses": [
+        15,
+        20,
+        20,
+        20,
+        18,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 193
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_tokens": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        0,
+        20,
+        20,
+        20,
+        20,
+        20,
+        0,
+        20
+      ],
+      "total_tokens": 160
+    }
+  ],
+  "player_data": [
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 15.6\nYour tokens after round 4: 35.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 13.0\nYour tokens after round 5: 33.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"0\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 23.0\nYour tokens after round 6: 43.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 22.0\nYour tokens after round 7: 42.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 18.0\nYour tokens after round 8: 38.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 25.0\nYour tokens after round 9: 45.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 23.6\nYour tokens after round 13: 43.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        8,
+        10,
+        15,
+        10,
+        15,
+        0,
+        10,
+        15,
+        10,
+        20,
+        20,
+        20,
+        15,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        12,
+        10,
+        5,
+        10,
+        5,
+        20,
+        10,
+        5,
+        10,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 15.6\nYour tokens after round 4: 35.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 8.0\nYour tokens after round 5: 28.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 13.0\nYour tokens after round 6: 33.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 7: 32.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 13.0\nYour tokens after round 8: 33.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"35\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 6.0\nYour tokens after round 10: 26.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        15,
+        18,
+        10,
+        20,
+        10,
+        20,
+        20,
+        20,
+        35,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        5,
+        2,
+        10,
+        0,
+        10,
+        0,
+        0,
+        0,
+        -15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 10.6\nYour tokens after round 4: 30.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 23.0\nYour tokens after round 5: 43.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 13.0\nYour tokens after round 6: 33.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 17.0\nYour tokens after round 7: 37.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 13.0\nYour tokens after round 8: 33.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"0\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 32.0\nYour tokens after round 20: 52.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        0,
+        15,
+        10,
+        15,
+        5,
+        10,
+        15,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        0
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        20,
+        5,
+        10,
+        5,
+        15,
+        10,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 5.6\nYour tokens after round 4: 25.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 13.0\nYour tokens after round 5: 33.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 13.0\nYour tokens after round 6: 33.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 7: 32.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 13.0\nYour tokens after round 8: 33.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 22.0\nYour tokens after round 12: 42.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        0,
+        20,
+        0,
+        20,
+        15,
+        10,
+        20,
+        20,
+        20,
+        20,
+        20,
+        15,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        20,
+        0,
+        20,
+        0,
+        5,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"18\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 7.6\nYour tokens after round 4: 27.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 13.0\nYour tokens after round 5: 33.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 3.0\nYour tokens after round 6: 23.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 7: 32.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 18.0\nYour tokens after round 8: 38.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"17\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 18.0\nYour tokens after round 9: 38.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"18\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 20.6\nYour tokens after round 13: 40.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        12,
+        15,
+        18,
+        15,
+        20,
+        20,
+        15,
+        17,
+        20,
+        20,
+        20,
+        18,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        8,
+        5,
+        2,
+        5,
+        0,
+        0,
+        5,
+        3,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 15.6\nYour tokens after round 4: 35.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 8.0\nYour tokens after round 5: 28.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 8.0\nYour tokens after round 6: 28.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 17.0\nYour tokens after round 7: 37.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 18.0\nYour tokens after round 8: 38.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"18\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 17.0\nYour tokens after round 9: 37.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        12,
+        15,
+        10,
+        20,
+        15,
+        15,
+        15,
+        18,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        8,
+        5,
+        10,
+        0,
+        5,
+        5,
+        5,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 10.6\nYour tokens after round 4: 30.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 18.0\nYour tokens after round 5: 38.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 8.0\nYour tokens after round 6: 28.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 17.0\nYour tokens after round 7: 37.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 18.0\nYour tokens after round 8: 38.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        7,
+        10,
+        15,
+        10,
+        15,
+        15,
+        15,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        13,
+        10,
+        5,
+        10,
+        5,
+        5,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"5\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 20.6\nYour tokens after round 4: 40.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 13.0\nYour tokens after round 5: 33.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 13.0\nYour tokens after round 6: 33.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 7: 32.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 13.0\nYour tokens after round 8: 33.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        0,
+        10,
+        5,
+        15,
+        10,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        20,
+        10,
+        15,
+        5,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 15.6\nYour tokens after round 4: 35.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 13.0\nYour tokens after round 5: 33.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 13.0\nYour tokens after round 6: 33.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 17.0\nYour tokens after round 7: 37.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 18.0\nYour tokens after round 8: 38.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 25.0\nYour tokens after round 9: 45.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 21.0\nYour tokens after round 10: 41.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 18.0\nYour tokens after round 11: 38.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 17.0\nYour tokens after round 12: 37.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"0\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 32.0\nYour tokens after round 20: 52.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        5,
+        15,
+        10,
+        15,
+        10,
+        15,
+        15,
+        10,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        0
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        15,
+        5,
+        10,
+        5,
+        10,
+        5,
+        5,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    },
+    {
+      "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. In each round, you, as a player, must decide how many of your private tokens you wish to contribute secretly to the public pot.\n2. The total tokens in this pot will be multiplied by the factor 2 to create the \"public good\" payoff.\n3. This payoff will then be evenly divided among all players, regardless of their individual contribution.\n4. Any tokens you do not contribute will be retained in your private collection."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 128\nYour gain: 10.6\nYour tokens after round 4: 30.6\nTokens of each player after round 4: [35.6, 35.6, 30.6, 25.6, 27.6, 35.6, 30.6, 40.6, 35.6, 30.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 5:\n\nContributed tokens of each player: [15, 20, 5, 15, 15, 20, 10, 15, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 140\nYour gain: 18.0\nYour tokens after round 5: 38.0\nTokens of each player after round 5: [33.0, 28.0, 43.0, 33.0, 33.0, 28.0, 38.0, 33.0, 33.0, 38.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 6:\n\nContributed tokens of each player: [0, 10, 10, 10, 20, 15, 15, 10, 10, 15]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"15\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 115\nYour gain: 8.0\nYour tokens after round 6: 28.0\nTokens of each player after round 6: [43.0, 33.0, 33.0, 33.0, 23.0, 28.0, 28.0, 33.0, 33.0, 28.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 7:\n\nContributed tokens of each player: [10, 20, 15, 20, 20, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 22.0\nYour tokens after round 7: 42.0\nTokens of each player after round 7: [42.0, 32.0, 37.0, 32.0, 32.0, 37.0, 37.0, 32.0, 37.0, 42.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 8:\n\nContributed tokens of each player: [15, 20, 20, 20, 15, 15, 15, 20, 15, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 165\nYour gain: 23.0\nYour tokens after round 8: 43.0\nTokens of each player after round 8: [38.0, 33.0, 33.0, 33.0, 38.0, 38.0, 38.0, 33.0, 38.0, 43.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 9:\n\nContributed tokens of each player: [10, 20, 20, 20, 17, 18, 20, 20, 10, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 175\nYour gain: 15.0\nYour tokens after round 9: 35.0\nTokens of each player after round 9: [45.0, 35.0, 35.0, 35.0, 38.0, 37.0, 35.0, 35.0, 45.0, 35.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 10:\n\nContributed tokens of each player: [20, 35, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 205\nYour gain: 31.0\nYour tokens after round 10: 51.0\nTokens of each player after round 10: [41.0, 26.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 41.0, 51.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 11:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 190\nYour gain: 28.0\nYour tokens after round 11: 48.0\nTokens of each player after round 11: [38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 38.0, 48.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 12:\n\nContributed tokens of each player: [20, 20, 20, 15, 20, 20, 20, 20, 20, 10]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"10\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 185\nYour gain: 27.0\nYour tokens after round 12: 47.0\nTokens of each player after round 12: [37.0, 37.0, 37.0, 42.0, 37.0, 37.0, 37.0, 37.0, 37.0, 47.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 13:\n\nContributed tokens of each player: [15, 20, 20, 20, 18, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 193\nYour gain: 18.6\nYour tokens after round 13: 38.6\nTokens of each player after round 13: [43.6, 38.6, 38.6, 38.6, 40.6, 38.6, 38.6, 38.6, 38.6, 38.6]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 14:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 14: 40.0\nTokens of each player after round 14: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 15:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 15: 40.0\nTokens of each player after round 15: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 16:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 16: 40.0\nTokens of each player after round 16: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 17:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 17: 40.0\nTokens of each player after round 17: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 18:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 18: 40.0\nTokens of each player after round 18: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 19:\n\nContributed tokens of each player: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 200\nYour gain: 20.0\nYour tokens after round 19: 40.0\nTokens of each player after round 19: [40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0]"
+        },
+        {
+          "role": "user",
+          "content": "Game Results for Round 20:\n\nContributed tokens of each player: [20, 20, 0, 20, 20, 20, 20, 20, 0, 20]\nYou contributed:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"tokens_contributed\": \"20\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tokens in the public pot: 160\nYour gain: 12.0\nYour tokens after round 20: 32.0\nTokens of each player after round 20: [32.0, 32.0, 52.0, 32.0, 32.0, 32.0, 32.0, 32.0, 52.0, 32.0]"
+        }
+      ],
+      "records": [
+        10,
+        10,
+        10,
+        15,
+        10,
+        15,
+        10,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "tokens": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        10,
+        10,
+        10,
+        5,
+        10,
+        5,
+        10,
+        10,
+        0,
+        10,
+        10,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
