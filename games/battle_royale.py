@@ -221,31 +221,33 @@ class BattleRoyale(GameServer):
         graph_iter = {player.id.split("_")[1]: False for player in self.players}
         player_order = [info[0].split("_")[1] for info in self.round_records[0]['initial_players']]
         player_order = list(reversed(player_order))
-        # player_order = [player_info[0].id.split('_')[1] for player_info in self.player_info]
-        # print(player_order)
         graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
-        # print(graph_iter)
         rounds = range(1, len(self.round_records) + 1)
         
         plt.figure()
+        # for labeling
         added_labels = set()
         counts = []
         temp = 0
         for round_num, record in enumerate(self.round_records, start=1):
             x = round_num
             y = record["player_shooting"]
+            # labeling and plotting for intentional misses
             if record["action"] == "miss":
                 label = 'Intentionally miss'
+                # avoid redundant labels
                 if label not in added_labels:
                     plt.scatter(x, player_order.index(y), marker='x', color='black', label=label)
                     added_labels.add(label)
                 else:
                     plt.scatter(x, player_order.index(y), marker='x', color='black')
             else:
+                # labeling for shots
                 color = 'red' if record['out'] else 'blue'
                 label = 'Shot and hit' if record['out'] else 'Shot and missed'
                 if record['shot_player'] != "null":
                     player_shot = int(record['shot_player']) + 1
+                    # count the highest hit rate player aiming shots
                     if player_shot in players_list:
                         if players_list[-1] == int(y) + 1:
                             if player_shot == players_list[-2]:
@@ -256,13 +258,16 @@ class BattleRoyale(GameServer):
                     
                     if color == 'red':
                         players_list.remove(player_shot)
-                    
+                        
+                # plotting the shots according to label
+                # avoiding redundant labeling in legend
                 if label not in added_labels:
                     plt.scatter(x, player_order.index(y), marker='o', color=color, label=label)
                     added_labels.add(label)
                 else:
                     plt.scatter(x, player_order.index(y), marker='o', color=color)
                 plt.text(x, player_order.index(y) + 0.1, player_shot, fontsize=10, ha='center', va='bottom')
+                
             counts.append(temp)
 
         plt.title('Player Decisions Over Rounds')
@@ -287,7 +292,7 @@ class BattleRoyale(GameServer):
         plt.title("Rate of Aiming Highest Hit Rate Player")
         plt.xlabel("Round")
         plt.ylabel("Hit Rate (0-1)")
-        plt.savefig(f'figures/{self.name_exp}/Top Hit Rate.svg', dpi=300)
+        plt.savefig(f'figures/{self.name_exp}/Highest Hit Aiming Rate.svg', dpi=300)
         plt.clf()
         plt.close()
     
