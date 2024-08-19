@@ -1,11 +1,9 @@
 """
 Author: Eric John LI (ejli@link.cuhk.edu.hk)
 """
-from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
 from random import seed
-from math import log10
 import numpy as np
 from server import *
 import re
@@ -14,34 +12,30 @@ seed(9)
 class BattleRoyale(GameServer):
     def __init__(self, player_num, version, base_hit_rate=35, interval=5, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'battle_royale', models, version)
-        self.name_exp = name_exp
-        self.player_info = []
-        print("Initializing players:")
-        self.version = version
-        for index, player in enumerate(self.players):
-            self.player_info.append([player, base_hit_rate + interval * (index)])
-        self.player_info = sorted(self.player_info, key=lambda x: x[1])
-        self.current_player_info = self.player_info[0]
-        self.removed_player_info = []
-        self.player_remaining = []
-        self.player_colors = {f'{player.id}':plt.cm.viridis(int(player.id.split('_')[1]) / player_num) for player in self.players}
-        self.player_removed_info = {}
-        self.end = False
+        # save the game parameters
         self.base_hit_rate = base_hit_rate
         self.interval = interval
-
-    def round_to_1_sig_fig(self, num):
-        if num == 0:
-            return 0
-
-        # Determine the scale factor
-        scale = 10 ** -int(log10(abs(num)))
+        self.name_exp = name_exp
+        self.version = version
+        self.player_info = []
+        # initialize players
+        for index, player in enumerate(self.players):
+            # player object contains
+            self.player_info.append([player, base_hit_rate + interval * (index)])
         
-        # Round the number to 1 significant figure
-        return round(num * scale) / scale
+        """sort the players to make players with lower hit rate shoot first"""
+        # self.player_info = sorted(self.player_info, key=lambda x: x[1])
+        
+        # player with lowest hit rate goes first
+        self.current_player_info = self.player_info[0]
+        # record the information of removed player, and how many players left 
+        self.removed_player_info = []
+        self.player_remaining = []
+        # boolean for checking whether the game ends or not
+        self.end = False
 
+    """Return number as ordinal string"""
     def ordinal(self, num):
-        """Return number as ordinal string."""
         num = int(num)
         if 10 <= num % 100 <= 20:
             suffix = 'th'
@@ -50,15 +44,10 @@ class BattleRoyale(GameServer):
             # .get() method then applies the default 'th' to numbers outside this range
             suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(num % 10, 'th')
         return f"{num}{suffix}"
-
-
+    
     def player_info_str_print(self):
-        player_info_str = ""
-        # for player, hit_rate in tqdm(self.player_info):
-        #     player_info_str += 'The {} player to shoot: {}, hit rate: {}%.\n'.format(self.ordinal(self.player_info.index([player, hit_rate]) + 1), player.id, hit_rate) + "\n"
-        # return player_info_str
         players_list = []
-        for player, hit_rate in tqdm(self.player_info):
+        for player, hit_rate in self.player_info:
             player_index = self.player_info.index([player, hit_rate]) + 1
             player_data = {
                 f"The {self.ordinal(player_index)} player to shot": player.id,
@@ -69,22 +58,27 @@ class BattleRoyale(GameServer):
         return json.dumps(players_list, indent=0)
 
     def compute_result(self, responses):
-        # self.remove = False
-        # self.start_again = False
+        '''
+        action: the action that the current player takes: "shoot", or "miss"
+        out: whether the player is out of this game
+        player_shot_info: the info of the player shot
+        shot_player: the player who got shot
+        shot: whether any player is shot    
+        '''
+        action = "shoot"
         out = False
         player_shot_info = []
         shot_player = responses[-1]
         shot = True
-        action = "shoot"
-        if shot_player == "null":
+        if "-1" in str(shot_player) or shot_player == "null":
             shot = False
             action = "miss"
-        # self.removed_player_info_temp = self.removed_player_info
         initial_players = [[player_info[0].id, player_info[1]] for player_info in self.player_info]
-        if "-1" in str(shot_player):
-            shot = False
+        # when a player is shot
         if shot:
+            # find the player that is shot
             for player, hit_rate in self.player_info:
+                
                 if str(shot_player) in player.id:
                     player_shot_info = [player, hit_rate]
                     shot_player = player.id
@@ -92,7 +86,6 @@ class BattleRoyale(GameServer):
                     if out:
                         self.player_info.remove(player_shot_info)
                         self.removed_player_info.append(player.id)
-                        self.player_removed_info[player.id] = self.round_id
                     break
         self.player_remaining.append(len(self.player_info))
         print(f'round_id: {self.round_id}, players left:{len(self.player_info)}')
@@ -106,17 +99,19 @@ class BattleRoyale(GameServer):
             "player_shooting": self.current_player_info[0].id.split('_')[1],
             "initial_players": initial_players,
             "shot_player": shot_player,
-            # "removed_player_info": self.removed_player_info_temp,
             "action": action,
             "out": out
         }
         self.round_records.append(record)
         return record
-        
+    
+    '''determine whether the shooting player successfully hit the shot player or not'''
     def out(self):
         true_or_false = np.random.choice([True, False], p=[self.current_player_info[1] / 100, 1 - self.current_player_info[1] / 100])
+        # convert nump.bool_ to python boolean
         return bool(true_or_false)
 
+    '''find the next player that should be shooting'''
     def find_next_in_current_order(self, player_order, current_player_order, current_player_id):
         # Find the index of the current player in player_order
         current_index = player_order.index(current_player_id)
@@ -135,24 +130,30 @@ class BattleRoyale(GameServer):
         # Return None if no suitable player is found
         return None
     
+    '''report the round result'''
     def report_result(self, round_record):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         report_file2 = f'prompt_template/{self.prompt_folder}/report2_{self.version}.txt'
         result = ""
         result2 = ""
+        # handle case of "miss" (shooting no one)
         if round_record["action"] == "miss":
             result = 'intentionally missed the shot.'
             result2 = 'You intentionally missed your shot.'
+        # handle the case of "shoot
         else:
             result = f'shot at player_{round_record["shot_player"]}'
             result2 = f'You shot at player_{round_record["shot_player"]}'
+            # the case of hitting
             if round_record["out"]:
                 result += f' and hit. player_{round_record["shot_player"]} is eliminated from the game.'
                 result2 += f' and hit. player_{round_record["shot_player"]} is eliminated from the game.'
+            # the case of failing
             else:
                 result += " but missed."
                 result2 += " but missed."
         report_list = [self.round_id, self.current_player_info[0].id, result, len(self.player_info)]
+        '''printing round msg for next round request'''
         for i in range(len(self.player_info)):
             if self.player_info[i][0] == self.current_player_info[0]:
                 report_list2 = [self.round_id, round_record["action"], round_record["shot_player"], result2, len(self.player_info)]
@@ -184,8 +185,8 @@ class BattleRoyale(GameServer):
             else:
                 report_prompts = [{"role": "user", "content": report_msg}]
                 self.player_info[i][0].prompt = self.player_info[i][0].prompt + report_prompts
-        # self.current_player_info[0].prompt = self.current_player_info[0].prompt + report_prompt
-        # # switch to the next player
+                
+        # switch to the next player
         current_player_id = self.current_player_info[0].id
         player_order = [int(player[0].split('_')[1]) for player in self.round_records[0]['initial_players']]
         current_player_order = [int(player[0].id.split('_')[1]) for player in self.player_info]
@@ -198,6 +199,7 @@ class BattleRoyale(GameServer):
         self.round_id += 1
         return
 
+    '''graph analysis'''
     def graphical_analysis(self, players_list):
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
@@ -317,37 +319,38 @@ class BattleRoyale(GameServer):
         request_msg = []
         request_msg = get_prompt(request_file, request_list)
         request_prompt = [{"role": "user", "content": request_msg}]
-        # self.current_player_info[0].prompt = self.current_player_info[0].prompt + request_prompt
         print(f'Player making decision: {self.current_player_info[0].id}')
         while True:
+            # deal with gemini
             if self.current_player_info[0].model.startswith("gemini"):
                 # print(self.current_player_info[0].prompt[-1]['parts'])
                 self.current_player_info[0].prompt[-1]['parts'].append(request_msg)
                 gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt)
+            # deal with others
             else:
                 gpt_responses = self.current_player_info[0].request(self.round_id, self.current_player_info[0].prompt + request_prompt)
             try:
-                # print(gpt_responses)
                 parsered_responses = json.loads(gpt_responses)
+                # extract action
                 action = parsered_responses["action"]
-                # if not (action == "shoot" or action == "miss"):
-                #     continue
+                # extract target
                 parsered_responses = parsered_responses["target"]
                 if parsered_responses == None:
                     parsered_responses = "null"
                 else:
+                    # invalid response handling
                     if parsered_responses == "playerID_or_null":
                         continue
                     try:
+                        # try to extract the player_id
                         parsered_responses = parsered_responses.split("_")[1]
-                        # print(parsered_responses)
                     except:
                         pass
-                # print(self.current_player_info)
                 self.current_player_info[0].records.append(parsered_responses)
                 responses.append(parsered_responses)
-                # self.current_player_info[0].prompt = self.current_player_info[0].prompt + [{"role": "assistant", "content": gpt_responses}]
                 break
+            # if not in exact required json format, but with extra descriptions
+            # regular expressions used to search for json
             except:
                 try:
                     action = re.search(r'"action":\s*(\d+|"[^"]+"|null)', gpt_responses)
@@ -372,7 +375,7 @@ class BattleRoyale(GameServer):
                     break
                 except:
                     pass
-        # print(f'responses:{responses}')
+                
         round_record = self.compute_result(responses)
         self.report_result(round_record)    
         self.show()
