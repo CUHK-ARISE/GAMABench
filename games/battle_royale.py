@@ -58,13 +58,13 @@ class BattleRoyale(GameServer):
         return json.dumps(players_list, indent=0)
 
     def compute_result(self, responses):
-        '''
+        """
         action: the action that the current player takes: "shoot", or "miss"
         out: whether the player is out of this game
         player_shot_info: the info of the player shot
         shot_player: the player who got shot
         shot: whether any player is shot    
-        '''
+        """
         action = "shoot"
         out = False
         player_shot_info = []
@@ -105,13 +105,13 @@ class BattleRoyale(GameServer):
         self.round_records.append(record)
         return record
     
-    '''determine whether the shooting player successfully hit the shot player or not'''
+    """determine whether the shooting player successfully hit the shot player or not"""
     def out(self):
         true_or_false = np.random.choice([True, False], p=[self.current_player_info[1] / 100, 1 - self.current_player_info[1] / 100])
         # convert nump.bool_ to python boolean
         return bool(true_or_false)
 
-    '''find the next player that should be shooting'''
+    """find the next player that should be shooting"""
     def find_next_in_current_order(self, player_order, current_player_order, current_player_id):
         # Find the index of the current player in player_order
         current_index = player_order.index(current_player_id)
@@ -130,7 +130,7 @@ class BattleRoyale(GameServer):
         # Return None if no suitable player is found
         return None
     
-    '''report the round result'''
+    """report the round result"""
     def report_result(self, round_record):
         report_file = f'prompt_template/{self.prompt_folder}/report_{self.version}.txt'
         report_file2 = f'prompt_template/{self.prompt_folder}/report2_{self.version}.txt'
@@ -153,7 +153,7 @@ class BattleRoyale(GameServer):
                 result += " but missed."
                 result2 += " but missed."
         report_list = [self.round_id, self.current_player_info[0].id, result, len(self.player_info)]
-        '''printing round msg for next round request'''
+        """printing round msg for next round request"""
         for i in range(len(self.player_info)):
             if self.player_info[i][0] == self.current_player_info[0]:
                 report_list2 = [self.round_id, round_record["action"], round_record["shot_player"], result2, len(self.player_info)]
@@ -199,7 +199,7 @@ class BattleRoyale(GameServer):
         self.round_id += 1
         return
 
-    '''graph analysis'''
+    """graph analysis"""
     def graphical_analysis(self, players_list):
         # Choice Analysis
         os.makedirs("figures", exist_ok=True)
