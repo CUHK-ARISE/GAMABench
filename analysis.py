@@ -45,18 +45,31 @@ class Analysis:
         self.round_num = self.data[0].round_id
 
     
-    
     def add(self, file, label):
         game = load(file, self.game)
         self.data.append(game)
         self.labels.append(label)
         n, analyzed_game = game.analyze()
         self.analyzed.append(analyzed_game)
-        if len(self.data) == 1:
-            self.get_planes(n)
+        if len(self.data) == 1: self.get_planes(n)
+            
+    
+    def add_avg(self, files, label):
+        analyzed_games = []
+        for file in files:
+            game = load(file, self.game)
+            n, result = game.analyze()
+            analyzed_games.append(result)
+            
+        analyzed_games = np.mean(analyzed_games, axis=0)
+        self.labels.append(label)
+        self.data.append(game)
+        self.analyzed.append(list(analyzed_games))
+        
+        if len(self.data) == 1: self.get_planes(n)
     
     
-    def plot(self, index=0, title="", xlabel="Round", ylabel="", ylim=None, loc="upper right", format="png", savename='merge'):
+    def plot(self, index=0, title="", xlabel="Round", ylabel="", ylim=None, loc="upper right", format="svg", savename='merge', hline=None):
         colors = get_colors(len(self.analyzed))
         self.rounds = [str(i+1) for i in range(self.round_num)]
         analyzed = self.analyzed if len(self.axs) == 1 else [r[index] for r in self.analyzed]
@@ -71,11 +84,13 @@ class Analysis:
         ax.set_ylabel(ylabel)
         ax.set_title(title)
         
-        if ylim is not None: ax.set_ylim(*ylim)
+        if hline is not None:
+            ax.axhline(y=hline, color='black', linestyle='--', zorder=100)
+
+        if ylim is not None:
+            ax.set_ylim(*ylim)
         
         os.makedirs("analyzed", exist_ok=True)
         fig.savefig(f'analyzed/{savename}.{format}', format=format, dpi=300)
     
-    def get_ax(self, index):
-        return self.axs[index]
     

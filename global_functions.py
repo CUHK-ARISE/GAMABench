@@ -22,7 +22,7 @@ def load(filepath, object, newfile=None):
         game.load(loaded_file["round_records"], loaded_file["player_data"])
         
     with open(filepath, 'w') as json_file:
-        json.dump(loaded_file, json_file, indent=4)
+        json.dump(loaded_file, json_file, indent=2)
     return game
 
 
