@@ -10,10 +10,8 @@ from random import randint
 import random
 from server import *
 
-
-
 class SealedBidAuction(GameServer):
-    def __init__(self, player_num, valuation_min=0, valuation_max=200, interval=10, version="v1", mode = 'second highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, valuation_min=0, valuation_max=200, interval=10, version="v1", mode = 'second highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
         self.version = version
         self.mode = mode

@@ -4,12 +4,12 @@ from tenacity import (
     wait_random_exponential,
 )
 import time
-import openai
+from openai import OpenAI
 
 from utils import *
 from global_functions import *
 
-openai.api_key = openai_api_key
+openai = OpenAI(api_key=openai_api_key)
 
 @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
 def chat(
@@ -22,7 +22,7 @@ def chat(
 ):
     time.sleep(delay)
     
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model=model,
         messages=messages,
         temperature=temperature,
@@ -30,34 +30,5 @@ def chat(
         max_tokens=max_tokens
     )
     
-    if n == 1:
-        return response['choices'][0]['message']['content']
-    else:
-        return [i['message']['content'] for i in response['choices']]
+    return response.choices[0].message.content
 
-
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
-def completion(
-    model,                      # text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
-    prompt,                     # The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
-    temperature=temperature,    # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
-    n=1,                        # Completions to generate for each prompt.
-    max_tokens=1024,            # The maximum number of tokens to generate in the chat completion.
-    delay=delay_time            # Seconds to sleep after each request.
-):
-    time.sleep(delay)
-    
-    response = openai.Completion.create(
-        model=model,
-        prompt=prompt,
-        temperature=temperature,
-        n=n,
-        max_tokens=max_tokens
-    )
-    
-    if n == 1:
-        return extract_json_from_string(response['choices'][0]['text'])
-    else:
-        response = response['choices']
-        response.sort(key=lambda x: x['index'])
-        return [i['text'] for i in response['choices']]

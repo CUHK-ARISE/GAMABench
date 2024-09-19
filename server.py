@@ -92,14 +92,8 @@ class Player:
         start_time = time.time()
         while time.time() - start_time < 10:
             
-            # Text-davinci models (deleted)
-            if self.model == 'text-davinci-003':
-                response = completion(self.model, inputs).strip()
-                self.print_prompt(inputs, response)
-                return response
-            
             # OpenAI models
-            elif self.model.startswith(('gpt-3.5-turbo', 'gpt-4')):
+            if self.model.startswith(('gpt-3.5-turbo', 'gpt-4')):
                 response = chat(self.model, inputs).strip()
                 self.print_prompt(self.id, inputs, response)
                 return response

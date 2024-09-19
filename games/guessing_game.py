@@ -9,7 +9,7 @@ import json
 from server import *
 
 class GuessingGame(GameServer):
-    def __init__(self, player_num, min, max, ratio, ratio_str, version='v1', name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, min=0, max=100, ratio=2/3, ratio_str='2/3', version='v1', name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'guessing_game', models, version)
         self.min = min
         self.max = max

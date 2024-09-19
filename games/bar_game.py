@@ -10,7 +10,7 @@ from server import *
 from global_functions import *
 
 class BarGame(GameServer):
-    def __init__(self, player_num, min, max, home, ratio, ratio_str, version, mode='explicit', name_exp='bar_game', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, min=0, max=10, home=5, ratio=0.6, ratio_str="60%", version="v1", mode='implicit', name_exp='bar_game_implicit', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'bar_game', models, version)
         self.min = min
         self.max = max

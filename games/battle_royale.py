@@ -9,8 +9,9 @@ from server import *
 import re
 
 seed(9)
+
 class BattleRoyale(GameServer):
-    def __init__(self, player_num, version, base_hit_rate=35, interval=5, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, version='v1', base_hit_rate=35, interval=5, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'battle_royale', models, version)
         # save the game parameters
         self.base_hit_rate = base_hit_rate

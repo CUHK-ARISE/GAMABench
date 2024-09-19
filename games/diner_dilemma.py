@@ -7,9 +7,8 @@ import json
 import pandas as pd
 
 from server import *
-
 class DinerDilemma(GameServer):
-    def __init__(self, player_num, cheap_cost, cheap_utility, exp_cost, exp_utility, version, name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, cheap_cost=10, cheap_utility=15, exp_cost=20, exp_utility=20, version='v1', name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'diner_dilemma', models, version)
         self.name_exp = name_exp
         self.cheap_cost = cheap_cost

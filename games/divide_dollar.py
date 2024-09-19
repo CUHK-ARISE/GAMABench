@@ -9,7 +9,7 @@ from statistics import mean, stdev
 from server import *
 
 class DivideDollar(GameServer):
-    def __init__(self, player_num, golds, version, name_exp='divide_dollar', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, golds=100, version='v1', name_exp='divide_dollar', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'divide_dollar', models, version)
         self.name_exp = name_exp
         self.golds = golds

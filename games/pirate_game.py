@@ -9,7 +9,7 @@ from math import log10, floor
 from collections import defaultdict 
 import matplotlib.patches as mpatches
 class PirateGame(GameServer):
-    def __init__(self, player_num, gold="100", version="v1", name_exp='pirate_game', round_id=0, models='gpt-3.5'):
+    def __init__(self, player_num=10, gold="100", version="v1", name_exp='pirate_game', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'pirate_game', models, version)
         self.version = version
         self.name_exp = name_exp

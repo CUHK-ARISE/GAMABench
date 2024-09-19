@@ -10,7 +10,7 @@ from server import *
 from math import log, ceil
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num, tokens, ratio=2, version='v1', name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, tokens=100, ratio=2, version='v1', name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
         self.version = version
         self.name_exp = name_exp
