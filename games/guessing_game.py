@@ -11,12 +11,24 @@ from server import *
 class GuessingGame(GameServer):
     def __init__(self, player_num=10, min=0, max=100, ratio=2/3, ratio_str='2/3', version='v1', name_exp='guessing_game', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'guessing_game', models, version)
+        self.game_name = "Guessing"
         self.min = min
         self.max = max
         self.ratio = ratio
         self.ratio_str = ratio_str
         self.name_exp = name_exp
       
+    
+    def compute_score(self):
+        S = mean(self.analyze()[1])
+        D = self.max - self.min
+        if self.ratio < 1:
+            return (self.max - S) / D * 100
+        elif self.ratio == 1:
+            return (2 * S - D) / D * 100
+        else:
+            return S / D * 100
+    
       
     def compute_result(self, responses):
         winner = min(responses, key=lambda x: abs(x - mean(responses) * self.ratio))
@@ -64,7 +76,7 @@ class GuessingGame(GameServer):
     
     
     def analyze(self):
-        return 1, [r["mean"] for r in self.round_records]
+        return 1, [r["mean"] - self.min for r in self.round_records]
     
     
     def graphical_analysis(self, players_list):

@@ -1,10 +1,11 @@
 """
 Author: LAM Man Ho (mhlam@link.cuhk.edu.hk)
 """
-from tqdm import tqdm
-import matplotlib.pyplot as plt
 import json
 import pandas as pd
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+from statistics import mean, stdev
 
 from server import *
 from global_functions import *
@@ -12,6 +13,7 @@ from global_functions import *
 class BarGame(GameServer):
     def __init__(self, player_num=10, min=0, max=10, home=5, ratio=0.6, ratio_str="60%", version="v1", mode='implicit', name_exp='bar_game_implicit', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'bar_game', models, version)
+        self.game_name = "Bar"
         self.min = min
         self.max = max
         self.home = home
@@ -19,6 +21,13 @@ class BarGame(GameServer):
         self.ratio_str = ratio_str
         self.mode = mode
         self.name_exp = name_exp
+        
+        
+    def compute_score(self):
+        S = np.mean(np.abs(np.array(self.analyze()[1][0]) - self.ratio))
+        R = max(self.ratio, 1-self.ratio)
+        score = (R - S) / R * 100
+        return score
     
     
     def compute_result(self, responses):

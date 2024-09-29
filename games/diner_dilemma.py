@@ -10,11 +10,17 @@ from server import *
 class DinerDilemma(GameServer):
     def __init__(self, player_num=10, cheap_cost=10, cheap_utility=15, exp_cost=20, exp_utility=20, version='v1', name_exp='diner_dilemma', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'diner_dilemma', models, version)
+        self.game_name = "Diner"
         self.name_exp = name_exp
         self.cheap_cost = cheap_cost
         self.cheap_utility = cheap_utility
         self.exp_cost = exp_cost
         self.exp_utility = exp_utility
+        
+        
+    def compute_score(self):
+        S = np.mean(1 - np.array(self.analyze()[1][0]))
+        return S * 100
     
     
     def compute_result(self, responses):
