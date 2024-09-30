@@ -9,8 +9,9 @@ from math import log10, floor
 from collections import defaultdict 
 import matplotlib.patches as mpatches
 class PirateGame(GameServer):
-    def __init__(self, player_num=10, gold="100", version="v1", name_exp='pirate_game', round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, gold=100, version="v1", name_exp='pirate_game', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'pirate_game', models, version)
+        self.game_name = 'Pirate'
         self.version = version
         self.name_exp = name_exp
         self.gold = gold
@@ -27,6 +28,43 @@ class PirateGame(GameServer):
         }
         self.round_records.append(record)
         return record
+
+    def compute_score(self):        
+        S_P, S_V = self.analyze()
+        return (2 * self.gold - S_P) / (2 * self.gold) * 50 + S_V * 50
+
+    def analyze(self):
+        L1_distances = []
+        correct_actions = 0
+        total_actions = 0
+        accuracy = []
+        for index1, round_record in enumerate(self.round_records):
+            current_gold_distribution = round_record["gold_distribution"]
+            NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
+            L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
+            relatively_odd = False
+            is_proposer = True
+            round_responses = round_record['responses']
+            for index2, _ in enumerate(round_responses):
+                # skip the proposer
+                if is_proposer:
+                    is_proposer = False
+                    continue
+                
+                player_gold = current_gold_distribution[index2]
+                if player_gold >= 2:
+                    if round_responses[index2] == 'accept':
+                        correct_actions += 1
+                elif player_gold == 1 and relatively_odd:
+                    if round_responses[index2] == 'accept':
+                        correct_actions += 1
+                elif player_gold == 0:
+                    if round_responses[index2] == 'reject':
+                        correct_actions += 1
+                relatively_odd = not relatively_odd
+            total_actions += len(current_gold_distribution) - 1
+            accuracy.append(correct_actions / total_actions)
+        return np.mean(L1_distances, axis=0), accuracy[-1]
 
     def report_result(self, gold_distribution):
         count = 0
@@ -163,20 +201,26 @@ class PirateGame(GameServer):
             current_gold_distribution = round_record["gold_distribution"]
             NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
             L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
+            is_proposer = True
+            relatively_odd = False
             for index2, player in enumerate(player_list):
-                if index2 <= index1:
+                if is_proposer:
+                    is_proposer = False
                     continue
-                player_gold = round_record["gold_distribution"][index2 - index1]
+                
+                player_gold = round_record["gold_distribution"][index2]
                 if player_gold >= 2:
-                    if player.records[index1] == 'accept':
+                    if player.records[index2] == 'accept':
                         correct_actions += 1
-                elif player_gold == 1 and (index2 - index1) % 2 == 0:
-                    if player.records[index1] == 'accept':
+                elif player_gold == 1 and relatively_odd:
+                    if player.records[index2] == 'accept':
                         correct_actions += 1
                 elif player_gold == 0:
-                    if player.records[index1] == 'reject':
+                    if player.records[index2] == 'reject':
                         correct_actions += 1
-                total_actions += len(current_gold_distribution) - 1
+                relatively_odd = not relatively_odd
+                
+            total_actions += len(current_gold_distribution) - 1
             accuracy.append(correct_actions / total_actions)
                 
         # Create the first plot
@@ -459,5 +503,3 @@ class PirateGame(GameServer):
             self.save(self.name_exp)
             self.show()
             time.sleep(1)
-        print("\n====\n")
-        print(f"Score: {(200-self.L1)/4 + 50 * self.accuracy:.2f}")

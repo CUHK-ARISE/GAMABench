@@ -13,6 +13,7 @@ from server import *
 class SealedBidAuction(GameServer):
     def __init__(self, player_num=10, valuation_min=0, valuation_max=200, interval=10, version="v1", mode = 'second highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
+        self.game_name = 'Auction'
         self.version = version
         self.mode = mode
         self.name_exp = name_exp
@@ -22,7 +23,20 @@ class SealedBidAuction(GameServer):
         self.round_valuation = []
         self.seed = seed
     
+    def compute_score(self):
+        MAX_V = self.valuation_max 
+        S = self.analyze()
+        # if self.mode.find('second') != -1:
+        #     return 100 - S / MAX_V * 100
+        # else:
+        return S / MAX_V * 100
         
+    def analyze(self):
+        valuations = [r['valuations'] for r in self.round_records]
+        responses = [r['responses'] for r in self.round_records]
+        
+        return np.mean([np.array(valuations[i]) - np.array(responses[i]) for i in range(20)])
+    
     def compute_result(self, responses):
         player_utilities = []
         winning_bid = max(responses)
@@ -219,10 +233,3 @@ class SealedBidAuction(GameServer):
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.round_id+rounds, self.mode, role_msg]
         super().run(rounds, description_file, description_list)
-        print("\n====\n")
-        if self.mode.find('second') != -1:
-            print("second price")
-            print(f"Score: {100 - self.averages / 2:.2f}")
-        else:
-            print("first price")
-            print(f"Score: {self.averages / 2:.2f}")

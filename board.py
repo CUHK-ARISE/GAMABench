@@ -65,16 +65,14 @@ class Leaderboard():
 
         
     def load(self):
-        games_object = [GuessingGame, BarGame, DivideDollar, #PublicGoods,
-                        DinerDilemma, SealedBidAuction, BattleRoyale, PirateGame]
+        games_object = [GuessingGame, BarGame, DivideDollar, PublicGoods, DinerDilemma, SealedBidAuction, BattleRoyale, PirateGame]
         
         games_name = ["Guessing", "Bar", "Dollar", "Goods", "Diner", "Auction", "Battle", "Pirate"]
-        games_name = ["Guessing", "Bar", "Dollar", "Diner"]
+
+        games_folder = ["guessing_game", "bar_game/implicit", "divide_dollar", "public_goods",
+                        "diner_dilemma", "sealed_bid_auction/first_price", "battle_royale", "pirate_game"]
         
-        games_folder = ["guessing_game", "bar_game/implicit", "divide_dollar", # "public_goods",
-                        "diner_dilemma", "sealed_bid_auction/second_price", "battle_royale", "pirate_game"]
-        
-        games_path = ["guessing_game", "bar_game_implicit", "divide_dollar", # "public_goods",
+        games_path = ["guessing_game", "bar_game_implicit", "divide_dollar", "public_goods",
                       "diner_dilemma", "sealed_bid_auction", "battle_royale", "pirate_game"]
         
         models_name = ["GPT-3.5-0125", "GPT-3.5-1106", "GPT-3.5-0613", "GPT-4-0125",

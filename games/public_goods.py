@@ -12,6 +12,7 @@ from math import log, ceil
 class PublicGoods(GameServer):
     def __init__(self, player_num=10, tokens=100, ratio=2, version='v1', name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
+        self.game_name = "Goods"
         self.version = version
         self.name_exp = name_exp
         self.tokens = tokens
@@ -20,6 +21,15 @@ class PublicGoods(GameServer):
         self.reset = reset
         self.rand_min = rand_min
     
+    def compute_score(self):
+        T = self.tokens
+        S = self.analyze()
+        return (T - S) / T * 100
+        
+    def analyze(self):
+        responses = [r['total_tokens'] / self.player_num for r in self.round_records] 
+        return np.mean(responses, axis=0)
+        
     def compute_result(self, responses):
         total_tokens = sum(responses)
         record = {
@@ -74,7 +84,6 @@ class PublicGoods(GameServer):
         os.makedirs("figures", exist_ok=True)
         round_numbers = [i for i in range(1, self.round_id+1)]
         player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
-
         
         os.makedirs(f"figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}", exist_ok=True)
         # Individual Donations and Total Donations
@@ -96,7 +105,7 @@ class PublicGoods(GameServer):
                 temp_list.append(donation_in_terms_of_default)
             donation_list.append(temp_list)
             plt.plot(round_numbers, adjusted_donations, marker='.', color=player_color[index], label=f'{player.id} Donations')
-        self.temp_score = np.mean(np.mean(donation_list, axis=0), axis=0)
+        self.score = np.mean(np.mean(donation_list, axis=0), axis=0)
         # clear the offset for another 
 
         plt.title(f'Contributed Tokens Percentage')
@@ -204,7 +213,7 @@ class PublicGoods(GameServer):
                     player.prompt = player.prompt[:1] + player.prompt[2:]  
                     
             player_info = {
-                "model": player.model,
+                "models": player.model,
                 "id": player.id,
                 "prompt": player.prompt,
                 "records": player.records,
@@ -233,19 +242,16 @@ class PublicGoods(GameServer):
         initial_tokens = []
 
         for player in tqdm(self.players):
-            if self.token_initialization == "random":
-                if round == 1: 
+            if round == 1:
+                if self.token_initialization == "random":
                     rand_token = randint(self.rand_min, self.tokens)
                     while(rand_token in initial_tokens):
                         rand_token = randint(self.rand_min, self.tokens + 1)
                     initial_tokens.append(rand_token) 
                     player.tokens.append(rand_token)
-            elif self.token_initialization == "fixed":
-                rand_token = self.tokens
-                if round == 1:
+                elif self.token_initialization == "fixed":
+                    rand_token = self.tokens
                     initial_tokens.append(rand_token) 
-                    player.tokens.append(rand_token)
-                if self.reset:
                     player.tokens.append(rand_token)
         
             cot_msg = get_cot_prompt(self.cot)
@@ -287,5 +293,3 @@ class PublicGoods(GameServer):
         description_file = f'prompt_template/{self.prompt_folder}/description_{self.version}.txt'
         description_list = [self.player_num, self.round_id+rounds, self.ratio, role_msg]
         super().run(rounds, description_file, description_list)
-        print("\n====\n")
-        print(f"Score: {100 - self.temp_score * 5:.2f}")

@@ -14,6 +14,7 @@ class BattleRoyale(GameServer):
     def __init__(self, player_num=10, version='v1', base_hit_rate=35, interval=5, name_exp='battle_royale', round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'battle_royale', models, version)
         # save the game parameters
+        self.game_name = 'Battle'
         self.base_hit_rate = base_hit_rate
         self.interval = interval
         self.name_exp = name_exp
@@ -34,6 +35,8 @@ class BattleRoyale(GameServer):
         self.player_remaining = []
         # boolean for checking whether the game ends or not
         self.end = False
+
+
 
     """Return number as ordinal string"""
     def ordinal(self, num):
@@ -199,6 +202,53 @@ class BattleRoyale(GameServer):
                 break
         self.round_id += 1
         return
+
+    def compute_score(self):
+        S = self.analyze()
+        return S * 100
+        
+    def analyze(self):
+        rounds = list(range(1, self.round_id))
+        players_list = list(range(1, self.player_num + 1))
+        graph_iter = {player_id: False for player_id in players_list}
+        player_order = list(reversed([info[0].split("_")[1] for info in self.round_records[0]['initial_players']]))
+        player_order = list(reversed(player_order))
+        graph_iter = {player_id: graph_iter[player_id] for player_id in player_order if player_id in graph_iter}
+        
+
+        added_labels = set()
+        counts = []
+        temp = 0
+        
+        for round_num, record in enumerate(self.round_records, start=1):
+            x = round_num
+            y = record["player_shooting"]
+            if record["action"] == "miss":
+                label = 'Intentionally miss'
+                if label not in added_labels:
+                    added_labels.add(label)
+            else:
+                color = 'red' if record['out'] else 'blue'
+                label = 'Shot and hit' if record['out'] else 'Shot and missed'
+                if record['shot_player'] != "null":
+                    player_shot = int(record['shot_player']) + 1
+                    if player_shot in players_list:
+                        if players_list[-1] == int(y) + 1:
+                            if player_shot == players_list[-2]:
+                                temp += 1
+                        else:
+                            if player_shot == players_list[-1]:
+                                temp += 1
+                    
+                    if color == 'red':
+                        players_list.remove(player_shot)
+                    
+            counts.append(temp)
+        
+        correct_aims = counts[-1]
+        top_hit_rate = [x / y for x, y in zip(counts, rounds)]
+        return correct_aims/ (len(top_hit_rate))
+        
 
     """graph analysis"""
     def graphical_analysis(self, players_list):
