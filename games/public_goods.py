@@ -10,7 +10,7 @@ from server import *
 from math import log, ceil
 
 class PublicGoods(GameServer):
-    def __init__(self, player_num=10, tokens=100, ratio=2, version='v1', name_exp='public_goods', token_initialization = "random", reset = False, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, tokens=20, ratio=2, version='v1', name_exp='public_goods', token_initialization = "fixed", reset = True, round_id=0, rand_min = 11, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'public_goods', models, version)
         self.game_name = "Goods"
         self.version = version
@@ -85,7 +85,7 @@ class PublicGoods(GameServer):
         round_numbers = [i for i in range(1, self.round_id+1)]
         player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
         
-        os.makedirs(f"figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}", exist_ok=True)
+        os.makedirs(f"figures/{self.name_exp}", exist_ok=True)
         # Individual Donations and Total Donations
         total_donations_list = [r["total_tokens"] for r in self.round_records]
         max_donation = 0
@@ -114,7 +114,7 @@ class PublicGoods(GameServer):
         plt.yticks(range(0, 120, 20))
         plt.ylim(-1, 101)
         plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
-        plt.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/contribution_percentage.svg', dpi=300)
+        plt.savefig(f'figures/public_goods/contribution_percentage.svg', dpi=300)
         plt.clf()
         
         for index, player in enumerate(players_list):
@@ -133,7 +133,7 @@ class PublicGoods(GameServer):
         plt.xlabel('Round')
         plt.ylabel('Contributed Tokens')
         plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
-        plt.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/contribution.svg', dpi=300)
+        plt.savefig(f'figures/public_goods/contribution.svg', dpi=300)
         plt.clf()
     
         rankings_over_time = []
@@ -169,7 +169,7 @@ class PublicGoods(GameServer):
         # Enable the grid
         # plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
-        plt.savefig(f'figures/{self.name_exp}_{self.version}_{self.token_initialization}_R={self.ratio}_reset={self.reset}/ranking.svg', dpi=300)
+        plt.savefig(f'figures/public_goods/ranking.svg', dpi=300)
         plt.clf()
 
         plt.close()

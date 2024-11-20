@@ -11,7 +11,7 @@ import random
 from server import *
 
 class SealedBidAuction(GameServer):
-    def __init__(self, player_num=10, valuation_min=0, valuation_max=200, interval=10, version="v1", mode = 'second highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
+    def __init__(self, player_num=10, valuation_min=0, valuation_max=200, interval=10, version="v1", mode='highest bid', name_exp='sealed_bid_auction', seed=42, round_id=0, models='gpt-3.5-turbo'):
         super().__init__(player_num, round_id, 'sealed_bid_auction', models, version)
         self.game_name = 'Auction'
         self.version = version
@@ -108,7 +108,7 @@ class SealedBidAuction(GameServer):
     def plot_val_bid_diff(self, players_list):
         # make figure directories
         os.makedirs("figures", exist_ok=True)
-        os.makedirs(f'figures/{self.name_exp}_{self.mode}_{self.version}', exist_ok=True)
+        os.makedirs(f'figures/sealed_bid_auction', exist_ok=True)
         # define player colors
         player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
         round_numbers = [i for i in range(1, self.round_id+1)]
@@ -140,13 +140,13 @@ class SealedBidAuction(GameServer):
             [y + s for y, s in zip(np.mean(differences, axis=0), np.std(differences, axis=0))],
             alpha=0.2, color='blue'
         )
-        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/val_bid_diff_mean.svg', dpi=300)
+        plt.savefig(f'figures/sealed_bid_auction/val_bid_diff_mean.svg', dpi=300)
         plt.clf()
         plt.close()
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
-        os.makedirs(f'figures/{self.name_exp}_{self.mode}_{self.version}', exist_ok=True)
+        os.makedirs(f'figures/sealed_bid_auction', exist_ok=True)
         # plt.figure(figsize=(15, 10))  # Increase figure size 
         player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         round_numbers = [i for i in range(1, self.round_id+1)]
@@ -161,7 +161,7 @@ class SealedBidAuction(GameServer):
         plt.ylabel('Bid')
         plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
         # plt.legend()
-        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/bid_each_round.svg', dpi=300)
+        plt.savefig(f'figures/sealed_bid_auction/bid_each_round.svg', dpi=300)
         plt.clf()
         plt.close()
         self.plot_val_bid_diff(players_list)
