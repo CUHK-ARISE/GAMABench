@@ -171,6 +171,7 @@ class GameServer:
                 **game_info,
                 "round_id": self.round_id,
                 "version": self.version,
+                "models": self.models
             },
             "round_records": self.round_records,
             "player_data": [],

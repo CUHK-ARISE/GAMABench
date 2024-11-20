@@ -2,7 +2,7 @@
   "meta": {
     "name_exp": "pirate_game",
     "player_num": 10,
-    "round_id": 3,
+    "round_id": 2,
     "version": "v1",
     "models": "gpt-3.5-turbo-0125"
   },
@@ -35,9 +35,9 @@
     },
     {
       "gold_distribution": [
+        1,
         99,
         0,
-        1,
         0,
         0,
         0,
@@ -47,34 +47,12 @@
       ],
       "responses": [
         "accept",
-        "reject",
-        "accept",
         "accept",
         "reject",
+        "accept",
+        "accept",
+        "accept",
         "reject",
-        "reject",
-        "reject",
-        "accept"
-      ]
-    },
-    {
-      "gold_distribution": [
-        50,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        44
-      ],
-      "responses": [
-        "accept",
-        "accept",
-        "accept",
-        "accept",
-        "accept",
-        "accept",
         "accept",
         "accept"
       ]
@@ -87,7 +65,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 1-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 1-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -113,7 +91,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 2-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 2-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -129,7 +107,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -137,7 +115,7 @@
         },
         {
           "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nYour plan was rejected. You are eliminated from the game and receive nothing."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nYour plan was accepted. The game ends. You receive 1 golds."
         }
       ],
       "records": [
@@ -152,7 +130,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 3-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 3-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -168,19 +146,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"reject\"}"
-        },
-        {
-          "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -188,11 +154,10 @@
         },
         {
           "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nYour plan was accepted. The game ends. You receive 50 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 99 golds."
         }
       ],
       "records": [
-        "reject",
         "reject",
         "accept"
       ],
@@ -204,7 +169,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 4-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 4-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -220,33 +185,20 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
-          "content": "{\"decision\": \"accept\"}"
+          "content": "{\"decision\": \"reject\"}"
         },
         {
           "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"accept\"}"
-        },
-        {
-          "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
         "reject",
-        "accept",
-        "accept"
+        "reject"
       ],
       "utility": []
     },
@@ -256,7 +208,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 5-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 5-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -272,7 +224,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -280,24 +232,11 @@
         },
         {
           "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"accept\"}"
-        },
-        {
-          "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
         "reject",
-        "accept",
         "accept"
       ],
       "utility": []
@@ -308,7 +247,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 6-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 6-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -324,19 +263,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"reject\"}"
-        },
-        {
-          "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -344,11 +271,10 @@
         },
         {
           "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
-        "reject",
         "reject",
         "accept"
       ],
@@ -360,7 +286,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 7-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 7-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -376,19 +302,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"reject\"}"
-        },
-        {
-          "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -396,11 +310,10 @@
         },
         {
           "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
-        "reject",
         "reject",
         "accept"
       ],
@@ -412,7 +325,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 8-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 8-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -428,7 +341,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -436,25 +349,12 @@
         },
         {
           "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"accept\"}"
-        },
-        {
-          "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
         "reject",
-        "reject",
-        "accept"
+        "reject"
       ],
       "utility": []
     },
@@ -464,7 +364,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 9-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 9-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -480,19 +380,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"reject\"}"
-        },
-        {
-          "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -500,11 +388,10 @@
         },
         {
           "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 1 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
-        "reject",
         "reject",
         "accept"
       ],
@@ -516,7 +403,7 @@
       "prompt": [
         {
           "role": "system",
-          "content": " You are a collaborative and cooperative player.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 10-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
+          "content": " You are a mathematician who is good at game theory.\n\nYou are participating in a game played by 10 players.\n\nGame Rules:\n\n1. You are pirates who have found 100 gold coins. You are deciding how to distribute these coins among yourselves.\n2. The pirates will make decisions in strict order of seniority. You are the 10-th most senior pirate.\n3. The most senior pirate proposes a plan to distribute the 100 gold coins.\n4. All pirates, including the proposer, vote on the proposed distribution.\n5. If the majority accepts the plan, each pirate receives the gold coins as the most senior pirate proposed.\n6. If the majority rejects the plan, the proposer is thrown overboard, and the next senior pirate proposes a new plan.\n7. The game ends when a plan is accepted or only one pirate remains."
         },
         {
           "role": "user",
@@ -532,7 +419,7 @@
         },
         {
           "role": "user",
-          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 99, '3-th': 0, '4-th': 1, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n4 of 9 pirates chose to accept the distribution. \n\nYou chose:"
+          "content": "The 2-nd-th most senior pirate proposed a plan of {'2-th': 1, '3-th': 99, '4-th': 0, '5-th': 0, '6-th': 0, '7-th': 0, '8-th': 0, '9-th': 0, '10-th': 0}.\n7 of 9 pirates chose to accept the distribution. \n\nYou chose:"
         },
         {
           "role": "assistant",
@@ -540,24 +427,11 @@
         },
         {
           "role": "user",
-          "content": "Less than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
-        },
-        {
-          "role": "user",
-          "content": "The 3-rd-th most senior pirate proposed a plan of {'3-th': 50, '4-th': 1, '5-th': 1, '6-th': 1, '7-th': 1, '8-th': 1, '9-th': 1, '10-th': 44}.\n8 of 8 pirates chose to accept the distribution. \n\nYou chose:"
-        },
-        {
-          "role": "assistant",
-          "content": "{\"decision\": \"accept\"}"
-        },
-        {
-          "role": "user",
-          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 3-rd-th most senior pirate's plan was accepted. The game ends. You receive 44 golds."
+          "content": "Equal to or greater than half of the pirates accepted the plan.\nThe 2-nd-th most senior pirate's plan was accepted. The game ends. You receive 0 golds."
         }
       ],
       "records": [
         "reject",
-        "accept",
         "accept"
       ],
       "utility": []

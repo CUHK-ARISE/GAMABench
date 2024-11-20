@@ -193,7 +193,7 @@ class PublicGoods(GameServer):
                 **game_info,
                 "round_id": self.round_id,
                 "version": self.version,
-                "model": self.models
+                "models": self.models
             },
             "round_records": self.round_records,
             "player_data": [],
@@ -213,7 +213,7 @@ class PublicGoods(GameServer):
                     player.prompt = player.prompt[:1] + player.prompt[2:]  
                     
             player_info = {
-                "models": player.model,
+                "model": player.model,
                 "id": player.id,
                 "prompt": player.prompt,
                 "records": player.records,

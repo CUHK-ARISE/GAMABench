@@ -30,8 +30,9 @@ class PirateGame(GameServer):
         return record
 
     def compute_score(self):        
+        # in analyze, S_P is already calculated in terms of gold = 100 base
         S_P, S_V = self.analyze()
-        return (2 * self.gold - S_P) / (2 * self.gold) * 50 + S_V * 50
+        return (2 * 100 - S_P) / (2 * 100) * 50 + S_V * 50
 
     def analyze(self):
         L1_distances = []
@@ -42,28 +43,31 @@ class PirateGame(GameServer):
             current_gold_distribution = round_record["gold_distribution"]
             NE_gold_distribution = self.return_NE_plan(self.player_num - index1, 100)
             L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
-            relatively_odd = False
             is_proposer = True
-            round_responses = round_record['responses']
-            for index2, _ in enumerate(round_responses):
-                # skip the proposer
+            relatively_odd = False
+            # print(f"gold distribution: {current_gold_distribution}, len: {len(current_gold_distribution)}")
+            for index2 in range(len(current_gold_distribution)):
                 if is_proposer:
                     is_proposer = False
                     continue
                 
                 player_gold = current_gold_distribution[index2]
+                # print(player_gold)
+                player_records = round_record['responses']
                 if player_gold >= 2:
-                    if round_responses[index2] == 'accept':
+                    if player_records[index2] == 'accept':
                         correct_actions += 1
                 elif player_gold == 1 and relatively_odd:
-                    if round_responses[index2] == 'accept':
+                    if player_records[index2] == 'accept':
                         correct_actions += 1
                 elif player_gold == 0:
-                    if round_responses[index2] == 'reject':
+                    if player_records[index2] == 'reject':
                         correct_actions += 1
                 relatively_odd = not relatively_odd
             total_actions += len(current_gold_distribution) - 1
             accuracy.append(correct_actions / total_actions)
+            # print(self.models)
+            # print(accuracy)
         return np.mean(L1_distances, axis=0), accuracy[-1]
 
     def report_result(self, gold_distribution):
@@ -203,20 +207,23 @@ class PirateGame(GameServer):
             L1_distances.append(self.L1_dist(current_gold_distribution, NE_gold_distribution))
             is_proposer = True
             relatively_odd = False
-            for index2, player in enumerate(player_list):
+            round_responses = round_record['responses']
+            # print(f"gold distribution: {current_gold_distribution}, len: {len(current_gold_distribution)}")
+            for index2, _ in enumerate(round_responses):
+                # skip the proposer
                 if is_proposer:
                     is_proposer = False
                     continue
                 
-                player_gold = round_record["gold_distribution"][index2]
+                player_gold = current_gold_distribution[index2]
                 if player_gold >= 2:
-                    if player.records[index2] == 'accept':
+                    if round_responses[index2] == 'accept':
                         correct_actions += 1
                 elif player_gold == 1 and relatively_odd:
-                    if player.records[index2] == 'accept':
+                    if round_responses[index2] == 'accept':
                         correct_actions += 1
                 elif player_gold == 0:
-                    if player.records[index2] == 'reject':
+                    if round_responses[index2] == 'reject':
                         correct_actions += 1
                 relatively_odd = not relatively_odd
                 
