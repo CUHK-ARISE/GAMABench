@@ -29,13 +29,20 @@ class SealedBidAuction(GameServer):
         # if self.mode.find('second') != -1:
         #     return 100 - S / MAX_V * 100
         # else:
-        return S / MAX_V * 100
+        return S * 100
         
     def analyze(self):
-        valuations = [r['valuations'] for r in self.round_records]
-        responses = [r['responses'] for r in self.round_records]
-        
-        return np.mean([np.array(valuations[i]) - np.array(responses[i]) for i in range(20)])
+        # extract all valuations and responses at once
+        valuations = np.array([r['valuations'] for r in self.round_records])
+        responses = np.array([r['responses'] for r in self.round_records])
+        # use adjusted valuations only for the calculation (because only 1 zero would exist)
+        adjusted_valuations = np.where(valuations == 0, 1, valuations)
+        differences = (valuations - responses) / adjusted_valuations
+        # assign a score of 0 where the response (bid) is greater than the valuation
+        scores = np.where(differences < 0 , 0, differences)
+        # calculate and return the mean of these scores
+        return np.mean(scores)
+        # return np.mean([(np.array(valuations[i]) - np.array(responses[i])) / np.array(valuations[i]) for i in range(20)])
     
     def compute_result(self, responses):
         player_utilities = []
