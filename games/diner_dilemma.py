@@ -146,7 +146,7 @@ class DinerDilemma(GameServer):
         if self.cot:
             output_format = f'{cot_msg} Please provide your thinking process and chosen dish in the following JSON format: {{"explanation": "thinking_process", "chosen_dish": "costly_or_cheap"}}'
         else:
-            output_format = f'Please provide your chosen dish in the following JSON format: {{"chosen_dish": "costly_or_cheap"}}'
+            output_format = f'Please provide your chosen dish in the following JSON format (do not use markdown format): {{"chosen_dish": "costly_or_cheap"}}'
         
         request_list = [self.round_id, output_format]
         request_msg = get_prompt(request_file, request_list)

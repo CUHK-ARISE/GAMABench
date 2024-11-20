@@ -1,0 +1,3673 @@
+{
+  "meta": {
+    "name_exp": "gemini-1.5-pro_divide_dollar_v1_g3",
+    "player_num": 10,
+    "golds": 200,
+    "round_id": 20,
+    "version": "v1"
+  },
+  "round_records": [
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_proposal": 200
+    },
+    {
+      "responses": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_proposal": 200
+    },
+    {
+      "responses": [
+        21,
+        20,
+        20,
+        20,
+        20,
+        21,
+        20,
+        20,
+        21,
+        20
+      ],
+      "total_proposal": 203
+    },
+    {
+      "responses": [
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        20,
+        20,
+        19
+      ],
+      "total_proposal": 193
+    },
+    {
+      "responses": [
+        21,
+        20,
+        21,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "total_proposal": 202
+    },
+    {
+      "responses": [
+        20,
+        19,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "total_proposal": 192
+    },
+    {
+      "responses": [
+        19,
+        21,
+        19,
+        19,
+        20,
+        19,
+        19,
+        21,
+        19,
+        19
+      ],
+      "total_proposal": 195
+    },
+    {
+      "responses": [
+        20,
+        19,
+        19,
+        21,
+        21,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "total_proposal": 195
+    },
+    {
+      "responses": [
+        19,
+        19,
+        22,
+        19,
+        19,
+        19,
+        19,
+        20,
+        22,
+        19
+      ],
+      "total_proposal": 197
+    },
+    {
+      "responses": [
+        19,
+        22,
+        19,
+        22,
+        19,
+        19,
+        19,
+        19,
+        19,
+        20
+      ],
+      "total_proposal": 197
+    },
+    {
+      "responses": [
+        23,
+        19,
+        19,
+        20,
+        23,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "total_proposal": 199
+    },
+    {
+      "responses": [
+        19,
+        19,
+        19,
+        23,
+        19,
+        19,
+        19,
+        23,
+        20,
+        19
+      ],
+      "total_proposal": 199
+    },
+    {
+      "responses": [
+        19,
+        20,
+        19,
+        19,
+        24,
+        19,
+        19,
+        19,
+        19,
+        24
+      ],
+      "total_proposal": 201
+    },
+    {
+      "responses": [
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        23,
+        23,
+        19
+      ],
+      "total_proposal": 191
+    },
+    {
+      "responses": [
+        24,
+        19,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        24
+      ],
+      "total_proposal": 201
+    },
+    {
+      "responses": [
+        18,
+        23,
+        19,
+        18,
+        23,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "total_proposal": 191
+    },
+    {
+      "responses": [
+        19,
+        18,
+        24,
+        24,
+        18,
+        18,
+        20,
+        19,
+        18,
+        19
+      ],
+      "total_proposal": 197
+    },
+    {
+      "responses": [
+        20,
+        19,
+        19,
+        18,
+        19,
+        24,
+        18,
+        18,
+        18,
+        24
+      ],
+      "total_proposal": 197
+    },
+    {
+      "responses": [
+        25,
+        19,
+        25,
+        18,
+        19,
+        20,
+        18,
+        18,
+        19,
+        18
+      ],
+      "total_proposal": 199
+    },
+    {
+      "responses": [
+        19,
+        18,
+        19,
+        20,
+        18,
+        25,
+        19,
+        25,
+        18,
+        18
+      ],
+      "total_proposal": 199
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        19,
+        19,
+        19,
+        19
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        19,
+        19,
+        19,
+        19
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        19,
+        19,
+        19,
+        19
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        19,
+        19,
+        19,
+        19
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        18,
+        18,
+        18,
+        18
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 21 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 21 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"22\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 22 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"22\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 22 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 24 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 24 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"25\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 25 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"25\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 25 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        21,
+        20,
+        21,
+        20,
+        21,
+        21,
+        22,
+        22,
+        23,
+        23,
+        24,
+        23,
+        24,
+        23,
+        24,
+        24,
+        25,
+        25
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        20,
+        0,
+        20,
+        21,
+        21,
+        22,
+        22,
+        23,
+        23,
+        0,
+        23,
+        0,
+        23,
+        24,
+        24,
+        25,
+        25
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        18,
+        18,
+        18,
+        18
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        18,
+        18,
+        18,
+        18
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        19,
+        19,
+        19,
+        19
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        19,
+        19,
+        19,
+        19
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 20 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        21,
+        20,
+        20,
+        19,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        20,
+        20,
+        20,
+        20
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        20,
+        0,
+        19,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 21 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"21\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 21 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"22\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 22 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"22\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 22 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"23\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 23 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 24 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"24\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 24 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"25\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 25 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"25\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 25 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        21,
+        20,
+        21,
+        20,
+        21,
+        21,
+        22,
+        22,
+        23,
+        23,
+        24,
+        23,
+        24,
+        23,
+        24,
+        24,
+        25,
+        25
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        20,
+        0,
+        20,
+        21,
+        21,
+        22,
+        22,
+        23,
+        23,
+        0,
+        23,
+        0,
+        23,
+        24,
+        24,
+        25,
+        25
+      ]
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are participating in a game played by 10 players over 20 rounds.\n\nGame Rules:\n\n1. You are dividing 200 golds. Each player independently proposes a bid.\n2. If the sum of all bids does not exceed 200, each player receives their bid amount.\n3. If the sum exceeds 200, all players receive nothing.",
+            "Now round 1 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 1:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 2 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 2:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 200.\nThe sum does not exceeds 200.\nYou received 20 golds.",
+            "Now round 3 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 3:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 203.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 4 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 4:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 193.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 5 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 5:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"20\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 202.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 6 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 6:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 192.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 7 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 7:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 8 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 8:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 195.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 9 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 9:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 10 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 10:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 11 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 11:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 12 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 12:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 19 golds.",
+            "Now round 13 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 13:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 14 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 14:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 15 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 15:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"19\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 201.\nThe sum exceeds 200.\nYou received 0 golds.",
+            "Now round 16 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 16:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 191.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 17 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 17:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 18 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 18:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 197.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 19 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 19:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds.",
+            "Now round 20 starts.\n\nYour goal is to maximize your individual gain without causing the total sum of bids to exceed 200 golds.\n\nPlease provide your bid amount in the following JSON format: {\"bid_amount\": \"integer_between_0_and_200\"}",
+            "Game Results for Round 20:\n\nYour bid amount was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"bid_amount\": \"18\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The sum of all bids was 199.\nThe sum does not exceeds 200.\nYou received 18 golds."
+          ]
+        }
+      ],
+      "records": [
+        20,
+        20,
+        20,
+        19,
+        20,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        18,
+        19,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "utility": [
+        20,
+        20,
+        0,
+        19,
+        0,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        0,
+        18,
+        0,
+        18,
+        18,
+        18,
+        18,
+        18
+      ]
+    }
+  ]
+}

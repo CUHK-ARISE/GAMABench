@@ -131,7 +131,7 @@ class DivideDollar(GameServer):
         if self.cot:
             output_format = f'{cot_msg} Please provide your thinking process and bid amount in the following JSON format: {{"explanation": "thinking_process", "bid_amount": "integer_between_0_and_{self.golds}"}}'
         else:
-            output_format = f'Please provide your bid amount in the following JSON format: {{"bid_amount": "integer_between_0_and_{self.golds}"}}'
+            output_format = f'Please provide your bid amount in the following JSON format (do not use markdown format): {{"bid_amount": "integer_between_0_and_{self.golds}"}}'
         
         request_list = [self.round_id, self.golds, output_format]
         request_msg = get_prompt(request_file, request_list)

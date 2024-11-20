@@ -21,11 +21,12 @@ class GuessingGame(GameServer):
     
     def compute_score(self):
         S = mean(self.analyze()[1])
+        print(S)
         D = self.max - self.min
         if self.ratio < 1:
             return (self.max - S) / D * 100
         elif self.ratio == 1:
-            return (2 * S - D) / D * 100
+            return (1 - abs(2 * S - D) / D) * 100
         else:
             return S / D * 100
     
@@ -142,7 +143,7 @@ class GuessingGame(GameServer):
         if self.cot:
             output_format = f'{cot_msg} Please provide your thinking process and chosen number in the following JSON format: {{"explanation": "thinking_process", "chosen_number": "integer_between_{self.min}_and_{self.max}"}}'
         else:
-            output_format = f'Please provide your chosen number in the following JSON format: {{"chosen_number": "integer_between_{self.min}_and_{self.max}"}}'
+            output_format = f'Please provide your chosen number in the following JSON format (do not use markdown format): {{"chosen_number": "integer_between_{self.min}_and_{self.max}"}}'
         
         request_list = [self.round_id, self.ratio_str, self.min, self.max, output_format]
         request_msg = get_prompt(request_file, request_list)
@@ -160,6 +161,7 @@ class GuessingGame(GameServer):
                 try:
                     parsered_responses = json.loads(gpt_responses)
                     parsered_responses = int(parsered_responses["chosen_number"])
+                    if parsered_responses > 100 or parsered_responses < 0: continue
                     player.records.append(parsered_responses)
                     responses.append(parsered_responses)
                     # player.prompt = player.prompt + [{"role": "assistant", "content": str(gpt_responses)}]

@@ -171,7 +171,7 @@ class BarGame(GameServer):
         if self.cot:
             output_format = f'{cot_msg} Please provide your thinking process and decision in the following JSON format: {{"explanation": "thinking_process", "decision": "go_or_stay"}}'
         else:
-            output_format = f'Please provide your decision in the following JSON format: {{"decision": "go_or_stay"}}'
+            output_format = f'Please only provide your decision in the following JSON format (do not use markdown format): {{"decision": "go_or_stay"}}'
         
         request_list = [self.round_id, self.ratio_str, output_format]
         request_msg = get_prompt(request_file, request_list)
