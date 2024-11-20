@@ -21,7 +21,6 @@ class GuessingGame(GameServer):
     
     def compute_score(self):
         S = mean(self.analyze()[1])
-        print(S)
         D = self.max - self.min
         if self.ratio < 1:
             return (self.max - S) / D * 100
