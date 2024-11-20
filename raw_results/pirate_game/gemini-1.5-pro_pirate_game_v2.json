@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "name_exp": "pirate_game",
+    "player_num": 10,
+    "gold": 100,
+    "round_id": 1,
+    "version": "v2",
+    "models": "gemini-1.5-pro-001"
+  },
+  "round_records": [
+    {
+      "gold_distribution": [
+        98,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "accept",
+        "reject",
+        "reject",
+        "reject",
+        "accept",
+        "reject"
+      ]
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 1-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "You are the pirate with the 1 rank in seniority and it's your turn to suggest a scheme.\n\nStaying alive is your paramount objective. Should you succeed in surviving, your subsequent aim is to accrue as many gold coins as possible. If it doesn't interfere with your main objectives, you might consider ejecting another pirate overboard.\n\nThe task at hand is to devise a scheme to distribute the 100 gold coins. All proposed numbers must be non-negative integers whose total equals 100.\n\nPlease provide your proposal of the golds distributed to each pirate from the you to the 10-th most senior in the following JSON format only: {\"proposal\": {\"1-th\": \"g_1\", ..., \"10-th\": \"g_10\"}}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: Your plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 2-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 3-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 1 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 4-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 5-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 1 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 6-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"reject\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 7-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"reject\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 8-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"reject\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 9-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"accept\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gemini-1.5-pro-001",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "user",
+          "parts": [
+            "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 10-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left.",
+            "The pirate who ranks 1 in terms of seniority must now suggest a plan. \n\nYour first and foremost objective is to stay alive. Should you manage to do that, your secondary aim should be to accumulate as many gold coins as you possibly can. You would also not be adverse to tossing another pirate overboard given it doesn't interfere with your initial objectives.\n\nThe plan which has been put forward is {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'}. This plan will provide you with 0 gold pieces. \n\nPlease only provide your decision on the current proposal in the following JSON format: {\"decision\": \"accept_or_reject\"}",
+            "The pirate with the 1-st-th highest rank suggested a {'1-th': '98', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 6 agreed to the proposed distribution. \n\nYour selection was:"
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            "{\"decision\": \"reject\"}"
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 1-st-th most senior pirate's plan was accepted. The game ends. You receive 98 golds."
+          ]
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "meta": {
+    "name_exp": "pirate_game",
+    "player_num": 10,
+    "gold": 100,
+    "round_id": 1,
+    "version": "v4",
+    "model": "gpt-4o-2024-08-06"
+  },
+  "round_records": [
+    {
+      "gold_distribution": [
+        96,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "accept",
+        "accept",
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "reject",
+        "reject"
+      ]
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 1-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nYour plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 2-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 3-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 4-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 5-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 6-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 7-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 8-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 9-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are engaged in a game involving 10 participants.\n\nThe Instructions of the Game Are:\n\n1. As pirates, you've stumbled upon a bounty of 100 gold coins and now must decide how to divide them amongst yourselves.\n2. The order of decision making will strictly follow seniority rankings. You stand as the 10-th highest in the hierarchy.\n3. The eldest pirate is responsible for suggesting how the 100 gold coins should be divided.\n4. Every pirate has a say in the vote for the proposed division plan, including the one who proposed it.\n5. If the proposal is agreed upon by the majority, each pirate receives their share of gold as proposed by the senior-most pirate.\n6. If the proposal doesn't receive majority approval, the proposer would be thrown overboard, and the next in line by seniority proposes a new plan.\n7. The game concludes when a distribution plan is approved or only one pirate is left standing."
+        },
+        {
+          "role": "user",
+          "content": "The pirate who held the 1-st-th position in the hierarchy suggested a {'1-th': 96, '2-th': 0, '3-th': 1, '4-th': 0, '5-th': 1, '6-th': 0, '7-th': 1, '8-th': 0, '9-th': 1, '10-th': 0} scheme. The offer was agreed on by 5 out of the 10 pirates.\n\nYou opted for:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "A Equal to or greater proportion of the pirates were agreeable to the scheme.\nThe 1-st-th most senior pirate's plan was accepted. The game ends. You receive 96 golds."
+        }
+      ],
+      "records": [
+        "reject"
+      ],
+      "utility": []
+    }
+  ]
+}

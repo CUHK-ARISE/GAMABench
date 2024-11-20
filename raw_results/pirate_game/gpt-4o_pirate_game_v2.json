@@ -1,0 +1,774 @@
+{
+  "meta": {
+    "name_exp": "pirate_game",
+    "player_num": 10,
+    "gold": 100,
+    "round_id": 5,
+    "version": "v2",
+    "model": "gpt-4o-2024-08-06"
+  },
+  "round_records": [
+    {
+      "gold_distribution": [
+        97,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "reject"
+      ]
+    },
+    {
+      "gold_distribution": [
+        98,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "reject",
+        "reject",
+        "reject"
+      ]
+    },
+    {
+      "gold_distribution": [
+        98,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "reject",
+        "reject"
+      ]
+    },
+    {
+      "gold_distribution": [
+        97,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "reject",
+        "reject",
+        "accept",
+        "reject",
+        "accept"
+      ]
+    },
+    {
+      "gold_distribution": [
+        97,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "responses": [
+        "accept",
+        "reject",
+        "reject",
+        "accept",
+        "accept",
+        "accept"
+      ]
+    }
+  ],
+  "player_data": [
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_0",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 1-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: Your plan was rejected. You are eliminated from the game and receive nothing."
+        }
+      ],
+      "records": [
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_1",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 2-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: Your plan was rejected. You are eliminated from the game and receive nothing."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_2",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 3-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: Your plan was rejected. You are eliminated from the game and receive nothing."
+        }
+      ],
+      "records": [
+        "accept",
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_3",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 4-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: Your plan was rejected. You are eliminated from the game and receive nothing."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept",
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_4",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 5-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: Your plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "accept",
+        "reject",
+        "accept",
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_5",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 6-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 5-th-th most senior pirate's plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "accept",
+        "reject",
+        "reject",
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_6",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 7-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 5-th-th most senior pirate's plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "reject",
+        "accept",
+        "reject",
+        "reject"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_7",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 8-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 5-th-th most senior pirate's plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "reject",
+        "reject",
+        "accept",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_8",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 9-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 5-th-th most senior pirate's plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "reject",
+        "reject",
+        "reject",
+        "accept"
+      ],
+      "utility": []
+    },
+    {
+      "model": "gpt-4o-2024-08-06",
+      "id": "player_9",
+      "prompt": [
+        {
+          "role": "system",
+          "content": "\n\nYou are involved in a game with 10 participants. \n\nThe guidelines of the game are:\n\n1. As pirates who have discovered 100 gold coins, you must decide how to split them among your crew.\n2. The sequence of decision-making is strictly according to the hierarchy of the pirates. You hold the position of the 10-th pirate in order of seniority.\n3. The top-ranking pirate is responsible for suggesting a scheme to divide the 100 gold coins.\n4. All pirates, proposer included, have to vote whether they agree with the distribution method proposed.\n5. If the majority agrees with the plan, then each pirate will receive the number of gold coins as per the proposer's idea.\n6. If the majority disagrees with the plan, the pirate who suggested it will be forced to walk the plank, and a new plan will be proposed by the next pirate in line of seniority.\n7. The game concludes when a proposal is accepted or if there's only one pirate left."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 1-st-th highest rank suggested a {'1-th': '97', '2-th': '0', '3-th': '1', '4-th': '0', '5-th': '2', '6-th': '0', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 10 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 1-st-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 2-nd-th highest rank suggested a {'2-th': '98', '3-th': '0', '4-th': '1', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 9 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 2-nd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 3-rd-th highest rank suggested a {'3-th': '98', '4-th': '0', '5-th': '1', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '0', '10-th': '0'} scheme. Among the present 8 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"reject\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 3-rd-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 4-th-th highest rank suggested a {'4-th': '97', '5-th': '0', '6-th': '1', '7-th': '0', '8-th': '1', '9-th': '0', '10-th': '1'} scheme. Among the present 7 pirates, 3 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Less majority of the pirates. \nThe result was: The 4-th-th most senior pirate was thrown overboard and eliminated from the game. The game continues."
+        },
+        {
+          "role": "user",
+          "content": "The pirate with the 5-th-th highest rank suggested a {'5-th': '97', '6-th': '0', '7-th': '1', '8-th': '0', '9-th': '1', '10-th': '1'} scheme. Among the present 6 pirates, 4 agreed to the proposed distribution. \n\nYour selection was:"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"decision\": \"accept\"}"
+        },
+        {
+          "role": "user",
+          "content": "The plan secured acceptance from a Equal to or greater majority of the pirates. \nThe result was: The 5-th-th most senior pirate's plan was accepted. The game ends. You receive 97 golds."
+        }
+      ],
+      "records": [
+        "reject",
+        "reject",
+        "reject",
+        "accept",
+        "accept"
+      ],
+      "utility": []
+    }
+  ]
+}
