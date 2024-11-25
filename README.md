@@ -27,6 +27,8 @@
 
 ## Updates
 
+[Nov 25, 2024] Add models: GPT-4o-0806; Improve the score scheme of SBA;
+
 [Aug 29, 2024] Add models: Gemini-1.5-Pro, LLaMA-3.1-{7, 70, 405}B, Mixtral-8x{7, 22}B, Qwen-2-72B;
 
 [Apr 25, 2024] Update scoring scheme of Public Goods Game, Diner's Dilemma, and Sealed-Bid Auction to favor rational strategies (being self-interested); Update leaderboard;
