@@ -69,17 +69,17 @@ class Leaderboard():
         
         games_name = ["Guessing", "Bar", "Dollar", "Goods", "Diner", "Auction", "Battle", "Pirate"]
 
-        games_folder = ["guessing_game", "bar_game/implicit", "divide_dollar", "public_goods",
+        games_folder = ["guessing_game", "bar_game_implicit", "divide_dollar", "public_goods",
                         "diner_dilemma", "sealed_bid_auction/first_price", "battle_royale", "pirate_game"]
         
         games_path = ["guessing_game", "bar_game_implicit", "divide_dollar", "public_goods",
                       "diner_dilemma", "sealed_bid_auction", "battle_royale", "pirate_game"]
         
-        models_name = ["GPT-3.5-0125", "GPT-3.5-1106", "GPT-3.5-0613", "GPT-4-0125",
+        models_name = ["GPT-3.5-0125", "GPT-3.5-1106", "GPT-3.5-0613", "GPT-4t-0125", "GPT-4o-0806",
                        "Gemini-1.0-Pro", "Gemini-1.5-Pro", "LLaMA-3.1-8B", "LLaMA-3.1-70B",
                        "LLaMA-3.1-405B", "Mixtral-8x7B", "Mixtral-8x22B", "Qwen-2-72B"]
         
-        models_path = ["", "gpt-3.5-turbo-1106_", "gpt-3.5-turbo-0613_", "gpt-4-0125-preview_",
+        models_path = ["", "gpt-3.5-turbo-1106_", "gpt-3.5-turbo-0613_", "gpt-4-0125-preview_", "gpt-4o_",
                        "gemini-1.0-pro_", "gemini-1.5-pro_",
                        "llama-3.1-8b_", "llama-3.1-70b_", "llama-3.1-405b_",
                        "mixtral-8x7b_", "mixtral-8x22b_", "qwen2-72b_"]
