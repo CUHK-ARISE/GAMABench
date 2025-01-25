@@ -23,12 +23,12 @@ class PublicGoods(GameServer):
     
     def compute_score(self):
         T = self.tokens
-        S = self.analyze()
+        S = np.mean(self.analyze()[1], axis=0)
         return (T - S) / T * 100
         
     def analyze(self):
-        responses = [r['total_tokens'] / self.player_num for r in self.round_records] 
-        return np.mean(responses, axis=0)
+        responses = [r['total_tokens'] / self.player_num for r in self.round_records]
+        return 1, responses
         
     def compute_result(self, responses):
         total_tokens = sum(responses)
@@ -77,17 +77,39 @@ class PublicGoods(GameServer):
                 player.prompt = player.prompt + report_prompts
         return
 
-
+    def plot_game_average_in_paper(self):
+        round_numbers = range(1, self.round_id + 1)
+        # get the total donation list
+        total_donations_list = np.array([r['total_tokens'] / self.tokens * 20 for r in self.round_records])
+        average_donation_list = total_donations_list / self.player_num
+        return_list = total_donations_list * self.ratio / self.player_num
+        mean_list = np.array([np.mean(r['responses']) for r in self.round_records])
+        std_list = np.array([np.std(r['responses'], ddof=1) for r in self.round_records])
+        mean_minus_std = mean_list - std_list
+        mean_plus_std = mean_list + std_list
+        plt.axhline(y=self.tokens, linestyle='--',color='black', lw=1)
+        plt.fill_between(round_numbers, mean_minus_std, mean_plus_std, color='blue', alpha=0.2)
+        # Plot the blue line
+        plt.plot(round_numbers, return_list, color='red', marker='x', label="Average Return", lw=1)
+        plt.plot(round_numbers, average_donation_list, color='blue', marker='.', label="Average Contribution", lw=1)
+        plt.xticks([i for i in round_numbers if i % 2 == 0])
+        plt.legend(loc='upper left')
+        plt.savefig(f'figures/{self.name_exp}-single.svg', format="svg", dpi=300)
+        plt.clf()
+        
     def graphical_analysis(self, players_list):
-        # plt.figure(figsize=(30, 20)) 
-        # Choice Analysis
+        plt.rc('font', size=12)          # controls default text sizes
+        plt.rc('xtick', labelsize=12)    # fontsize of the tick labels
+        plt.rc('ytick', labelsize=12)    # fontsize of the tick labels
+        plt.rc('legend', fontsize=8)     # legend fontsize
+        plt.rc('figure', titlesize=12)   # fontsize of the figure 
         os.makedirs("figures", exist_ok=True)
         round_numbers = [i for i in range(1, self.round_id+1)]
-        player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1, self.player_num + 1)]
+        self.plot_game_average_in_paper()
         
         os.makedirs(f"figures/{self.name_exp}", exist_ok=True)
         # Individual Donations and Total Donations
-        total_donations_list = [r["total_tokens"] for r in self.round_records]
         max_donation = 0
         donation_list = []
         for index, player in enumerate(players_list):
@@ -165,15 +187,13 @@ class PublicGoods(GameServer):
         plt.yticks(range(1, self.player_num + 1))
 
         plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
-        plt.tight_layout()
         # Enable the grid
         # plt.grid(True, which='both', axis='both', linestyle='-', color='k', linewidth=0.5)
         plt.gca().invert_yaxis()  # Invert the y-axis so that the top rank is at the top of the y-axis
         plt.savefig(f'figures/public_goods/ranking.svg', dpi=300)
         plt.clf()
 
-        plt.close()
-
+        plt.close()            
 
     def save(self, savename):
         game_info = {

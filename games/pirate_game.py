@@ -31,7 +31,9 @@ class PirateGame(GameServer):
 
     def compute_score(self):        
         # in analyze, S_P is already calculated in terms of gold = 100 base
-        S_P, S_V = self.analyze()
+        S_P, S_V = self.analyze()[1]
+        S_P = np.mean(S_P, axis=0)
+        S_V = S_V[-1]
         return (2 * 100 - S_P) / (2 * 100) * 50 + S_V * 50
 
     def analyze(self):
@@ -50,7 +52,6 @@ class PirateGame(GameServer):
                 if is_proposer:
                     is_proposer = False
                     continue
-                
                 player_gold = current_gold_distribution[index2]
                 # print(player_gold)
                 player_records = round_record['responses']
@@ -68,7 +69,7 @@ class PirateGame(GameServer):
             accuracy.append(correct_actions / total_actions)
             # print(self.models)
             # print(accuracy)
-        return np.mean(L1_distances, axis=0), accuracy[-1]
+        return 1, (L1_distances, accuracy)
 
     def report_result(self, gold_distribution):
         count = 0
@@ -260,7 +261,7 @@ class PirateGame(GameServer):
         plt.savefig(f'figures/{self.name_exp}/AccuracyAndL1.svg', dpi=300)
         plt.clf()
         
-        player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1, self.player_num + 1)]
         
         fig, ax1 = plt.subplots()
         ax1.set_ylim(bottom=-100, top=200)

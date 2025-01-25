@@ -24,8 +24,8 @@ class SealedBidAuction(GameServer):
         self.seed = seed
     
     def compute_score(self):
-        MAX_V = self.valuation_max 
-        S = self.analyze()
+        MAX_V = self.valuation_max
+        S = np.mean(self.analyze()[1][1])
         # if self.mode.find('second') != -1:
         #     return 100 - S / MAX_V * 100
         # else:
@@ -36,12 +36,15 @@ class SealedBidAuction(GameServer):
         valuations = np.array([r['valuations'] for r in self.round_records])
         responses = np.array([r['responses'] for r in self.round_records])
         # use adjusted valuations only for the calculation (because only 1 zero would exist)
+        differences = valuations - responses
         adjusted_valuations = np.where(valuations == 0, 1, valuations)
-        differences = (valuations - responses) / adjusted_valuations
+        adjusted_differences = differences / adjusted_valuations
+        adjusted_differences = np.where(adjusted_differences < 0 , 0, adjusted_differences)
         # assign a score of 0 where the response (bid) is greater than the valuation
-        scores = np.where(differences < 0 , 0, differences)
         # calculate and return the mean of these scores
-        return np.mean(scores)
+        differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in differences]
+        adjusted_differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in adjusted_differences]
+        return 1, (differences_each_round, adjusted_differences_each_round)
         # return np.mean([(np.array(valuations[i]) - np.array(responses[i])) / np.array(valuations[i]) for i in range(20)])
     
     def compute_result(self, responses):
@@ -110,7 +113,7 @@ class SealedBidAuction(GameServer):
         os.makedirs("figures", exist_ok=True)
         os.makedirs(f'figures/sealed_bid_auction', exist_ok=True)
         # define player colors
-        player_color = [self.cstm_color(x, 1, 10) for x in range(1,11)]
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         round_numbers = [i for i in range(1, self.round_id+1)]
         differences = []
         for index, player in enumerate(players_list):

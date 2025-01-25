@@ -204,7 +204,7 @@ class BattleRoyale(GameServer):
         return
 
     def compute_score(self):
-        S = self.analyze()
+        S = self.analyze()[1][-1]
         return S * 100
         
     def analyze(self):
@@ -247,8 +247,9 @@ class BattleRoyale(GameServer):
         
         correct_aims = counts[-1]
         top_hit_rate = [x / y for x, y in zip(counts, rounds)]
-        return correct_aims/ (len(top_hit_rate))
-        
+        # print(top_hit_rate[-1] == correct_aims/ (len(top_hit_rate)))
+        return 1, top_hit_rate
+
 
     """graph analysis"""
     def graphical_analysis(self, players_list):
