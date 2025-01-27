@@ -25,7 +25,7 @@ class SealedBidAuction(GameServer):
     
     def compute_score(self):
         MAX_V = self.valuation_max
-        S = np.mean(self.analyze()[1][1])
+        S = np.mean(self.analyze()[1])
         # if self.mode.find('second') != -1:
         #     return 100 - S / MAX_V * 100
         # else:
@@ -44,7 +44,7 @@ class SealedBidAuction(GameServer):
         # calculate and return the mean of these scores
         differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in differences]
         adjusted_differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in adjusted_differences]
-        return 1, (differences_each_round, adjusted_differences_each_round)
+        return 1, adjusted_differences_each_round
         # return np.mean([(np.array(valuations[i]) - np.array(responses[i])) / np.array(valuations[i]) for i in range(20)])
     
     def compute_result(self, responses):
@@ -108,44 +108,60 @@ class SealedBidAuction(GameServer):
                 player.prompt = player.prompt + report_prompts
         return
 
-    def plot_val_bid_diff(self, players_list):
+    def plot_val_bid_diff(self):
+        plt.rc('font', size=12)          # controls default text sizes
+        plt.rc('xtick', labelsize=12)    # fontsize of the tick labels
+        plt.rc('ytick', labelsize=12)    # fontsize of the tick labels
+        plt.rc('legend', fontsize=8)     # legend fontsize
+        plt.rc('figure', titlesize=12)   # fontsize of the figure title
         # make figure directories
         os.makedirs("figures", exist_ok=True)
         os.makedirs(f'figures/sealed_bid_auction', exist_ok=True)
-        # define player colors
-        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
         round_numbers = [i for i in range(1, self.round_id+1)]
-        differences = []
-        for index, player in enumerate(players_list):
-            valuations = np.array(player.valuation) 
-            bids = np.array(player.records)
-            difference = (valuations - bids) / self.valuation_max * 200
-            differences.append(difference)
-            plt.plot(round_numbers, difference, label=player.id, color=player_color[index], marker='.')
-        self.averages = np.mean(np.mean(differences, axis=0),0)
-        # add a line for comparing to Nash Equilibrium    
-        plt.axhline(0, color='black', linestyle='--')
+        player_color = [self.cstm_color(x, 1, self.player_num) for x in range(1,self.player_num+1)]
+        valuations = np.array([r['valuations'] for r in self.round_records])
+        responses = np.array([r['responses'] for r in self.round_records])
+        # use adjusted valuations only for the calculation (because only 1 zero would exist)
+        differences = valuations - responses
+        adjusted_valuations = np.where(valuations == 0, 1, valuations)
+        adjusted_differences = differences / adjusted_valuations
+        adjusted_differences = np.where(adjusted_differences < 0 , 0, adjusted_differences)
+        # assign a score of 0 where the response (bid) is greater than the valuation
+        # calculate and return the mean of these scores
+        differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in differences]
+        adjusted_differences_each_round = [np.mean(curr_round_diff) for curr_round_diff in adjusted_differences]        
+        plt.plot(round_numbers, adjusted_differences_each_round, color='blue', marker='.')
         plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
-        
-        plt.title('Valuation - Bid')
-        plt.xlabel('Round')
-        plt.ylabel('Difference')
-        # plt.legend()
-        plt.savefig(f'figures/{self.name_exp}_{self.mode}_{self.version}/val_bid_diff.svg', dpi=300)
-        plt.clf()
-        
-        averages = np.mean(differences, axis=0)
-        plt.plot(round_numbers, averages, color='blue', marker='.')
-        plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
+
         plt.fill_between(
             round_numbers,
-            [y - s for y, s in zip(np.mean(differences, axis=0), np.std(differences, axis=0))],
-            [y + s for y, s in zip(np.mean(differences, axis=0), np.std(differences, axis=0))],
+            [y - s for y, s in zip(adjusted_differences_each_round, np.std(np.transpose(adjusted_differences), axis=0))],
+            [y + s for y, s in zip(adjusted_differences_each_round, np.std(np.transpose(adjusted_differences), axis=0))],
             alpha=0.2, color='blue'
         )
-        plt.savefig(f'figures/sealed_bid_auction/val_bid_diff_mean.svg', dpi=300)
+        plt.savefig(f'figures/sealed_bid_auction/mean_std.svg', dpi=300)
         plt.clf()
         plt.close()
+        
+        for idx, diff in enumerate(np.transpose(adjusted_differences)):
+            plt.plot(round_numbers, diff, color=player_color[idx], marker='.')
+            
+        # plt.title('Valuation - Bid / ')
+        # plt.xlabel('Round')
+        # plt.ylabel('Difference')
+        # plt.legend()
+        plt.savefig(f'figures/sealed_bid_auction/val_bid_diff.svg', dpi=300)
+        plt.clf()
+        plt.close()
+        # # define player colors
+        # differences = []
+        # # add a line for comparing to Nash Equilibrium    
+        # plt.axhline(0, color='black', linestyle='--')
+        # plt.xticks([_ for _ in range(1, self.round_id+1) if _ % 2 == 0])
+        
+
+        
+
 
     def graphical_analysis(self, players_list):
         os.makedirs("figures", exist_ok=True)
@@ -167,7 +183,7 @@ class SealedBidAuction(GameServer):
         plt.savefig(f'figures/sealed_bid_auction/bid_each_round.svg', dpi=300)
         plt.clf()
         plt.close()
-        self.plot_val_bid_diff(players_list)
+        self.plot_val_bid_diff()
         
     def save(self, savename):
         game_info = {

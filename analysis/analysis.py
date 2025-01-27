@@ -71,9 +71,6 @@ class Analysis:
         if self.game == BattleRoyale:
             analyzed_games = battle_royale_padding(analyzed_games)
             analyzed_games = np.nanmean(analyzed_games, axis=0)
-        elif self.game == SealedBidAuction:
-            analyzed_games = [result[0] for result in analyzed_games]
-            analyzed_games = np.mean(analyzed_games, axis=0)
         elif self.game == PirateGame:
             pass   
         else:
@@ -141,7 +138,6 @@ class Analysis:
             ax1.axhline(y=0, color='black', linestyle='-')
             ax2.axhline(y=0, color='black', linestyle='-')
             plt.legend()
-            
         else:
             if self.game == BattleRoyale:
                 self.analyzed = battle_royale_padding(self.analyzed)
@@ -167,7 +163,7 @@ class Analysis:
             if ylim is not None:
                 ax.set_ylim(*ylim)
             
-            os.makedirs("analyzed", exist_ok=True)
-            fig.savefig(f'analyzed/{savename}.{format}', format=format, dpi=300)
+        os.makedirs("analyzed", exist_ok=True)
+        fig.savefig(f'analyzed/{savename}.{format}', format=format, dpi=300)
     
     
