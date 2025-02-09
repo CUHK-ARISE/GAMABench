@@ -27,6 +27,8 @@
 
 ## Updates
 
+[Jan 22, 2025] GAMA-Bench is accepted to **ICLR 2025**;
+
 [Nov 25, 2024] Add models: GPT-4o-0806; Improve the score scheme of SBA;
 
 [Aug 29, 2024] Add models: Gemini-1.5-Pro, LLaMA-3.1-{8, 70, 405}B, Mixtral-8x{7, 22}B, Qwen-2-72B;
