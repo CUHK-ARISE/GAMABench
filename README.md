@@ -196,7 +196,7 @@ For more details, please refer to our paper <a href="https://arxiv.org/abs/2403.
 
 If you find our paper&tool interesting and useful, please feel free to give us a star and cite us through:
 ```
-@article{huang2024how,
+@inproceedings{huang2025competing,
   author    = {Jen{-}tse Huang and
                Eric John Li and
                Man Ho Lam and
@@ -207,7 +207,7 @@ If you find our paper&tool interesting and useful, please feel free to give us a
                Xing Wang and
                Zhaopeng Tu and
                Michael R. Lyu},
-  title     = {How Far Are We on the Decision-Making of LLMs? Evaluating LLMs' Gaming Ability in Multi-Agent Environments},
-  journal   = {arXiv preprint arXiv:2403.11807},
-  year      = {2024}
+  title     = {Competing Large Language Models in Multi-Agent Gaming Environments},
+  booktitle = {Proceedings of the Thirteenth International Conference on Learning Representations (ICLR)},
+  year      = {2025}
 }
