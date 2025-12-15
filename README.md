@@ -197,17 +197,9 @@ For more details, please refer to our paper <a href="https://arxiv.org/abs/2403.
 If you find our paper&tool interesting and useful, please feel free to give us a star and cite us through:
 ```
 @inproceedings{huang2025competing,
-  author    = {Jen{-}tse Huang and
-               Eric John Li and
-               Man Ho Lam and
-               Tian Liang and
-               Wenxuan Wang and
-               Youliang Yuan and
-               Wenxiang Jiao and
-               Xing Wang and
-               Zhaopeng Tu and
-               Michael R. Lyu},
-  title     = {Competing Large Language Models in Multi-Agent Gaming Environments},
-  booktitle = {Proceedings of the Thirteenth International Conference on Learning Representations (ICLR)},
-  year      = {2025}
+  title={Competing large language models in multi-agent gaming environments},
+  author={Huang, Jen-tse and Li, Eric John and Lam, Man Ho and Liang, Tian and Wang, Wenxuan and Yuan, Youliang and Jiao, Wenxiang and Wang, Xing and Tu, Zhaopeng and Lyu, Michael},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2025}
 }
+```
