@@ -91,10 +91,18 @@
           <tr
             v-for="row in sortedRows"
             :key="row.model"
-            class="hover:bg-blue-50 transition-colors duration-150"
+            :class="{
+              'bg-red-50 hover:bg-red-100': row.hasMissingGames,
+              'hover:bg-blue-50': !row.hasMissingGames
+            }"
+            class="transition-colors duration-150"
+            :title="row.hasMissingGames ? `Missing games: ${row.missingGames.join(', ')}` : ''"
           >
             <td class="border px-4 py-2 font-medium text-gray-800 whitespace-nowrap text-base">
               {{ row.model }}
+              <span v-if="row.hasMissingGames" class="ml-2 text-red-600 text-xs">
+                (Missing: {{ row.missingGames.join(', ') }})
+              </span>
             </td>
             <td class="border px-4 py-2 text-center text-gray-700">
               {{ formatCell(row.score) }}
@@ -201,23 +209,41 @@ const overallData = computed(() => {
     }
   })
 
-  // Calculate average for each model
+  // Calculate average for each model and track missing games
   const modelCounts = {}
+  const modelMissingGames = {}
+
   gamesToAverage.forEach(gameName => {
     const gameData = leaderboardData.value[gameName]
     Object.entries(gameData).forEach(([model, score]) => {
       if (!overall[model]) {
         overall[model] = 0
         modelCounts[model] = 0
+        modelMissingGames[model] = []
       }
       overall[model] += score
       modelCounts[model]++
     })
   })
 
-  // Divide by count to get average
+  // Check for missing games for each model
   Object.keys(overall).forEach(model => {
-    overall[model] = overall[model] / modelCounts[model]
+    gamesToAverage.forEach(gameName => {
+      if (!(model in leaderboardData.value[gameName])) {
+        // Extract base name for display
+        const match = gameName.match(/^(.+?)\s*\((.+?)\)$/)
+        const displayName = match ? match[1] : gameName
+        modelMissingGames[model].push(displayName)
+      }
+    })
+  })
+
+  // Divide by count to get average and attach missing games info
+  Object.keys(overall).forEach(model => {
+    overall[model] = {
+      score: overall[model] / modelCounts[model],
+      missingGames: modelMissingGames[model]
+    }
   })
 
   return overall
@@ -293,10 +319,16 @@ const sortedRows = computed(() => {
     ? overallData.value
     : (leaderboardData.value[fullGameName.value] || {})
 
-  const rows = Object.entries(gameData).map(([model, score]) => ({
-    model,
-    score
-  }))
+  const rows = Object.entries(gameData).map(([model, data]) => {
+    // For Overall view, data is {score, missingGames}; for specific games, data is just the score
+    const isOverall = selectedGame.value === 'Overall'
+    return {
+      model,
+      score: isOverall ? data.score : data,
+      missingGames: isOverall ? data.missingGames : [],
+      hasMissingGames: isOverall && data.missingGames.length > 0
+    }
+  })
 
   // Sort by selected column
   return rows.sort((a, b) => {
